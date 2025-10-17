@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Opposite of light mode for dark theme -->
+
+    <color name="black">#FFFFFFFF</color> <!-- Text / icons become white -->
+    <color name="white">#353535</color> <!-- App background darker -->
+
+    <color name="blue">#66BFFF</color> <!-- Slightly softer blue for night -->
+    <color name="dark_blue">#2196F3</color> <!-- Balanced medium-dark blue -->
+    <color name="track_color">#335C9EFF</color> <!-- Faint blue track -->
+    <color name="grey">#2C2C2C</color> <!-- Dark surface background -->
+    <color name="dark_grey">#A0A0A0</color> <!-- Light grey text / icons -->
+</resources>

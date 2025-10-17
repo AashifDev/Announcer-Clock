@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/sound_options_raw_binding.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/sound_options_raw_binding.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/dialog_custom_repeat_option.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/dialog_custom_repeat_option.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/repeat_option_raw_item.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/repeat_option_raw_item.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/fragment_text_to_speech.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/fragment_text_to_speech.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/fragment_repeat_option.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/fragment_repeat_option.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/more_layout.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/more_layout.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/fragment_our_app.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/fragment_our_app.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/our_app_row_item.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/our_app_row_item.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/activity_main.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/fragment_notification_sound.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/fragment_notification_sound.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/fragment_home.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-78:/layout/activity_splash.xml",
+        "source": "com.dzo.announcerclock.app-main-81:/layout/activity_splash.xml"
+    }
+]

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.dzo.announcerclock.app-mergeDebugResources-77:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\d4997949737e44298a6978e6c0a1afa2\\transformed\\appcompat-1.7.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    }
+                }
+            ]
+        }
+    ]
+}

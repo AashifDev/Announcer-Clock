@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFFFF</color>
+    <color name="blue">#66BFFF</color>
+    <color name="dark_blue">#2196F3</color>
+    <color name="dark_grey">#A0A0A0</color>
+    <color name="grey">#2C2C2C</color>
+    <color name="track_color">#335C9EFF</color>
+    <color name="white">#353535</color>
+    <string name="custom_timer">Custom Timer</string>
+    <string name="disable_during_phone_calls">Disable during phone calls</string>
+    <string name="disable_while_playing_music">Disable while playing music</string>
+    <string name="enable_hourly_talk_time">Enable time announcer clock</string>
+    <string name="enable_notification">Enable notification</string>
+    <string name="enable_notification_sound">Enable notification sound</string>
+    <string name="enable_time_speaking">Enable time speaking</string>
+    <string name="general_settings">General Settings</string>
+    <string name="hourly_talk_time">Hourly Time Announcer Clock</string>
+    <string name="more">More</string>
+    <string name="our_apps">Our Apps</string>
+    <string name="rate_app">Rate App</string>
+    <string name="repeat_every">Repeat Every</string>
+    <string name="select_pitch_rate">Select Pitch Rate</string>
+    <string name="select_speech_rate">Select Speech Rate</string>
+    <string name="share_app">Share App</string>
+    <string name="sound_settings">Sound Settings</string>
+    <string name="sounds">Sounds</string>
+    <string name="text_to_speech_settings">Text To Speech Settings</string>
+    <string name="timer_manager_and_hour_time_clock">Timer manager and hourly time announcer clock</string>
+    <string name="version">Version</string>
+    <string name="vibration">Vibration</string>
+    <string name="volume">Volume</string>
+    <style name="Base.Theme.AnnouncerClock" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="NumberPickerTheme" parent="ThemeOverlay.MaterialComponents.Light">
+        <item name="colorControlNormal">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="SheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.3</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="Theme.AnnouncerClock" parent="Base.Theme.AnnouncerClock"/>
+    <style name="iOSSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+        
+        <item name="android:thumb">@drawable/toggle_thumb</item>
+        <item name="track">@drawable/toggle_track</item>
+    </style>
+</resources>
