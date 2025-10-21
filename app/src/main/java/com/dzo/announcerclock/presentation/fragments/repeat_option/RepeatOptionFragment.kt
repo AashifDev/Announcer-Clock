@@ -17,6 +17,7 @@ import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.Tim
 import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatOption
 import com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel
 import com.dzo.announcerclock.utils.core.BaseFragment
+import com.dzo.announcerclock.utils.extension.showCustomSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,15 +39,20 @@ class RepeatOptionFragment :
         binding.repeatOptionRecyclerView.adapter = repeatOptionAdapter
 
         repeatOptionAdapter.onItemClick = { repeatOption ->
-            if (repeatOption.id == 8) {
-                showCustomRepeatDialog(repeatOption)
-            } else {
-                // Normal option
-                viewModel.selectOption(repeatOption)
-                //findNavController().popBackStack()
+            if (AppPreferences.getToggleState() == true){
+                if (repeatOption.id == 8) {
+                    showCustomRepeatDialog(repeatOption)
+                } else {
+                    // Normal option
+                    viewModel.selectOption(repeatOption)
+                    //findNavController().popBackStack()
 
-                timerViewModel.startTimer(repeatOption.valueInMinute!!)
 
+                    timerViewModel.startTimer(repeatOption.valueInMinute!!)
+
+                }
+            }else{
+                requireActivity().showCustomSnackbar("Please enable toggle first!", iconRes = R.drawable.toggle_button)
             }
         }
 
@@ -74,6 +80,10 @@ class RepeatOptionFragment :
         val etTotal = dialogView.findViewById<NumberPicker>(R.id.etTotal)
         val btnSave = dialogView.findViewById<Button>(R.id.btnSave)
 
+        //setupPickerIntervalMinuteWithStep(etInterval, 5,5, 30)
+        //setupPickerIntervalTotalMinuteWithStep(etTotal, 10, 10,60)
+
+
         setupPicker(etInterval, 1, 60)
         setupPicker(etTotal, 1, 24)
 
@@ -99,7 +109,22 @@ class RepeatOptionFragment :
 
         dialog.show()
     }
-
+    private fun setupPickerIntervalMinuteWithStep(picker: NumberPicker, step: Int, min: Int, max: Int) {
+        val values = (min..max step step).map { it.toString() }.toTypedArray()
+        picker.minValue = 0
+        picker.maxValue = values.size - 1
+        picker.displayedValues = values
+        picker.wrapSelectorWheel = true
+        picker.setFormatter { String.format("%02d", values[it].toInt()) }
+    }
+    private fun setupPickerIntervalTotalMinuteWithStep(picker: NumberPicker, step: Int, min: Int, max: Int) {
+        val values = (min..max step step).map { it.toString() }.toTypedArray()
+        picker.minValue = 0
+        picker.maxValue = values.size - 1
+        picker.displayedValues = values
+        picker.wrapSelectorWheel = true
+        picker.setFormatter { String.format("%02d", values[it].toInt()) }
+    }
     private fun setupPicker(picker: NumberPicker, min: Int, max: Int) {
         picker.minValue = min
         picker.maxValue = max

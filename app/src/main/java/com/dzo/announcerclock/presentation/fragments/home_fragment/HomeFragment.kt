@@ -1,9 +1,13 @@
 package com.dzo.announcerclock.presentation.fragments.home_fragment
 
+import android.app.Activity
+import android.app.Activity.RESULT_CANCELED
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.IntentSender
+import android.graphics.Color
 import android.media.AudioManager
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -11,12 +15,19 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
@@ -39,7 +50,21 @@ import com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsV
 import com.dzo.announcerclock.utils.AnimationType
 import com.dzo.announcerclock.utils.animateTimerText
 import com.dzo.announcerclock.utils.core.BaseFragment
+import com.dzo.announcerclock.utils.extension.showCustomSnackbar
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetSequence
+import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateInfo
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.appupdate.AppUpdateOptions
+import com.google.android.play.core.install.InstallState
+import com.google.android.play.core.install.InstallStateUpdatedListener
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.InstallStatus
+import com.google.android.play.core.install.model.UpdateAvailability
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -50,6 +75,7 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.roundToInt
+import androidx.core.graphics.toColorInt
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
@@ -68,7 +94,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private var soundOption: SoundOption? = null
     private var ttsReady = false
     private lateinit var ttsSettings: TtsSettings
-
+    private var appUpdateManager: AppUpdateManager? = null
+    private var listener: InstallStateUpdatedListener? = null
+    private var activityResultLauncher: ActivityResultLauncher<*>? = null
+    private var DAYS_FOR_FLEXIBLE_UPDATE: Int = 7
+    private var DAYS_FOR_IMMEDIATE_UPDATE: Int = 14
     private val volumeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             // Sync slider when system volume changed (hardware buttons or other apps)
@@ -81,6 +111,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkForUpdate()
 
         lifecycleScope.launch {
             repeatOption = AppPreferences.getRepeatOption()
@@ -108,6 +139,72 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         )
 
     }
+
+
+    private fun checkForUpdate() {
+        appUpdateManager = AppUpdateManagerFactory.create(requireContext())
+
+        val appUpdateInfoTask: Task<AppUpdateInfo> = appUpdateManager!!.appUpdateInfo
+
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
+                // Request the update.
+                startInAppUpdate(appUpdateInfo, AppUpdateType.FLEXIBLE)
+            }
+        }
+
+        activityResultLauncher = registerForActivityResult<IntentSenderRequest, ActivityResult>(
+            ActivityResultContracts.StartIntentSenderForResult()
+        ) { result: ActivityResult ->
+            // handle callback
+            if (result.resultCode == RESULT_CANCELED) {
+                //Toast.makeText(this, "Update canceled.", Toast.LENGTH_SHORT).show();
+                Log.d("log", "Update canceled by user")
+            } else if (result.resultCode != AppCompatActivity.RESULT_OK) {
+                checkForUpdate()
+            }
+        }
+
+        listener = InstallStateUpdatedListener { state: InstallState ->
+            if (state.installStatus() == InstallStatus.DOWNLOADED) {
+                // After the update is downloaded, show a notification
+                // and request user confirmation to restart the app.
+                popupSnackBarForCompleteUpdate()
+            }
+        }
+
+        appUpdateManager!!.registerListener(listener!!)
+    }
+
+    private fun startInAppUpdate(appUpdateInfo: AppUpdateInfo, updateType: Int) {
+        appUpdateManager!!.startUpdateFlowForResult(
+            appUpdateInfo,
+            activityResultLauncher as ActivityResultLauncher<IntentSenderRequest>,
+            AppUpdateOptions.newBuilder(updateType).build()
+        )
+    }
+
+    private fun popupSnackBarForCompleteUpdate() {
+        /* val snackbar = Snackbar.make(requireView().findViewById(R.id.scrollView), "An update has just been downloaded.", Snackbar.LENGTH_INDEFINITE)
+         snackbar.setAction(
+             "RESTART"
+         ) { view: View? -> appUpdateManager!!.completeUpdate() }
+         snackbar.setActionTextColor(
+             resources.getColor(R.color.white)
+         )
+         snackbar.show()*/
+
+        requireActivity().showCustomSnackbar(
+            "An update has just been downloaded.",
+            actionText = "RESTART",
+            iconRes = R.drawable.app_update
+        ) {
+            appUpdateManager!!.completeUpdate()
+        }
+    }
+
 
     private fun volumeRockerSetup() {
         audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
@@ -231,40 +328,102 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-   /* private suspend fun speakTestMessage() {
-        if (!ttsReady) {
-            repeat(5) {
-                delay(500)
-                if (ttsReady) return@repeat
-            }
-        }
+    private fun showIntroGuide() {
+        TapTargetSequence(requireActivity())
+            .targets(
+                TapTarget.forView(
+                    binding.customToggle,
+                    "Start",
+                    "Enable this toggle for start timer."
+                )
+                    .outerCircleColor(R.color.light_blue)
+                    .targetCircleColor(R.color.white)
+                    .titleTextColor(R.color.black)
+                    .descriptionTextColor(R.color.black)
+                    .tintTarget(true)
+                    .cancelable(false)
+                    .transparentTarget(true),
 
-        val settings = AppPreferences.getTtsSettings()
-        tts?.setPitch(settings.pitch)
-        tts?.setSpeechRate(settings.rate)
+                TapTarget.forView(binding.setRepeatTime, "Repeat Time", "Set repeat time for timer")
+                    .targetCircleColor(R.color.white)
+                    .outerCircleColor(R.color.light_blue)
+                    .titleTextColor(R.color.black)
+                    .descriptionTextColor(R.color.black)
+                    .tintTarget(true)
+                    .cancelable(false)
+                    .transparentTarget(true),
 
-        val localeParts = settings.language.split("_")
-        val locale =
-            if (localeParts.size == 2) Locale(localeParts[0], localeParts[1]) else Locale.getDefault()
-        tts?.language = locale
+                TapTarget.forView(
+                    binding.setSound,
+                    "Notification Sound",
+                    "Set your custom notification sound"
+                )
+                    .targetCircleColor(R.color.white)
+                    .outerCircleColor(R.color.light_blue)
+                    .titleTextColor(R.color.black)
+                    .descriptionTextColor(R.color.black)
+                    .tintTarget(true)
+                    .cancelable(false)
+                    .transparentTarget(true),
 
-        val availableVoices = tts?.voices?.filter { it.locale == locale } ?: emptyList()
-        val selectedVoice = availableVoices.firstOrNull { it.name.contains(settings.genderVoice, true) }
-            ?: availableVoices.firstOrNull()
-        selectedVoice?.let { tts?.voice = it }
-
-        val formatter = SimpleDateFormat("hh:mm a", Locale.getDefault())
-
-        withContext(Dispatchers.Main) {
-            tts?.speak(
-                formatter.format(Date()),
-                TextToSpeech.QUEUE_FLUSH,
-                null,
-                null
+                TapTarget.forView(
+                    binding.setTtsSettings,
+                    "Text To Speech",
+                    "Set Text to speech like language and voice etc"
+                )
+                    .targetCircleColor(R.color.white)
+                    .outerCircleColor(R.color.light_blue)
+                    .titleTextColor(R.color.black)
+                    .descriptionTextColor(R.color.black)
+                    .tintTarget(true)
+                    .cancelable(false)
+                    .transparentTarget(true),
             )
-        }
+            .listener(object : TapTargetSequence.Listener {
+                override fun onSequenceFinish() {
+                    AppPreferences.saveFirstLaunch(true)
+                }
+
+                override fun onSequenceStep(lastTarget: TapTarget, targetClicked: Boolean) {}
+                override fun onSequenceCanceled(lastTarget: TapTarget) {}
+            })
+            .start()
     }
-*/
+
+    /* private suspend fun speakTestMessage() {
+         if (!ttsReady) {
+             repeat(5) {
+                 delay(500)
+                 if (ttsReady) return@repeat
+             }
+         }
+
+         val settings = AppPreferences.getTtsSettings()
+         tts?.setPitch(settings.pitch)
+         tts?.setSpeechRate(settings.rate)
+
+         val localeParts = settings.language.split("_")
+         val locale =
+             if (localeParts.size == 2) Locale(localeParts[0], localeParts[1]) else Locale.getDefault()
+         tts?.language = locale
+
+         val availableVoices = tts?.voices?.filter { it.locale == locale } ?: emptyList()
+         val selectedVoice = availableVoices.firstOrNull { it.name.contains(settings.genderVoice, true) }
+             ?: availableVoices.firstOrNull()
+         selectedVoice?.let { tts?.voice = it }
+
+         val formatter = SimpleDateFormat("hh:mm a", Locale.getDefault())
+
+         withContext(Dispatchers.Main) {
+             tts?.speak(
+                 formatter.format(Date()),
+                 TextToSpeech.QUEUE_FLUSH,
+                 null,
+                 null
+             )
+         }
+     }
+ */
 
     private suspend fun speakTestMessage() {
         if (!ttsReady) {
@@ -289,8 +448,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         tts?.language = locale
 
         val availableVoices = tts?.voices?.filter { it.locale == locale } ?: emptyList()
-        val selectedVoice = availableVoices.firstOrNull { it.name.contains(settings.genderVoice, true) }
-            ?: availableVoices.firstOrNull()
+        val selectedVoice =
+            availableVoices.firstOrNull { it.name.contains(settings.genderVoice, true) }
+                ?: availableVoices.firstOrNull()
         selectedVoice?.let { tts?.voice = it }
 
         val formatter = SimpleDateFormat("hh:mm a", Locale("en", "US"))
@@ -318,7 +478,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                                 it.displayLanguage + if (it.country.isNotEmpty()) " (${it.displayCountry})" else ""
                             }
 
-                            ttsViewModel.selectLanguage((langNames.firstOrNull() as Locale) )
+                            ttsViewModel.selectLanguage((langNames.firstOrNull() as Locale))
 
                         }
 
@@ -344,10 +504,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
                 launch {
                     timerViewModel.timeText.collect {
-                        if (AppPreferences.getToggleState()){
-                            animateTimerText(binding.timerText, requireContext(), it, AnimationType.SMOOTH)
+                        if (AppPreferences.getToggleState()) {
+                            animateTimerText(
+                                binding.timerText,
+                                requireContext(),
+                                it,
+                                AnimationType.SMOOTH
+                            )
 
-                        }else{
+                        } else {
                             binding.timerText.text = "OFF"
                         }
                     }
@@ -362,7 +527,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     fun showBottomSheet(context: Context) {
-        val dialog = BottomSheetDialog(context,R.style.CustomBottomSheetDialogTheme)
+        val dialog = BottomSheetDialog(context, R.style.CustomBottomSheetDialogTheme)
         val view = LayoutInflater.from(context).inflate(R.layout.more_layout, null)
         dialog.setContentView(view)
         dialog.setCancelable(true)
@@ -370,9 +535,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         val params = (view.parent as View).layoutParams as ViewGroup.MarginLayoutParams
         params.setMargins(32, 16, 32, 16) // left, top, right, bottom in pixels
-        (view.parent as  View).layoutParams= params
+        (view.parent as View).layoutParams = params
 
         val ourApp = dialog.findViewById<LinearLayoutCompat>(R.id.ourApps)
+        val appTheme = dialog.findViewById<LinearLayoutCompat>(R.id.appTheme)
         val rateApp = dialog.findViewById<LinearLayoutCompat>(R.id.rateApp)
         val shareApp = dialog.findViewById<LinearLayoutCompat>(R.id.shareApp)
         val version = dialog.findViewById<AppCompatTextView>(R.id.version)
@@ -391,7 +557,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             this.toast(requireContext(), "Share App")
         }
 
-        val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+        appTheme?.setOnClickListener {
+            findNavController().navigate(R.id.appThemeFragment)
+            dialog.dismiss()
+        }
+
+        val packageInfo =
+            requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
         val versionName = packageInfo.versionName
         val versionCode = packageInfo.longVersionCode
 
@@ -399,7 +571,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         dialog.show()
     }
-
 
     fun updateAnimatedTimerText(it: String) {
         binding.timerText.animate()
@@ -441,8 +612,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             .start()
     }
 
-
-
     override fun onStart() {
         super.onStart()
 
@@ -466,21 +635,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
             }
         }
+
+        if (!AppPreferences.isFirstLaunch()!!) {
+            showIntroGuide()
+        }
     }
 
-    /* override fun onResume() {
-         super.onResume()
-         ContextCompat.registerReceiver(
-             requireContext(),
-             timerReceiver,
-             IntentFilter("TIMER_UPDATE"),
-             ContextCompat.RECEIVER_NOT_EXPORTED
-         )
-     }
-     override fun onPause() {
-         super.onPause()
-         requireContext().unregisterReceiver(timerReceiver)
-     }*/
+
+    override fun onResume() {
+        super.onResume()
+        appUpdateManager!!
+            .appUpdateInfo
+            .addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
+                if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                    popupSnackBarForCompleteUpdate()
+                }
+            }
+
+
+    }
 
     private fun updateSlider() {
         val current = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
@@ -519,6 +692,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         // Set slider safely (this triggers listener with fromUser=false)
         binding.volRocker.value = snapped.toFloat()
         binding.selectedVolume.text = "Volume: $snapped%"
+
+        if (snapped.equals(100)) requireActivity().showCustomSnackbar(
+            "You have reached max volume",
+            R.drawable.sound
+        )
     }
 
     override fun onDestroy() {

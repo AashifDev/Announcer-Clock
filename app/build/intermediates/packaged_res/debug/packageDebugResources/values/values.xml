@@ -5,13 +5,16 @@
     <color name="dark_blue">#0090FF</color>
     <color name="dark_grey">#6D6D6D</color>
     <color name="grey">#F4F3F3</color>
+    <color name="light_blue">#9BD2FD</color>
     <color name="track_color">#C4E2FA</color>
     <color name="white">#FFFFFFFF</color>
-    <string name="app_name">Announcer Clock ⏰</string>
+    <string name="app_name">Announcer Clock</string>
+    <string name="app_theme">App Theme</string>
     <string name="custom_timer">Custom Timer</string>
     <string name="customize_tts">Customize <b>TTS</b></string>
     <string name="disable_during_phone_calls">Disable during phone calls</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
+    <string name="enable_dark_theme_mode">Enable dark theme mode</string>
     <string name="enable_hourly_talk_time">Enable time announcer clock</string>
     <string name="enable_notification">Enable notification</string>
     <string name="enable_notification_sound">Enable notification sound</string>
@@ -39,6 +42,15 @@
     <style name="Base.Theme.AnnouncerClock" parent="Theme.Material3.DayNight.NoActionBar">
         
         
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/blue</item>
+        <item name="colorPrimaryContainer">@color/grey</item>
+        <item name="colorOnPrimaryContainer">@color/dark_grey</item>
+
+        
+        <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/white</item>
+
     </style>
     <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>

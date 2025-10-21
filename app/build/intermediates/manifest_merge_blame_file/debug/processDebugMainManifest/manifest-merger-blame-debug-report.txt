@@ -245,8 +245,18 @@
 135-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b1980ac57b7d8c42f1b17fc2499978d8\transformed\play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
 136            android:name="com.google.android.gms.version"
 136-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b1980ac57b7d8c42f1b17fc2499978d8\transformed\play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
-137            android:value="@integer/google_play_services_version" />
+137            android:value="@integer/google_play_services_version" /> <!-- The activities will be merged into the manifest of the hosting app. -->
 137-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b1980ac57b7d8c42f1b17fc2499978d8\transformed\play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
-138    </application>
-139
-140</manifest>
+138        <activity
+138-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:14:9-18:65
+139            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+139-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:15:13-93
+140            android:exported="false"
+140-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:16:13-37
+141            android:stateNotNeeded="true"
+141-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:17:13-42
+142            android:theme="@style/Theme.PlayCore.Transparent" />
+142-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:18:13-62
+143    </application>
+144
+145</manifest>

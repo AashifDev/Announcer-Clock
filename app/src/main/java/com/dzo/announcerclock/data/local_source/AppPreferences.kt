@@ -133,4 +133,12 @@ object AppPreferences {
         return PreferenceHelper.getBoolean(IS_DISABLE_WHILE_PLAYING_MUSIC,false)
     }
 
+    fun saveThemeColor(colorHex: String) {
+        PreferenceHelper.putString(Constants.KEY_THEME_COLOR, colorHex)
+    }
+
+    fun getThemeColor(): String? {
+        return PreferenceHelper.getString(Constants.KEY_THEME_COLOR,"")
+    }
+
 }

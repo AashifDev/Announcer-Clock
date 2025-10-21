@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.dzo.talktime",
+  "applicationId": "com.dzo.announcerclock",
   "variantName": "release",
   "elements": [
     {

@@ -5,6 +5,7 @@ INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifes
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-46:12
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-46:12
 MERGED from [androidx.databinding:viewbinding:8.12.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b4f91e0021b680e8cd2b70a127615c4a\transformed\viewbinding-8.12.3\AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.Dhaval2404:ColorPicker:2.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e6bce4be58df9ef264f4a0779cc55ee0\transformed\ColorPicker-2.3\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\ad886eda6edde16e90ba554af309e43f\transformed\navigation-runtime-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-android:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\baa46d5499b7432d4981f48f40ea179a\transformed\navigation-common-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-fragment:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\c002690dd0bfc09e9a88ed9c9857adc1\transformed\navigation-fragment-2.9.5\AndroidManifest.xml:17:1-22:12
@@ -13,11 +14,13 @@ MERGED from [androidx.navigation:navigation-ui-ktx:2.9.5] C:\Users\luthr\AppData
 MERGED from [androidx.navigation:navigation-ui:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\05535b1f33f773ffeacafd77b1f21128\transformed\navigation-ui-2.9.5\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.material:material:1.13.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\34c665ec946e1d5cd5f1ef3caff93e88\transformed\material-1.13.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fca6f0bbc21bbc7fba44cb6b6f15a288\transformed\constraintlayout-2.2.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b33a30e139d5a7815df5e22606673abf\transformed\taptargetview-1.13.3\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\23473e89eaa9eae8336a09b43e6dbeff\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\d4997949737e44298a6978e6c0a1afa2\transformed\appcompat-1.7.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.github.bumptech.glide:glide:5.0.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\efc8147522166a1d7550c6e9e9749476\transformed\glide-5.0.5\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.dagger:hilt-android:2.51.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\0fa8261a0bf0f3619d39eb439de25326\transformed\hilt-android-2.51.1\AndroidManifest.xml:16:1-19:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f94eac9db80149c45c621ffa8d9fabee\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.play:app-update:2.1.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e831ec7dccd8e6e0bbc5130f6a74d3a5\transformed\app-update-2.1.0\AndroidManifest.xml:2:1-14:12
 MERGED from [com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fee8410cfc49c25dd4ec3578264e983a\transformed\firebase-ai-17.4.0\AndroidManifest.xml:15:1-37:12
 MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\08abf923c91015b781130572d18ec6a9\transformed\firebase-auth-interop-18.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\c97b3ce446d7cbbe5d610574c1c84baa\transformed\firebase-common-22.0.1\AndroidManifest.xml:15:1-41:12
@@ -86,6 +89,7 @@ MERGED from [androidx.core:core-ktx:1.17.0] C:\Users\luthr\AppData\Local\Android
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e66cd4adb0c9fb8da0c1c6405dbd2e0a\transformed\core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2a3a0c852e2bf8379654c23d67db2654\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\7561f9a278f0c8cefbe6412dbb082ca4\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.flexbox:flexbox:3.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\0019d4fbc824589cac8b5fc0910a8fd5\transformed\flexbox-3.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\8904fbc20e6e68c73e4b1881d93d3de7\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
 MERGED from [io.github.aakira:napier-android-debug:1.4.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\793e701a342b1a6334fda22b7d1547cb\transformed\napier-debug\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\3d368b757412829c721536e494687f55\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
@@ -103,6 +107,7 @@ MERGED from [com.intuit.sdp:sdp-android:1.1.1] C:\Users\luthr\AppData\Local\Andr
 MERGED from [com.intuit.ssp:ssp-android:1.1.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\35613726d57b482805fd0e3486d89a16\transformed\ssp-android-1.1.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.github.bumptech.glide:disklrucache:5.0.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\bd622d1f318c2da64c4dc4a6375579da\transformed\disklrucache-5.0.5\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.dagger:dagger-lint-aar:2.51.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\bc98cef61420df37cf8afae087e0b5fa\transformed\dagger-lint-aar-2.51.1\AndroidManifest.xml:16:1-19:12
+MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:2:1-21:12
 	package
 		INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -138,6 +143,8 @@ MERGED from [com.google.android.material:material:1.13.0] C:\Users\luthr\AppData
 MERGED from [com.google.android.material:material:1.13.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\34c665ec946e1d5cd5f1ef3caff93e88\transformed\material-1.13.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fca6f0bbc21bbc7fba44cb6b6f15a288\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fca6f0bbc21bbc7fba44cb6b6f15a288\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.play:app-update:2.1.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e831ec7dccd8e6e0bbc5130f6a74d3a5\transformed\app-update-2.1.0\AndroidManifest.xml:11:5-12:19
+MERGED from [com.google.android.play:app-update:2.1.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e831ec7dccd8e6e0bbc5130f6a74d3a5\transformed\app-update-2.1.0\AndroidManifest.xml:11:5-12:19
 MERGED from [com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fee8410cfc49c25dd4ec3578264e983a\transformed\firebase-ai-17.4.0\AndroidManifest.xml:27:5-35:19
 MERGED from [com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fee8410cfc49c25dd4ec3578264e983a\transformed\firebase-ai-17.4.0\AndroidManifest.xml:27:5-35:19
 MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\08abf923c91015b781130572d18ec6a9\transformed\firebase-auth-interop-18.0.0\AndroidManifest.xml:7:5-8:19
@@ -168,6 +175,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\lu
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\3d368b757412829c721536e494687f55\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\64e36fb10414d4fc91f9fc4117713961\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\64e36fb10414d4fc91f9fc4117713961\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:11:5-19:19
+MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:11:5-19:19
 	android:extractNativeLibs
 		INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
@@ -232,6 +241,8 @@ INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifes
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml
 MERGED from [androidx.databinding:viewbinding:8.12.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b4f91e0021b680e8cd2b70a127615c4a\transformed\viewbinding-8.12.3\AndroidManifest.xml:5:5-44
 MERGED from [androidx.databinding:viewbinding:8.12.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b4f91e0021b680e8cd2b70a127615c4a\transformed\viewbinding-8.12.3\AndroidManifest.xml:5:5-44
+MERGED from [com.github.Dhaval2404:ColorPicker:2.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e6bce4be58df9ef264f4a0779cc55ee0\transformed\ColorPicker-2.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.Dhaval2404:ColorPicker:2.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e6bce4be58df9ef264f4a0779cc55ee0\transformed\ColorPicker-2.3\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\ad886eda6edde16e90ba554af309e43f\transformed\navigation-runtime-release\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\ad886eda6edde16e90ba554af309e43f\transformed\navigation-runtime-release\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-common-android:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\baa46d5499b7432d4981f48f40ea179a\transformed\navigation-common-release\AndroidManifest.xml:20:5-44
@@ -248,6 +259,8 @@ MERGED from [com.google.android.material:material:1.13.0] C:\Users\luthr\AppData
 MERGED from [com.google.android.material:material:1.13.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\34c665ec946e1d5cd5f1ef3caff93e88\transformed\material-1.13.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fca6f0bbc21bbc7fba44cb6b6f15a288\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fca6f0bbc21bbc7fba44cb6b6f15a288\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b33a30e139d5a7815df5e22606673abf\transformed\taptargetview-1.13.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b33a30e139d5a7815df5e22606673abf\transformed\taptargetview-1.13.3\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\23473e89eaa9eae8336a09b43e6dbeff\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\23473e89eaa9eae8336a09b43e6dbeff\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\d4997949737e44298a6978e6c0a1afa2\transformed\appcompat-1.7.1\AndroidManifest.xml:5:5-44
@@ -258,6 +271,8 @@ MERGED from [com.google.dagger:hilt-android:2.51.1] C:\Users\luthr\AppData\Local
 MERGED from [com.google.dagger:hilt-android:2.51.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\0fa8261a0bf0f3619d39eb439de25326\transformed\hilt-android-2.51.1\AndroidManifest.xml:18:3-42
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f94eac9db80149c45c621ffa8d9fabee\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f94eac9db80149c45c621ffa8d9fabee\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.play:app-update:2.1.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e831ec7dccd8e6e0bbc5130f6a74d3a5\transformed\app-update-2.1.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.play:app-update:2.1.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e831ec7dccd8e6e0bbc5130f6a74d3a5\transformed\app-update-2.1.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fee8410cfc49c25dd4ec3578264e983a\transformed\firebase-ai-17.4.0\AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\fee8410cfc49c25dd4ec3578264e983a\transformed\firebase-ai-17.4.0\AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\08abf923c91015b781130572d18ec6a9\transformed\firebase-auth-interop-18.0.0\AndroidManifest.xml:5:5-44
@@ -394,6 +409,8 @@ MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\luthr\AppData\Loca
 MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2a3a0c852e2bf8379654c23d67db2654\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\7561f9a278f0c8cefbe6412dbb082ca4\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\7561f9a278f0c8cefbe6412dbb082ca4\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.flexbox:flexbox:3.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\0019d4fbc824589cac8b5fc0910a8fd5\transformed\flexbox-3.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.flexbox:flexbox:3.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\0019d4fbc824589cac8b5fc0910a8fd5\transformed\flexbox-3.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\8904fbc20e6e68c73e4b1881d93d3de7\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\8904fbc20e6e68c73e4b1881d93d3de7\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
 MERGED from [io.github.aakira:napier-android-debug:1.4.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\793e701a342b1a6334fda22b7d1547cb\transformed\napier-debug\AndroidManifest.xml:7:5-9:41
@@ -428,6 +445,8 @@ MERGED from [com.github.bumptech.glide:disklrucache:5.0.5] C:\Users\luthr\AppDat
 MERGED from [com.github.bumptech.glide:disklrucache:5.0.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\bd622d1f318c2da64c4dc4a6375579da\transformed\disklrucache-5.0.5\AndroidManifest.xml:5:5-44
 MERGED from [com.google.dagger:dagger-lint-aar:2.51.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\bc98cef61420df37cf8afae087e0b5fa\transformed\dagger-lint-aar-2.51.1\AndroidManifest.xml:18:3-42
 MERGED from [com.google.dagger:dagger-lint-aar:2.51.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\bc98cef61420df37cf8afae087e0b5fa\transformed\dagger-lint-aar-2.51.1\AndroidManifest.xml:18:3-42
+MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
 		INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml
 	tools:ignore
@@ -604,3 +623,13 @@ ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr
 		ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b1980ac57b7d8c42f1b17fc2499978d8\transformed\play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\b1980ac57b7d8c42f1b17fc2499978d8\transformed\play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+activity#com.google.android.play.core.common.PlayCoreDialogWrapperActivity
+ADDED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:14:9-18:65
+	android:stateNotNeeded
+		ADDED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:17:13-42
+	android:exported
+		ADDED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:16:13-37
+	android:theme
+		ADDED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:18:13-62
+	android:name
+		ADDED from [com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\6ee22cf42c73eb3f4523773cdb3034e4\transformed\core-common-2.0.3\AndroidManifest.xml:15:13-93

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Announcer Clock ⏰</string>
+    <string name="app_name">Announcer Clock</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="speak">speak</string>
@@ -29,5 +29,7 @@
     <string name="sound_settings">Sound Settings</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
     <string name="disable_during_phone_calls">Disable during phone calls</string>
+    <string name="app_theme">App Theme</string>
+    <string name="enable_dark_theme_mode">Enable dark theme mode</string>
 
 </resources>

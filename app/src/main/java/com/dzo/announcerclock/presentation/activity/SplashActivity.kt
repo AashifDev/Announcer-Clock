@@ -55,15 +55,15 @@ class SplashActivity : AppCompatActivity() {
         }
 
     private fun goToMainScreen() {
-        if (AppPreferences.isFirstLaunch() == false) {
+        if (AppPreferences.isFirstLaunch()==true) {
             startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
         }else{
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finishAffinity()
-            }, 10000)
-            AppPreferences.saveFirstLaunch(true)
+            }, 2000)
+            //AppPreferences.saveFirstLaunch(true)
         }
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Announcer Clock</string>
     <string name="select_speech_rate">Select Speech Rate</string>
     <string name="select_pitch_rate">Select Pitch Rate</string>
     <string name="general_settings">General Settings</string>
@@ -23,4 +24,5 @@
     <string name="sound_settings">Sound Settings</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
     <string name="disable_during_phone_calls">Disable during phone calls</string>
+    <string name="app_theme">App Theme</string>
 </resources>

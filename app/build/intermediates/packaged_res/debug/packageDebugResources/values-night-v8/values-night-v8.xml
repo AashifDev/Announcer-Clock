@@ -5,8 +5,11 @@
     <color name="dark_blue">#2196F3</color>
     <color name="dark_grey">#A0A0A0</color>
     <color name="grey">#2C2C2C</color>
+    <color name="light_blue">#79C1FA</color>
     <color name="track_color">#335C9EFF</color>
     <color name="white">#353535</color>
+    <string name="app_name">Announcer Clock</string>
+    <string name="app_theme">App Theme</string>
     <string name="custom_timer">Custom Timer</string>
     <string name="disable_during_phone_calls">Disable during phone calls</string>
     <string name="disable_while_playing_music">Disable while playing music</string>

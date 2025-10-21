@@ -21,6 +21,9 @@ public final class MoreLayoutBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final LinearLayoutCompat appTheme;
+
+  @NonNull
   public final LinearLayoutCompat appVersion;
 
   @NonNull
@@ -36,10 +39,11 @@ public final class MoreLayoutBinding implements ViewBinding {
   public final AppCompatTextView version;
 
   private MoreLayoutBinding(@NonNull ConstraintLayout rootView,
-      @NonNull LinearLayoutCompat appVersion, @NonNull LinearLayoutCompat ourApps,
-      @NonNull LinearLayoutCompat rateApp, @NonNull LinearLayoutCompat shareApp,
-      @NonNull AppCompatTextView version) {
+      @NonNull LinearLayoutCompat appTheme, @NonNull LinearLayoutCompat appVersion,
+      @NonNull LinearLayoutCompat ourApps, @NonNull LinearLayoutCompat rateApp,
+      @NonNull LinearLayoutCompat shareApp, @NonNull AppCompatTextView version) {
     this.rootView = rootView;
+    this.appTheme = appTheme;
     this.appVersion = appVersion;
     this.ourApps = ourApps;
     this.rateApp = rateApp;
@@ -74,6 +78,12 @@ public final class MoreLayoutBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.appTheme;
+      LinearLayoutCompat appTheme = ViewBindings.findChildViewById(rootView, id);
+      if (appTheme == null) {
+        break missingId;
+      }
+
       id = R.id.appVersion;
       LinearLayoutCompat appVersion = ViewBindings.findChildViewById(rootView, id);
       if (appVersion == null) {
@@ -104,8 +114,8 @@ public final class MoreLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      return new MoreLayoutBinding((ConstraintLayout) rootView, appVersion, ourApps, rateApp,
-          shareApp, version);
+      return new MoreLayoutBinding((ConstraintLayout) rootView, appTheme, appVersion, ourApps,
+          rateApp, shareApp, version);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

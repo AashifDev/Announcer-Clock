@@ -6,6 +6,7 @@
     <color name="white">#353535</color> <!-- App background darker -->
 
     <color name="blue">#66BFFF</color> <!-- Slightly softer blue for night -->
+    <color name="light_blue">#79C1FA</color>
     <color name="dark_blue">#2196F3</color> <!-- Balanced medium-dark blue -->
     <color name="track_color">#335C9EFF</color> <!-- Faint blue track -->
     <color name="grey">#2C2C2C</color> <!-- Dark surface background -->

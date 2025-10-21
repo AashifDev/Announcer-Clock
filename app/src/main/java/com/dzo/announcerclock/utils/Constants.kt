@@ -1,6 +1,7 @@
 package com.dzo.announcerclock.utils
 
 object Constants {
+    const val KEY_THEME_COLOR = "key_theme_color"
     const val KEY_TTS_SETTINGS = "tts_settings"
     const val KEY_REPEAT_OPTION = "repeat_option"
     const val KEY_SOUND_OPTION = "sound_option"

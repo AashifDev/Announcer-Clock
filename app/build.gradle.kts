@@ -93,5 +93,15 @@ dependencies {
     //Data Store
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
+    //Tap Target View
+    implementation("com.getkeepsafe.taptargetview:taptargetview:1.13.3")
+
+    //In App Update
+    implementation("com.google.android.play:app-update:2.1.0")
+
+    //emoji
     implementation("androidx.emoji2:emoji2:1.3.0")
+
+    //Color Picker
+    implementation("com.github.Dhaval2404:ColorPicker:2.3")
 }

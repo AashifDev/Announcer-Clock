@@ -40,6 +40,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final AppCompatTextView customize;
 
   @NonNull
+  public final AppCompatTextView customizeTheme;
+
+  @NonNull
   public final LinearLayoutCompat generalSettings;
 
   @NonNull
@@ -61,7 +64,13 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final AppCompatImageView img4;
 
   @NonNull
+  public final AppCompatImageView img5;
+
+  @NonNull
   public final AppCompatTextView repeat;
+
+  @NonNull
+  public final ScrollView scrollView;
 
   @NonNull
   public final AppCompatTextView selectedRepeatTime;
@@ -82,6 +91,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ConstraintLayout setSound;
 
   @NonNull
+  public final ConstraintLayout setTheme;
+
+  @NonNull
   public final ConstraintLayout setTtsSettings;
 
   @NonNull
@@ -100,6 +112,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final FloatingActionButton speakCurrentTime;
 
   @NonNull
+  public final MaterialCardView themeCard;
+
+  @NonNull
   public final AppCompatTextView timerText;
 
   @NonNull
@@ -107,6 +122,12 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @NonNull
   public final AppCompatTextView txtSetting;
+
+  @NonNull
+  public final AppCompatTextView txtTheme;
+
+  @NonNull
+  public final AppCompatTextView txtThemes;
 
   @NonNull
   public final AppCompatTextView txtTts;
@@ -123,25 +144,29 @@ public final class FragmentHomeBinding implements ViewBinding {
   private FragmentHomeBinding(@NonNull ScrollView rootView,
       @NonNull CircularProgressIndicator circularProgress, @NonNull MaterialCardView custom,
       @NonNull SwitchMaterial customToggle, @NonNull AppCompatTextView customize,
-      @NonNull LinearLayoutCompat generalSettings, @NonNull MaterialCardView header,
-      @NonNull AppCompatImageView img, @NonNull AppCompatImageView img1,
-      @NonNull AppCompatImageView img2, @NonNull AppCompatImageView img3,
-      @NonNull AppCompatImageView img4, @NonNull AppCompatTextView repeat,
-      @NonNull AppCompatTextView selectedRepeatTime, @NonNull AppCompatTextView selectedSound,
-      @NonNull AppCompatTextView selectedVibration, @NonNull AppCompatTextView selectedVolume,
-      @NonNull ConstraintLayout setRepeatTime, @NonNull ConstraintLayout setSound,
+      @NonNull AppCompatTextView customizeTheme, @NonNull LinearLayoutCompat generalSettings,
+      @NonNull MaterialCardView header, @NonNull AppCompatImageView img,
+      @NonNull AppCompatImageView img1, @NonNull AppCompatImageView img2,
+      @NonNull AppCompatImageView img3, @NonNull AppCompatImageView img4,
+      @NonNull AppCompatImageView img5, @NonNull AppCompatTextView repeat,
+      @NonNull ScrollView scrollView, @NonNull AppCompatTextView selectedRepeatTime,
+      @NonNull AppCompatTextView selectedSound, @NonNull AppCompatTextView selectedVibration,
+      @NonNull AppCompatTextView selectedVolume, @NonNull ConstraintLayout setRepeatTime,
+      @NonNull ConstraintLayout setSound, @NonNull ConstraintLayout setTheme,
       @NonNull ConstraintLayout setTtsSettings, @NonNull ConstraintLayout setVibration,
       @NonNull ConstraintLayout setVolume, @NonNull MaterialCardView settings,
       @NonNull AppCompatTextView sound, @NonNull FloatingActionButton speakCurrentTime,
-      @NonNull AppCompatTextView timerText, @NonNull AppCompatTextView tts,
-      @NonNull AppCompatTextView txtSetting, @NonNull AppCompatTextView txtTts,
-      @NonNull AppCompatTextView vibration, @NonNull Slider volRocker,
-      @NonNull AppCompatTextView volume) {
+      @NonNull MaterialCardView themeCard, @NonNull AppCompatTextView timerText,
+      @NonNull AppCompatTextView tts, @NonNull AppCompatTextView txtSetting,
+      @NonNull AppCompatTextView txtTheme, @NonNull AppCompatTextView txtThemes,
+      @NonNull AppCompatTextView txtTts, @NonNull AppCompatTextView vibration,
+      @NonNull Slider volRocker, @NonNull AppCompatTextView volume) {
     this.rootView = rootView;
     this.circularProgress = circularProgress;
     this.custom = custom;
     this.customToggle = customToggle;
     this.customize = customize;
+    this.customizeTheme = customizeTheme;
     this.generalSettings = generalSettings;
     this.header = header;
     this.img = img;
@@ -149,22 +174,28 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.img2 = img2;
     this.img3 = img3;
     this.img4 = img4;
+    this.img5 = img5;
     this.repeat = repeat;
+    this.scrollView = scrollView;
     this.selectedRepeatTime = selectedRepeatTime;
     this.selectedSound = selectedSound;
     this.selectedVibration = selectedVibration;
     this.selectedVolume = selectedVolume;
     this.setRepeatTime = setRepeatTime;
     this.setSound = setSound;
+    this.setTheme = setTheme;
     this.setTtsSettings = setTtsSettings;
     this.setVibration = setVibration;
     this.setVolume = setVolume;
     this.settings = settings;
     this.sound = sound;
     this.speakCurrentTime = speakCurrentTime;
+    this.themeCard = themeCard;
     this.timerText = timerText;
     this.tts = tts;
     this.txtSetting = txtSetting;
+    this.txtTheme = txtTheme;
+    this.txtThemes = txtThemes;
     this.txtTts = txtTts;
     this.vibration = vibration;
     this.volRocker = volRocker;
@@ -222,6 +253,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.customizeTheme;
+      AppCompatTextView customizeTheme = ViewBindings.findChildViewById(rootView, id);
+      if (customizeTheme == null) {
+        break missingId;
+      }
+
       id = R.id.generalSettings;
       LinearLayoutCompat generalSettings = ViewBindings.findChildViewById(rootView, id);
       if (generalSettings == null) {
@@ -264,11 +301,19 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.img5;
+      AppCompatImageView img5 = ViewBindings.findChildViewById(rootView, id);
+      if (img5 == null) {
+        break missingId;
+      }
+
       id = R.id.repeat;
       AppCompatTextView repeat = ViewBindings.findChildViewById(rootView, id);
       if (repeat == null) {
         break missingId;
       }
+
+      ScrollView scrollView = (ScrollView) rootView;
 
       id = R.id.selectedRepeatTime;
       AppCompatTextView selectedRepeatTime = ViewBindings.findChildViewById(rootView, id);
@@ -303,6 +348,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.setSound;
       ConstraintLayout setSound = ViewBindings.findChildViewById(rootView, id);
       if (setSound == null) {
+        break missingId;
+      }
+
+      id = R.id.setTheme;
+      ConstraintLayout setTheme = ViewBindings.findChildViewById(rootView, id);
+      if (setTheme == null) {
         break missingId;
       }
 
@@ -342,6 +393,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.themeCard;
+      MaterialCardView themeCard = ViewBindings.findChildViewById(rootView, id);
+      if (themeCard == null) {
+        break missingId;
+      }
+
       id = R.id.timerText;
       AppCompatTextView timerText = ViewBindings.findChildViewById(rootView, id);
       if (timerText == null) {
@@ -357,6 +414,18 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.txtSetting;
       AppCompatTextView txtSetting = ViewBindings.findChildViewById(rootView, id);
       if (txtSetting == null) {
+        break missingId;
+      }
+
+      id = R.id.txtTheme;
+      AppCompatTextView txtTheme = ViewBindings.findChildViewById(rootView, id);
+      if (txtTheme == null) {
+        break missingId;
+      }
+
+      id = R.id.txtThemes;
+      AppCompatTextView txtThemes = ViewBindings.findChildViewById(rootView, id);
+      if (txtThemes == null) {
         break missingId;
       }
 
@@ -385,10 +454,11 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((ScrollView) rootView, circularProgress, custom, customToggle,
-          customize, generalSettings, header, img, img1, img2, img3, img4, repeat,
-          selectedRepeatTime, selectedSound, selectedVibration, selectedVolume, setRepeatTime,
-          setSound, setTtsSettings, setVibration, setVolume, settings, sound, speakCurrentTime,
-          timerText, tts, txtSetting, txtTts, vibration, volRocker, volume);
+          customize, customizeTheme, generalSettings, header, img, img1, img2, img3, img4, img5,
+          repeat, scrollView, selectedRepeatTime, selectedSound, selectedVibration, selectedVolume,
+          setRepeatTime, setSound, setTheme, setTtsSettings, setVibration, setVolume, settings,
+          sound, speakCurrentTime, themeCard, timerText, tts, txtSetting, txtTheme, txtThemes,
+          txtTts, vibration, volRocker, volume);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

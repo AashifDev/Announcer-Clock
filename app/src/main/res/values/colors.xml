@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="blue">#5CB5FB</color>
+    <color name="light_blue">#9BD2FD</color>
     <color name="dark_blue">#0090FF</color>
     <color name="track_color">#C4E2FA</color>
     <color name="grey">#F4F3F3</color>

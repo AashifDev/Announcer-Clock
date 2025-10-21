@@ -30,4 +30,9 @@
         android:name="com.dzo.announcerclock.presentation.fragments.our_app_fragment.OurAppFragment"
         android:label="Our Applications"
         tools:layout="@layout/fragment_our_app" />
+    <fragment
+        android:id="@+id/appThemeFragment"
+        android:name="com.dzo.announcerclock.presentation.fragments.themes.AppThemeFragment"
+        android:label="Theme styling"
+        tools:layout="@layout/fragment_app_theme" />
 </navigation>
