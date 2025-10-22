@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.firebase.ai)
+    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -104,4 +105,7 @@ dependencies {
 
     //Color Picker
     implementation("com.github.Dhaval2404:ColorPicker:2.3")
+
+    //Flex Box
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
 }

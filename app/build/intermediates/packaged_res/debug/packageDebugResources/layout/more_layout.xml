@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/more"
+            android:id="@+id/more"
             android:padding="@dimen/_8sdp"
             android:textColor="@color/dark_blue"
             android:textSize="@dimen/_12ssp"
@@ -36,12 +37,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_category"
+                android:id="@+id/ourAppImg"
                 android:tint="@color/blue" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_14sdp"
+                android:id="@+id/txtOurApp"
                 android:text="@string/our_apps"
                 android:textSize="@dimen/_14ssp" />
 
@@ -63,11 +66,13 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/themeImg"
                 android:src="@drawable/theme"
                 android:tint="@color/blue" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
+                android:id="@+id/txtTheme"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_14sdp"
                 android:text="App theme and colors"
@@ -91,6 +96,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rateAppImg"
                 android:src="@drawable/ic_fav"
                 android:tint="@color/blue" />
 
@@ -98,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_14sdp"
+                android:id="@+id/txtRateApp"
                 android:text="@string/rate_app"
                 android:textSize="@dimen/_14ssp" />
 
@@ -117,6 +124,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/shareImg"
                 android:src="@drawable/ic_share"
                 android:tint="@color/blue" />
 
@@ -125,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_14sdp"
                 android:text="@string/share_app"
+                android:id="@+id/txtShare"
                 android:textSize="@dimen/_14ssp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -166,6 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_info"
+                android:id="@+id/versionImg"
                 android:tint="@color/blue" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -174,10 +184,11 @@
                 android:layout_marginStart="@dimen/_14sdp"
                 android:layout_weight="1"
                 android:text="@string/version"
+                android:id="@+id/txtVersion"
                 android:textSize="@dimen/_14ssp" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/version"
+                android:id="@+id/txtVersionName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_14sdp"

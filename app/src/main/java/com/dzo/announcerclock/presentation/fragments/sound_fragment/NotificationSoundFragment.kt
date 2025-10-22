@@ -1,7 +1,9 @@
 package com.dzo.announcerclock.presentation.fragments.sound_fragment
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +23,7 @@ import javax.inject.Inject
 class NotificationSoundFragment :
     BaseFragment<FragmentNotificationSoundBinding>(FragmentNotificationSoundBinding::inflate) {
 
+    private var colorHexx = ""
     @Inject
     lateinit var soundOptionAdapter: SoundOptionAdapter
     private val viewModel: SoundOptionViewModel by viewModels()
@@ -36,8 +39,11 @@ class NotificationSoundFragment :
             // Only play/select if enabled
             if (binding.soundOptionRecyclerView.isEnabled) {
                 viewModel.selectOption(soundOption)
-            }else{
-                requireActivity().showCustomSnackbar("Please enable notification sound!",R.drawable.notification)
+            } else {
+                requireActivity().showCustomSnackbar(
+                    "Please enable notification sound!", R.drawable.notification,
+                    colorString = colorHexx
+                )
             }
         }
 
@@ -53,14 +59,14 @@ class NotificationSoundFragment :
             }
         }
 
-        binding.enableNotification.setOnCheckedChangeListener { _,isChecked->
+        binding.enableNotification.setOnCheckedChangeListener { _, isChecked ->
             AppPreferences.saveNotificationEnabled(isChecked)
         }
 
         // 🔘 Toggle enable/disable
         binding.enableNotificationSound.setOnCheckedChangeListener { _, isChecked ->
             binding.soundOptionRecyclerView.isEnabled = isChecked
-            binding.soundOptionRecyclerView.alpha = if (isChecked) 1f else 0.4f
+            binding.soundOptionRecyclerView.alpha = if (isChecked) 1f else 0.5f
             AppPreferences.saveNotificationSoundEnabled(isChecked)
         }
 
@@ -70,7 +76,16 @@ class NotificationSoundFragment :
         binding.enableNotification.isChecked = isEnabled
         binding.enableNotificationSound.isChecked = isSoundEnabled
         binding.soundOptionRecyclerView.isEnabled = isSoundEnabled
-        binding.soundOptionRecyclerView.alpha = if (isSoundEnabled) 1f else 0.4f
+        binding.soundOptionRecyclerView.alpha = if (isSoundEnabled) 1f else 0.5f
 
+
+        AppPreferences.ThemeManager.registerListener { colorHex ->
+            safeExecute { binding ->
+                colorHexx = colorHex
+                binding.enableNotification.thumbTintList = ColorStateList.valueOf(colorHex.toColorInt())
+                binding.enableNotificationSound.thumbTintList = ColorStateList.valueOf(colorHex.toColorInt())
+            }
+
+        }
     }
 }

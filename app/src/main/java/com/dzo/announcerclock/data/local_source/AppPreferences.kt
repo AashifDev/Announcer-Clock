@@ -141,4 +141,47 @@ object AppPreferences {
         return PreferenceHelper.getString(Constants.KEY_THEME_COLOR,"")
     }
 
+    fun saveDarkThemeEnabled(boolean: Boolean){
+        PreferenceHelper.putBoolean(Constants.KEY_DARK_THEME_ENABLED,boolean)
+    }
+    fun isDarkThemeEnabled(): Boolean?{
+        return PreferenceHelper.getBoolean(Constants.KEY_DARK_THEME_ENABLED,false)
+    }
+
+    object ThemeManager {
+        private const val PREF_THEME_COLOR = "pref_theme_color" // Active color
+        private const val PREF_THEME_COLOR_LIST = "pref_theme_color_list" // List of colors
+
+        private val listeners = mutableListOf<(String) -> Unit>()
+
+        fun setActiveThemeColor(colorHex: String) {
+            PreferenceHelper.putString(PREF_THEME_COLOR, colorHex)
+            notifyListeners(colorHex)
+        }
+
+        fun getActiveThemeColor(): String? {
+            return PreferenceHelper.getString(PREF_THEME_COLOR, "#64b5f6") // default
+        }
+
+        fun setThemeColorList(colorList: String) {
+            PreferenceHelper.putString(PREF_THEME_COLOR_LIST, colorList)
+        }
+
+        fun getThemeColorList(): String? {
+            return PreferenceHelper.getString(PREF_THEME_COLOR_LIST, "")
+        }
+
+        fun registerListener(listener: (String) -> Unit) {
+            if (!listeners.contains(listener)) listeners.add(listener)
+            listener(getActiveThemeColor()!!)
+        }
+
+        fun notifyListeners(colorHex: String) {
+            for (listener in listeners) {
+                listener(colorHex)
+            }
+        }
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.dzo.announcerclock.presentation.fragments.repeat_option.adapter
 
 import android.animation.ValueAnimator
+import android.graphics.Color
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +11,26 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dzo.announcerclock.R
+import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.RepeatOptionRawItemBinding
 import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatOption
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
+import androidx.core.graphics.toColorInt
 
 @FragmentScoped
 class RepeatOptionAdapter @Inject constructor() :
     ListAdapter<RepeatOption, RepeatOptionAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     var onItemClick: ((RepeatOption) -> Unit)? = null
+    private var themeColor = AppPreferences.ThemeManager.getActiveThemeColor()
 
+    init {
+        AppPreferences.ThemeManager.registerListener { colorHex ->
+            themeColor = colorHex
+            notifyDataSetChanged()
+        }
+    }
     inner class ViewHolder(val binding: RepeatOptionRawItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -30,8 +40,11 @@ class RepeatOptionAdapter @Inject constructor() :
             //Show/hide checkmark
             selectedItem.visibility = if (item.isSelected) {
                 selectedItem.setImageResource(R.drawable.ic_check)
+                selectedItem.setColorFilter(themeColor!!.toColorInt())
                 View.VISIBLE
-            } else View.GONE
+            } else {
+                View.GONE
+            }
 
             //Animate text size
             val startSize =
@@ -47,11 +60,9 @@ class RepeatOptionAdapter @Inject constructor() :
 
             //Change color
             title.setTextColor(
-                ContextCompat.getColor(
-                    root.context,
-                    if (item.isSelected) R.color.blue else R.color.black
-                )
+                if (item.isSelected) themeColor!!.toColorInt() else ContextCompat.getColor(root.context, R.color.black)
             )
+
 
             // Optional scale animation
             root.animate()

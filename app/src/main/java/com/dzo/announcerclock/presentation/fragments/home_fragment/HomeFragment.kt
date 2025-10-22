@@ -1,13 +1,12 @@
 package com.dzo.announcerclock.presentation.fragments.home_fragment
 
-import android.app.Activity
 import android.app.Activity.RESULT_CANCELED
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.IntentSender
-import android.graphics.Color
+import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.media.AudioManager
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -22,12 +21,13 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
@@ -55,7 +55,6 @@ import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -76,6 +75,7 @@ import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import androidx.core.graphics.toColorInt
+import com.dzo.announcerclock.utils.Utils.lighten
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
@@ -83,6 +83,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     @Inject
     lateinit var announceTimeUseCase: AnnounceTimeUseCase
+
     private val ttsViewModel: TtsViewModel by viewModels()
 
     private val repeatOptionViewModel: RepeatOptionViewModel by viewModels()
@@ -99,6 +100,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private var activityResultLauncher: ActivityResultLauncher<*>? = null
     private var DAYS_FOR_FLEXIBLE_UPDATE: Int = 7
     private var DAYS_FOR_IMMEDIATE_UPDATE: Int = 14
+    private var colorHexx = ""
     private val volumeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             // Sync slider when system volume changed (hardware buttons or other apps)
@@ -138,8 +140,45 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             IntentFilter("android.media.VOLUME_CHANGED_ACTION")
         )
 
+        AppPreferences.ThemeManager.registerListener { colorHex ->
+            safeExecute { binding ->
+                colorHexx = colorHex
+                applyDynamicColor()
+            }
+        }
+
+       /* val listener: (String) -> Unit = { colorHex ->
+            try {
+                card.setCardBackgroundColor(Color.parseColor(colorHex))
+            } catch (e: Exception) {
+                card.setCardBackgroundColor(Color.WHITE)
+            }
+        }
+
+        // register listener
+        AppPreferences.ThemeManager.registerListener(listener)
+
+        viewLifecycleOwner.lifecycle.addObserver(object: DefaultLifecycleObserver {
+            override fun onDestroy(owner: LifecycleOwner) {
+                AppPreferences.ThemeManager.unregisterListener()
+            }
+        })*/
     }
 
+    private fun applyDynamicColor() {
+        binding.header.setCardBackgroundColor(colorHexx.lighten(0.2f))
+        binding.volRocker.tickActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.customToggle.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.volRocker.trackActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.volRocker.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.volRocker.trackInactiveTintList = ColorStateList.valueOf(colorHexx.lighten(0.5f))
+        binding.circularProgress.setIndicatorColor(colorHexx.toColorInt())
+        binding.circularProgress.trackColor = colorHexx.lighten(0.5f)
+        binding.img.setColorFilter(colorHexx.toColorInt())
+        binding.img1.setColorFilter(colorHexx.toColorInt())
+        binding.img3.setColorFilter(colorHexx.toColorInt())
+        binding.img4.setColorFilter(colorHexx.toColorInt())
+    }
 
     private fun checkForUpdate() {
         appUpdateManager = AppUpdateManagerFactory.create(requireContext())
@@ -199,12 +238,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         requireActivity().showCustomSnackbar(
             "An update has just been downloaded.",
             actionText = "RESTART",
-            iconRes = R.drawable.app_update
+            iconRes = R.drawable.app_update,
+            colorString = colorHexx
         ) {
             appUpdateManager!!.completeUpdate()
         }
     }
-
 
     private fun volumeRockerSetup() {
         audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
@@ -311,7 +350,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
     }
-
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.more, menu)
@@ -509,6 +547,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                                 binding.timerText,
                                 requireContext(),
                                 it,
+                                colorInt = colorHexx.toColorInt(),
                                 AnimationType.SMOOTH
                             )
 
@@ -541,7 +580,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val appTheme = dialog.findViewById<LinearLayoutCompat>(R.id.appTheme)
         val rateApp = dialog.findViewById<LinearLayoutCompat>(R.id.rateApp)
         val shareApp = dialog.findViewById<LinearLayoutCompat>(R.id.shareApp)
-        val version = dialog.findViewById<AppCompatTextView>(R.id.version)
+        val txtVersionName = dialog.findViewById<AppCompatTextView>(R.id.txtVersionName)
+        val ourAppImg = dialog.findViewById<AppCompatImageView>(R.id.ourAppImg)
+        val themeImg = dialog.findViewById<AppCompatImageView>(R.id.themeImg)
+        val rateAppImg = dialog.findViewById<AppCompatImageView>(R.id.rateAppImg)
+        val shareImg = dialog.findViewById<AppCompatImageView>(R.id.shareImg)
+        val versionImg = dialog.findViewById<AppCompatImageView>(R.id.versionImg)
+        val more = dialog.findViewById<AppCompatTextView>(R.id.more)
+
+        ourAppImg!!.setColorFilter(colorHexx.toColorInt())
+        themeImg!!.setColorFilter(colorHexx.toColorInt())
+        rateAppImg!!.setColorFilter(colorHexx.toColorInt())
+        shareImg!!.setColorFilter(colorHexx.toColorInt())
+        versionImg!!.setColorFilter(colorHexx.toColorInt())
+        more!!.setTextColor(colorHexx.toColorInt())
+        txtVersionName!!.setTextColor(colorHexx.toColorInt())
 
         ourApp?.setOnClickListener {
             findNavController().navigate(R.id.ourAppFragment)
@@ -567,7 +620,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val versionName = packageInfo.versionName
         val versionCode = packageInfo.longVersionCode
 
-        version!!.text = "App Version: $versionName ($versionCode)"
+        txtVersionName!!.text = "App Version: $versionName ($versionCode)"
 
         dialog.show()
     }
@@ -614,6 +667,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onStart() {
         super.onStart()
+        /*requireActivity().showCustomSnackbar(
+            "An update has just been downloaded.",
+            actionText = "RESTART",
+            iconRes = R.drawable.app_update,
+            colorString = colorHexx.toString()
+        ) {
+            appUpdateManager!!.completeUpdate()
+        }*/
+        val darkMode = AppPreferences.isDarkThemeEnabled()
+        //setUiThemeMode()
+        setThemeMode(darkMode == true)
 
         if (repeatOption != null && soundOption != null) {
             binding.selectedRepeatTime.text = repeatOption!!.title
@@ -641,7 +705,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
+    private fun setUiThemeMode() {
+        val savedPref = AppPreferences.isDarkThemeEnabled()
+        val isSystemDark =
+            (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
+        if (savedPref != null) {
+            AppCompatDelegate.setDefaultNightMode(
+                if (savedPref) AppCompatDelegate.MODE_NIGHT_YES
+                else AppCompatDelegate.MODE_NIGHT_NO
+            )
+        } else {
+            AppCompatDelegate.setDefaultNightMode(
+                if (isSystemDark) AppCompatDelegate.MODE_NIGHT_YES
+                else AppCompatDelegate.MODE_NIGHT_NO
+            )
+        }
+    }
+    private fun setThemeMode(isDark: Boolean) {
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDark) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
+    }
     override fun onResume() {
         super.onResume()
         appUpdateManager!!
@@ -695,7 +781,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         if (snapped.equals(100)) requireActivity().showCustomSnackbar(
             "You have reached max volume",
-            R.drawable.sound
+            R.drawable.sound,
+            colorString = colorHexx.toString()
         )
     }
 

@@ -1,58 +1,66 @@
 [
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/activity_main.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/activity_main.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\dialog_custom_repeat_option.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\dialog_custom_repeat_option.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/repeat_option_raw_item.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/repeat_option_raw_item.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\fragment_app_theme.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_app_theme.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/our_app_row_item.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/our_app_row_item.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\fragment_text_to_speech.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_text_to_speech.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/fragment_app_theme.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/fragment_app_theme.xml"
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-84:/layout/dialog_custom_repeat_option.xml",
+        "source": "com.dzo.announcerclock.app-main-87:/layout/dialog_custom_repeat_option.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/custom_snackbar.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/custom_snackbar.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\sound_options_raw_binding.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\sound_options_raw_binding.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/more_layout.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/more_layout.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\fragment_repeat_option.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_repeat_option.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/activity_splash.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/fragment_text_to_speech.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/fragment_text_to_speech.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\repeat_option_raw_item.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\repeat_option_raw_item.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/fragment_repeat_option.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/fragment_repeat_option.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\fragment_notification_sound.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_notification_sound.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/sound_options_raw_binding.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/sound_options_raw_binding.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\custom_snackbar.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\custom_snackbar.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/fragment_home.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\item_color_box.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\item_color_box.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/fragment_our_app.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/fragment_our_app.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\more_layout.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\more_layout.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/dialog_custom_repeat_option.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/dialog_custom_repeat_option.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\our_app_row_item.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\our_app_row_item.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-81:/layout/fragment_notification_sound.xml",
-        "source": "com.dzo.announcerclock.app-main-84:/layout/fragment_notification_sound.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\fragment_our_app.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_our_app.xml"
+    },
+    {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\activity_main.xml"
     }
 ]

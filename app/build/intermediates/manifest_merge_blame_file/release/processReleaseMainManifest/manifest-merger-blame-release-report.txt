@@ -1,0 +1,260 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.dzo.announcerclock"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="28"
+9        android:targetSdkVersion="36" />
+10
+11    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+11-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:4:5-76
+11-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:4:22-74
+12    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+12-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:5:5-76
+12-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:5:22-74
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+13-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:6:5-86
+13-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:6:22-84
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+14-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:7:5-91
+14-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:7:22-89
+15    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+15-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:8:5-75
+15-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:8:22-72
+16
+17    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+18    <!-- <uses-sdk android:minSdkVersion="21"/> -->
+19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+19-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:22:5-79
+19-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:22:22-76
+20    <uses-permission android:name="android.permission.INTERNET" />
+20-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:23:5-67
+20-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:23:22-64
+21
+22    <permission
+22-->[androidx.core:core:1.17.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2fca1c432fb7c5ac7eb4a53745053de4\transformed\core-1.17.0\AndroidManifest.xml:22:5-24:47
+23        android:name="com.dzo.announcerclock.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+23-->[androidx.core:core:1.17.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2fca1c432fb7c5ac7eb4a53745053de4\transformed\core-1.17.0\AndroidManifest.xml:23:9-81
+24        android:protectionLevel="signature" />
+24-->[androidx.core:core:1.17.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2fca1c432fb7c5ac7eb4a53745053de4\transformed\core-1.17.0\AndroidManifest.xml:24:9-44
+25
+26    <uses-permission android:name="com.dzo.announcerclock.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+26-->[androidx.core:core:1.17.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2fca1c432fb7c5ac7eb4a53745053de4\transformed\core-1.17.0\AndroidManifest.xml:26:5-97
+26-->[androidx.core:core:1.17.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2fca1c432fb7c5ac7eb4a53745053de4\transformed\core-1.17.0\AndroidManifest.xml:26:22-94
+27
+28    <application
+28-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:11:5-43:19
+29        android:name="com.dzo.announcerclock.App"
+29-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:12:9-28
+30        android:allowBackup="true"
+30-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:13:9-35
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.17.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\2fca1c432fb7c5ac7eb4a53745053de4\transformed\core-1.17.0\AndroidManifest.xml:28:18-86
+32        android:dataExtractionRules="@xml/data_extraction_rules"
+32-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:14:9-65
+33        android:extractNativeLibs="false"
+34        android:fullBackupContent="@xml/backup_rules"
+34-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:15:9-54
+35        android:icon="@drawable/ic_logo"
+35-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:16:9-41
+36        android:label="@string/app_name"
+36-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:17:9-41
+37        android:roundIcon="@drawable/ic_logo"
+37-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:18:9-46
+38        android:supportsRtl="true"
+38-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:19:9-35
+39        android:theme="@style/Theme.AnnouncerClock" >
+39-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:20:9-52
+40        <activity
+40-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:21:9-23:40
+41            android:name="com.dzo.announcerclock.presentation.activity.MainActivity"
+41-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:22:13-63
+42            android:exported="false" />
+42-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:23:13-37
+43        <activity
+43-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:24:9-32:20
+44            android:name="com.dzo.announcerclock.presentation.activity.SplashActivity"
+44-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:25:13-65
+45            android:exported="true" >
+45-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:26:13-36
+46            <intent-filter>
+46-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:27:13-31:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:28:17-69
+47-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:28:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:30:17-77
+49-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:30:27-74
+50            </intent-filter>
+51        </activity>
+52
+53        <service
+53-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:34:9-37:70
+54            android:name="com.dzo.announcerclock.data.service.TimerService"
+54-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:35:13-54
+55            android:exported="false"
+55-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:36:13-37
+56            android:foregroundServiceType="mediaPlayback|dataSync" />
+56-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:37:13-67
+57
+58        <receiver
+58-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:39:9-41:38
+59            android:name="com.dzo.announcerclock.data.service.receiver.TimerActionReceiver"
+59-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:40:13-70
+60            android:exported="true" />
+60-->E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:41:13-36
+61
+62        <service
+62-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:28:9-34:19
+63            android:name="com.google.firebase.components.ComponentDiscoveryService"
+63-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:29:13-84
+64            android:directBootAware="true"
+64-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:32:13-43
+65            android:exported="false" >
+65-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:30:13-37
+66            <meta-data
+66-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:31:13-33:85
+67                android:name="com.google.firebase.components:com.google.firebase.ai.FirebaseAIRegistrar"
+67-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:32:17-105
+68                android:value="com.google.firebase.components.ComponentRegistrar" />
+68-->[com.google.firebase:firebase-ai:17.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\249f119503004eebabfdfa370d1b0e07\transformed\firebase-ai-17.4.0\AndroidManifest.xml:33:17-82
+69            <meta-data
+69-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:35:13-37:85
+70                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+70-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:36:17-109
+71                android:value="com.google.firebase.components.ComponentRegistrar" />
+71-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:37:17-82
+72        </service>
+73
+74        <provider
+74-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:23:9-28:39
+75            android:name="com.google.firebase.provider.FirebaseInitProvider"
+75-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:24:13-77
+76            android:authorities="com.dzo.announcerclock.firebaseinitprovider"
+76-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:25:13-72
+77            android:directBootAware="true"
+77-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:26:13-43
+78            android:exported="false"
+78-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:27:13-37
+79            android:initOrder="100" />
+79-->[com.google.firebase:firebase-common:22.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9149218bafe6c0f13429c76b81de0160\transformed\firebase-common-22.0.1\AndroidManifest.xml:28:13-36
+80
+81        <service
+81-->[androidx.room:room-runtime:2.6.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e6dcc68559e5f62c21f11f64d372f9b6\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+82            android:name="androidx.room.MultiInstanceInvalidationService"
+82-->[androidx.room:room-runtime:2.6.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e6dcc68559e5f62c21f11f64d372f9b6\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+83            android:directBootAware="true"
+83-->[androidx.room:room-runtime:2.6.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e6dcc68559e5f62c21f11f64d372f9b6\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+84            android:exported="false" />
+84-->[androidx.room:room-runtime:2.6.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\e6dcc68559e5f62c21f11f64d372f9b6\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+85
+86        <activity
+86-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\7d88147e32ff8209602f24a8a638e6ff\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+87            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+87-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\7d88147e32ff8209602f24a8a638e6ff\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+88            android:exported="false"
+88-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\7d88147e32ff8209602f24a8a638e6ff\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+89            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+89-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\7d88147e32ff8209602f24a8a638e6ff\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+90
+91        <uses-library
+91-->[androidx.window:window:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\5ccbc23beccd978651410b73cc7a3b11\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+92            android:name="androidx.window.extensions"
+92-->[androidx.window:window:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\5ccbc23beccd978651410b73cc7a3b11\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+93            android:required="false" />
+93-->[androidx.window:window:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\5ccbc23beccd978651410b73cc7a3b11\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+94        <uses-library
+94-->[androidx.window:window:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\5ccbc23beccd978651410b73cc7a3b11\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+95            android:name="androidx.window.sidecar"
+95-->[androidx.window:window:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\5ccbc23beccd978651410b73cc7a3b11\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+96            android:required="false" />
+96-->[androidx.window:window:1.0.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\5ccbc23beccd978651410b73cc7a3b11\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+97
+98        <provider
+98-->[androidx.emoji2:emoji2:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\1121ed99b6a9f6675d7b2bf09dc3f62f\transformed\emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+99            android:name="androidx.startup.InitializationProvider"
+99-->[androidx.emoji2:emoji2:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\1121ed99b6a9f6675d7b2bf09dc3f62f\transformed\emoji2-1.4.0\AndroidManifest.xml:25:13-67
+100            android:authorities="com.dzo.announcerclock.androidx-startup"
+100-->[androidx.emoji2:emoji2:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\1121ed99b6a9f6675d7b2bf09dc3f62f\transformed\emoji2-1.4.0\AndroidManifest.xml:26:13-68
+101            android:exported="false" >
+101-->[androidx.emoji2:emoji2:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\1121ed99b6a9f6675d7b2bf09dc3f62f\transformed\emoji2-1.4.0\AndroidManifest.xml:27:13-37
+102            <meta-data
+102-->[androidx.emoji2:emoji2:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\1121ed99b6a9f6675d7b2bf09dc3f62f\transformed\emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+103                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+103-->[androidx.emoji2:emoji2:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\1121ed99b6a9f6675d7b2bf09dc3f62f\transformed\emoji2-1.4.0\AndroidManifest.xml:30:17-75
+104                android:value="androidx.startup" />
+104-->[androidx.emoji2:emoji2:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\1121ed99b6a9f6675d7b2bf09dc3f62f\transformed\emoji2-1.4.0\AndroidManifest.xml:31:17-49
+105            <meta-data
+105-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\cb25f30fae338e60be9b28c4759c7a5b\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:29:13-31:52
+106                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+106-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\cb25f30fae338e60be9b28c4759c7a5b\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:30:17-78
+107                android:value="androidx.startup" />
+107-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\cb25f30fae338e60be9b28c4759c7a5b\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:31:17-49
+108            <meta-data
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+109                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+109-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+110                android:value="androidx.startup" />
+110-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+111        </provider>
+112
+113        <receiver
+113-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+114            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+114-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+115            android:directBootAware="false"
+115-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+116            android:enabled="true"
+116-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+117            android:exported="true"
+117-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+118            android:permission="android.permission.DUMP" >
+118-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+119            <intent-filter>
+119-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+120                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+120-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+120-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+121            </intent-filter>
+122            <intent-filter>
+122-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+123                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+124            </intent-filter>
+125            <intent-filter>
+125-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+126                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+126-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+126-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+127            </intent-filter>
+128            <intent-filter>
+128-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+129                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+129-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+129-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9fdf0728f5cf1c5d4c86ed1be0bf13b8\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+130            </intent-filter>
+131        </receiver>
+132
+133        <meta-data
+133-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a6a5542b4d1295b456aee2f011ed443e\transformed\play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+134            android:name="com.google.android.gms.version"
+134-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a6a5542b4d1295b456aee2f011ed443e\transformed\play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+135            android:value="@integer/google_play_services_version" /> <!-- The activities will be merged into the manifest of the hosting app. -->
+135-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a6a5542b4d1295b456aee2f011ed443e\transformed\play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+136        <activity
+136-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a01d4d83e04a8a968822d8586df48de5\transformed\core-common-2.0.3\AndroidManifest.xml:14:9-18:65
+137            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+137-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a01d4d83e04a8a968822d8586df48de5\transformed\core-common-2.0.3\AndroidManifest.xml:15:13-93
+138            android:exported="false"
+138-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a01d4d83e04a8a968822d8586df48de5\transformed\core-common-2.0.3\AndroidManifest.xml:16:13-37
+139            android:stateNotNeeded="true"
+139-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a01d4d83e04a8a968822d8586df48de5\transformed\core-common-2.0.3\AndroidManifest.xml:17:13-42
+140            android:theme="@style/Theme.PlayCore.Transparent" />
+140-->[com.google.android.play:core-common:2.0.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\a01d4d83e04a8a968822d8586df48de5\transformed\core-common-2.0.3\AndroidManifest.xml:18:13-62
+141    </application>
+142
+143</manifest>

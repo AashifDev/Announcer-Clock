@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/fragment_home.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/sound_options_raw_binding.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/sound_options_raw_binding.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/fragment_our_app.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/fragment_our_app.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/activity_main.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/repeat_option_raw_item.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/repeat_option_raw_item.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/fragment_repeat_option.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/fragment_repeat_option.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/fragment_text_to_speech.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/fragment_text_to_speech.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/dialog_custom_repeat_option.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/dialog_custom_repeat_option.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/fragment_notification_sound.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/fragment_notification_sound.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/activity_splash.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/our_app_row_item.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/our_app_row_item.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/item_color_box.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/item_color_box.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/custom_snackbar.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/custom_snackbar.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/fragment_app_theme.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/fragment_app_theme.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/more_layout.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/more_layout.xml"
+    }
+]

@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dzo.announcerclock.R
+import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.SoundOptionsRawBindingBinding
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
 import dagger.hilt.android.scopes.FragmentScoped
@@ -20,6 +22,15 @@ class SoundOptionAdapter @Inject constructor() :
     ListAdapter<SoundOption, SoundOptionAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     var onItemClick: ((SoundOption) -> Unit)? = null
+    private var themeColor = AppPreferences.ThemeManager.getActiveThemeColor()
+
+
+    init {
+        AppPreferences.ThemeManager.registerListener { colorHex ->
+            themeColor = colorHex
+            notifyDataSetChanged()
+        }
+    }
 
     inner class ViewHolder(val binding: SoundOptionsRawBindingBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -30,6 +41,7 @@ class SoundOptionAdapter @Inject constructor() :
             //Speaker icon visibility
             selectedItem.visibility = if (item.isSelected) {
                 selectedItem.setImageResource(R.drawable.ic_speaker)
+                selectedItem.setColorFilter(themeColor!!.toColorInt())
                 View.VISIBLE
             } else {
                 View.GONE
@@ -49,12 +61,8 @@ class SoundOptionAdapter @Inject constructor() :
 
             //Change text color
             title.setTextColor(
-                ContextCompat.getColor(
-                    root.context,
-                    if (item.isSelected) R.color.blue else R.color.black
-                )
+                if (item.isSelected) themeColor!!.toColorInt() else ContextCompat.getColor(root.context, R.color.black)
             )
-
             //Zoom animation
             root.animate()
                 .scaleX(if (item.isSelected) 1.05f else 1f)

@@ -25,4 +25,7 @@
     <string name="disable_while_playing_music">Disable while playing music</string>
     <string name="disable_during_phone_calls">Disable during phone calls</string>
     <string name="app_theme">App Theme</string>
+    <string name="choose_theme_color_options">Choose theme color options</string>
+    <string name="interval_minute">Interval Minute</string>
+    <string name="total_minute">Total Minute</string>
 </resources>

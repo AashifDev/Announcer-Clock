@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.sound_fragment.NotificationSoundFragment">
 
@@ -86,6 +85,7 @@
            android:layout_height="0dp"
            app:strokeWidth="0dp"
            app:cardElevation="0dp"
+           android:id="@+id/soundCardView"
            android:layout_margin="@dimen/_12sdp"
            app:cardCornerRadius="@dimen/_12sdp"
            app:layout_constraintTop_toBottomOf="@id/linearLayoutCompat"

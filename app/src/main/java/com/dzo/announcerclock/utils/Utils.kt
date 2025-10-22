@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
 import android.provider.MediaStore
 import android.view.View
@@ -27,6 +28,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import androidx.core.net.toUri
+import androidx.core.graphics.toColorInt
 
 object Utils {
 
@@ -40,6 +42,21 @@ object Utils {
             msg!!,
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    fun String.lighten(factor: Float = 0.2f): Int {
+        val color = this.toColorInt()
+        val r = ((Color.red(color) * (1 - factor) + 255 * factor).coerceAtMost(255f)).toInt()
+        val g = ((Color.green(color) * (1 - factor) + 255 * factor).coerceAtMost(255f)).toInt()
+        val b = ((Color.blue(color) * (1 - factor) + 255 * factor).coerceAtMost(255f)).toInt()
+        return Color.rgb(r, g, b)
+    }
+    fun String.darken(factor: Float = 0.2f): Int {
+        val color = Color.parseColor(this)
+        val r = (Color.red(color) * (1 - factor)).toInt()
+        val g = (Color.green(color) * (1 - factor)).toInt()
+        val b = (Color.blue(color) * (1 - factor)).toInt()
+        return Color.rgb(r, g, b)
     }
 
     fun getHadithName():List<String>{

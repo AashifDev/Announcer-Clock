@@ -14,6 +14,7 @@ fun animateTimerText(
     textView: TextView,
     context: Context,
     value: String,
+    colorInt: Int,
     animationType: AnimationType = AnimationType.SMOOTH
 ) {
     when (animationType) {
@@ -24,7 +25,7 @@ fun animateTimerText(
                 .alpha(0f)
                 .setDuration(100)
                 .withEndAction {
-                    textView.text = styledTimerText(context, value)
+                    textView.text = styledTimerText(context, value, colorInt)
                     textView.animate()
                         .alpha(1f)
                         .setDuration(100)
@@ -40,7 +41,7 @@ fun animateTimerText(
                 .scaleY(0f)
                 .setDuration(100)
                 .withEndAction {
-                    textView.text = styledTimerText(context, value)
+                    textView.text = styledTimerText(context, value,colorInt)
                     textView.animate()
                         .scaleX(1f)
                         .scaleY(1f)
@@ -59,7 +60,7 @@ fun animateTimerText(
                 .alpha(0f)
                 .setDuration(120)
                 .withEndAction {
-                    textView.text = styledTimerText(context, value)
+                    textView.text = styledTimerText(context, value,colorInt)
                     textView.animate()
                         .scaleX(1f)
                         .scaleY(1f)
@@ -74,12 +75,12 @@ fun animateTimerText(
 }
 
 // 🔸 Helper: creates your styled text ("reset in\nXX")
-private fun styledTimerText(context: Context, value: String): CharSequence {
+private fun styledTimerText(context: Context, value: String,colorInt: Int): CharSequence {
     return SpannableStringBuilder().apply {
         val firstPart = "reset in\n"
         append(firstPart)
         setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(context, R.color.blue)),
+            ForegroundColorSpan(colorInt),
             0,
             firstPart.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

@@ -2,9 +2,11 @@ package com.dzo.announcerclock.presentation.fragments.our_app_fragment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.OurAppRowItemBinding
 import com.dzo.announcerclock.presentation.fragments.our_app_fragment.model.OtherAppModel
 import dagger.hilt.android.scopes.FragmentScoped
@@ -16,6 +18,14 @@ class OtherAppAdapter @Inject constructor(
 
     var onItemClick: ((OtherAppModel) -> Unit)? = null
 
+    private var themeColor = AppPreferences.ThemeManager.getActiveThemeColor()
+
+    init {
+        AppPreferences.ThemeManager.registerListener { colorHex ->
+            themeColor = colorHex
+            notifyDataSetChanged()
+        }
+    }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -38,6 +48,7 @@ class OtherAppAdapter @Inject constructor(
         fun bind(item: OtherAppModel) {
             binding.appLogo.setImageResource(item.logo)
             binding.appName.text = item.appName
+            binding.appName.setTextColor(themeColor!!.toColorInt())
             binding.root.setOnClickListener {
                 onItemClick?.invoke(item)
             }

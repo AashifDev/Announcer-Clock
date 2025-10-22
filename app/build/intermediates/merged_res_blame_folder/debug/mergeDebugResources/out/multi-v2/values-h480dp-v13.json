@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.dzo.announcerclock.app-mergeDebugResources-80:/values-h480dp-v13/values-h480dp-v13.xml",
+            "outputFile": "com.dzo.announcerclock.app-mergeDebugResources-83:/values-h480dp-v13/values-h480dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\34c665ec946e1d5cd5f1ef3caff93e88\\transformed\\material-1.13.0\\res\\values-h480dp-v13\\values-h480dp-v13.xml",
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\df1bdec14d0986f4703a0dda400ea344\\transformed\\material-1.13.0\\res\\values-h480dp-v13\\values-h480dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

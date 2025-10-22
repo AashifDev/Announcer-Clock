@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.dzo.announcerclock.app-mergeReleaseResources-83:/values-watch-v21/values-watch-v21.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\b3ede380368d8de056d65aa94b5abd5f\\transformed\\appcompat-1.7.1\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "from": {
+                        "startLines": "2,6,10",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,271,499",
+                        "endLines": "5,9,13",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "266,494,724"
+                    }
+                }
+            ]
+        }
+    ]
+}
