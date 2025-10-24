@@ -412,6 +412,116 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:textColor="@color/dark_grey"
                         android:textSize="@dimen/_14ssp"
+                        android:textStyle="normal"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_timer"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/_14ssp"
+            android:padding="@dimen/_6sdp"
+            android:id="@+id/txtScheduleTimer"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@id/custom"
+            app:layout_constraintStart_toStartOf="@id/settings"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_14sdp"
+            app:strokeWidth="0dp"
+            android:id="@+id/customScheduling"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@id/txtScheduleTimer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linearLayoutCompat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/txtEnableScheduling"
+                        android:gravity="center_vertical"
+                        android:text="@string/enable_time_speaking"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/enableScheduling"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:paddingEnd="@dimen/_12sdp"
+                        android:thumb="@drawable/toggle_thumb"
+                        app:thumbTint="@color/dark_blue"
+                        app:trackTint="@color/track_color"
+                        app:track="@drawable/toggle_track" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setScheduling"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_schedule_timer"
+                        android:id="@+id/img6"
+                        android:tint="@color/blue"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/schedule_time"
+                        app:layout_constraintTop_toTopOf="@+id/img6"
+                        app:layout_constraintBottom_toBottomOf="@id/img6"
+                        app:layout_constraintStart_toEndOf="@id/img6"
+                        android:textSize="@dimen/_16ssp"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:id="@+id/newScheduling"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@+id/img6"
+                        app:layout_constraintBottom_toBottomOf="@id/img6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/_14ssp"
                         android:textStyle="normal"
                         android:id="@+id/tts"/>
 

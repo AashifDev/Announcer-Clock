@@ -108,4 +108,6 @@ dependencies {
 
     //Flex Box
     implementation("com.google.android.flexbox:flexbox:3.0.0")
+
+    implementation("com.google.android.material:material:1.12.0")
 }

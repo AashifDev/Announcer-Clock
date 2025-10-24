@@ -1,5 +1,6 @@
 package com.dzo.announcerclock.data.local_source
 
+import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
 import com.dzo.announcerclock.presentation.fragments.home_fragment.model.TtsSettings
 import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatOption
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
@@ -11,6 +12,7 @@ import com.dzo.announcerclock.utils.Constants.IS_HIDE_NOTIFICATION_ENABLED
 import com.dzo.announcerclock.utils.Constants.IS_NOTIFICATION_ENABLED
 import com.dzo.announcerclock.utils.Constants.IS_NOTIFICATION_SOUND_ENABLED
 import com.dzo.announcerclock.utils.Constants.IS_TIME_SPEAKING_ENABLED
+import com.dzo.announcerclock.utils.Constants.KEY_CUSTOM_TOGGLE_STATE
 import com.dzo.announcerclock.utils.Constants.KEY_INTERVAL
 import com.dzo.announcerclock.utils.Constants.KEY_REPEAT_OPTION
 import com.dzo.announcerclock.utils.Constants.KEY_SOUND_OPTION
@@ -65,6 +67,10 @@ object AppPreferences {
     fun saveToggleState(state: Boolean) = PreferenceHelper.putBoolean(KEY_TOGGLE_STATE, state)
 
     fun getToggleState(): Boolean = PreferenceHelper.getBoolean(KEY_TOGGLE_STATE, false)
+
+    fun saveCustomToggleState(state: Boolean) = PreferenceHelper.putBoolean(KEY_CUSTOM_TOGGLE_STATE, state)
+
+    fun getCustomToggleState(): Boolean = PreferenceHelper.getBoolean(KEY_CUSTOM_TOGGLE_STATE, false)
 
 
     fun saveTtsSettings(settings: TtsSettings) {
@@ -148,6 +154,14 @@ object AppPreferences {
         return PreferenceHelper.getBoolean(Constants.KEY_DARK_THEME_ENABLED,false)
     }
 
+    fun saveScheduleTime(schedule: ScheduleTimerModel) {
+        PreferenceHelper.putString(Constants.KEY_SCHEDULE_TIME, Gson().toJson(schedule))
+    }
+    fun getScheduleTime(): ScheduleTimerModel? {
+        return PreferenceHelper.getString(Constants.KEY_SCHEDULE_TIME, "")?.let {
+            Gson().fromJson(it, ScheduleTimerModel::class.java)
+        }
+    }
     object ThemeManager {
         private const val PREF_THEME_COLOR = "pref_theme_color" // Active color
         private const val PREF_THEME_COLOR_LIST = "pref_theme_color_list" // List of colors

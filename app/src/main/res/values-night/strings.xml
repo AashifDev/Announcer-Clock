@@ -28,4 +28,6 @@
     <string name="choose_theme_color_options">Choose theme color options</string>
     <string name="interval_minute">Interval Minute</string>
     <string name="total_minute">Total Minute</string>
+    <string name="schedule_timer">Schedule timer</string>
+    <string name="schedule_time">Schedule time</string>
 </resources>

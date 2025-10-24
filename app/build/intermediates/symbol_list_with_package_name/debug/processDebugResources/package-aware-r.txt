@@ -4743,6 +4743,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_notification
 drawable ic_play
 drawable ic_repeat
+drawable ic_schedule_timer
 drawable ic_search_black_24
 drawable ic_setting
 drawable ic_share
@@ -4828,6 +4829,8 @@ drawable notify_panel_notification_icon_bg
 drawable productivity
 drawable quran
 drawable sai_baba
+drawable schedule_time_background
+drawable scheduling
 drawable shri_krishna
 drawable sound
 drawable test_level_drawable
@@ -4947,6 +4950,8 @@ id beginOnFirstDraw
 id beginning
 id below
 id bestChoice
+id bgEnd
+id bgStart
 id blocking
 id bottom
 id bounce
@@ -5003,6 +5008,7 @@ id cradle
 id currentState
 id custom
 id customPanel
+id customScheduling
 id customToggle
 id customize
 id customizeTheme
@@ -5051,6 +5057,7 @@ id embed
 id enableDarkMode
 id enableNotification
 id enableNotificationSound
+id enableScheduling
 id enableTimeSpeaking
 id end
 id endToStart
@@ -5123,8 +5130,11 @@ id img2
 id img3
 id img4
 id img5
+id img6
 id imgCall
+id imgEnd
 id imgMusic
+id imgStart
 id immediateStop
 id included
 id indeterminate
@@ -5235,6 +5245,7 @@ id negativeBtn
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
+id newScheduling
 id noScroll
 id noState
 id none
@@ -5317,6 +5328,7 @@ id row
 id row_index_key
 id row_reverse
 id rtl
+id saveSchedule
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -5347,8 +5359,11 @@ id selectedVibration
 id selectedVoiceSpinner
 id selectedVolume
 id selection_type
+id setEndTime
 id setRepeatTime
+id setScheduling
 id setSound
+id setStartTime
 id setTheme
 id setTtsSettings
 id setVibration
@@ -5470,14 +5485,24 @@ id txtChooseColor
 id txtDisableDuringCall
 id txtDisableDuringMusic
 id txtEnableDarkTheme
+id txtEnableScheduling
+id txtEnd
+id txtEndTime
 id txtIntervalMinute
 id txtNotificationSetting
 id txtOurApp
 id txtRateApp
+id txtRepeatEvery
+id txtScheduleTimer
 id txtSelectLanguage
+id txtSetEndTime
+id txtSetRepeatEveryMinute
+id txtSetStartTime
 id txtSetting
 id txtShare
 id txtSoundSetting
+id txtStart
+id txtStartTime
 id txtTheme
 id txtThemes
 id txtTimeSpeaking
@@ -5734,6 +5759,7 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 layout our_app_row_item
 layout repeat_option_raw_item
+layout schedult_timer_bottom_sheet
 layout sdp_example
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
@@ -6043,6 +6069,8 @@ string range_end
 string range_start
 string rate_app
 string repeat_every
+string schedule_time
+string schedule_timer
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description

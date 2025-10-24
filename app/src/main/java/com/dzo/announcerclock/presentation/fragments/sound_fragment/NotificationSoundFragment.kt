@@ -14,7 +14,7 @@ import com.dzo.announcerclock.databinding.FragmentNotificationSoundBinding
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.adapter.SoundOptionAdapter
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel
 import com.dzo.announcerclock.utils.core.BaseFragment
-import com.dzo.announcerclock.utils.extension.showCustomSnackbar
+import com.dzo.announcerclock.utils.extension.showCustomSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -40,7 +40,7 @@ class NotificationSoundFragment :
             if (binding.soundOptionRecyclerView.isEnabled) {
                 viewModel.selectOption(soundOption)
             } else {
-                requireActivity().showCustomSnackbar(
+                requireActivity().showCustomSnackBar(
                     "Please enable notification sound!", R.drawable.notification,
                     colorString = colorHexx
                 )

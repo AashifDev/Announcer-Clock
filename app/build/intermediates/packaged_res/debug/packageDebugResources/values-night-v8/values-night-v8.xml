@@ -25,6 +25,8 @@
     <string name="our_apps">Our Apps</string>
     <string name="rate_app">Rate App</string>
     <string name="repeat_every">Repeat Every</string>
+    <string name="schedule_time">Schedule time</string>
+    <string name="schedule_timer">Schedule timer</string>
     <string name="select_pitch_rate">Select Pitch Rate</string>
     <string name="select_speech_rate">Select Speech Rate</string>
     <string name="share_app">Share App</string>

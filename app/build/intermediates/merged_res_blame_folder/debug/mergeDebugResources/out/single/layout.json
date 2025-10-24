@@ -12,16 +12,16 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_text_to_speech.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-84:/layout/dialog_custom_repeat_option.xml",
-        "source": "com.dzo.announcerclock.app-main-87:/layout/dialog_custom_repeat_option.xml"
-    },
-    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\sound_options_raw_binding.xml",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\sound_options_raw_binding.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\fragment_repeat_option.xml",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_repeat_option.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-84:/layout/fragment_home.xml",
+        "source": "com.dzo.announcerclock.app-main-87:/layout/fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\activity_splash.xml",
@@ -62,5 +62,9 @@
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\activity_main.xml",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\schedult_timer_bottom_sheet.xml",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\schedult_timer_bottom_sheet.xml"
     }
 ]

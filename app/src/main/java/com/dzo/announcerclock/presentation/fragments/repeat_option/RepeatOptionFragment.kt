@@ -19,9 +19,8 @@ import com.dzo.announcerclock.databinding.FragmentRepeatOptionBinding
 import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel
 import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatOption
 import com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel
-import com.dzo.announcerclock.utils.Utils.lighten
 import com.dzo.announcerclock.utils.core.BaseFragment
-import com.dzo.announcerclock.utils.extension.showCustomSnackbar
+import com.dzo.announcerclock.utils.extension.showCustomSnackBar
 import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -56,7 +55,7 @@ class RepeatOptionFragment :
 
                 }
             } else {
-                requireActivity().showCustomSnackbar(
+                requireActivity().showCustomSnackBar(
                     "Please enable toggle first!",
                     iconRes = R.drawable.toggle_button,
                     colorString = colorHexx

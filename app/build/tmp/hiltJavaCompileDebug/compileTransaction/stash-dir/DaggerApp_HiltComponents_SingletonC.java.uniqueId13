@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 import com.dzo.announcerclock.data.repeat_repository.RepeatOptionRepository;
+import com.dzo.announcerclock.data.service.ScheduleTimerService;
+import com.dzo.announcerclock.data.service.ScheduleTimerService_MembersInjector;
 import com.dzo.announcerclock.data.service.TimerService;
 import com.dzo.announcerclock.data.service.TimerService_MembersInjector;
 import com.dzo.announcerclock.data.sound_repository.SoundOptionRepository;
@@ -32,6 +34,8 @@ import com.dzo.announcerclock.domain.tts_usecase.SaveTtsSettingsUseCase;
 import com.dzo.announcerclock.presentation.activity.MainActivity;
 import com.dzo.announcerclock.presentation.fragments.home_fragment.HomeFragment;
 import com.dzo.announcerclock.presentation.fragments.home_fragment.HomeFragment_MembersInjector;
+import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel;
+import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel_HiltModules;
 import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel;
 import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel_HiltModules;
 import com.dzo.announcerclock.presentation.fragments.our_app_fragment.OurAppFragment;
@@ -466,7 +470,7 @@ public final class DaggerApp_HiltComponents_SingletonC {
 
     @Override
     public Map<Class<?>, Boolean> getViewModelKeys() {
-      return LazyClassKeyMap.<Boolean>of(MapBuilder.<String, Boolean>newMapBuilder(4).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel, RepeatOptionViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel, SoundOptionViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel, TimerViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel, TtsViewModel_HiltModules.KeyModule.provide()).build());
+      return LazyClassKeyMap.<Boolean>of(MapBuilder.<String, Boolean>newMapBuilder(5).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel, RepeatOptionViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel, ScheduleTimerViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel, SoundOptionViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel, TimerViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel, TtsViewModel_HiltModules.KeyModule.provide()).build());
     }
 
     @Override
@@ -486,16 +490,15 @@ public final class DaggerApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
-
       static String com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel = "com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
 
+      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
+
       static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
 
-      @KeepFieldType
-      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
+      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel";
 
       @KeepFieldType
       TtsViewModel com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel2;
@@ -504,7 +507,13 @@ public final class DaggerApp_HiltComponents_SingletonC {
       SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
 
       @KeepFieldType
+      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
+
+      @KeepFieldType
       RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
+
+      @KeepFieldType
+      ScheduleTimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel2;
     }
   }
 
@@ -516,6 +525,8 @@ public final class DaggerApp_HiltComponents_SingletonC {
     private final ViewModelCImpl viewModelCImpl = this;
 
     private Provider<RepeatOptionViewModel> repeatOptionViewModelProvider;
+
+    private Provider<ScheduleTimerViewModel> scheduleTimerViewModelProvider;
 
     private Provider<SoundOptionViewModel> soundOptionViewModelProvider;
 
@@ -581,14 +592,15 @@ public final class DaggerApp_HiltComponents_SingletonC {
     private void initialize(final SavedStateHandle savedStateHandleParam,
         final ViewModelLifecycle viewModelLifecycleParam) {
       this.repeatOptionViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
-      this.soundOptionViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
-      this.timerViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
-      this.ttsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 3);
+      this.scheduleTimerViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
+      this.soundOptionViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
+      this.timerViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 3);
+      this.ttsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 4);
     }
 
     @Override
     public Map<Class<?>, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(4).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel, ((Provider) repeatOptionViewModelProvider)).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel, ((Provider) soundOptionViewModelProvider)).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel, ((Provider) timerViewModelProvider)).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel, ((Provider) ttsViewModelProvider)).build());
+      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(5).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel, ((Provider) repeatOptionViewModelProvider)).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel, ((Provider) scheduleTimerViewModelProvider)).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel, ((Provider) soundOptionViewModelProvider)).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel, ((Provider) timerViewModelProvider)).put(LazyClassKeyProvider.com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel, ((Provider) ttsViewModelProvider)).build());
     }
 
     @Override
@@ -600,23 +612,28 @@ public final class DaggerApp_HiltComponents_SingletonC {
     private static final class LazyClassKeyProvider {
       static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
 
-      static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
+      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel = "com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel";
 
-      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
+      static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
+
+      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel";
 
       @KeepFieldType
       SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
 
       @KeepFieldType
-      RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
+      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
 
       @KeepFieldType
       TtsViewModel com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel2;
 
       @KeepFieldType
-      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
+      RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
+
+      @KeepFieldType
+      ScheduleTimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {
@@ -643,13 +660,16 @@ public final class DaggerApp_HiltComponents_SingletonC {
           case 0: // com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel 
           return (T) new RepeatOptionViewModel(viewModelCImpl.getRepeatOptionUseCase());
 
-          case 1: // com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel 
+          case 1: // com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel 
+          return (T) new ScheduleTimerViewModel(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
+
+          case 2: // com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel 
           return (T) new SoundOptionViewModel(viewModelCImpl.getSoundOptionsUseCase(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
-          case 2: // com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel 
+          case 3: // com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel 
           return (T) new TimerViewModel(viewModelCImpl.announceTimeUseCase(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
-          case 3: // com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel 
+          case 4: // com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel 
           return (T) new TtsViewModel(ApplicationContextModule_ProvideApplicationFactory.provideApplication(singletonCImpl.applicationContextModule), viewModelCImpl.getTtsSettingsUseCase(), viewModelCImpl.saveTtsSettingsUseCase(), viewModelCImpl.isTimeSpeakingEnabledUseCase(), viewModelCImpl.saveTimeSpeakingEnabledUseCase(), viewModelCImpl.saveDisableDuringPhoneCallsUseCase(), viewModelCImpl.isDisableDuringPhoneCallsUseCase(), viewModelCImpl.saveDisableWhilePlayingMusicUseCase(), viewModelCImpl.isDisableWhilePlayingMusicUseCase());
 
           default: throw new AssertionError(id);
@@ -731,8 +751,19 @@ public final class DaggerApp_HiltComponents_SingletonC {
     }
 
     @Override
+    public void injectScheduleTimerService(ScheduleTimerService scheduleTimerService) {
+      injectScheduleTimerService2(scheduleTimerService);
+    }
+
+    @Override
     public void injectTimerService(TimerService timerService) {
       injectTimerService2(timerService);
+    }
+
+    @CanIgnoreReturnValue
+    private ScheduleTimerService injectScheduleTimerService2(ScheduleTimerService instance) {
+      ScheduleTimerService_MembersInjector.injectAnnounceTimeUseCase(instance, announceTimeUseCase());
+      return instance;
     }
 
     @CanIgnoreReturnValue

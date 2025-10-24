@@ -1,19 +1,17 @@
 package com.dzo.announcerclock.presentation.fragments.themes
 
 import android.content.res.ColorStateList
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import androidx.core.graphics.toColorInt
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.FragmentAppThemeBinding
 import com.dzo.announcerclock.utils.core.BaseFragment
-import com.dzo.announcerclock.utils.extension.showCustomSnackbar
+import com.dzo.announcerclock.utils.extension.showCustomSnackBar
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
@@ -108,7 +106,7 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
                     // Save full list
                     AppPreferences.ThemeManager.setThemeColorList(selectedColors.joinToString(","))
                     displaySelectedColors()
-                    requireActivity().showCustomSnackbar(
+                    requireActivity().showCustomSnackBar(
                         "App theme color updated.", iconRes = R.drawable.themes,
                         colorString = colorHex
                     )
@@ -147,7 +145,7 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
                 AppPreferences.ThemeManager.setActiveThemeColor(colorHex)
                 AppPreferences.ThemeManager.setThemeColorList(selectedColors.joinToString(","))
                 displaySelectedColors()
-                requireActivity().showCustomSnackbar(
+                requireActivity().showCustomSnackBar(
                     "App theme color updated.", iconRes = R.drawable.themes,
                     colorString = colorHex
                 )

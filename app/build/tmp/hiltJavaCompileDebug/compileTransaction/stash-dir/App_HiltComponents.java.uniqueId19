@@ -1,11 +1,13 @@
 package com.dzo.announcerclock;
 
+import com.dzo.announcerclock.data.service.ScheduleTimerService_GeneratedInjector;
 import com.dzo.announcerclock.data.service.TimerService_GeneratedInjector;
 import com.dzo.announcerclock.di.AdapterModule;
 import com.dzo.announcerclock.di.AppModule;
 import com.dzo.announcerclock.di.TtsModule;
 import com.dzo.announcerclock.presentation.activity.MainActivity_GeneratedInjector;
 import com.dzo.announcerclock.presentation.fragments.home_fragment.HomeFragment_GeneratedInjector;
+import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel_HiltModules;
 import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel_HiltModules;
 import com.dzo.announcerclock.presentation.fragments.our_app_fragment.OurAppFragment_GeneratedInjector;
 import com.dzo.announcerclock.presentation.fragments.repeat_option.RepeatOptionFragment_GeneratedInjector;
@@ -158,7 +160,8 @@ public final class App_HiltComponents {
 
   @Subcomponent
   @ServiceScoped
-  public abstract static class ServiceC implements TimerService_GeneratedInjector,
+  public abstract static class ServiceC implements ScheduleTimerService_GeneratedInjector,
+      TimerService_GeneratedInjector,
       ServiceComponent,
       GeneratedComponent {
     @Subcomponent.Builder
@@ -173,6 +176,7 @@ public final class App_HiltComponents {
           HiltWrapper_ActivityRetainedComponentManager_LifecycleModule.class,
           HiltWrapper_SavedStateHandleModule.class,
           RepeatOptionViewModel_HiltModules.KeyModule.class,
+          ScheduleTimerViewModel_HiltModules.KeyModule.class,
           SoundOptionViewModel_HiltModules.KeyModule.class,
           TimerViewModel_HiltModules.KeyModule.class,
           TtsViewModel_HiltModules.KeyModule.class
@@ -213,6 +217,7 @@ public final class App_HiltComponents {
       modules = {
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
           RepeatOptionViewModel_HiltModules.BindsModule.class,
+          ScheduleTimerViewModel_HiltModules.BindsModule.class,
           SoundOptionViewModel_HiltModules.BindsModule.class,
           TimerViewModel_HiltModules.BindsModule.class,
           TtsViewModel_HiltModules.BindsModule.class
