@@ -49,4 +49,8 @@ object PreferenceHelper {
     fun clear() {
         prefs.edit { clear() }
     }
+
+    fun contain(keyScheduleTime: String): Boolean {
+        return prefs.contains(keyScheduleTime)
+    }
 }

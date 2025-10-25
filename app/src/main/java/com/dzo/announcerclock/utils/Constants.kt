@@ -9,6 +9,8 @@ object Constants {
     const val KEY_START_TIME = "start_time"
     const val KEY_INTERVAL = "time_interval"
     const val KEY_SCHEDULE_TIME = "schedule_time"
+    const val ACTION_TOGGLE_UPDATE = "com.dzo.ACTION_TOGGLE_UPDATE"
+    const val EXTRA_IS_ENABLED = "EXTRA_IS_ENABLED"
     const val KEY_TOGGLE_STATE = "toggle_state"
     const val KEY_CUSTOM_TOGGLE_STATE = "custom_toggle_state"
     const val IS_NOTIFICATION_SOUND_ENABLED = "notification_sound_enabled"

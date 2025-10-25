@@ -35,6 +35,10 @@
             android:name=".data.service.TimerService"
             android:exported="false"
             android:foregroundServiceType="mediaPlayback|dataSync" />
+        <service
+            android:name=".data.service.ScheduleTimerService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback|dataSync" />
 
         <receiver
             android:name=".data.service.receiver.TimerActionReceiver"

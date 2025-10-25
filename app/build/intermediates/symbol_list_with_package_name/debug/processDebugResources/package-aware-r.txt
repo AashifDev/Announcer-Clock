@@ -4836,6 +4836,7 @@ drawable sound
 drawable test_level_drawable
 drawable theme
 drawable themes
+drawable toast_bg
 drawable toggle_button
 drawable toggle_thumb
 drawable toggle_track
@@ -5462,6 +5463,8 @@ id title
 id titleDividerNoCustom
 id titleTxt
 id title_template
+id toast_root
+id toast_text
 id toggle
 id top
 id topPanel
@@ -5668,6 +5671,7 @@ layout activity_splash
 layout adapter_material_color_picker
 layout custom_dialog
 layout custom_snackbar
+layout custom_toast
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

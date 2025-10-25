@@ -62,7 +62,7 @@ class SplashActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finishAffinity()
-            }, 2000)
+            }, 1500)
             //AppPreferences.saveFirstLaunch(true)
         }
     }

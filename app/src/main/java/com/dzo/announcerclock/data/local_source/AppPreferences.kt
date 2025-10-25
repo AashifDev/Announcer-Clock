@@ -120,7 +120,7 @@ object AppPreferences {
         PreferenceHelper.putBoolean(IS_HIDE_NOTIFICATION_ENABLED, enabled)
     }
 
-    fun isHindNotificationEnabled(): Boolean? {
+    fun isHideNotificationEnabled(): Boolean? {
         return PreferenceHelper.getBoolean(IS_HIDE_NOTIFICATION_ENABLED,true)
     }
 

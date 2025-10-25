@@ -3,6 +3,7 @@ package com.dzo.announcerclock.utils.extension
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
 import android.os.Handler
 import android.os.Looper
@@ -11,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -29,6 +32,11 @@ fun Activity.showCustomSnackBar(
     colorString: String,
     onActionClick: (() -> Unit)? = null
 ) {
+    val safeColor = try {
+        colorString.ifBlank { "#2196F3" }
+    } catch (e: Exception) {
+        "#2196F3"
+    }
 
     val rootView = this.findViewById<View>(android.R.id.content)
     val snackbar = Snackbar.make(rootView, "", duration)
@@ -44,14 +52,14 @@ fun Activity.showCustomSnackBar(
     val drawable = GradientDrawable().apply {
         shape = GradientDrawable.RECTANGLE
         cornerRadius = radius
-        setColor(colorString.toColorInt())
+        setColor(safeColor.toColorInt())
     }
     snackbarContainer.background = drawable
 
     val drawableRestart = GradientDrawable().apply {
         shape = GradientDrawable.RECTANGLE
         cornerRadius = radius
-        setColor(colorString.lighten(0.2f))
+        setColor(safeColor.lighten(0.2f))
     }
 
     actionButton.background = drawableRestart
@@ -97,90 +105,70 @@ fun Activity.showCustomSnackBar(
 
     snackbar.show()
 }
-@SuppressLint("InflateParams")
-fun Context.showOverlayToast(
+
+fun Context.showColoredToast(
     message: String,
+    bgColor: Int,
+    textColor: Int,
     iconRes: Int? = null,
-    actionText: String? = null,
-    colorString: String,
-    duration: Long = 2000L,
-    onActionClick: (() -> Unit)? = null
+    duration: Int? = Toast.LENGTH_SHORT
 ) {
-    val activity = this as? Activity ?: return
-    val inflater = LayoutInflater.from(activity)
-    val customView = inflater.inflate(R.layout.custom_snackbar, null)
 
-    val textView = customView.findViewById<AppCompatTextView>(R.id.snackbar_text)
-    val iconView = customView.findViewById<AppCompatImageView>(R.id.snackbar_icon)
-    val actionButton = customView.findViewById<AppCompatTextView>(R.id.snackbar_action)
-    val container = customView.findViewById<ConstraintLayout>(R.id.snackbar_container)
-
-    val radius = 28f
-    val bgDrawable = GradientDrawable().apply {
-        shape = GradientDrawable.RECTANGLE
-        cornerRadius = radius
-        setColor(colorString.toColorInt())
-    }
-    container.background = bgDrawable
-
-    val actionDrawable = GradientDrawable().apply {
-        shape = GradientDrawable.RECTANGLE
-        cornerRadius = radius
-        setColor(colorString.lighten(0.2f))
-    }
-    actionButton.background = actionDrawable
+    val layout = LayoutInflater.from(this).inflate(R.layout.custom_toast, null)
+    val textView = layout.findViewById<TextView>(R.id.toast_text)
+    val root = layout.findViewById<LinearLayout>(R.id.toast_root)
 
     textView.text = message
+    textView.setTextColor(textColor)
+    root.backgroundTintList = ColorStateList.valueOf(bgColor)
 
-    if (iconRes != null) {
-        iconView.setImageResource(iconRes)
-        iconView.visibility = View.VISIBLE
-    } else {
-        iconView.visibility = View.GONE
+    Toast(this).apply {
+        view = layout
+        duration
+        setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 150)
+        show()
+    }
+}
+
+fun Context.showColoredToast(message: String, bgColor: Int, textColor: Int) {
+    val inflater = LayoutInflater.from(this)
+    val layout = inflater.inflate(R.layout.custom_toast, null)
+
+    val textView = layout.findViewById<TextView>(R.id.toast_text)
+    val root = layout.findViewById<LinearLayout>(R.id.toast_root)
+
+    textView.text = message
+    textView.setTextColor(textColor)
+    root.backgroundTintList = ColorStateList.valueOf(bgColor)
+
+    // Apply initial iOS-style animation state
+    layout.alpha = 0f
+    layout.scaleX = 0.8f
+    layout.scaleY = 0.8f
+
+    Toast(this).apply {
+        view = layout
+        duration = Toast.LENGTH_SHORT
+        show()
     }
 
-    if (actionText != null && onActionClick != null) {
-        actionButton.text = actionText
-        actionButton.visibility = View.VISIBLE
-        actionButton.setOnClickListener {
-            onActionClick()
-        }
-    } else {
-        actionButton.visibility = View.GONE
-    }
-
-    // Add overlay to root layout
-    val decorView = activity.window.decorView as ViewGroup
-    val rootView = decorView.findViewById<ViewGroup>(android.R.id.content)
-
-    val params = FrameLayout.LayoutParams(
-        FrameLayout.LayoutParams.MATCH_PARENT,
-        FrameLayout.LayoutParams.WRAP_CONTENT
-    ).apply {
-        gravity = Gravity.BOTTOM
-        bottomMargin = 180 // 👈 BottomSheet ke upar dikhane ke liye space
-    }
-
-    customView.alpha = 0f
-    customView.translationY = 200f
-    rootView.addView(customView, params)
-
-    // Animate in
-    customView.animate()
+    // --- Animate In ---
+    layout.animate()
         .alpha(1f)
-        .translationY(0f)
-        .setDuration(300)
+        .scaleX(1f)
+        .scaleY(1f)
+        .setDuration(250)
         .start()
 
-    // Auto dismiss
+    // --- Animate Out ---
+    // Schedule fade-out after toast duration (LENGTH_SHORT ≈ 2s)
     Handler(Looper.getMainLooper()).postDelayed({
-        customView.animate()
+        layout.animate()
             .alpha(0f)
-            .translationY(100f)
-            .setDuration(300)
-            .withEndAction {
-                rootView.removeView(customView)
-            }
+            .scaleX(0.8f)
+            .scaleY(0.8f)
+            .setDuration(250)
             .start()
-    }, duration)
+    }, 1800)
 }
+

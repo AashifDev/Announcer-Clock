@@ -54,6 +54,7 @@ drawable shri_krishna
 drawable sound
 drawable theme
 drawable themes
+drawable toast_bg
 drawable toggle_button
 drawable toggle_thumb
 drawable toggle_track
@@ -157,6 +158,8 @@ id themeCard
 id themeImg
 id timerText
 id title
+id toast_root
+id toast_text
 id tts
 id ttsLayout
 id tvTitle
@@ -197,6 +200,7 @@ id volume
 layout activity_main
 layout activity_splash
 layout custom_snackbar
+layout custom_toast
 layout dialog_custom_repeat_option
 layout fragment_app_theme
 layout fragment_home

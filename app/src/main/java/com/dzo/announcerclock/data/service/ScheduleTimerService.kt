@@ -10,8 +10,11 @@ import android.os.Build
 import android.os.IBinder
 import android.speech.tts.TextToSpeech
 import android.telephony.TelephonyManager
+import androidx.core.app.ActivityCompat.recreate
 import androidx.core.app.NotificationCompat
+import androidx.core.graphics.toColorInt
 import androidx.core.net.toUri
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.App
 import com.dzo.announcerclock.data.local_source.AppPreferences
@@ -19,9 +22,13 @@ import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
 import com.dzo.announcerclock.presentation.activity.MainActivity
 import com.dzo.announcerclock.utils.AudioPlaybackListener
 import com.dzo.announcerclock.utils.Constants
+import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
+import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
 import com.dzo.announcerclock.utils.PhoneCallListener
 import com.dzo.announcerclock.utils.PreferenceHelper
+import com.dzo.announcerclock.utils.Utils.lighten
 import com.dzo.announcerclock.utils.Utils.toast
+import com.dzo.announcerclock.utils.extension.showColoredToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -80,14 +87,14 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         if (isRunning) {
             isRunning = false
             tts?.stop()
-            toast(App.appContext(),"paused")
+            toast(App.appContext(), "paused")
         }
     }
 
     private fun resumeServiceAfterCall() {
         if (!isRunning) {
             isRunning = true
-            toast(App.appContext(),"resumed")
+            toast(App.appContext(), "resumed")
         }
     }
 
@@ -103,7 +110,7 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         val endTimeMillis = intent.getLongExtra("endTimeMillis", 600_000L)
         val intervalMillis = intent.getLongExtra("intervalMillis", 300_000L)
 
-        startScheduleTimer(startTimeMillis,endTimeMillis,intervalMillis)
+        startScheduleTimer(startTimeMillis, endTimeMillis, intervalMillis)
 
         return START_NOT_STICKY
     }
@@ -150,7 +157,12 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
             startForeground(1, notification)
         }
     }
-    private fun startScheduleTimer(startTimeMillis: Long, endTimeMillis: Long, intervalMillis: Long) {
+
+    private fun startScheduleTimer(
+        startTimeMillis: Long,
+        endTimeMillis: Long,
+        intervalMillis: Long
+    ) {
         if (isRunning) return
         isRunning = true
 
@@ -169,19 +181,26 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                 // End condition
                 if (now >= endTimeMillis) {
                     isRunning = false
+
                     withContext(Dispatchers.Main) {
-                        toast(App.appContext(), "Schedule finished")
+                        toast(App.appContext(),"Schedule finished")
+                        showCompletionNotification()
                     }
-                    AppPreferences.saveCustomToggleState(true)
-                   // PreferenceHelper.remove(Constants.KEY_SCHEDULE_TIMER)
+
+                    AppPreferences.saveCustomToggleState(false)
+                    PreferenceHelper.remove(Constants.KEY_SCHEDULE_TIME)
+
+                    val intent = Intent("SCHEDULE_FINISHED")
+                    sendBroadcast(intent)
 
                     stopSelf()
                     break
                 }
 
                 // Progress
-                val progress = ((now - startTimeMillis).toFloat() / (endTimeMillis - startTimeMillis) * 100)
-                    .coerceIn(0f, 100f)
+                val progress =
+                    ((now - startTimeMillis).toFloat() / (endTimeMillis - startTimeMillis) * 100)
+                        .coerceIn(0f, 100f)
                 _progressFlow.value = progress.toInt()
 
                 val remaining = (endTimeMillis - now).coerceAtLeast(0)
@@ -200,6 +219,17 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
             }
         }
     }
+    private fun sendToggleBroadcast(isEnabled: Boolean) {
+      /*  val intent = Intent(ACTION_TOGGLE_UPDATE).apply {
+            putExtra(EXTRA_IS_ENABLED, isEnabled)
+        }
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)*/
+        val intent = Intent(ACTION_TOGGLE_UPDATE).apply {
+            putExtra(EXTRA_IS_ENABLED, isEnabled)
+        }
+        sendBroadcast(intent)
+    }
+
 
     private suspend fun announceTime() {
         val settings = AppPreferences.getTtsSettings()
@@ -225,8 +255,10 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         }
 
         if (ttsReady) {
+
             val message = announceTimeUseCase()
             withContext(Dispatchers.Main) {
+                toast(App.appContext(), "tts speaking")
                 tts?.speak(message, TextToSpeech.QUEUE_FLUSH, null, null)
             }
             while (tts?.isSpeaking == true) {

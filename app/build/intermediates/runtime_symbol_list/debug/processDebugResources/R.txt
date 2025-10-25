@@ -4835,6 +4835,7 @@ int drawable sound 0x7f070127
 int drawable test_level_drawable 0x7f070128
 int drawable theme 0x7f070129
 int drawable themes 0x7f07012a
+int drawable toast_bg 0x7f070130
 int drawable toggle_button 0x7f07012b
 int drawable toggle_thumb 0x7f07012c
 int drawable toggle_track 0x7f07012d
@@ -5461,6 +5462,8 @@ int id title 0x7f080269
 int id titleDividerNoCustom 0x7f08026a
 int id titleTxt 0x7f08026b
 int id title_template 0x7f08026c
+int id toast_root 0x7f0802be
+int id toast_text 0x7f0802bf
 int id toggle 0x7f08026d
 int id top 0x7f08026e
 int id topPanel 0x7f08026f
@@ -5667,6 +5670,7 @@ int layout activity_splash 0x7f0b001d
 int layout adapter_material_color_picker 0x7f0b001e
 int layout custom_dialog 0x7f0b001f
 int layout custom_snackbar 0x7f0b0020
+int layout custom_toast 0x7f0b0085
 int layout design_bottom_navigation_item 0x7f0b0021
 int layout design_bottom_sheet_dialog 0x7f0b0022
 int layout design_layout_snackbar 0x7f0b0023

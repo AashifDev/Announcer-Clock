@@ -7,16 +7,22 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.Paint
 import android.media.AudioManager
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.NumberPicker
 import android.widget.ScrollView
 import androidx.activity.result.ActivityResult
@@ -30,6 +36,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Typeface
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -74,10 +82,13 @@ import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import androidx.core.graphics.toColorInt
+import androidx.lifecycle.ViewModelProvider
 import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
 import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel
+import com.dzo.announcerclock.utils.Constants
+import com.dzo.announcerclock.utils.PreferenceHelper
 import com.dzo.announcerclock.utils.Utils.lighten
-import com.dzo.announcerclock.utils.extension.showOverlayToast
+import com.dzo.announcerclock.utils.extension.showColoredToast
 import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -85,7 +96,8 @@ import java.util.Calendar
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
-    TextToSpeech.OnInitListener {
+    /*TextToSpeech.OnInitListener,*/
+    OnBottomSheetResultListener {
 
     @Inject
     lateinit var announceTimeUseCase: AnnounceTimeUseCase
@@ -129,6 +141,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val hasSession = PreferenceHelper.contain(Constants.KEY_SCHEDULE_TIME)
+
+        if (hasSession) {
+            binding.enableScheduling.isChecked = true
+        } else {
+            // 🔹 No session → prompt user to set time
+            binding.enableScheduling.isChecked = false
+            requireActivity().showCustomSnackBar(
+                message = "Please set schedule time first",
+                iconRes = R.drawable.notification,
+                colorString = colorHexx
+            )
+        }
+        observeScheduleCompletion()
+
         startCal = Calendar.getInstance()
         endCal = Calendar.getInstance()
 
@@ -147,7 +174,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         }
 
-        tts = TextToSpeech(requireContext(), this)
+        //tts = TextToSpeech(requireContext(), this)
 
         volumeRockerSetup()
 
@@ -321,7 +348,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         binding.setScheduling.setOnClickListener {
-            showScheduleTimerBottomSheet()
+            showScheduleTimerBottomSheet(this)
         }
     }
 
@@ -372,6 +399,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     AppPreferences.saveToggleState(false)
                     timerViewModel.stopTimer()
                 }
+            }
+        }
+
+        // If toggle is ON and schedule exists, ensure service running
+        /*if (binding.enableScheduling.isChecked && startTime != null && endTime != null && repeatEvery != null) {
+            scheduleTimerModel.startScheduleTimer(startTime!!, endTime!!, repeatEvery)
+        }
+        */
+        binding.enableScheduling.setOnCheckedChangeListener { buttonView, ishChecked ->
+            if (ishChecked) {
+                if (schTime != null) {
+                    scheduleTimerModel.startScheduleTimer(
+                        schTime!!.startTimeMillis!!,
+                        schTime!!.endTimeMillis!!,
+                        schTime!!.intervalMillis!!
+                    )
+                    AppPreferences.saveCustomToggleState(true)
+                } else {
+                    requireActivity().showCustomSnackBar(
+                        message = "Please set schedule time first",
+                        iconRes = R.drawable.ic_logo,
+                        colorString = colorHexx
+                    )
+                    buttonView.isChecked = false
+                }
+            } else {
+                scheduleTimerModel.stopTimer()
+                AppPreferences.saveCustomToggleState(false)
             }
         }
 
@@ -609,6 +664,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
+    private fun observeScheduleCompletion() {
+        lifecycleScope.launchWhenStarted {
+            scheduleTimerModel.isScheduleFinished.collect { finished ->
+                if (finished) {
+                    binding.enableScheduling.isChecked = false
+                    requireActivity().showCustomSnackBar(
+                        message = "Schedule finished",
+                        iconRes = R.drawable.scheduling,
+                        colorString = colorHexx
+                    )
+                }
+            }
+        }
+    }
+
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -697,12 +767,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val versionName = packageInfo.versionName
         val versionCode = packageInfo.longVersionCode
 
-        txtVersionName!!.text = "App Version: $versionName ($versionCode)"
+        ("App Version: $versionName ($versionCode)").also { txtVersionName.text = it }
 
         dialog.show()
     }
 
-    fun showScheduleTimerBottomSheet() {
+    fun showScheduleTimerBottomSheet(
+        listener: OnBottomSheetResultListener
+    ) {
         val dialog = BottomSheetDialog(requireContext(), R.style.CustomBottomSheetDialogTheme)
         val view = LayoutInflater.from(context).inflate(R.layout.schedult_timer_bottom_sheet, null)
         dialog.setContentView(view)
@@ -731,13 +803,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         txtRepeatEvery!!.setTextColor(colorHexx.toColorInt())
         bgStart!!.background.setTint(colorHexx.lighten(0.9f))
         bgEnd!!.background.setTint(colorHexx.lighten(0.9f))
+        saveSchedule!!.backgroundTintList =
+            ColorStateList.valueOf(colorHexx.toColorInt())
 
 
-        if (startTime!= null&&endTime!= null&& repeatEvery != null){
+        if (startTime != null && endTime != null && repeatEvery != null) {
             txtSetStartTime!!.text = milliSecondToTime(startTime!!)
             txtSetEndTime!!.text = milliSecondToTime(endTime!!)
             txtSetRepeatEveryMinute!!.text = "$repeatEvery minute"
-
         }
 
         setStartTime!!.setOnClickListener {
@@ -748,19 +821,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             showEndTimePicker(txtSetEndTime, txtSetRepeatEveryMinute)
         }
 
-        saveSchedule!!.setOnClickListener {
-            if (startTime!=null && endTime!= null && repeatEvery!= null){
-                val newSchedule = ScheduleTimerModel(true,startTime!!, endTime!!, repeatEvery!!)
+        txtSetRepeatEveryMinute!!.setOnClickListener {
+            showMinutePickerDialog(txtSetRepeatEveryMinute)
+        }
+        saveSchedule.setOnClickListener {
+            if (startTime != null && endTime != null && repeatEvery != null) {
+                val newSchedule =
+                    ScheduleTimerModel(
+                        true,
+                        startTime!!,
+                        endTime!!,
+                        repeatEvery!!
+                    )
                 AppPreferences.saveScheduleTime(newSchedule)
+                listener.onDataUpdated()
                 dialog.dismiss()
-            }else{
-                toast(
-                    requireContext(),
-                    "Please set start and end time.",
+            } else {
+                requireContext().showColoredToast(
+                    "Please set start and time first",
+                    colorHexx.lighten(0.9f),
+                    colorHexx.toColorInt()
                 )
             }
         }
-
         dialog.show()
     }
 
@@ -769,6 +852,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             .setTimeFormat(TimeFormat.CLOCK_12H) // 12-hour format with AM/PM
             .setHour(startCal!!.get(Calendar.HOUR_OF_DAY))
             .setMinute(startCal!!.get(Calendar.MINUTE))
+            //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
             .setTitleText("Select Start Time".toUpperCase())
             .build()
 
@@ -815,13 +899,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
             endTime = endCal!!.timeInMillis
 
-            // ✅ Both times selected — now you can start timer
-            /*startScheduleTimer(
-                startTimeMillis = startCal!!.timeInMillis,
-                endTimeMillis = endCal!!.timeInMillis,
-                intervalMillis = 5 * 60 * 1000L // every 5 minutes
-            )*/
-
             val formattedTime = formattedTime(endCal)
             txtSetEndTime!!.text = formattedTime
 
@@ -844,25 +921,45 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun showMinutePickerDialog(txtSetRepeatEveryMinute: AppCompatTextView?) {
+        val evenNumbers = (2..60 step 2).map { it.toString() }.toTypedArray()
+
         val numberPicker = NumberPicker(requireContext()).apply {
             minValue = 0
-            maxValue = 59
+            maxValue = evenNumbers.size - 1
+            displayedValues = evenNumbers
             wrapSelectorWheel = true
-            showDividers = 0
         }
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Select Minutes".toUpperCase(Locale.ROOT))
+            .setTitle("SELECT MINUTES")
             .setView(numberPicker)
             .setPositiveButton("OK") { _, _ ->
-                val minutes = numberPicker.value
-                repeatEvery = minutes.toLong()
-                txtSetRepeatEveryMinute!!.text = "$minutes minute"
+                val selectedValue = evenNumbers[numberPicker.value].toInt()
+                repeatEvery = selectedValue.toLong()
+                "$selectedValue minute".also {
+                    txtSetRepeatEveryMinute!!.text = it
+                }
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton("Cancel") { dialog, _ ->
+                repeatEvery = 1
+            }
             .show()
     }
 
+    private fun removeNumberPickerDividers(numberPicker: NumberPicker) {
+        try {
+            val fields = numberPicker.javaClass.declaredFields
+            for (field in fields) {
+                if (field.name == "mSelectionDivider") {
+                    field.isAccessible = true
+                    field.set(numberPicker, null) // remove divider drawable
+                    break
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     override fun onStart() {
         super.onStart()
@@ -875,9 +972,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         ) {
             appUpdateManager!!.completeUpdate()
         }*/
+        viewLifecycleOwner.lifecycleScope.launch {
+            scheduleTimerModel.isScheduleFinished.collect { finished ->
+                if (finished) {
+                    binding.enableScheduling.isChecked = false
+                    requireActivity().showCustomSnackBar(
+                        message = "Schedule finished",
+                        iconRes = R.drawable.scheduling,
+                        colorString = colorHexx
+                    )
+                }
+            }
+        }
+
         val darkMode = AppPreferences.isDarkThemeEnabled()
         //setUiThemeMode()
         setThemeMode(darkMode == true)
+
+        if (schTime != null) {
+            startTime = schTime!!.startTimeMillis
+            endTime = schTime!!.endTimeMillis
+            repeatEvery = schTime!!.intervalMillis
+        }
 
         if (repeatOption != null && soundOption != null) {
             binding.selectedRepeatTime.text = repeatOption!!.title
@@ -932,6 +1048,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onResume() {
         super.onResume()
+
         appUpdateManager!!
             .appUpdateInfo
             .addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
@@ -994,10 +1111,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         println("🔥 TimerService destroyed")
     }
 
-    override fun onInit(status: Int) {
+    /*override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             tts?.language = Locale.getDefault()
             ttsReady = true
         }
+    }*/
+
+    override fun onDataUpdated() {
+        updateUiWithSessionData()
     }
+
+    private fun updateUiWithSessionData() {
+        schTime = AppPreferences.getScheduleTime()
+    }
+}
+
+
+interface OnBottomSheetResultListener {
+    fun onDataUpdated()
 }
