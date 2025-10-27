@@ -200,6 +200,10 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\gurbani_nitnem.png"
     },
     {
+        "merged": "com.dzo.announcerclock.app-debug-85:/layout_fragment_text_to_speech.xml.flat",
+        "source": "com.dzo.announcerclock.app-main-87:/layout/fragment_text_to_speech.xml"
+    },
+    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_ic_category.xml.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_category.xml"
     },
@@ -310,10 +314,6 @@
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\raw_smbw_yoshi.mp3.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\raw\\smbw_yoshi.mp3"
-    },
-    {
-        "merged": "com.dzo.announcerclock.app-debug-85:/layout_fragment_home.xml.flat",
-        "source": "com.dzo.announcerclock.app-main-87:/layout/fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_color_box_background.xml.flat",

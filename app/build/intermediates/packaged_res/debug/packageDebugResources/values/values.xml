@@ -13,9 +13,9 @@
     <string name="choose_theme_color_options">Choose theme color options</string>
     <string name="custom_timer">Custom Timer</string>
     <string name="customize_tts">Customize tts</string>
-    <string name="disable_during_phone_calls">Disable during phone calls</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
     <string name="enable_dark_theme_mode">Enable dark theme mode</string>
+    <string name="enable_during_phone_calls">Enable tts during phone calls</string>
     <string name="enable_hourly_talk_time">Enable time announcer clock</string>
     <string name="enable_notification">Enable notification</string>
     <string name="enable_notification_sound">Enable notification sound</string>

@@ -29,10 +29,10 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
   public final SwitchMaterial disableDuringMusic;
 
   @NonNull
-  public final SwitchMaterial disableWhilePhoneCalls;
+  public final SwitchMaterial enableTimeSpeaking;
 
   @NonNull
-  public final SwitchMaterial enableTimeSpeaking;
+  public final SwitchMaterial enableWhilePhoneCalls;
 
   @NonNull
   public final AppCompatImageView imgCall;
@@ -86,8 +86,8 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
   public final AppCompatTextView txtVoiceGender;
 
   private FragmentTextToSpeechBinding(@NonNull ConstraintLayout rootView,
-      @NonNull SwitchMaterial disableDuringMusic, @NonNull SwitchMaterial disableWhilePhoneCalls,
-      @NonNull SwitchMaterial enableTimeSpeaking, @NonNull AppCompatImageView imgCall,
+      @NonNull SwitchMaterial disableDuringMusic, @NonNull SwitchMaterial enableTimeSpeaking,
+      @NonNull SwitchMaterial enableWhilePhoneCalls, @NonNull AppCompatImageView imgCall,
       @NonNull AppCompatImageView imgMusic, @NonNull LinearLayoutCompat linearLayoutCompat,
       @NonNull LinearLayoutCompat linearLayoutCompatSound1,
       @NonNull LinearLayoutCompat linearLayoutCompatSound2,
@@ -100,8 +100,8 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       @NonNull AppCompatTextView txtTimeSpeaking, @NonNull AppCompatTextView txtVoiceGender) {
     this.rootView = rootView;
     this.disableDuringMusic = disableDuringMusic;
-    this.disableWhilePhoneCalls = disableWhilePhoneCalls;
     this.enableTimeSpeaking = enableTimeSpeaking;
+    this.enableWhilePhoneCalls = enableWhilePhoneCalls;
     this.imgCall = imgCall;
     this.imgMusic = imgMusic;
     this.linearLayoutCompat = linearLayoutCompat;
@@ -154,15 +154,15 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.disableWhilePhoneCalls;
-      SwitchMaterial disableWhilePhoneCalls = ViewBindings.findChildViewById(rootView, id);
-      if (disableWhilePhoneCalls == null) {
-        break missingId;
-      }
-
       id = R.id.enableTimeSpeaking;
       SwitchMaterial enableTimeSpeaking = ViewBindings.findChildViewById(rootView, id);
       if (enableTimeSpeaking == null) {
+        break missingId;
+      }
+
+      id = R.id.enableWhilePhoneCalls;
+      SwitchMaterial enableWhilePhoneCalls = ViewBindings.findChildViewById(rootView, id);
+      if (enableWhilePhoneCalls == null) {
         break missingId;
       }
 
@@ -269,7 +269,7 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       }
 
       return new FragmentTextToSpeechBinding((ConstraintLayout) rootView, disableDuringMusic,
-          disableWhilePhoneCalls, enableTimeSpeaking, imgCall, imgMusic, linearLayoutCompat,
+          enableTimeSpeaking, enableWhilePhoneCalls, imgCall, imgMusic, linearLayoutCompat,
           linearLayoutCompatSound1, linearLayoutCompatSound2, notificaitonSettingLayout, play,
           selectedLangSpinner, selectedVoiceSpinner, ttsLayout, txtDisableDuringCall,
           txtDisableDuringMusic, txtNotificationSetting, txtSelectLanguage, txtSoundSetting,

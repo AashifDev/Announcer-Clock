@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-46:12
+ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-50:12
 MERGED from [androidx.databinding:viewbinding:8.12.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\cbf4b63b6bc35536e1bb75b2c7980f50\transformed\viewbinding-8.12.3\AndroidManifest.xml:2:1-7:12
 MERGED from [com.github.Dhaval2404:ColorPicker:2.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\9094493fbe342e1ff1d4affb086e05c1\transformed\ColorPicker-2.3\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\8b099bc86555a6edd769a8ad2eca0e23\transformed\navigation-runtime-release\AndroidManifest.xml:17:1-22:12
@@ -143,8 +143,8 @@ ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.x
 	android:name
 		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:8:22-72
 application
-ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:11:5-43:19
-INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:11:5-43:19
+ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:11:5-47:19
+INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:11:5-47:19
 MERGED from [com.google.android.material:material:1.13.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\df1bdec14d0986f4703a0dda400ea344\transformed\material-1.13.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.13.0] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\df1bdec14d0986f4703a0dda400ea344\transformed\material-1.13.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\4e117d877f526bd9387420dace88e196\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
@@ -235,12 +235,20 @@ ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.x
 		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:37:13-67
 	android:name
 		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:35:13-54
-receiver#com.dzo.announcerclock.data.service.receiver.TimerActionReceiver
-ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:39:9-41:38
+service#com.dzo.announcerclock.data.service.ScheduleTimerService
+ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:38:9-41:70
 	android:exported
-		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:41:13-36
+		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:40:13-37
+	android:foregroundServiceType
+		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:41:13-67
 	android:name
-		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:40:13-70
+		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:39:13-62
+receiver#com.dzo.announcerclock.data.service.receiver.TimerActionReceiver
+ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:43:9-45:38
+	android:exported
+		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:45:13-36
+	android:name
+		ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:44:13-70
 uses-sdk
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml

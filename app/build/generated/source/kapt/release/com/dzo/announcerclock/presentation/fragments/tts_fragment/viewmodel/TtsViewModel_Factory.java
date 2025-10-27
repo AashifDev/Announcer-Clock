@@ -41,7 +41,7 @@ public final class TtsViewModel_Factory implements Factory<TtsViewModel> {
 
   private final Provider<SaveTimeSpeakingEnabledUseCase> saveTimeSpeakingEnabledProvider;
 
-  private final Provider<SaveDisableDuringPhoneCallsUseCase> saveDisableDuringPhoneCallsProvider;
+  private final Provider<SaveDisableDuringPhoneCallsUseCase> saveEnableDuringPhoneCallsProvider;
 
   private final Provider<IsDisableDuringPhoneCallsUseCase> isDisableDuringPhoneCallsProvider;
 
@@ -54,7 +54,7 @@ public final class TtsViewModel_Factory implements Factory<TtsViewModel> {
       Provider<SaveTtsSettingsUseCase> saveTtsSettingsProvider,
       Provider<IsTimeSpeakingEnabledUseCase> isTimeSpeakingEnabledProvider,
       Provider<SaveTimeSpeakingEnabledUseCase> saveTimeSpeakingEnabledProvider,
-      Provider<SaveDisableDuringPhoneCallsUseCase> saveDisableDuringPhoneCallsProvider,
+      Provider<SaveDisableDuringPhoneCallsUseCase> saveEnableDuringPhoneCallsProvider,
       Provider<IsDisableDuringPhoneCallsUseCase> isDisableDuringPhoneCallsProvider,
       Provider<SaveDisableWhilePlayingMusicUseCase> saveDisableWhilePlayingMusicProvider,
       Provider<IsDisableWhilePlayingMusicUseCase> isDisableWhilePlayingMusicProvider) {
@@ -63,7 +63,7 @@ public final class TtsViewModel_Factory implements Factory<TtsViewModel> {
     this.saveTtsSettingsProvider = saveTtsSettingsProvider;
     this.isTimeSpeakingEnabledProvider = isTimeSpeakingEnabledProvider;
     this.saveTimeSpeakingEnabledProvider = saveTimeSpeakingEnabledProvider;
-    this.saveDisableDuringPhoneCallsProvider = saveDisableDuringPhoneCallsProvider;
+    this.saveEnableDuringPhoneCallsProvider = saveEnableDuringPhoneCallsProvider;
     this.isDisableDuringPhoneCallsProvider = isDisableDuringPhoneCallsProvider;
     this.saveDisableWhilePlayingMusicProvider = saveDisableWhilePlayingMusicProvider;
     this.isDisableWhilePlayingMusicProvider = isDisableWhilePlayingMusicProvider;
@@ -71,7 +71,7 @@ public final class TtsViewModel_Factory implements Factory<TtsViewModel> {
 
   @Override
   public TtsViewModel get() {
-    return newInstance(applicationProvider.get(), getTtsSettingsProvider.get(), saveTtsSettingsProvider.get(), isTimeSpeakingEnabledProvider.get(), saveTimeSpeakingEnabledProvider.get(), saveDisableDuringPhoneCallsProvider.get(), isDisableDuringPhoneCallsProvider.get(), saveDisableWhilePlayingMusicProvider.get(), isDisableWhilePlayingMusicProvider.get());
+    return newInstance(applicationProvider.get(), getTtsSettingsProvider.get(), saveTtsSettingsProvider.get(), isTimeSpeakingEnabledProvider.get(), saveTimeSpeakingEnabledProvider.get(), saveEnableDuringPhoneCallsProvider.get(), isDisableDuringPhoneCallsProvider.get(), saveDisableWhilePlayingMusicProvider.get(), isDisableWhilePlayingMusicProvider.get());
   }
 
   public static TtsViewModel_Factory create(Provider<Application> applicationProvider,
@@ -79,21 +79,21 @@ public final class TtsViewModel_Factory implements Factory<TtsViewModel> {
       Provider<SaveTtsSettingsUseCase> saveTtsSettingsProvider,
       Provider<IsTimeSpeakingEnabledUseCase> isTimeSpeakingEnabledProvider,
       Provider<SaveTimeSpeakingEnabledUseCase> saveTimeSpeakingEnabledProvider,
-      Provider<SaveDisableDuringPhoneCallsUseCase> saveDisableDuringPhoneCallsProvider,
+      Provider<SaveDisableDuringPhoneCallsUseCase> saveEnableDuringPhoneCallsProvider,
       Provider<IsDisableDuringPhoneCallsUseCase> isDisableDuringPhoneCallsProvider,
       Provider<SaveDisableWhilePlayingMusicUseCase> saveDisableWhilePlayingMusicProvider,
       Provider<IsDisableWhilePlayingMusicUseCase> isDisableWhilePlayingMusicProvider) {
-    return new TtsViewModel_Factory(applicationProvider, getTtsSettingsProvider, saveTtsSettingsProvider, isTimeSpeakingEnabledProvider, saveTimeSpeakingEnabledProvider, saveDisableDuringPhoneCallsProvider, isDisableDuringPhoneCallsProvider, saveDisableWhilePlayingMusicProvider, isDisableWhilePlayingMusicProvider);
+    return new TtsViewModel_Factory(applicationProvider, getTtsSettingsProvider, saveTtsSettingsProvider, isTimeSpeakingEnabledProvider, saveTimeSpeakingEnabledProvider, saveEnableDuringPhoneCallsProvider, isDisableDuringPhoneCallsProvider, saveDisableWhilePlayingMusicProvider, isDisableWhilePlayingMusicProvider);
   }
 
   public static TtsViewModel newInstance(Application application,
       GetTtsSettingsUseCase getTtsSettings, SaveTtsSettingsUseCase saveTtsSettings,
       IsTimeSpeakingEnabledUseCase isTimeSpeakingEnabled,
       SaveTimeSpeakingEnabledUseCase saveTimeSpeakingEnabled,
-      SaveDisableDuringPhoneCallsUseCase saveDisableDuringPhoneCalls,
+      SaveDisableDuringPhoneCallsUseCase saveEnableDuringPhoneCalls,
       IsDisableDuringPhoneCallsUseCase isDisableDuringPhoneCalls,
       SaveDisableWhilePlayingMusicUseCase saveDisableWhilePlayingMusic,
       IsDisableWhilePlayingMusicUseCase isDisableWhilePlayingMusic) {
-    return new TtsViewModel(application, getTtsSettings, saveTtsSettings, isTimeSpeakingEnabled, saveTimeSpeakingEnabled, saveDisableDuringPhoneCalls, isDisableDuringPhoneCalls, saveDisableWhilePlayingMusic, isDisableWhilePlayingMusic);
+    return new TtsViewModel(application, getTtsSettings, saveTtsSettings, isTimeSpeakingEnabled, saveTimeSpeakingEnabled, saveEnableDuringPhoneCalls, isDisableDuringPhoneCalls, saveDisableWhilePlayingMusic, isDisableWhilePlayingMusic);
   }
 }

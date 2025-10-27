@@ -17,8 +17,8 @@ import com.dzo.announcerclock.App
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
 import com.dzo.announcerclock.presentation.activity.MainActivity
-import com.dzo.announcerclock.utils.AudioPlaybackListener
-import com.dzo.announcerclock.utils.PhoneCallListener
+import com.dzo.announcerclock.utils.helper.AudioPlaybackListener
+import com.dzo.announcerclock.utils.helper.PhoneCallListener
 import com.dzo.announcerclock.utils.Utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -68,13 +68,13 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
             when (state) {
                 TelephonyManager.CALL_STATE_RINGING,
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
-                    if (AppPreferences.isDisableDuringPhoneCalls() == true) {
+                    if (AppPreferences.isEnableDuringPhoneCalls() == true) {
                         pauseServiceForCall()
                     }
                 }
 
                 TelephonyManager.CALL_STATE_IDLE -> {
-                    if (AppPreferences.isDisableDuringPhoneCalls() == true) {
+                    if (AppPreferences.isEnableDuringPhoneCalls() == true) {
                         resumeServiceAfterCall()
                     }
                 }

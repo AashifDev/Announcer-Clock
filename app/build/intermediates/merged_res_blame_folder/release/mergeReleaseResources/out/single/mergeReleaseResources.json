@@ -68,6 +68,10 @@
         "source": "com.dzo.announcerclock.app-main-86:/drawable/ic_break.png"
     },
     {
+        "merged": "com.dzo.announcerclock.app-release-85:/drawable_ic_schedule_timer.xml.flat",
+        "source": "com.dzo.announcerclock.app-main-86:/drawable/ic_schedule_timer.xml"
+    },
+    {
         "merged": "com.dzo.announcerclock.app-release-85:/raw_smw_power_up.mp3.flat",
         "source": "com.dzo.announcerclock.app-main-86:/raw/smw_power_up.mp3"
     },
@@ -100,6 +104,10 @@
         "source": "com.dzo.announcerclock.app-main-86:/drawable/ic_vibration.xml"
     },
     {
+        "merged": "com.dzo.announcerclock.app-release-85:/layout_schedult_timer_bottom_sheet.xml.flat",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/schedult_timer_bottom_sheet.xml"
+    },
+    {
         "merged": "com.dzo.announcerclock.app-release-85:/drawable_hanuman_chalisa.png.flat",
         "source": "com.dzo.announcerclock.app-main-86:/drawable/hanuman_chalisa.png"
     },
@@ -130,6 +138,10 @@
     {
         "merged": "com.dzo.announcerclock.app-release-85:/mipmap-anydpi_ic_launcher_round.xml.flat",
         "source": "com.dzo.announcerclock.app-main-86:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-release-85:/drawable_scheduling.png.flat",
+        "source": "com.dzo.announcerclock.app-main-86:/drawable/scheduling.png"
     },
     {
         "merged": "com.dzo.announcerclock.app-release-85:/raw_mario_starwarp.mp3.flat",
@@ -204,6 +216,10 @@
         "source": "com.dzo.announcerclock.app-main-86:/drawable/ic_stop.xml"
     },
     {
+        "merged": "com.dzo.announcerclock.app-release-85:/layout_custom_toast.xml.flat",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/custom_toast.xml"
+    },
+    {
         "merged": "com.dzo.announcerclock.app-release-85:/drawable_ic_category.xml.flat",
         "source": "com.dzo.announcerclock.app-main-86:/drawable/ic_category.xml"
     },
@@ -244,6 +260,10 @@
         "source": "com.dzo.announcerclock.app-main-86:/navigation/nav_graph.xml"
     },
     {
+        "merged": "com.dzo.announcerclock.app-release-85:/drawable_schedule_time_background.xml.flat",
+        "source": "com.dzo.announcerclock.app-main-86:/drawable/schedule_time_background.xml"
+    },
+    {
         "merged": "com.dzo.announcerclock.app-release-85:/layout_dialog_custom_repeat_option.xml.flat",
         "source": "com.dzo.announcerclock.app-main-86:/layout/dialog_custom_repeat_option.xml"
     },
@@ -274,6 +294,10 @@
     {
         "merged": "com.dzo.announcerclock.app-release-85:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.dzo.announcerclock.app-main-86:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-release-85:/drawable_toast_bg.xml.flat",
+        "source": "com.dzo.announcerclock.app-main-86:/drawable/toast_bg.xml"
     },
     {
         "merged": "com.dzo.announcerclock.app-release-85:/drawable_ic_calling.xml.flat",
@@ -316,12 +340,12 @@
         "source": "com.dzo.announcerclock.app-main-86:/layout/activity_splash.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-release-85:/drawable_hanuman_chalisa_multi.png.flat",
-        "source": "com.dzo.announcerclock.app-main-86:/drawable/hanuman_chalisa_multi.png"
-    },
-    {
         "merged": "com.dzo.announcerclock.app-release-85:/drawable_sound.png.flat",
         "source": "com.dzo.announcerclock.app-main-86:/drawable/sound.png"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-release-85:/drawable_hanuman_chalisa_multi.png.flat",
+        "source": "com.dzo.announcerclock.app-main-86:/drawable/hanuman_chalisa_multi.png"
     },
     {
         "merged": "com.dzo.announcerclock.app-release-85:/layout_activity_main.xml.flat",

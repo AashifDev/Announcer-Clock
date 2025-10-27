@@ -20,8 +20,8 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_repeat_option.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-84:/layout/fragment_home.xml",
-        "source": "com.dzo.announcerclock.app-main-87:/layout/fragment_home.xml"
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-84:/layout/fragment_text_to_speech.xml",
+        "source": "com.dzo.announcerclock.app-main-87:/layout/fragment_text_to_speech.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-84:\\layout\\activity_splash.xml",

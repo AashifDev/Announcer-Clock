@@ -7,22 +7,16 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.content.res.Configuration
-import android.graphics.Paint
 import android.media.AudioManager
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.NumberPicker
 import android.widget.ScrollView
 import androidx.activity.result.ActivityResult
@@ -36,9 +30,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.Typeface
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -48,20 +41,28 @@ import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.FragmentHomeBinding
 import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
+import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
 import com.dzo.announcerclock.presentation.fragments.home_fragment.model.TtsSettings
+import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel
 import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel
 import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatOption
 import com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel
 import com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel
-import com.dzo.announcerclock.utils.AnimationType
-import com.dzo.announcerclock.utils.animateTimerText
+import com.dzo.announcerclock.utils.helper.AnimationType
+import com.dzo.announcerclock.utils.Utils.lighten
+import com.dzo.announcerclock.utils.helper.animateTimerText
 import com.dzo.announcerclock.utils.core.BaseFragment
+import com.dzo.announcerclock.utils.extension.showColoredToast
 import com.dzo.announcerclock.utils.extension.showCustomSnackBar
+import com.dzo.announcerclock.utils.helper.ScheduleTimerBottomSheet
 import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -77,33 +78,21 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.roundToInt
-import androidx.core.graphics.toColorInt
-import androidx.lifecycle.ViewModelProvider
-import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
-import com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel
-import com.dzo.announcerclock.utils.Constants
-import com.dzo.announcerclock.utils.PreferenceHelper
-import com.dzo.announcerclock.utils.Utils.lighten
-import com.dzo.announcerclock.utils.extension.showColoredToast
-import com.getkeepsafe.taptargetview.TapTargetView
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
-import java.util.Calendar
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
-    /*TextToSpeech.OnInitListener,*/
+class HomeFragment :
+    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),/*TextToSpeech.OnInitListener,*/
     OnBottomSheetResultListener {
 
     @Inject
     lateinit var announceTimeUseCase: AnnounceTimeUseCase
 
     private val ttsViewModel: TtsViewModel by viewModels()
-
     private val repeatOptionViewModel: RepeatOptionViewModel by viewModels()
     private val soundOptionViewModel: SoundOptionViewModel by viewModels()
     private lateinit var audioManager: AudioManager
@@ -141,21 +130,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val hasSession = PreferenceHelper.contain(Constants.KEY_SCHEDULE_TIME)
-
-        if (hasSession) {
-            binding.enableScheduling.isChecked = true
-        } else {
-            // 🔹 No session → prompt user to set time
-            binding.enableScheduling.isChecked = false
-            requireActivity().showCustomSnackBar(
-                message = "Please set schedule time first",
-                iconRes = R.drawable.notification,
-                colorString = colorHexx
-            )
-        }
-        observeScheduleCompletion()
-
         startCal = Calendar.getInstance()
         endCal = Calendar.getInstance()
 
@@ -165,7 +139,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             repeatOption = AppPreferences.getRepeatOption()
             soundOption = AppPreferences.getSoundOption()
             ttsSettings = AppPreferences.getTtsSettings()
-            schTime = AppPreferences.getScheduleTime()
 
             // Move all dependent UI logic INSIDE here
             setupUIAfterPrefsLoaded()
@@ -183,8 +156,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         observeViewModel()
 
         requireContext().registerReceiver(
-            volumeReceiver,
-            IntentFilter("android.media.VOLUME_CHANGED_ACTION")
+            volumeReceiver, IntentFilter("android.media.VOLUME_CHANGED_ACTION")
         )
 
         AppPreferences.ThemeManager.registerListener { colorHex ->
@@ -235,8 +207,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val appUpdateInfoTask: Task<AppUpdateInfo> = appUpdateManager!!.appUpdateInfo
 
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
+                    AppUpdateType.IMMEDIATE
+                )
             ) {
                 // Request the update.
                 startInAppUpdate(appUpdateInfo, AppUpdateType.FLEXIBLE)
@@ -274,8 +247,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         )
     }
 
-    private fun popupSnackBarForCompleteUpdate() {
-        /* val snackbar = Snackbar.make(requireView().findViewById(R.id.scrollView), "An update has just been downloaded.", Snackbar.LENGTH_INDEFINITE)
+    private fun popupSnackBarForCompleteUpdate() {/* val snackbar = Snackbar.make(requireView().findViewById(R.id.scrollView), "An update has just been downloaded.", Snackbar.LENGTH_INDEFINITE)
          snackbar.setAction(
              "RESTART"
          ) { view: View? -> appUpdateManager!!.completeUpdate() }
@@ -319,9 +291,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 // Convert percent -> device volume
                 val newVol = percentToDeviceVolume(percent, maxVol)
                 audioManager.setStreamVolume(
-                    AudioManager.STREAM_MUSIC,
-                    newVol,
-                    AudioManager.FLAG_SHOW_UI
+                    AudioManager.STREAM_MUSIC, newVol, AudioManager.FLAG_SHOW_UI
                 )
                 // Because we set volume, hardware broadcast may also fire updating UI; that's ok
             }
@@ -348,7 +318,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         binding.setScheduling.setOnClickListener {
-            showScheduleTimerBottomSheet(this)
+            //showScheduleTimerBottomSheet(this)
+            val bottomSheet = ScheduleTimerBottomSheet(colorHexx){
+                schTime = AppPreferences.getScheduleTime()
+            }
+            bottomSheet.show(parentFragmentManager, "ScheduleTimerBottomSheet")
         }
     }
 
@@ -356,6 +330,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         // Restore toggle
         lifecycleScope.launch {
             binding.customToggle.isChecked = AppPreferences.getToggleState()
+            binding.enableScheduling.isChecked = AppPreferences.getCustomToggleState()
         }
 
         if (binding.customToggle.isChecked) {
@@ -374,6 +349,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
 
             }
+        }
+
+        if (binding.enableScheduling.isChecked) {
+            /*if (schTime != null) {
+                scheduleTimerModel.startScheduleTimer(
+                    schTime!!.startTimeMillis!!,
+                    schTime!!.endTimeMillis!!,
+                    schTime!!.intervalMillis!!
+                )
+                AppPreferences.saveCustomToggleState(true)
+            } else {
+                requireActivity().showCustomSnackBar(
+                    message = "Please set schedule time first",
+                    iconRes = R.drawable.ic_logo,
+                    colorString = colorHexx
+                )
+            }*/
+            toast(requireContext(),AppPreferences.getCustomToggleState().toString())
         }
 
 
@@ -402,31 +395,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
 
-        // If toggle is ON and schedule exists, ensure service running
-        /*if (binding.enableScheduling.isChecked && startTime != null && endTime != null && repeatEvery != null) {
-            scheduleTimerModel.startScheduleTimer(startTime!!, endTime!!, repeatEvery)
-        }
-        */
-        binding.enableScheduling.setOnCheckedChangeListener { buttonView, ishChecked ->
-            if (ishChecked) {
-                if (schTime != null) {
-                    scheduleTimerModel.startScheduleTimer(
-                        schTime!!.startTimeMillis!!,
-                        schTime!!.endTimeMillis!!,
-                        schTime!!.intervalMillis!!
-                    )
-                    AppPreferences.saveCustomToggleState(true)
+        binding.enableScheduling.setOnCheckedChangeListener(null)
+        binding.enableScheduling.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (buttonView.isPressed) {
+                if (isChecked) {
+                    if (schTime != null) {
+                        scheduleTimerModel.startScheduleTimer(
+                            schTime!!.startTimeMillis!!,
+                            schTime!!.endTimeMillis!!,
+                            schTime!!.intervalMillis!!
+                        )
+                        AppPreferences.saveCustomToggleState(true)
+                        println("HomeFragment.setupUIAfterPrefsLoaded::${schTime.toString()}")
+                    } else {
+                        requireActivity().showCustomSnackBar(
+                            message = "Please set schedule time first",
+                            iconRes = R.drawable.ic_logo,
+                            colorString = colorHexx
+                        )
+                        buttonView.isChecked = false
+                    }
                 } else {
-                    requireActivity().showCustomSnackBar(
-                        message = "Please set schedule time first",
-                        iconRes = R.drawable.ic_logo,
-                        colorString = colorHexx
-                    )
-                    buttonView.isChecked = false
+                    scheduleTimerModel.stopTimer()
+                    AppPreferences.saveCustomToggleState(false)
                 }
-            } else {
-                scheduleTimerModel.stopTimer()
-                AppPreferences.saveCustomToggleState(false)
             }
         }
 
@@ -512,10 +504,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun showIntroGuide() {
         val scrollView = binding.scrollView
         val targets = listOf(
-            binding.customToggle,
-            binding.setRepeatTime,
-            binding.setSound,
-            binding.setTtsSettings
+            binding.customToggle, binding.setRepeatTime, binding.setSound, binding.setTtsSettings
         )
 
         showNextTarget(scrollView, targets, 0)
@@ -540,14 +529,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     else -> "Text To Speech" to "Set Text to speech like language and voice etc"
                 }
 
-                val target = TapTarget.forView(view, title, desc)
-                    .outerCircleColor(R.color.light_blue)
-                    .targetCircleColor(R.color.white)
-                    .titleTextColor(R.color.black)
-                    .descriptionTextColor(R.color.black)
-                    .tintTarget(true)
-                    .cancelable(false)
-                    .transparentTarget(true)
+                val target =
+                    TapTarget.forView(view, title, desc).outerCircleColor(R.color.light_blue)
+                        .targetCircleColor(R.color.white).titleTextColor(R.color.black)
+                        .descriptionTextColor(R.color.black).tintTarget(true).cancelable(false)
+                        .transparentTarget(true)
 
                 TapTargetView.showFor(requireActivity(), target, object : TapTargetView.Listener() {
                     override fun onTargetClick(viewTapTarget: TapTargetView?) {
@@ -593,7 +579,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
              )
          }
      }
- */
+    */
 
     private suspend fun speakTestMessage() {
         if (!ttsReady) {
@@ -627,10 +613,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         withContext(Dispatchers.Main) {
             tts?.speak(
-                formatter.format(Date()),
-                TextToSpeech.QUEUE_FLUSH,
-                null,
-                null
+                formatter.format(Date()), TextToSpeech.QUEUE_FLUSH, null, null
             )
         }
     }
@@ -664,24 +647,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun observeScheduleCompletion() {
-        lifecycleScope.launchWhenStarted {
-            scheduleTimerModel.isScheduleFinished.collect { finished ->
-                if (finished) {
-                    binding.enableScheduling.isChecked = false
-                    requireActivity().showCustomSnackBar(
-                        message = "Schedule finished",
-                        iconRes = R.drawable.scheduling,
-                        colorString = colorHexx
-                    )
-                }
-            }
-        }
-    }
-
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    scheduleTimerModel.isScheduleFinished.collect { finished ->
+                        if (finished) {
+                            binding.enableScheduling.isChecked = false
+                            schTime = null
+                        }
+                    }
+                }
                 launch {
                     timerViewModel.progress.collect {
                         binding.circularProgress.progress = it
@@ -697,7 +673,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                                 colorInt = colorHexx.toColorInt(),
                                 AnimationType.SMOOTH
                             )
-
                         } else {
                             binding.timerText.text = "OFF"
                         }
@@ -803,9 +778,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         txtRepeatEvery!!.setTextColor(colorHexx.toColorInt())
         bgStart!!.background.setTint(colorHexx.lighten(0.9f))
         bgEnd!!.background.setTint(colorHexx.lighten(0.9f))
-        saveSchedule!!.backgroundTintList =
-            ColorStateList.valueOf(colorHexx.toColorInt())
-
+        saveSchedule!!.backgroundTintList = ColorStateList.valueOf(colorHexx.toColorInt())
 
         if (startTime != null && endTime != null && repeatEvery != null) {
             txtSetStartTime!!.text = milliSecondToTime(startTime!!)
@@ -826,13 +799,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
         saveSchedule.setOnClickListener {
             if (startTime != null && endTime != null && repeatEvery != null) {
-                val newSchedule =
-                    ScheduleTimerModel(
-                        true,
-                        startTime!!,
-                        endTime!!,
-                        repeatEvery!!
-                    )
+                val newSchedule = ScheduleTimerModel(
+                    true, startTime!!, endTime!!, repeatEvery!!
+                )
                 AppPreferences.saveScheduleTime(newSchedule)
                 listener.onDataUpdated()
                 dialog.dismiss()
@@ -853,8 +822,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             .setHour(startCal!!.get(Calendar.HOUR_OF_DAY))
             .setMinute(startCal!!.get(Calendar.MINUTE))
             //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
-            .setTitleText("Select Start Time".toUpperCase())
-            .build()
+            .setTitleText("Select Start Time".toUpperCase()).build()
 
         picker.addOnPositiveButtonClickListener {
             val hour = picker.hour
@@ -876,16 +844,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun showEndTimePicker(
-        txtSetEndTime: AppCompatTextView?,
-        txtSetRepeatEveryMinute: AppCompatTextView?
+        txtSetEndTime: AppCompatTextView?, txtSetRepeatEveryMinute: AppCompatTextView?
     ) {
-        val picker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H)
-            .setHour(endCal!!.get(Calendar.HOUR_OF_DAY))
-            .setMinute(endCal!!.get(Calendar.MINUTE))
+        val picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(endCal!!.get(Calendar.HOUR_OF_DAY)).setMinute(endCal!!.get(Calendar.MINUTE))
             //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
-            .setTitleText("Select End Time".toUpperCase())
-            .build()
+            .setTitleText("Select End Time".toUpperCase()).build()
 
         picker.addOnPositiveButtonClickListener {
             val hour = picker.hour
@@ -915,8 +879,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun formattedTime(startCal: Calendar?): String {
-        val formattedTime =
-            SimpleDateFormat("hh:mm a", Locale.getDefault()).format(startCal!!.time)
+        val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(startCal!!.time)
         return formattedTime
     }
 
@@ -930,20 +893,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             wrapSelectorWheel = true
         }
 
-        AlertDialog.Builder(requireContext())
-            .setTitle("SELECT MINUTES")
-            .setView(numberPicker)
+        AlertDialog.Builder(requireContext()).setTitle("SELECT MINUTES").setView(numberPicker)
             .setPositiveButton("OK") { _, _ ->
                 val selectedValue = evenNumbers[numberPicker.value].toInt()
                 repeatEvery = selectedValue.toLong()
                 "$selectedValue minute".also {
                     txtSetRepeatEveryMinute!!.text = it
                 }
-            }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            }.setNegativeButton("Cancel") { dialog, _ ->
                 repeatEvery = 1
-            }
-            .show()
+            }.show()
     }
 
     private fun removeNumberPickerDividers(numberPicker: NumberPicker) {
@@ -972,28 +931,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         ) {
             appUpdateManager!!.completeUpdate()
         }*/
-        viewLifecycleOwner.lifecycleScope.launch {
-            scheduleTimerModel.isScheduleFinished.collect { finished ->
-                if (finished) {
-                    binding.enableScheduling.isChecked = false
-                    requireActivity().showCustomSnackBar(
-                        message = "Schedule finished",
-                        iconRes = R.drawable.scheduling,
-                        colorString = colorHexx
-                    )
-                }
-            }
-        }
+
 
         val darkMode = AppPreferences.isDarkThemeEnabled()
         //setUiThemeMode()
         setThemeMode(darkMode == true)
 
-        if (schTime != null) {
+        /*if (schTime != null) {
             startTime = schTime!!.startTimeMillis
             endTime = schTime!!.endTimeMillis
             repeatEvery = schTime!!.intervalMillis
-        }
+        }*/
 
         if (repeatOption != null && soundOption != null) {
             binding.selectedRepeatTime.text = repeatOption!!.title
@@ -1049,9 +997,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onResume() {
         super.onResume()
 
-        appUpdateManager!!
-            .appUpdateInfo
-            .addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
+        appUpdateManager!!.appUpdateInfo.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
                 if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
                     popupSnackBarForCompleteUpdate()
                 }
@@ -1099,9 +1045,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.selectedVolume.text = "Volume: $snapped%"
 
         if (snapped.equals(100)) requireActivity().showCustomSnackBar(
-            "You have reached max volume",
-            R.drawable.sound,
-            colorString = colorHexx.toString()
+            "You have reached max volume", R.drawable.sound, colorString = colorHexx.toString()
         )
     }
 
@@ -1123,7 +1067,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun updateUiWithSessionData() {
-        schTime = AppPreferences.getScheduleTime()
+        //schTime = AppPreferences.getScheduleTime()
     }
 }
 

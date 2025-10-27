@@ -1,0 +1,196 @@
+package com.dzo.announcerclock.utils.helper
+
+import android.content.res.ColorStateList
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.NumberPicker
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.toColorInt
+import androidx.fragment.app.activityViewModels
+import com.dzo.announcerclock.R
+import com.dzo.announcerclock.data.local_source.AppPreferences
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.appcompat.widget.LinearLayoutCompat
+import com.dzo.announcerclock.databinding.SchedultTimerBottomSheetBinding
+import com.dzo.announcerclock.presentation.fragments.home_fragment.OnBottomSheetResultListener
+import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
+import com.dzo.announcerclock.utils.Utils.lighten
+import com.dzo.announcerclock.utils.extension.showColoredToast
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+
+class ScheduleTimerBottomSheet(
+    private val colorHex: String,
+    private val onDataUpdated: () -> Unit
+) : BottomSheetDialogFragment() {
+
+    private var _binding: SchedultTimerBottomSheetBinding? = null
+    private val binding get() = _binding!!
+    private var startTime: Long? = null
+    private var endTime: Long? = null
+    private var repeatEvery: Long? = null
+    private var startCal: Calendar? = null
+    private var endCal: Calendar? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = SchedultTimerBottomSheetBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        startCal = Calendar.getInstance()
+        endCal = Calendar.getInstance()
+
+        loadExistingSchedule()
+        setupListeners()
+
+        binding.imgStart.setColorFilter(colorHex.toColorInt())
+        binding.imgEnd.setColorFilter(colorHex.toColorInt())
+        binding.txtStartTime.setTextColor(colorHex.toColorInt())
+        binding.txtEndTime.setTextColor(colorHex.toColorInt())
+        binding.txtRepeatEvery.setTextColor(colorHex.toColorInt())
+        binding.bgStart.background.setTint(colorHex.lighten(0.9f))
+        binding.bgEnd.background.setTint(colorHex.lighten(0.9f))
+        binding.saveSchedule.backgroundTintList = ColorStateList.valueOf(colorHex.toColorInt())
+
+    }
+
+    private fun setupListeners() = with(binding){
+        setStartTime.setOnClickListener { showStartTimePicker(binding.txtSetStartTime) }
+        setEndTime.setOnClickListener { showEndTimePicker(binding.txtSetEndTime, binding.txtSetRepeatEveryMinute) }
+        txtSetRepeatEveryMinute.setOnClickListener { showMinutePickerDialog(binding.txtSetRepeatEveryMinute) }
+
+        saveSchedule.setOnClickListener {
+            if (startTime != null && endTime != null && repeatEvery != null) {
+                val newSchedule = ScheduleTimerModel(true, startTime!!, endTime!!, repeatEvery!!)
+                AppPreferences.saveScheduleTime(newSchedule)
+                onDataUpdated.invoke()
+                dismiss()
+            } else {
+                requireContext().showColoredToast(
+                    "Please set start and end time first",
+                    colorHex.lighten(0.9f),
+                    colorHex.toColorInt()
+                )
+            }
+        }
+    }
+
+    private fun loadExistingSchedule() {
+        val existing = AppPreferences.getScheduleTime()
+        if (existing != null) {
+            startTime = existing.startTimeMillis
+            endTime = existing.endTimeMillis
+            repeatEvery = existing.intervalMillis
+
+            binding.txtSetStartTime.text = milliSecondToTime(startTime!!)
+            binding.txtSetEndTime.text = milliSecondToTime(endTime!!)
+            binding.txtSetRepeatEveryMinute.text = "${repeatEvery} minute"
+        }
+    }
+
+    private fun showStartTimePicker(txtSetStartTime: AppCompatTextView?) {
+        val picker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H) // 12-hour format with AM/PM
+            .setHour(startCal!!.get(Calendar.HOUR_OF_DAY))
+            .setMinute(startCal!!.get(Calendar.MINUTE))
+            //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
+            .setTitleText("Select Start Time".toUpperCase()).build()
+
+        picker.addOnPositiveButtonClickListener {
+            val hour = picker.hour
+            val minute = picker.minute
+
+            startCal = Calendar.getInstance().apply {
+                set(Calendar.HOUR_OF_DAY, hour)
+                set(Calendar.MINUTE, minute)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
+            startTime = startCal!!.timeInMillis
+            val formattedTime = formattedTime(startCal)
+            txtSetStartTime!!.text = formattedTime
+
+        }
+
+        picker.show(parentFragmentManager, "start_time_picker")
+    }
+
+    private fun showEndTimePicker(
+        txtSetEndTime: AppCompatTextView?, txtSetRepeatEveryMinute: AppCompatTextView?
+    ) {
+        val picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(endCal!!.get(Calendar.HOUR_OF_DAY)).setMinute(endCal!!.get(Calendar.MINUTE))
+            //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
+            .setTitleText("Select End Time".toUpperCase()).build()
+
+        picker.addOnPositiveButtonClickListener {
+            val hour = picker.hour
+            val minute = picker.minute
+
+            endCal = Calendar.getInstance().apply {
+                set(Calendar.HOUR_OF_DAY, hour)
+                set(Calendar.MINUTE, minute)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
+            endTime = endCal!!.timeInMillis
+
+            val formattedTime = formattedTime(endCal)
+            txtSetEndTime!!.text = formattedTime
+
+            showMinutePickerDialog(txtSetRepeatEveryMinute)
+        }
+
+        picker.show(parentFragmentManager, "end_time_picker")
+    }
+
+    private fun milliSecondToTime(timeInMillis: Long): String {
+        val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        val formattedTime = sdf.format(Date(timeInMillis))
+        return formattedTime
+    }
+
+    private fun formattedTime(startCal: Calendar?): String {
+        val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(startCal!!.time)
+        return formattedTime
+    }
+
+    private fun showMinutePickerDialog(txtSetRepeatEveryMinute: AppCompatTextView?) {
+        val evenNumbers = (2..60 step 2).map { it.toString() }.toTypedArray()
+
+        val numberPicker = NumberPicker(requireContext()).apply {
+            minValue = 0
+            maxValue = evenNumbers.size - 1
+            displayedValues = evenNumbers
+            wrapSelectorWheel = true
+        }
+
+        AlertDialog.Builder(requireContext()).setTitle("SELECT MINUTES").setView(numberPicker)
+            .setPositiveButton("OK") { _, _ ->
+                val selectedValue = evenNumbers[numberPicker.value].toInt()
+                repeatEvery = selectedValue.toLong()
+                "$selectedValue minute".also {
+                    txtSetRepeatEveryMinute!!.text = it
+                }
+            }.setNegativeButton("Cancel") { dialog, _ ->
+                repeatEvery = 1
+            }.show()
+    }
+}

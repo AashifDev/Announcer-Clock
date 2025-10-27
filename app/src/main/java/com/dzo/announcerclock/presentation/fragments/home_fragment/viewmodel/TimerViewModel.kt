@@ -13,7 +13,7 @@ import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.data.service.TimerService
 import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
 import com.dzo.announcerclock.utils.Constants
-import com.dzo.announcerclock.utils.PreferenceHelper
+import com.dzo.announcerclock.utils.helper.PreferenceHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Job

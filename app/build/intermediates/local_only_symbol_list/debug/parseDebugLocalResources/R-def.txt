@@ -77,12 +77,12 @@ id customToggle
 id customize
 id customizeTheme
 id disableDuringMusic
-id disableWhilePhoneCalls
 id enableDarkMode
 id enableNotification
 id enableNotificationSound
 id enableScheduling
 id enableTimeSpeaking
+id enableWhilePhoneCalls
 id etInterval
 id etTotal
 id fragmentContainerView
@@ -231,9 +231,9 @@ string app_theme
 string choose_theme_color_options
 string custom_timer
 string customize_tts
-string disable_during_phone_calls
 string disable_while_playing_music
 string enable_dark_theme_mode
+string enable_during_phone_calls
 string enable_hourly_talk_time
 string enable_notification
 string enable_notification_sound

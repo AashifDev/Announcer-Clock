@@ -15,12 +15,16 @@ import com.dzo.announcerclock.utils.Constants.IS_TIME_SPEAKING_ENABLED
 import com.dzo.announcerclock.utils.Constants.KEY_CUSTOM_TOGGLE_STATE
 import com.dzo.announcerclock.utils.Constants.KEY_INTERVAL
 import com.dzo.announcerclock.utils.Constants.KEY_REPEAT_OPTION
+import com.dzo.announcerclock.utils.Constants.KEY_SCHEDULE_TIME
 import com.dzo.announcerclock.utils.Constants.KEY_SOUND_OPTION
 import com.dzo.announcerclock.utils.Constants.KEY_START_TIME
 import com.dzo.announcerclock.utils.Constants.KEY_TOGGLE_STATE
 import com.dzo.announcerclock.utils.Constants.KEY_TTS_SETTINGS
-import com.dzo.announcerclock.utils.PreferenceHelper
+import com.dzo.announcerclock.utils.helper.PreferenceHelper
+import com.dzo.announcerclock.utils.helper.PreferenceLiveDataManager
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 object AppPreferences {
 
@@ -33,7 +37,7 @@ object AppPreferences {
     }
 
     fun saveRepeatOption(repeatOption: RepeatOption) {
-        PreferenceHelper.putString(Constants.KEY_REPEAT_OPTION, Gson().toJson(repeatOption))
+        PreferenceHelper.putString(KEY_REPEAT_OPTION, Gson().toJson(repeatOption))
     }
 
     fun getRepeatOption(): RepeatOption? {
@@ -124,11 +128,11 @@ object AppPreferences {
         return PreferenceHelper.getBoolean(IS_HIDE_NOTIFICATION_ENABLED,true)
     }
 
-    fun saveDisableDuringPhoneCalls(disable: Boolean) {
+    fun saveEnableDuringPhoneCalls(disable: Boolean) {
         PreferenceHelper.putBoolean(IS_DISABLE_DURING_PHONE_CALLS, disable)
 
     }
-    fun isDisableDuringPhoneCalls(): Boolean? {
+    fun isEnableDuringPhoneCalls(): Boolean? {
         return PreferenceHelper.getBoolean(IS_DISABLE_DURING_PHONE_CALLS,false)
     }
 
@@ -155,10 +159,10 @@ object AppPreferences {
     }
 
     fun saveScheduleTime(schedule: ScheduleTimerModel) {
-        PreferenceHelper.putString(Constants.KEY_SCHEDULE_TIME, Gson().toJson(schedule))
+        PreferenceHelper.putString(KEY_SCHEDULE_TIME, Gson().toJson(schedule))
     }
     fun getScheduleTime(): ScheduleTimerModel? {
-        return PreferenceHelper.getString(Constants.KEY_SCHEDULE_TIME, "")?.let {
+        return PreferenceHelper.getString(KEY_SCHEDULE_TIME, "")?.let {
             Gson().fromJson(it, ScheduleTimerModel::class.java)
         }
     }
@@ -197,5 +201,15 @@ object AppPreferences {
         }
     }
 
-
 }
+
+val AppPreferences.scheduleTimeFlow: Flow<ScheduleTimerModel?>
+    get() = PreferenceLiveDataManager.observe(KEY_SCHEDULE_TIME, "")
+        .map { json ->
+            if (json.isNotEmpty()) Gson().fromJson(json, ScheduleTimerModel::class.java)
+            else null
+        }
+
+val isScheduleTimeExist : Flow<Boolean>
+    get() = PreferenceLiveDataManager.observe(KEY_CUSTOM_TOGGLE_STATE,false)
+

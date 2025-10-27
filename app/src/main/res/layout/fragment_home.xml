@@ -469,7 +469,7 @@
                         android:id="@+id/txtEnableScheduling"
                         android:gravity="center_vertical"
                         android:text="@string/enable_time_speaking"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/_16ssp" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/enableScheduling"

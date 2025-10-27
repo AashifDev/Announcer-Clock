@@ -3543,14 +3543,14 @@
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="custom_timer">Custom Timer</string>
-    <string name="customize_tts">Customize <b>TTS</b></string>
+    <string name="customize_tts">Customize tts</string>
     <string name="default_error_message">"Invalid input"</string>
     <string name="default_popup_window_title" ns1:ignore="ExtraTranslation">"Pop-Up Window"</string>
     <string name="dest_title">destination title</string>
-    <string name="disable_during_phone_calls">Disable during phone calls</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
     <string name="dropdown_menu">"Dropdown menu"</string>
     <string name="enable_dark_theme_mode">Enable dark theme mode</string>
+    <string name="enable_during_phone_calls">Enable tts during phone calls</string>
     <string name="enable_hourly_talk_time">Enable time announcer clock</string>
     <string name="enable_notification">Enable notification</string>
     <string name="enable_notification_sound">Enable notification sound</string>
@@ -3778,6 +3778,8 @@
     <string name="range_start">"Range start"</string>
     <string name="rate_app">Rate App</string>
     <string name="repeat_every">Repeat Every</string>
+    <string name="schedule_time">Schedule time</string>
+    <string name="schedule_timer">Schedule timer</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior

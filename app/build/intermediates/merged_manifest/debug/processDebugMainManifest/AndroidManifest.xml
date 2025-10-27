@@ -56,6 +56,10 @@
             android:name="com.dzo.announcerclock.data.service.TimerService"
             android:exported="false"
             android:foregroundServiceType="mediaPlayback|dataSync" />
+        <service
+            android:name="com.dzo.announcerclock.data.service.ScheduleTimerService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback|dataSync" />
 
         <receiver
             android:name="com.dzo.announcerclock.data.service.receiver.TimerActionReceiver"

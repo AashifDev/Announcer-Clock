@@ -12,8 +12,8 @@
     <string name="app_theme">App Theme</string>
     <string name="choose_theme_color_options">Choose theme color options</string>
     <string name="custom_timer">Custom Timer</string>
-    <string name="disable_during_phone_calls">Disable during phone calls</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
+    <string name="enable_during_phone_calls">Enable tts during phone calls</string>
     <string name="enable_hourly_talk_time">Enable time announcer clock</string>
     <string name="enable_notification">Enable notification</string>
     <string name="enable_notification_sound">Enable notification sound</string>
@@ -25,6 +25,8 @@
     <string name="our_apps">Our Apps</string>
     <string name="rate_app">Rate App</string>
     <string name="repeat_every">Repeat Every</string>
+    <string name="schedule_time">Schedule time</string>
+    <string name="schedule_timer">Schedule timer</string>
     <string name="select_pitch_rate">Select Pitch Rate</string>
     <string name="select_speech_rate">Select Speech Rate</string>
     <string name="share_app">Share App</string>

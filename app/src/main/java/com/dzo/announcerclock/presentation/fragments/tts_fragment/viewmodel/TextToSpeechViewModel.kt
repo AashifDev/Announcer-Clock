@@ -27,7 +27,7 @@ data class TtsUiState(
     val voices: List<Voice> = emptyList(),
     val timeSpeakingEnabled: Boolean = true,
     val ttsReady: Boolean = false,
-    val disableDuringPhoneCalls: Boolean = false,
+    val enableDuringPhoneCalls: Boolean = false,
     val disableWhilePlayingMusic: Boolean = false
 )
 
@@ -38,7 +38,7 @@ class TtsViewModel @Inject constructor(
     private val saveTtsSettings: SaveTtsSettingsUseCase,
     private val isTimeSpeakingEnabled: IsTimeSpeakingEnabledUseCase,
     private val saveTimeSpeakingEnabled: SaveTimeSpeakingEnabledUseCase,
-    private val saveDisableDuringPhoneCalls: SaveDisableDuringPhoneCallsUseCase,
+    private val saveEnableDuringPhoneCalls: SaveDisableDuringPhoneCallsUseCase,
     private val isDisableDuringPhoneCalls: IsDisableDuringPhoneCallsUseCase,
     private val saveDisableWhilePlayingMusic: SaveDisableWhilePlayingMusicUseCase,
     private val isDisableWhilePlayingMusic: IsDisableWhilePlayingMusicUseCase
@@ -61,7 +61,7 @@ class TtsViewModel @Inject constructor(
                 it.copy(
                     settings = settings,
                     timeSpeakingEnabled = timeEnabled,
-                    disableDuringPhoneCalls = disableDuringPhoneCalls,
+                    enableDuringPhoneCalls = disableDuringPhoneCalls,
                     disableWhilePlayingMusic = disableWhilePlayingMusic
 
                 )
@@ -193,8 +193,8 @@ class TtsViewModel @Inject constructor(
     }
 
     fun toggleDisableDuringPhoneCalls(disable: Boolean) {
-        _state.update { it.copy(disableDuringPhoneCalls = disable) }
-        viewModelScope.launch { saveDisableDuringPhoneCalls(disable) }
+        _state.update { it.copy(enableDuringPhoneCalls = disable) }
+        viewModelScope.launch { saveEnableDuringPhoneCalls(disable) }
     }
 
     fun toggleDisableWhilePlayingMusic(disable: Boolean) {

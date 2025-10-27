@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat.startForegroundService
 import androidx.lifecycle.ViewModel
 import com.dzo.announcerclock.App
 import com.dzo.announcerclock.data.local_source.AppPreferences
+import com.dzo.announcerclock.data.local_source.isScheduleTimeExist
 import com.dzo.announcerclock.data.service.ScheduleTimerService
 import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
 import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
@@ -38,40 +39,9 @@ class ScheduleTimerViewModel
     val isScheduleFinished = _isScheduleFinished.asStateFlow()
 
     private var scheduleFinishedReceiver: BroadcastReceiver? = null
-   /* private val scheduleFinishedReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            val isEnabled = intent?.getBooleanExtra(EXTRA_IS_ENABLED, false) ?: false
-            _isScheduleFinished.value = isEnabled
-        }
-    }*/
-
-
-
-
-    /*init {
-        val filter = IntentFilter(ACTION_TOGGLE_UPDATE)
-        *//*ContextCompat.registerReceiver(
-            context,
-            scheduleFinishedReceiver,
-            filter,
-            ContextCompat.RECEIVER_NOT_EXPORTED
-        )*//*
-       *//* context.registerReceiver(
-            scheduleFinishedReceiver,
-            filter,
-            Context.RECEIVER_NOT_EXPORTED
-        )*//*
-        registerToggleReceiver(context)
-
-    }*/
 
     init {
-        val filter = IntentFilter("SCHEDULE_FINISHED")
-        registerReceiver(context, object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                _isScheduleFinished.value = true
-            }
-        }, filter, ContextCompat.RECEIVER_NOT_EXPORTED)
+        registerToggleReceiver(context)
     }
 
     private fun registerToggleReceiver(context: Context) {
@@ -79,9 +49,7 @@ class ScheduleTimerViewModel
 
         scheduleFinishedReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                val isEnabled = intent?.getBooleanExtra(EXTRA_IS_ENABLED, false) ?: false
-                toast(App.appContext(),"Received toggle update: $isEnabled")
-                _isScheduleFinished.value = isEnabled
+                _isScheduleFinished.value = true
             }
         }
 
@@ -148,16 +116,12 @@ class ScheduleTimerViewModel
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
-        // Reset states
-        AppPreferences.saveCustomToggleState(false)
-        //PreferenceHelper.remove(Constants.KEY_CUSTOM_TOGGLE_STATE)
     }
 
     override fun onCleared() {
         super.onCleared()
         try {
-            context.unregisterReceiver(scheduleFinishedReceiver)
+            //context.unregisterReceiver(scheduleFinishedReceiver)
         } catch (e: Exception) {
          e.printStackTrace()
         }

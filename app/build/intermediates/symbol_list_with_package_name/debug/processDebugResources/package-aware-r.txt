@@ -5035,7 +5035,6 @@ id disableHome
 id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
-id disableWhilePhoneCalls
 id disjoint
 id dragAnticlockwise
 id dragClockwise
@@ -5060,6 +5059,7 @@ id enableNotification
 id enableNotificationSound
 id enableScheduling
 id enableTimeSpeaking
+id enableWhilePhoneCalls
 id end
 id endToStart
 id enterAlways
@@ -5860,10 +5860,10 @@ string customize_tts
 string default_error_message
 string default_popup_window_title
 string dest_title
-string disable_during_phone_calls
 string disable_while_playing_music
 string dropdown_menu
 string enable_dark_theme_mode
+string enable_during_phone_calls
 string enable_hourly_talk_time
 string enable_notification
 string enable_notification_sound

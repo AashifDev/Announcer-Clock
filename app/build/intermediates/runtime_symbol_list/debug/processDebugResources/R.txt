@@ -5034,7 +5034,6 @@ int id disableHome 0x7f0800bd
 int id disableIntraAutoTransition 0x7f0800be
 int id disablePostScroll 0x7f0800bf
 int id disableScroll 0x7f0800c0
-int id disableWhilePhoneCalls 0x7f0800c1
 int id disjoint 0x7f0800c2
 int id dragAnticlockwise 0x7f0800c3
 int id dragClockwise 0x7f0800c4
@@ -5059,6 +5058,7 @@ int id enableNotification 0x7f0800d6
 int id enableNotificationSound 0x7f0800d7
 int id enableScheduling 0x7f0800d8
 int id enableTimeSpeaking 0x7f0800d9
+int id enableWhilePhoneCalls 0x7f0802c0
 int id end 0x7f0800da
 int id endToStart 0x7f0800db
 int id enterAlways 0x7f0800dc
@@ -5859,10 +5859,10 @@ int string customize_tts 0x7f120046
 int string default_error_message 0x7f120047
 int string default_popup_window_title 0x7f120048
 int string dest_title 0x7f120049
-int string disable_during_phone_calls 0x7f12004a
 int string disable_while_playing_music 0x7f12004b
 int string dropdown_menu 0x7f12004c
 int string enable_dark_theme_mode 0x7f12004d
+int string enable_during_phone_calls 0x7f120141
 int string enable_hourly_talk_time 0x7f12004e
 int string enable_notification 0x7f12004f
 int string enable_notification_sound 0x7f120050

@@ -43,7 +43,7 @@ class TextToSpeechFragment :
 
         binding.enableTimeSpeaking.thumbTintList =
             ColorStateList.valueOf(colorHexx.toColorInt())
-        binding.disableWhilePhoneCalls.thumbTintList =
+        binding.enableWhilePhoneCalls.thumbTintList =
             ColorStateList.valueOf(colorHexx.toColorInt())
         binding.play.backgroundTintList =
             ColorStateList.valueOf(colorHexx.toColorInt())
@@ -57,7 +57,7 @@ class TextToSpeechFragment :
                  // UI toggle
                  binding.enableTimeSpeaking.isChecked = state.timeSpeakingEnabled
                  binding.play.isEnabled = state.ttsReady
-                 binding.disableWhilePhoneCalls.isChecked = state.disableDuringPhoneCalls
+                 binding.enableWhilePhoneCalls.isChecked = state.disableDuringPhoneCalls
                  binding.disableDuringMusic.isChecked = state.disableWhilePlayingMusic
                  binding.ttsLayout.isEnabled = state.timeSpeakingEnabled
                  binding.selectedLangSpinner.isEnabled = state.timeSpeakingEnabled
@@ -159,7 +159,7 @@ class TextToSpeechFragment :
                 // UI toggle
                 binding.enableTimeSpeaking.isChecked = state.timeSpeakingEnabled
                 binding.play.isEnabled = state.ttsReady
-                binding.disableWhilePhoneCalls.isChecked = state.disableDuringPhoneCalls
+                binding.enableWhilePhoneCalls.isChecked = state.disableDuringPhoneCalls
                 binding.disableDuringMusic.isChecked = state.disableWhilePlayingMusic
                 binding.ttsLayout.isEnabled = state.timeSpeakingEnabled
                 binding.selectedLangSpinner.isEnabled = state.timeSpeakingEnabled
@@ -271,7 +271,7 @@ class TextToSpeechFragment :
             viewModel.speakCurrentTime()
         }
 
-        binding.disableWhilePhoneCalls.setOnCheckedChangeListener { _, isChecked ->
+        binding.enableWhilePhoneCalls.setOnCheckedChangeListener { _, isChecked ->
             viewModel.toggleDisableDuringPhoneCalls(isChecked)
         }
 
@@ -346,8 +346,8 @@ class TextToSpeechFragment :
         binding.enableTimeSpeaking.thumbTintList = ColorStateList.valueOf(colorInt)
         binding.enableTimeSpeaking.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
 
-        binding.disableWhilePhoneCalls.thumbTintList = ColorStateList.valueOf(colorInt)
-        binding.disableWhilePhoneCalls.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
+        binding.enableWhilePhoneCalls.thumbTintList = ColorStateList.valueOf(colorInt)
+        binding.enableWhilePhoneCalls.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
 
         binding.disableDuringMusic.thumbTintList = ColorStateList.valueOf(colorInt)
         binding.disableDuringMusic.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
@@ -369,7 +369,7 @@ class TextToSpeechFragment :
 
                 binding.enableTimeSpeaking.isChecked = state.timeSpeakingEnabled
                 binding.play.isEnabled = state.ttsReady
-                binding.disableWhilePhoneCalls.isChecked = state.disableDuringPhoneCalls
+                binding.enableWhilePhoneCalls.isChecked = state.enableDuringPhoneCalls
                 binding.disableDuringMusic.isChecked = state.disableWhilePlayingMusic
                 binding.ttsLayout.isEnabled = state.timeSpeakingEnabled
                 binding.selectedLangSpinner.isEnabled = state.timeSpeakingEnabled
@@ -497,7 +497,7 @@ class TextToSpeechFragment :
             viewModel.speakCurrentTime()
         }
 
-        binding.disableWhilePhoneCalls.setOnCheckedChangeListener { _, isChecked ->
+        binding.enableWhilePhoneCalls.setOnCheckedChangeListener { _, isChecked ->
             viewModel.toggleDisableDuringPhoneCalls(isChecked)
         }
     }

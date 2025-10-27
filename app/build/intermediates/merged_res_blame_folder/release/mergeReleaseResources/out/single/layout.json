@@ -1,5 +1,9 @@
 [
     {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/schedult_timer_bottom_sheet.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/schedult_timer_bottom_sheet.xml"
+    },
+    {
         "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/fragment_home.xml",
         "source": "com.dzo.announcerclock.app-main-86:/layout/fragment_home.xml"
     },
@@ -46,6 +50,10 @@
     {
         "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/item_color_box.xml",
         "source": "com.dzo.announcerclock.app-main-86:/layout/item_color_box.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/custom_toast.xml",
+        "source": "com.dzo.announcerclock.app-main-86:/layout/custom_toast.xml"
     },
     {
         "merged": "com.dzo.announcerclock.app-mergeReleaseResources-84:/layout/custom_snackbar.xml",
