@@ -13,6 +13,7 @@ drawable abtdzo
 drawable announcement
 drawable app_update
 drawable bg_dialog_round
+drawable bg_round
 drawable bg_snackbar
 drawable bg_snackbar_button
 drawable bottom_sheeg_bg
@@ -52,12 +53,14 @@ drawable schedule_time_background
 drawable scheduling
 drawable shri_krishna
 drawable sound
+drawable text_to_speech
 drawable theme
 drawable themes
 drawable toast_bg
 drawable toggle_button
 drawable toggle_thumb
 drawable toggle_track
+id announceGif
 id appLogo
 id appName
 id appTheme
@@ -199,6 +202,7 @@ id volRocker
 id volume
 layout activity_main
 layout activity_splash
+layout announcer_dialog
 layout custom_snackbar
 layout custom_toast
 layout dialog_custom_repeat_option
@@ -221,6 +225,7 @@ navigation nav_graph
 raw balloon_get
 raw door_opens
 raw mario_starwarp
+raw megaphone
 raw smbw_yoshi
 raw smw_power_up
 raw super_mario_jump

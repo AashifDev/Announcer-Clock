@@ -6,10 +6,10 @@ import android.speech.tts.Voice
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.dzo.announcerclock.domain.tts_usecase.GetTtsSettingsUseCase
-import com.dzo.announcerclock.domain.tts_usecase.IsDisableDuringPhoneCallsUseCase
+import com.dzo.announcerclock.domain.tts_usecase.IsEnableDuringPhoneCallsUseCase
 import com.dzo.announcerclock.domain.tts_usecase.IsDisableWhilePlayingMusicUseCase
 import com.dzo.announcerclock.domain.tts_usecase.IsTimeSpeakingEnabledUseCase
-import com.dzo.announcerclock.domain.tts_usecase.SaveDisableDuringPhoneCallsUseCase
+import com.dzo.announcerclock.domain.tts_usecase.SaveEnableDuringPhoneCallsUseCase
 import com.dzo.announcerclock.domain.tts_usecase.SaveDisableWhilePlayingMusicUseCase
 import com.dzo.announcerclock.domain.tts_usecase.SaveTimeSpeakingEnabledUseCase
 import com.dzo.announcerclock.domain.tts_usecase.SaveTtsSettingsUseCase
@@ -38,8 +38,8 @@ class TtsViewModel @Inject constructor(
     private val saveTtsSettings: SaveTtsSettingsUseCase,
     private val isTimeSpeakingEnabled: IsTimeSpeakingEnabledUseCase,
     private val saveTimeSpeakingEnabled: SaveTimeSpeakingEnabledUseCase,
-    private val saveEnableDuringPhoneCalls: SaveDisableDuringPhoneCallsUseCase,
-    private val isDisableDuringPhoneCalls: IsDisableDuringPhoneCallsUseCase,
+    private val saveEnableDuringPhoneCalls: SaveEnableDuringPhoneCallsUseCase,
+    private val isEnableDuringPhoneCalls: IsEnableDuringPhoneCallsUseCase,
     private val saveDisableWhilePlayingMusic: SaveDisableWhilePlayingMusicUseCase,
     private val isDisableWhilePlayingMusic: IsDisableWhilePlayingMusicUseCase
 ) : AndroidViewModel(application), TextToSpeech.OnInitListener {
@@ -55,13 +55,13 @@ class TtsViewModel @Inject constructor(
             // load saved settings and time toggle from use-cases (session)
             val settings = getTtsSettings()
             val timeEnabled = isTimeSpeakingEnabled()
-            val disableDuringPhoneCalls = isDisableDuringPhoneCalls()
+            val enableDuringPhoneCalls = isEnableDuringPhoneCalls()
             val disableWhilePlayingMusic = isDisableWhilePlayingMusic()
             _state.update {
                 it.copy(
                     settings = settings,
                     timeSpeakingEnabled = timeEnabled,
-                    enableDuringPhoneCalls = disableDuringPhoneCalls,
+                    enableDuringPhoneCalls = enableDuringPhoneCalls,
                     disableWhilePlayingMusic = disableWhilePlayingMusic
 
                 )
@@ -192,9 +192,9 @@ class TtsViewModel @Inject constructor(
         viewModelScope.launch { saveTimeSpeakingEnabled(enabled) }
     }
 
-    fun toggleDisableDuringPhoneCalls(disable: Boolean) {
-        _state.update { it.copy(enableDuringPhoneCalls = disable) }
-        viewModelScope.launch { saveEnableDuringPhoneCalls(disable) }
+    fun toggleEnableDuringPhoneCalls(enable: Boolean) {
+        _state.update { it.copy(enableDuringPhoneCalls = enable) }
+        viewModelScope.launch { saveEnableDuringPhoneCalls(enable) }
     }
 
     fun toggleDisableWhilePlayingMusic(disable: Boolean) {

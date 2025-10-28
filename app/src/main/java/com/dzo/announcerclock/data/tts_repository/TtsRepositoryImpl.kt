@@ -7,11 +7,24 @@ import javax.inject.Inject
 
 class TtsRepositoryImpl @Inject constructor() : TtsRepository {
     override suspend fun getTtsSettings(): TtsSettings = AppPreferences.getTtsSettings()
-    override suspend fun saveTtsSettings(settings: TtsSettings) = AppPreferences.saveTtsSettings(settings)
-    override suspend fun isTimeSpeakingEnabled(): Boolean = AppPreferences.isTimeSpeakingEnabled() ?: true
-    override suspend fun saveTimeSpeakingEnabled(enabled: Boolean) = AppPreferences.saveTimeSpeakingEnabled(enabled)
-    override suspend fun saveDisableDuringPhoneCalls(disable: Boolean) = AppPreferences.saveEnableDuringPhoneCalls(disable)
-    override suspend fun isDisableDuringPhoneCalls(): Boolean = AppPreferences.isEnableDuringPhoneCalls() ?: false
-    override suspend fun saveDisableWhilePlayingMusic(disable: Boolean) = AppPreferences.saveDisableWhilePlayingMusic(disable)
-    override suspend fun isDisableWhilePlayingMusic(): Boolean = AppPreferences.isDisableWhilePlayingMusic() ?: false
+    override suspend fun saveTtsSettings(settings: TtsSettings) =
+        AppPreferences.saveTtsSettings(settings)
+
+    override suspend fun isTimeSpeakingEnabled(): Boolean =
+        AppPreferences.isTimeSpeakingEnabled() ?: true
+
+    override suspend fun saveTimeSpeakingEnabled(enabled: Boolean) =
+        AppPreferences.saveTimeSpeakingEnabled(enabled)
+
+    override suspend fun saveEnableDuringPhoneCalls(enable: Boolean) =
+        AppPreferences.saveEnableDuringPhoneCalls(enable)
+
+    override suspend fun isEnableDuringPhoneCalls(): Boolean =
+        AppPreferences.isEnableDuringPhoneCalls() ?: false
+
+    override suspend fun saveDisableWhilePlayingMusic(disable: Boolean) =
+        AppPreferences.saveDisableWhilePlayingMusic(disable)
+
+    override suspend fun isDisableWhilePlayingMusic(): Boolean =
+        AppPreferences.isDisableWhilePlayingMusic() ?: false
 }

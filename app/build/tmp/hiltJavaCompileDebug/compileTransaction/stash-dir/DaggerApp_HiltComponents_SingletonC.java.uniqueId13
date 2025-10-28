@@ -24,11 +24,11 @@ import com.dzo.announcerclock.domain.repeat_option_usecase.GetRepeatOptionUseCas
 import com.dzo.announcerclock.domain.sound_option_usecase.GetSoundOptionsUseCase;
 import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase;
 import com.dzo.announcerclock.domain.tts_usecase.GetTtsSettingsUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.IsDisableDuringPhoneCallsUseCase;
 import com.dzo.announcerclock.domain.tts_usecase.IsDisableWhilePlayingMusicUseCase;
+import com.dzo.announcerclock.domain.tts_usecase.IsEnableDuringPhoneCallsUseCase;
 import com.dzo.announcerclock.domain.tts_usecase.IsTimeSpeakingEnabledUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.SaveDisableDuringPhoneCallsUseCase;
 import com.dzo.announcerclock.domain.tts_usecase.SaveDisableWhilePlayingMusicUseCase;
+import com.dzo.announcerclock.domain.tts_usecase.SaveEnableDuringPhoneCallsUseCase;
 import com.dzo.announcerclock.domain.tts_usecase.SaveTimeSpeakingEnabledUseCase;
 import com.dzo.announcerclock.domain.tts_usecase.SaveTtsSettingsUseCase;
 import com.dzo.announcerclock.presentation.activity.MainActivity;
@@ -490,21 +490,15 @@ public final class DaggerApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel = "com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel";
-
-      static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
-
       static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
 
+      static String com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel = "com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel";
+
       static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
 
-      @KeepFieldType
-      TtsViewModel com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel2;
-
-      @KeepFieldType
-      RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
+      static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
 
       @KeepFieldType
       ScheduleTimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel2;
@@ -513,7 +507,13 @@ public final class DaggerApp_HiltComponents_SingletonC {
       SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
 
       @KeepFieldType
+      TtsViewModel com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel2;
+
+      @KeepFieldType
       TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
+
+      @KeepFieldType
+      RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
     }
   }
 
@@ -572,12 +572,12 @@ public final class DaggerApp_HiltComponents_SingletonC {
       return new SaveTimeSpeakingEnabledUseCase(new TtsRepositoryImpl());
     }
 
-    private SaveDisableDuringPhoneCallsUseCase saveDisableDuringPhoneCallsUseCase() {
-      return new SaveDisableDuringPhoneCallsUseCase(new TtsRepositoryImpl());
+    private SaveEnableDuringPhoneCallsUseCase saveEnableDuringPhoneCallsUseCase() {
+      return new SaveEnableDuringPhoneCallsUseCase(new TtsRepositoryImpl());
     }
 
-    private IsDisableDuringPhoneCallsUseCase isDisableDuringPhoneCallsUseCase() {
-      return new IsDisableDuringPhoneCallsUseCase(new TtsRepositoryImpl());
+    private IsEnableDuringPhoneCallsUseCase isEnableDuringPhoneCallsUseCase() {
+      return new IsEnableDuringPhoneCallsUseCase(new TtsRepositoryImpl());
     }
 
     private SaveDisableWhilePlayingMusicUseCase saveDisableWhilePlayingMusicUseCase() {
@@ -610,30 +610,30 @@ public final class DaggerApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
+      static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
+
       static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
+
+      static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel = "com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel";
 
-      static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
-
-      static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
+      @KeepFieldType
+      RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
 
       @KeepFieldType
       TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
+
+      @KeepFieldType
+      SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
 
       @KeepFieldType
       TtsViewModel com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel2;
 
       @KeepFieldType
       ScheduleTimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel2;
-
-      @KeepFieldType
-      SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
-
-      @KeepFieldType
-      RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {
@@ -670,7 +670,7 @@ public final class DaggerApp_HiltComponents_SingletonC {
           return (T) new TimerViewModel(viewModelCImpl.announceTimeUseCase(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
           case 4: // com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel 
-          return (T) new TtsViewModel(ApplicationContextModule_ProvideApplicationFactory.provideApplication(singletonCImpl.applicationContextModule), viewModelCImpl.getTtsSettingsUseCase(), viewModelCImpl.saveTtsSettingsUseCase(), viewModelCImpl.isTimeSpeakingEnabledUseCase(), viewModelCImpl.saveTimeSpeakingEnabledUseCase(), viewModelCImpl.saveDisableDuringPhoneCallsUseCase(), viewModelCImpl.isDisableDuringPhoneCallsUseCase(), viewModelCImpl.saveDisableWhilePlayingMusicUseCase(), viewModelCImpl.isDisableWhilePlayingMusicUseCase());
+          return (T) new TtsViewModel(ApplicationContextModule_ProvideApplicationFactory.provideApplication(singletonCImpl.applicationContextModule), viewModelCImpl.getTtsSettingsUseCase(), viewModelCImpl.saveTtsSettingsUseCase(), viewModelCImpl.isTimeSpeakingEnabledUseCase(), viewModelCImpl.saveTimeSpeakingEnabledUseCase(), viewModelCImpl.saveEnableDuringPhoneCallsUseCase(), viewModelCImpl.isEnableDuringPhoneCallsUseCase(), viewModelCImpl.saveDisableWhilePlayingMusicUseCase(), viewModelCImpl.isDisableWhilePlayingMusicUseCase());
 
           default: throw new AssertionError(id);
         }

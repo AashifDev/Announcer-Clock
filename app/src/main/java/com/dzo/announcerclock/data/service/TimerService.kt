@@ -69,14 +69,14 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
                 TelephonyManager.CALL_STATE_RINGING,
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
                     if (AppPreferences.isEnableDuringPhoneCalls() == true) {
-                        pauseServiceForCall()
+                        speakTts()
                     }
                 }
 
                 TelephonyManager.CALL_STATE_IDLE -> {
-                    if (AppPreferences.isEnableDuringPhoneCalls() == true) {
-                        resumeServiceAfterCall()
-                    }
+                    /*if (AppPreferences.isEnableDuringPhoneCalls() == true) {
+                        doNotSpeakTts()
+                    }*/
                 }
             }
         }
@@ -96,18 +96,19 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
         audioListener?.register()
     }
 
-    private fun pauseServiceForCall() {
+    private fun speakTts() {
+        if (!isRunning) {
+            isRunning = true
+            toast(App.appContext(),"tts speaking")
+        }
+
+    }
+
+    private fun doNotSpeakTts() {
         if (isRunning) {
             isRunning = false
             tts?.stop()
-            toast(App.appContext(),"paused")
-        }
-    }
-
-    private fun resumeServiceAfterCall() {
-        if (!isRunning) {
-            isRunning = true
-            toast(App.appContext(),"resumed")
+            toast(App.appContext(),"tts not speaking")
         }
     }
 

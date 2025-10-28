@@ -21,6 +21,7 @@ import com.dzo.announcerclock.utils.helper.AudioPlaybackListener
 import com.dzo.announcerclock.utils.Constants
 import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
 import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
+import com.dzo.announcerclock.utils.Constants.TTS_SPEAKING
 import com.dzo.announcerclock.utils.helper.PhoneCallListener
 import com.dzo.announcerclock.utils.helper.PreferenceHelper
 import com.dzo.announcerclock.utils.Utils.toast
@@ -63,14 +64,11 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                 TelephonyManager.CALL_STATE_RINGING,
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
                     if (AppPreferences.isEnableDuringPhoneCalls() == true) {
-                        pauseServiceForCall()
+                        speakTts()
                     }
                 }
 
                 TelephonyManager.CALL_STATE_IDLE -> {
-                    if (AppPreferences.isEnableDuringPhoneCalls() == true) {
-                        resumeServiceAfterCall()
-                    }
                 }
             }
         }
@@ -78,18 +76,19 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         audioListener?.register()
     }
 
-    private fun pauseServiceForCall() {
+    private fun speakTts() {
+        if (!isRunning) {
+            isRunning = true
+            toast(App.appContext(),"tts speaking")
+        }
+
+    }
+
+    private fun doNotSpeakTts() {
         if (isRunning) {
             isRunning = false
             tts?.stop()
-            toast(App.appContext(), "paused")
-        }
-    }
-
-    private fun resumeServiceAfterCall() {
-        if (!isRunning) {
-            isRunning = true
-            toast(App.appContext(), "resumed")
+            toast(App.appContext(),"tts not speaking")
         }
     }
 
@@ -253,7 +252,6 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         if (ttsReady) {
             val message = announceTimeUseCase()
             withContext(Dispatchers.Main) {
-                toast(App.appContext(), "tts speaking")
                 tts?.speak(message, TextToSpeech.QUEUE_FLUSH, null, null)
             }
             while (tts?.isSpeaking == true) {

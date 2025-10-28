@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColorInt
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
@@ -12,7 +13,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.dzo.announcerclock.R
+import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.ActivityMainBinding
+import com.dzo.announcerclock.presentation.fragments.home_fragment.HomeFragment
+import com.dzo.announcerclock.utils.Utils.lighten
+import com.dzo.announcerclock.utils.core.BaseFragment
+import com.github.dhaval2404.colorpicker.util.ColorUtil.isDarkColor
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        ViewCompat.getWindowInsetsController(window.decorView)?.isAppearanceLightStatusBars = false
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,4 +65,5 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }

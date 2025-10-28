@@ -63,7 +63,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finishAffinity()
             }, 1500)
-            //AppPreferences.saveFirstLaunch(true)
+            AppPreferences.saveFirstLaunch(true)
         }
     }
 

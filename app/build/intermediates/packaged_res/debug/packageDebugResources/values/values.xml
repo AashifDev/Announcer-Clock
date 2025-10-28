@@ -15,7 +15,7 @@
     <string name="customize_tts">Customize tts</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
     <string name="enable_dark_theme_mode">Enable dark theme mode</string>
-    <string name="enable_during_phone_calls">Enable tts during phone calls</string>
+    <string name="enable_during_phone_calls">Enable during phone calls</string>
     <string name="enable_hourly_talk_time">Enable time announcer clock</string>
     <string name="enable_notification">Enable notification</string>
     <string name="enable_notification_sound">Enable notification sound</string>

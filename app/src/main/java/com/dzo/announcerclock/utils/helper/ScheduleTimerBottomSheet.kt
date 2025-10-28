@@ -65,10 +65,13 @@ class ScheduleTimerBottomSheet(
         binding.txtStartTime.setTextColor(colorHex.toColorInt())
         binding.txtEndTime.setTextColor(colorHex.toColorInt())
         binding.txtRepeatEvery.setTextColor(colorHex.toColorInt())
-        binding.bgStart.background.setTint(colorHex.lighten(0.9f))
-        binding.bgEnd.background.setTint(colorHex.lighten(0.9f))
+
         binding.saveSchedule.backgroundTintList = ColorStateList.valueOf(colorHex.toColorInt())
 
+        if (AppPreferences.isDarkThemeEnabled() != true){
+            binding.bgStart.background.setTint(colorHex.lighten(0.8f))
+            binding.bgEnd.background.setTint(colorHex.lighten(0.8f))
+        }
     }
 
     private fun setupListeners() = with(binding){

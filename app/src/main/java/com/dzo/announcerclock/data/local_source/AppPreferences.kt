@@ -5,7 +5,7 @@ import com.dzo.announcerclock.presentation.fragments.home_fragment.model.TtsSett
 import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatOption
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
 import com.dzo.announcerclock.utils.Constants
-import com.dzo.announcerclock.utils.Constants.IS_DISABLE_DURING_PHONE_CALLS
+import com.dzo.announcerclock.utils.Constants.IS_ENABLE_DURING_PHONE_CALLS
 import com.dzo.announcerclock.utils.Constants.IS_DISABLE_WHILE_PLAYING_MUSIC
 import com.dzo.announcerclock.utils.Constants.IS_FIRST_LAUNCH
 import com.dzo.announcerclock.utils.Constants.IS_HIDE_NOTIFICATION_ENABLED
@@ -129,11 +129,11 @@ object AppPreferences {
     }
 
     fun saveEnableDuringPhoneCalls(disable: Boolean) {
-        PreferenceHelper.putBoolean(IS_DISABLE_DURING_PHONE_CALLS, disable)
+        PreferenceHelper.putBoolean(IS_ENABLE_DURING_PHONE_CALLS, disable)
 
     }
     fun isEnableDuringPhoneCalls(): Boolean? {
-        return PreferenceHelper.getBoolean(IS_DISABLE_DURING_PHONE_CALLS,false)
+        return PreferenceHelper.getBoolean(IS_ENABLE_DURING_PHONE_CALLS,false)
     }
 
     fun saveDisableWhilePlayingMusic(disable: Boolean) {

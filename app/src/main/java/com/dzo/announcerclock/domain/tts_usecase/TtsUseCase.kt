@@ -32,17 +32,17 @@ class SaveTimeSpeakingEnabledUseCase @Inject constructor(
     }
 }
 
-class IsDisableDuringPhoneCallsUseCase @Inject constructor(
+class IsEnableDuringPhoneCallsUseCase @Inject constructor(
     private val repository: TtsRepository
 ) {
-    suspend operator fun invoke(): Boolean = repository.isDisableDuringPhoneCalls()
+    suspend operator fun invoke(): Boolean = repository.isEnableDuringPhoneCalls()
 }
 
-class SaveDisableDuringPhoneCallsUseCase @Inject constructor(
+class SaveEnableDuringPhoneCallsUseCase @Inject constructor(
     private val repository: TtsRepository
 ) {
-    suspend operator fun invoke(disable: Boolean) {
-        repository.saveDisableDuringPhoneCalls(disable)
+    suspend operator fun invoke(enable: Boolean) {
+        repository.saveEnableDuringPhoneCalls(enable)
     }
 }
 

@@ -8,8 +8,8 @@ interface TtsRepository {
     suspend fun saveTtsSettings(settings: TtsSettings)
     suspend fun isTimeSpeakingEnabled(): Boolean
     suspend fun saveTimeSpeakingEnabled(enabled: Boolean)
-    suspend fun saveDisableDuringPhoneCalls(disable: Boolean)
-    suspend fun isDisableDuringPhoneCalls(): Boolean
+    suspend fun saveEnableDuringPhoneCalls(enable: Boolean)
+    suspend fun isEnableDuringPhoneCalls(): Boolean
     suspend fun saveDisableWhilePlayingMusic(disable: Boolean)
     suspend fun isDisableWhilePlayingMusic(): Boolean
 }

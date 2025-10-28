@@ -19,6 +19,7 @@ import com.dzo.announcerclock.data.local_source.isScheduleTimeExist
 import com.dzo.announcerclock.data.service.ScheduleTimerService
 import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
 import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
+import com.dzo.announcerclock.utils.Constants.TTS_SPEAKING
 import com.dzo.announcerclock.utils.Utils.toast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -37,7 +38,6 @@ class ScheduleTimerViewModel
     private var isBound = false
     private val _isScheduleFinished = MutableStateFlow(false)
     val isScheduleFinished = _isScheduleFinished.asStateFlow()
-
     private var scheduleFinishedReceiver: BroadcastReceiver? = null
 
     init {

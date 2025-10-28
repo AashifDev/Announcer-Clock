@@ -13,7 +13,9 @@ import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.FragmentNotificationSoundBinding
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.adapter.SoundOptionAdapter
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel
+import com.dzo.announcerclock.utils.Utils.lighten
 import com.dzo.announcerclock.utils.core.BaseFragment
+import com.dzo.announcerclock.utils.extension.showColoredToast
 import com.dzo.announcerclock.utils.extension.showCustomSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,69 +25,101 @@ import javax.inject.Inject
 class NotificationSoundFragment :
     BaseFragment<FragmentNotificationSoundBinding>(FragmentNotificationSoundBinding::inflate) {
 
-    private var colorHexx = ""
     @Inject
     lateinit var soundOptionAdapter: SoundOptionAdapter
+
     private val viewModel: SoundOptionViewModel by viewModels()
+    private var colorHex = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+        setupToggles()
+        collectSoundOptions()
+        restorePreviousState()
+        observeThemeChanges()
+    }
 
-        // RecyclerView setup
+    // ---------------------- Setup UI ----------------------
+
+    private fun setupRecyclerView() {
         binding.soundOptionRecyclerView.adapter = soundOptionAdapter
 
-        // Item click listener
         soundOptionAdapter.onItemClick = { soundOption ->
-            // Only play/select if enabled
             if (binding.soundOptionRecyclerView.isEnabled) {
                 viewModel.selectOption(soundOption)
             } else {
                 requireActivity().showCustomSnackBar(
-                    "Please enable notification sound!", R.drawable.notification,
-                    colorString = colorHexx
+                    message = "Please enable notification sound!",
+                    iconRes = R.drawable.notification,
+                    colorString = colorHex
                 )
             }
         }
+    }
 
-        // Collect sound options from ViewModel
+    private fun setupToggles() {
+        // Notification toggle
+        binding.enableNotification.setOnCheckedChangeListener { _, isChecked ->
+            AppPreferences.saveNotificationEnabled(isChecked)
+            binding.enableNotificationSound.apply {
+                isEnabled = isChecked
+                if (!isChecked) this.isChecked = false
+            }
+        }
+
+        // Notification sound toggle
+        binding.enableNotificationSound.setOnCheckedChangeListener { toggle, isChecked ->
+            AppPreferences.saveNotificationSoundEnabled(isChecked)
+            binding.soundOptionRecyclerView.apply {
+                isEnabled = isChecked
+                alpha = if (isChecked) 1f else 0.5f
+            }
+        }
+    }
+
+    // ---------------------- Collect Data ----------------------
+
+    private fun collectSoundOptions() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.soundOptions.collect { list ->
+                    val selectedSound = AppPreferences.getSoundOption()?.soundResId
                     val updatedList = list.map {
-                        it.copy(isSelected = it.soundResId == AppPreferences.getSoundOption()?.soundResId)
+                        it.copy(isSelected = it.soundResId == selectedSound)
                     }
                     soundOptionAdapter.submitList(updatedList)
                 }
             }
         }
+    }
 
-        binding.enableNotification.setOnCheckedChangeListener { _, isChecked ->
-            AppPreferences.saveNotificationEnabled(isChecked)
-        }
+    // ---------------------- Restore Saved State ----------------------
 
-        // 🔘 Toggle enable/disable
-        binding.enableNotificationSound.setOnCheckedChangeListener { _, isChecked ->
-            binding.soundOptionRecyclerView.isEnabled = isChecked
-            binding.soundOptionRecyclerView.alpha = if (isChecked) 1f else 0.5f
-            AppPreferences.saveNotificationSoundEnabled(isChecked)
-        }
+    private fun restorePreviousState() {
+        val isNotificationEnabled = AppPreferences.isNotificationEnabled() ?: false
+        val isSoundEnabled = AppPreferences.isNotificationSoundEnabled() ?: false
 
-        // 🔘 Restore previous toggle state (if you store it)
-        val isEnabled = AppPreferences.isNotificationEnabled() ?: true
-        val isSoundEnabled = AppPreferences.isNotificationSoundEnabled() ?: true
-        binding.enableNotification.isChecked = isEnabled
+        binding.enableNotification.isChecked = isNotificationEnabled
         binding.enableNotificationSound.isChecked = isSoundEnabled
-        binding.soundOptionRecyclerView.isEnabled = isSoundEnabled
-        binding.soundOptionRecyclerView.alpha = if (isSoundEnabled) 1f else 0.5f
+        binding.enableNotificationSound.isEnabled = isNotificationEnabled
 
+        binding.soundOptionRecyclerView.apply {
+            isEnabled = isSoundEnabled
+            alpha = if (isSoundEnabled) 1f else 0.5f
+        }
+    }
 
-        AppPreferences.ThemeManager.registerListener { colorHex ->
+    // ---------------------- Theme Updates ----------------------
+
+    private fun observeThemeChanges() {
+        AppPreferences.ThemeManager.registerListener { colorHexValue ->
             safeExecute { binding ->
-                colorHexx = colorHex
-                binding.enableNotification.thumbTintList = ColorStateList.valueOf(colorHex.toColorInt())
-                binding.enableNotificationSound.thumbTintList = ColorStateList.valueOf(colorHex.toColorInt())
+                colorHex = colorHexValue
+                val colorInt = colorHexValue.toColorInt()
+                binding.enableNotification.thumbTintList = ColorStateList.valueOf(colorInt)
+                binding.enableNotificationSound.thumbTintList = ColorStateList.valueOf(colorInt)
             }
-
         }
     }
 }

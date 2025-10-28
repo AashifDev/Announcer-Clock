@@ -1,6 +1,7 @@
 package com.dzo.announcerclock.presentation.fragments.home_fragment
 
 import android.app.Activity.RESULT_CANCELED
+import android.app.Dialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.media.AudioManager
 import android.os.Bundle
+import android.os.Handler
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
@@ -37,6 +39,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.FragmentHomeBinding
@@ -260,7 +263,7 @@ class HomeFragment :
             "An update has just been downloaded.",
             actionText = "RESTART",
             iconRes = R.drawable.app_update,
-            colorString = colorHexx
+            colorString = colorHexx,
         ) {
             appUpdateManager!!.completeUpdate()
         }
@@ -597,7 +600,6 @@ class HomeFragment :
         val locale = if (localeParts.size == 2) {
             Locale(localeParts[0], localeParts[1])
         } else {
-            // 👇 Default to English if not set properly
             Locale("en", "US")
         }
 
@@ -687,6 +689,20 @@ class HomeFragment :
         }
     }
 
+    private fun showAnnouncerDialog(){
+        val dialog = Dialog(requireContext()).apply {
+            setContentView(R.layout.announcer_dialog)
+            setCancelable(true)
+            setCanceledOnTouchOutside(true)
+        }
+
+        val gif = dialog.findViewById<AppCompatImageView>(R.id.announceGif)
+        Glide.with(this).load(R.raw.megaphone).into(gif)
+        dialog.show()
+        Handler().postDelayed({
+            dialog.dismiss()
+        },2500)
+    }
     fun showBottomSheet(context: Context) {
         val dialog = BottomSheetDialog(context, R.style.CustomBottomSheetDialogTheme)
         val view = LayoutInflater.from(context).inflate(R.layout.more_layout, null)
@@ -1069,6 +1085,7 @@ class HomeFragment :
     private fun updateUiWithSessionData() {
         //schTime = AppPreferences.getScheduleTime()
     }
+
 }
 
 

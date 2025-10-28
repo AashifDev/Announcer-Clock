@@ -4665,6 +4665,7 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable baseline_check_24
 drawable bg_dialog_round
+drawable bg_round
 drawable bg_snackbar
 drawable bg_snackbar_button
 drawable bottom_sheeg_bg
@@ -4834,6 +4835,7 @@ drawable scheduling
 drawable shri_krishna
 drawable sound
 drawable test_level_drawable
+drawable text_to_speech
 drawable theme
 drawable themes
 drawable toast_bg
@@ -4926,6 +4928,7 @@ id androidx_compose_ui_view_composition_context
 id androidx_window_activity_scope
 id animateToEnd
 id animateToStart
+id announceGif
 id antiClockwise
 id anticipate
 id appLogo
@@ -5669,6 +5672,7 @@ layout abc_tooltip
 layout activity_main
 layout activity_splash
 layout adapter_material_color_picker
+layout announcer_dialog
 layout custom_dialog
 layout custom_snackbar
 layout custom_toast
@@ -5781,6 +5785,7 @@ raw balloon_get
 raw door_opens
 raw firebase_common_keep
 raw mario_starwarp
+raw megaphone
 raw smbw_yoshi
 raw smw_power_up
 raw super_mario_jump

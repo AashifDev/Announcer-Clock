@@ -297,10 +297,12 @@ import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.FragmentTextToSpeechBinding
 import com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel
 import com.dzo.announcerclock.utils.core.BaseFragment
+import com.dzo.announcerclock.utils.extension.showCustomSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -498,7 +500,14 @@ class TextToSpeechFragment :
         }
 
         binding.enableWhilePhoneCalls.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.toggleDisableDuringPhoneCalls(isChecked)
+            if (isChecked){
+                viewModel.toggleEnableDuringPhoneCalls(true)
+                requireActivity().showCustomSnackBar(
+                    message = "Text to speech active on calls",
+                    iconRes = R.drawable.text_to_speech,
+                    colorString = colorHexx
+                )
+            }
         }
     }
 

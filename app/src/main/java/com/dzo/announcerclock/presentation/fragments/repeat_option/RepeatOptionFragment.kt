@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -95,15 +96,15 @@ class RepeatOptionFragment :
         val themeCard = dialogView.findViewById<MaterialCardView>(R.id.themeCard)
         val txtInterval = dialogView.findViewById<TextView>(R.id.txtIntervalMinute)
         val txtTotal = dialogView.findViewById<TextView>(R.id.txtTotalMinute)
+        val linearLayoutCompat = dialogView.findViewById<LinearLayoutCompat>(R.id.linearLayoutCompat)
 
         txtInterval.setTextColor(colorHexx.toColorInt())
         txtTotal.setTextColor(colorHexx.toColorInt())
         tvTitle.setTextColor(colorHexx.toColorInt())
         btnSave.setBackgroundColor(colorHexx.toColorInt())
+        linearLayoutCompat.background.setTint(colorHexx.toColorInt())
         //setupPickerIntervalMinuteWithStep(etInterval, 5,5, 30)
         //setupPickerIntervalTotalMinuteWithStep(etTotal, 10, 10,60)
-
-
 
         setupPicker(etInterval, 1, 60)
         setupPicker(etTotal, 1, 24)

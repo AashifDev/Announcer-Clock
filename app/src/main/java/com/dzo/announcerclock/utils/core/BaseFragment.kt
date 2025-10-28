@@ -83,7 +83,7 @@ abstract class BaseFragment<VB : ViewBinding>(
         _binding = null
     }
 
-    protected fun safeExecute(action: (VB) -> Unit) {
+    fun safeExecute(action: (VB) -> Unit) {
         if (isViewAlive && _binding != null) action(_binding!!)
     }
 
