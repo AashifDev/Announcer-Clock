@@ -37,6 +37,7 @@
     <string name="sound_settings">Sound Settings</string>
     <string name="sounds">Sounds</string>
     <string name="speak">speak</string>
+    <string name="speak_time_every">speak time every</string>
     <string name="text_to_speech_settings">Text To Speech Settings</string>
     <string name="timer_manager_and_hour_time_clock">Timer manager and hourly time announcer</string>
     <string name="total_minute">Total Minute</string>

@@ -18,6 +18,7 @@ import com.dzo.announcerclock.utils.Constants.KEY_REPEAT_OPTION
 import com.dzo.announcerclock.utils.Constants.KEY_SCHEDULE_TIME
 import com.dzo.announcerclock.utils.Constants.KEY_SOUND_OPTION
 import com.dzo.announcerclock.utils.Constants.KEY_START_TIME
+import com.dzo.announcerclock.utils.Constants.KEY_TOGGLE_COUNT
 import com.dzo.announcerclock.utils.Constants.KEY_TOGGLE_STATE
 import com.dzo.announcerclock.utils.Constants.KEY_TTS_SETTINGS
 import com.dzo.announcerclock.utils.helper.PreferenceHelper
@@ -166,6 +167,20 @@ object AppPreferences {
             Gson().fromJson(it, ScheduleTimerModel::class.java)
         }
     }
+
+    fun getToggleCount(): Int {
+        return PreferenceHelper.getInt(KEY_TOGGLE_COUNT, 0)
+    }
+
+    fun incrementToggleCount() {
+        val current = getToggleCount()
+        PreferenceHelper.putInt(KEY_TOGGLE_COUNT, current + 1)
+    }
+
+    fun resetToggleCount() {
+        PreferenceHelper.putInt(KEY_TOGGLE_COUNT, 0)
+    }
+
     object ThemeManager {
         private const val PREF_THEME_COLOR = "pref_theme_color" // Active color
         private const val PREF_THEME_COLOR_LIST = "pref_theme_color_list" // List of colors

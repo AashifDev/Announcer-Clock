@@ -60,6 +60,7 @@ drawable toast_bg
 drawable toggle_button
 drawable toggle_thumb
 drawable toggle_track
+drawable up_arrow
 id announceGif
 id appLogo
 id appName
@@ -124,6 +125,7 @@ id poweredBt
 id rateApp
 id rateAppImg
 id rawItemId
+id removeSelectedColor
 id repeat
 id repeatOptionFragment
 id repeatOptionRecyclerView
@@ -196,6 +198,7 @@ id txtTts
 id txtVersion
 id txtVersionName
 id txtVoiceGender
+id upArrow
 id versionImg
 id vibration
 id volRocker
@@ -218,6 +221,7 @@ layout our_app_row_item
 layout repeat_option_raw_item
 layout schedult_timer_bottom_sheet
 layout sound_options_raw_binding
+menu menu
 menu more
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -260,6 +264,7 @@ string share_app
 string sound_settings
 string sounds
 string speak
+string speak_time_every
 string text_to_speech_settings
 string timer_manager_and_hour_time_clock
 string total_minute

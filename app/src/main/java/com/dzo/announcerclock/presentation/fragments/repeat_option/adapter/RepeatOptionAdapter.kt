@@ -17,6 +17,7 @@ import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatO
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 import androidx.core.graphics.toColorInt
+import com.dzo.announcerclock.utils.Utils.lighten
 
 @FragmentScoped
 class RepeatOptionAdapter @Inject constructor() :
@@ -31,6 +32,7 @@ class RepeatOptionAdapter @Inject constructor() :
             notifyDataSetChanged()
         }
     }
+
     inner class ViewHolder(val binding: RepeatOptionRawItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -60,7 +62,16 @@ class RepeatOptionAdapter @Inject constructor() :
 
             //Change color
             title.setTextColor(
-                if (item.isSelected) themeColor!!.toColorInt() else ContextCompat.getColor(root.context, R.color.black)
+                if (item.isSelected) themeColor!!.toColorInt() else ContextCompat.getColor(
+                    root.context,
+                    R.color.black
+                )
+            )
+            root.setBackgroundColor(
+                if (item.isSelected) themeColor!!.lighten(0.9f) else ContextCompat.getColor(
+                    root.context,
+                    R.color.white
+                )
             )
 
 

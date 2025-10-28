@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        window.statusBarColor = android.graphics.Color.TRANSPARENT
-        ViewCompat.getWindowInsetsController(window.decorView)?.isAppearanceLightStatusBars = false
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

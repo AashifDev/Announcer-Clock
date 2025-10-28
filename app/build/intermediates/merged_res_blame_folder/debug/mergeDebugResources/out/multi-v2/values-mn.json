@@ -4,7 +4,58 @@
             "outputFile": "com.dzo.announcerclock.app-mergeDebugResources-83:/values-mn/values-mn.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\8a1a93899b9d577161f0b032064157b9\\transformed\\material3\\res\\values-mn\\values-mn.xml",
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\866cf0a51b8c377a2d0e414f21654f99\\transformed\\navigation-ui-2.9.5\\res\\values-mn\\values-mn.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,161",
+                        "endColumns": "105,120",
+                        "endOffsets": "156,277"
+                    },
+                    "to": {
+                        "startLines": "208,209",
+                        "startColumns": "4,4",
+                        "startOffsets": "20030,20136",
+                        "endColumns": "105,120",
+                        "endOffsets": "20131,20252"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\7ded2537f3d8888f576ff7327ef905ac\\transformed\\foundation-release\\res\\values-mn\\values-mn.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "139,225",
+                        "endColumns": "85,88",
+                        "endOffsets": "220,309"
+                    },
+                    "to": {
+                        "startLines": "228,229",
+                        "startColumns": "4,4",
+                        "startOffsets": "21760,21846",
+                        "endColumns": "85,88",
+                        "endOffsets": "21841,21930"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\1ff1a7da7d459c1348a708f4301c551f\\transformed\\ui-release\\res\\values-mn\\values-mn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,190,282,368,460,556,639,725,819,906,987,1070,1153,1226,1317,1394,1474,1551,1628,1694",
+                        "endColumns": "84,91,85,91,95,82,85,93,86,80,82,82,72,90,76,79,76,76,65,116",
+                        "endOffsets": "185,277,363,455,551,634,720,814,901,982,1065,1148,1221,1312,1389,1469,1546,1623,1689,1806"
+                    },
+                    "to": {
+                        "startLines": "33,48,49,68,69,70,75,76,210,211,213,214,218,220,221,222,223,225,226,227",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3007,4449,4541,6842,6934,7030,7418,7504,20257,20344,20509,20592,20919,21074,21165,21242,21322,21500,21577,21643",
+                        "endColumns": "84,91,85,91,95,82,85,93,86,80,82,82,72,90,76,79,76,76,65,116",
+                        "endOffsets": "3087,4536,4622,6929,7025,7108,7499,7593,20339,20420,20587,20670,20987,21160,21237,21317,21394,21572,21638,21755"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\19cfd3d2c19e25f695a52ce4a96d1afb\\transformed\\material3\\res\\values-mn\\values-mn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +72,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\df1bdec14d0986f4703a0dda400ea344\\transformed\\material-1.13.0\\res\\values-mn\\values-mn.xml",
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\0d94da42fbe21e83efa92bcb9fabb7ce\\transformed\\appcompat-1.7.1\\res\\values-mn\\values-mn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,219,319,428,514,620,734,817,898,989,1082,1177,1273,1370,1463,1557,1649,1740,1830,1910,2017,2120,2217,2324,2426,2539,2698,2797",
+                        "endColumns": "113,99,108,85,105,113,82,80,90,92,94,95,96,92,93,91,90,89,79,106,102,96,106,101,112,158,98,80",
+                        "endOffsets": "214,314,423,509,615,729,812,893,984,1077,1172,1268,1365,1458,1552,1644,1735,1825,1905,2012,2115,2212,2319,2421,2534,2693,2792,2873"
+                    },
+                    "to": {
+                        "startLines": "6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,215",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "315,429,529,638,724,830,944,1027,1108,1199,1292,1387,1483,1580,1673,1767,1859,1950,2040,2120,2227,2330,2427,2534,2636,2749,2908,20675",
+                        "endColumns": "113,99,108,85,105,113,82,80,90,92,94,95,96,92,93,91,90,89,79,106,102,96,106,101,112,158,98,80",
+                        "endOffsets": "424,524,633,719,825,939,1022,1103,1194,1287,1382,1478,1575,1668,1762,1854,1945,2035,2115,2222,2325,2422,2529,2631,2744,2903,3002,20751"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\2bca1e8663df863909d351653f9b2eaf\\transformed\\material-1.13.0\\res\\values-mn\\values-mn.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,41 +108,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\b66b36e3d34c8f385b0a25491c34ee6c\\transformed\\ui-release\\res\\values-mn\\values-mn.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,190,282,368,460,556,639,725,819,906,987,1070,1153,1226,1317,1394,1474,1551,1628,1694",
-                        "endColumns": "84,91,85,91,95,82,85,93,86,80,82,82,72,90,76,79,76,76,65,116",
-                        "endOffsets": "185,277,363,455,551,634,720,814,901,982,1065,1148,1221,1312,1389,1469,1546,1623,1689,1806"
-                    },
-                    "to": {
-                        "startLines": "33,48,49,68,69,70,75,76,210,211,213,214,218,220,221,222,223,225,226,227",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3007,4449,4541,6842,6934,7030,7418,7504,20257,20344,20509,20592,20919,21074,21165,21242,21322,21500,21577,21643",
-                        "endColumns": "84,91,85,91,95,82,85,93,86,80,82,82,72,90,76,79,76,76,65,116",
-                        "endOffsets": "3087,4536,4622,6929,7025,7108,7499,7593,20339,20420,20587,20670,20987,21160,21237,21317,21394,21572,21638,21755"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\70eb1f70981721d3eb3e79551c2f134a\\transformed\\navigation-ui-2.9.5\\res\\values-mn\\values-mn.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,161",
-                        "endColumns": "105,120",
-                        "endOffsets": "156,277"
-                    },
-                    "to": {
-                        "startLines": "208,209",
-                        "startColumns": "4,4",
-                        "startOffsets": "20030,20136",
-                        "endColumns": "105,120",
-                        "endOffsets": "20131,20252"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\a6a5542b4d1295b456aee2f011ed443e\\transformed\\play-services-basement-18.3.0\\res\\values-mn\\values.xml",
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\cf104a49fce9224844b12ba69771a8d5\\transformed\\play-services-basement-18.4.0\\res\\values-mn\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -91,24 +125,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\b3ede380368d8de056d65aa94b5abd5f\\transformed\\appcompat-1.7.1\\res\\values-mn\\values-mn.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,219,319,428,514,620,734,817,898,989,1082,1177,1273,1370,1463,1557,1649,1740,1830,1910,2017,2120,2217,2324,2426,2539,2698,2797",
-                        "endColumns": "113,99,108,85,105,113,82,80,90,92,94,95,96,92,93,91,90,89,79,106,102,96,106,101,112,158,98,80",
-                        "endOffsets": "214,314,423,509,615,729,812,893,984,1077,1172,1268,1365,1458,1552,1644,1735,1825,1905,2012,2115,2212,2319,2421,2534,2693,2792,2873"
-                    },
-                    "to": {
-                        "startLines": "6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,215",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "315,429,529,638,724,830,944,1027,1108,1199,1292,1387,1483,1580,1673,1767,1859,1950,2040,2120,2227,2330,2427,2534,2636,2749,2908,20675",
-                        "endColumns": "113,99,108,85,105,113,82,80,90,92,94,95,96,92,93,91,90,89,79,106,102,96,106,101,112,158,98,80",
-                        "endOffsets": "424,524,633,719,825,939,1022,1103,1194,1287,1382,1478,1575,1668,1762,1854,1945,2035,2115,2222,2325,2422,2529,2631,2744,2903,3002,20751"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\7d88147e32ff8209602f24a8a638e6ff\\transformed\\play-services-base-18.0.1\\res\\values-mn\\values.xml",
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\f0fe72a57daf5d796639c9d0962c4009\\transformed\\play-services-base-18.0.1\\res\\values-mn\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -125,24 +142,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\c15c798eb8fe6647b5e62d472558787b\\transformed\\foundation-release\\res\\values-mn\\values-mn.xml",
-                    "from": {
-                        "startLines": "3,4",
-                        "startColumns": "4,4",
-                        "startOffsets": "139,225",
-                        "endColumns": "85,88",
-                        "endOffsets": "220,309"
-                    },
-                    "to": {
-                        "startLines": "228,229",
-                        "startColumns": "4,4",
-                        "startOffsets": "21760,21846",
-                        "endColumns": "85,88",
-                        "endOffsets": "21841,21930"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\2fca1c432fb7c5ac7eb4a53745053de4\\transformed\\core-1.17.0\\res\\values-mn\\values-mn.xml",
+                    "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\caches\\8.13\\transforms\\503caaa2d5e3e9ad9674c2b32b3f3c65\\transformed\\core-1.17.0\\res\\values-mn\\values-mn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

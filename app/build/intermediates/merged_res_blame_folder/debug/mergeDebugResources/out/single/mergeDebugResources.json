@@ -20,12 +20,12 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_notification_sound.xml"
     },
     {
-        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_toggle_button.png.flat",
-        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\toggle_button.png"
-    },
-    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_toggle_button.png.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\toggle_button.png"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_theme.xml.flat",
@@ -76,20 +76,28 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\color_box_bg.xml"
     },
     {
-        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\mipmap-anydpi_ic_launcher.xml.flat",
-        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\mipmap-anydpi\\ic_launcher.xml"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\menu_menu.xml.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\menu\\menu.xml"
     },
     {
-        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_creativity.png.flat",
-        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\creativity.png"
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\mipmap-anydpi\\ic_launcher.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_ic_fav.xml.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_fav.xml"
     },
     {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_creativity.png.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\creativity.png"
+    },
+    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_text_to_speech.png.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\text_to_speech.png"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-debug-85:/layout_schedult_timer_bottom_sheet.xml.flat",
+        "source": "com.dzo.announcerclock.app-main-87:/layout/schedult_timer_bottom_sheet.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_bg_snackbar.xml.flat",
@@ -124,6 +132,10 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_category.xml"
     },
     {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_up_arrow.png.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\up_arrow.png"
+    },
+    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_scheduling.png.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\scheduling.png"
     },
@@ -144,12 +156,12 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\raw\\smw_power_up.mp3"
     },
     {
-        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\layout_fragment_repeat_option.xml.flat",
-        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_repeat_option.xml"
-    },
-    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_ic_schedule_timer.xml.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_schedule_timer.xml"
+    },
+    {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\layout_fragment_repeat_option.xml.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_repeat_option.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_toggle_thumb.xml.flat",
@@ -164,12 +176,12 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\raw_smbw_yoshi.mp3.flat",
-        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\raw\\smbw_yoshi.mp3"
-    },
-    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\layout_fragment_home.xml.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\raw_smbw_yoshi.mp3.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\raw\\smbw_yoshi.mp3"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\raw_mario_starwarp.mp3.flat",
@@ -240,10 +252,6 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_sounds.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-debug-85:/layout_announcer_dialog.xml.flat",
-        "source": "com.dzo.announcerclock.app-main-87:/layout/announcer_dialog.xml"
-    },
-    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\xml_backup_rules.xml.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\xml\\backup_rules.xml"
     },
@@ -300,6 +308,10 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_share.xml"
     },
     {
+        "merged": "com.dzo.announcerclock.app-debug-85:/drawable_up_arrow.png.flat",
+        "source": "com.dzo.announcerclock.app-main-87:/drawable/up_arrow.png"
+    },
+    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_ic_stop.xml.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\ic_stop.xml"
     },
@@ -308,12 +320,12 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\hanuman_chalisa.png"
     },
     {
-        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_toggle_track.xml.flat",
-        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\toggle_track.xml"
-    },
-    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\navigation_nav_graph.xml.flat",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\drawable_toggle_track.xml.flat",
+        "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-87:\\drawable\\toggle_track.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-debug-85:\\layout_schedult_timer_bottom_sheet.xml.flat",

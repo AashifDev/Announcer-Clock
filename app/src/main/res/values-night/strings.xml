@@ -30,4 +30,5 @@
     <string name="total_minute">Total Minute</string>
     <string name="schedule_timer">Schedule timer</string>
     <string name="schedule_time">Schedule time</string>
+    <string name="speak_time_every">speak time every</string>
 </resources>

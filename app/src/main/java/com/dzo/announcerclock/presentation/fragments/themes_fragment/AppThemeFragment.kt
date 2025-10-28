@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.graphics.toColorInt
 import com.dzo.announcerclock.R
@@ -130,46 +131,84 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
 
         val marginInPx = (8 * resources.displayMetrics.density).toInt()
 
-        for (colorHex in selectedColors) {
+        for (colorHex in selectedColors.toList()) { // iterate safely
             val colorView = inflater.inflate(R.layout.item_color_box, binding.colorContainer, false)
             val box = colorView.findViewById<View>(R.id.colorBox)
 
             box.background.setTint(colorHex.toColorInt())
 
-            // Add margin without changing size
+            // Add margin
             val params = colorView.layoutParams as ViewGroup.MarginLayoutParams
             params.setMargins(marginInPx, marginInPx, marginInPx, marginInPx)
             colorView.layoutParams = params
 
+            // Click → Apply Theme
             box.setOnClickListener {
                 AppPreferences.ThemeManager.setActiveThemeColor(colorHex)
                 AppPreferences.ThemeManager.setThemeColorList(selectedColors.joinToString(","))
                 displaySelectedColors()
+
                 requireActivity().showCustomSnackBar(
-                    "App theme color updated.", iconRes = R.drawable.themes,
+                    "App theme color updated.",
+                    iconRes = R.drawable.themes,
                     colorString = colorHex
                 )
             }
+
+            // Long Click → Remove Color
             box.setOnLongClickListener {
                 selectedColors.remove(colorHex)
-                AppPreferences.ThemeManager.setThemeColorList(selectedColors.joinToString(","))
+                //removeSelectedColor(it,colorHex)
+                // Update preferences
                 if (selectedColors.isNotEmpty()) {
+                    AppPreferences.ThemeManager.setThemeColorList(selectedColors.joinToString(","))
                     AppPreferences.ThemeManager.setActiveThemeColor(selectedColors.last())
+                } else {
+                    AppPreferences.ThemeManager.setThemeColorList("")
                 }
                 displaySelectedColors()
-                true
+                requireActivity().showCustomSnackBar(
+                    "Color removed from list.",
+                    iconRes = R.drawable.themes,
+                    colorString = colorHex // red accent for removal
+                )
+                true // consume long click
             }
 
             binding.colorContainer.addView(colorView)
         }
     }
 
-   /* override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        val isSystemDark =
-            (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
-        if (AppPreferences.isDarkThemeEnabled() == null) {
-            binding.enableDarkMode.isChecked = isSystemDark
+
+    private fun removeSelectedColor(view: View, colorHex: String) {
+        val popup = PopupMenu(requireContext(), view)
+        popup.menuInflater.inflate(R.menu.menu, popup.menu)
+
+        popup.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.removeSelectedColor -> {
+                    selectedColors.remove(colorHex)
+                    displaySelectedColors()
+                    requireActivity().showCustomSnackBar(
+                        "Color removed from list.",
+                        iconRes = R.drawable.themes,
+                        colorString = colorHex // red accent for removal
+                    )
+                    true
+                }
+                else -> false
+            }
         }
-    }*/
+        popup.show()
+
+    }
+
+    /* override fun onConfigurationChanged(newConfig: Configuration) {
+         super.onConfigurationChanged(newConfig)
+         val isSystemDark =
+             (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+         if (AppPreferences.isDarkThemeEnabled() == null) {
+             binding.enableDarkMode.isChecked = isSystemDark
+         }
+     }*/
 }

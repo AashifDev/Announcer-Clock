@@ -496,7 +496,15 @@ class TextToSpeechFragment :
         }
 
         binding.play.setOnClickListener {
-            viewModel.speakCurrentTime()
+            if (AppPreferences.isTimeSpeakingEnabled()==true){
+                viewModel.speakCurrentTime()
+            }else{
+                requireActivity().showCustomSnackBar(
+                    "Please enable time speaking first!",
+                    iconRes = R.drawable.text_to_speech,
+                    colorString = colorHexx
+                )
+            }
         }
 
         binding.enableWhilePhoneCalls.setOnCheckedChangeListener { _, isChecked ->

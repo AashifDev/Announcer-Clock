@@ -14,6 +14,7 @@ import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.SoundOptionsRawBindingBinding
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
+import com.dzo.announcerclock.utils.Utils.lighten
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
@@ -61,8 +62,18 @@ class SoundOptionAdapter @Inject constructor() :
 
             //Change text color
             title.setTextColor(
-                if (item.isSelected) themeColor!!.toColorInt() else ContextCompat.getColor(root.context, R.color.black)
+                if (item.isSelected) themeColor!!.toColorInt() else ContextCompat.getColor(
+                    root.context,
+                    R.color.black
+                )
             )
+            root.setBackgroundColor(
+                if (item.isSelected) themeColor!!.lighten(0.9f) else ContextCompat.getColor(
+                    root.context,
+                    R.color.white
+                )
+            )
+
             //Zoom animation
             root.animate()
                 .scaleX(if (item.isSelected) 1.05f else 1f)

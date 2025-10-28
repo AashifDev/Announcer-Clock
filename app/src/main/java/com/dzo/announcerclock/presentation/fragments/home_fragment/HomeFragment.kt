@@ -53,12 +53,14 @@ import com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.Rep
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel
 import com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel
+import com.dzo.announcerclock.utils.Utils
 import com.dzo.announcerclock.utils.helper.AnimationType
 import com.dzo.announcerclock.utils.Utils.lighten
 import com.dzo.announcerclock.utils.helper.animateTimerText
 import com.dzo.announcerclock.utils.core.BaseFragment
 import com.dzo.announcerclock.utils.extension.showColoredToast
 import com.dzo.announcerclock.utils.extension.showCustomSnackBar
+import com.dzo.announcerclock.utils.helper.InAppReviewUtil
 import com.dzo.announcerclock.utils.helper.ScheduleTimerBottomSheet
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
@@ -390,6 +392,14 @@ class HomeFragment :
                     }
                 }
                 AppPreferences.saveToggleState(true)
+
+                //In app review
+                /*AppPreferences.incrementToggleCount()
+                val count = AppPreferences.getToggleCount()
+                if (count == 30) {
+                    InAppReviewUtil.launchInAppReview(requireActivity())
+                    AppPreferences.resetToggleCount()
+                }*/
             } else {
                 lifecycleScope.launch {
                     AppPreferences.saveToggleState(false)
@@ -740,12 +750,10 @@ class HomeFragment :
         }
 
         rateApp?.setOnClickListener {
-            //openPlayStore(requireContext(),"")
-            this.toast(requireContext(), "Share App")
-
+            Utils.openPlayStore(requireContext(), requireContext().packageName)
         }
         shareApp?.setOnClickListener {
-            this.toast(requireContext(), "Share App")
+            Utils.shareApp(requireContext(),requireContext().packageName)
         }
 
         appTheme?.setOnClickListener {

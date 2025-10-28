@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_our_app" />
     <fragment
         android:id="@+id/appThemeFragment"
-        android:name="com.dzo.announcerclock.presentation.fragments.themes.AppThemeFragment"
+        android:name="com.dzo.announcerclock.presentation.fragments.themes_fragment.AppThemeFragment"
         android:label="Theme styling"
         tools:layout="@layout/fragment_app_theme" />
 </navigation>

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.dzo.announcerclock.R;
@@ -32,6 +33,9 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
   public final NumberPicker etTotal;
 
   @NonNull
+  public final LinearLayoutCompat linearLayoutCompat;
+
+  @NonNull
   public final MaterialCardView themeCard;
 
   @NonNull
@@ -45,12 +49,14 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
 
   private DialogCustomRepeatOptionBinding(@NonNull MaterialCardView rootView,
       @NonNull AppCompatButton btnSave, @NonNull NumberPicker etInterval,
-      @NonNull NumberPicker etTotal, @NonNull MaterialCardView themeCard, @NonNull TextView tvTitle,
+      @NonNull NumberPicker etTotal, @NonNull LinearLayoutCompat linearLayoutCompat,
+      @NonNull MaterialCardView themeCard, @NonNull TextView tvTitle,
       @NonNull AppCompatTextView txtIntervalMinute, @NonNull AppCompatTextView txtTotalMinute) {
     this.rootView = rootView;
     this.btnSave = btnSave;
     this.etInterval = etInterval;
     this.etTotal = etTotal;
+    this.linearLayoutCompat = linearLayoutCompat;
     this.themeCard = themeCard;
     this.tvTitle = tvTitle;
     this.txtIntervalMinute = txtIntervalMinute;
@@ -102,6 +108,12 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.linearLayoutCompat;
+      LinearLayoutCompat linearLayoutCompat = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayoutCompat == null) {
+        break missingId;
+      }
+
       MaterialCardView themeCard = (MaterialCardView) rootView;
 
       id = R.id.tvTitle;
@@ -123,7 +135,7 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
       }
 
       return new DialogCustomRepeatOptionBinding((MaterialCardView) rootView, btnSave, etInterval,
-          etTotal, themeCard, tvTitle, txtIntervalMinute, txtTotalMinute);
+          etTotal, linearLayoutCompat, themeCard, tvTitle, txtIntervalMinute, txtTotalMinute);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

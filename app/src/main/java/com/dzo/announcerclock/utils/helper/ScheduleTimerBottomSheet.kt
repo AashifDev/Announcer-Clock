@@ -1,5 +1,6 @@
 package com.dzo.announcerclock.utils.helper
 
+import android.app.Dialog
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import com.dzo.announcerclock.presentation.fragments.home_fragment.OnBottomSheet
 import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
 import com.dzo.announcerclock.utils.Utils.lighten
 import com.dzo.announcerclock.utils.extension.showColoredToast
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
@@ -51,6 +53,15 @@ class ScheduleTimerBottomSheet(
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme)
+    }
+
+    /*override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return BottomSheetDialog(requireContext(), R.style.CustomBottomSheetDialogTheme)
+    }*/
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -65,6 +76,7 @@ class ScheduleTimerBottomSheet(
         binding.txtStartTime.setTextColor(colorHex.toColorInt())
         binding.txtEndTime.setTextColor(colorHex.toColorInt())
         binding.txtRepeatEvery.setTextColor(colorHex.toColorInt())
+        binding.upArrow.setColorFilter(colorHex.toColorInt())
 
         binding.saveSchedule.backgroundTintList = ColorStateList.valueOf(colorHex.toColorInt())
 

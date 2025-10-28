@@ -9,6 +9,7 @@ object Constants {
     const val KEY_START_TIME = "start_time"
     const val KEY_INTERVAL = "time_interval"
     const val KEY_SCHEDULE_TIME = "schedule_time"
+    const val KEY_TOGGLE_COUNT = "toggle_count"
     const val ACTION_TOGGLE_UPDATE = "com.dzo.announcerclock.KEY_SCHEDULE_FINISHED"
     const val TTS_SPEAKING = "com.dzo.announcerclock.TTS_SPEAKING"
     const val EXTRA_IS_ENABLED = "EXTRA_IS_ENABLED"

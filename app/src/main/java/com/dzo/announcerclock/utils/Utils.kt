@@ -155,6 +155,23 @@ object Utils {
             context.startActivity(webIntent)
         }
     }
+    fun shareApp(context: Context, packageName: String) {
+        val appLink = "https://play.google.com/store/apps/details?id=$packageName"
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_SUBJECT, "Check out this awesome app!")
+            putExtra(
+                Intent.EXTRA_TEXT,
+                "Hey! Check out this app on Google Play:\n$appLink"
+            )
+        }
+
+        // Optional: Show system chooser
+        context.startActivity(
+            Intent.createChooser(shareIntent, "Share app via")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        )
+    }
 
 
     /*
