@@ -12,96 +12,109 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
-            app:cardCornerRadius="@dimen/_14sdp"
-            app:strokeWidth="0dp"
-            android:id="@+id/header"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/blue"
+            android:id="@+id/outlineHeader"
+            android:background="@drawable/outline_border_header"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_margin="@dimen/_12sdp">
+                app:cardCornerRadius="@dimen/_14sdp"
+                app:strokeWidth="0dp"
+                android:id="@+id/header"
+                app:cardElevation="0dp"
+                android:layout_margin="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/blue"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-                <FrameLayout
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
-                    android:layout_gravity="center"
-                    android:gravity="center">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_margin="@dimen/_12sdp">
 
-                    <com.google.android.material.card.MaterialCardView
+                    <FrameLayout
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="@dimen/_80sdp"
-                        app:strokeWidth="0dp"
-                        app:cardElevation="0dp"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/grey"
-                        app:cardCornerRadius="@dimen/_100sdp">
+                        android:gravity="center">
 
-                        <com.google.android.material.progressindicator.CircularProgressIndicator
-                            android:id="@+id/circularProgress"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:indicatorSize="@dimen/_76sdp"
-                            app:trackThickness="@dimen/_8sdp"
-                            app:indicatorDirectionCircular="clockwise"
-                            app:trackCornerRadius="10dp"
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            app:strokeWidth="0dp"
+                            app:cardElevation="0dp"
                             android:layout_gravity="center"
-                            app:trackColor="@color/track_color"
-                            app:indicatorColor="@color/dark_blue" />
+                            app:cardBackgroundColor="@color/grey"
+                            app:cardCornerRadius="@dimen/_100sdp">
 
-                    </com.google.android.material.card.MaterialCardView>
+                            <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:id="@+id/circularProgress"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:indicatorSize="@dimen/_76sdp"
+                                app:trackThickness="@dimen/_8sdp"
+                                app:indicatorDirectionCircular="clockwise"
+                                app:trackCornerRadius="10dp"
+                                android:layout_gravity="center"
+                                app:trackColor="@color/track_color"
+                                app:indicatorColor="@color/dark_blue" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/timerText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_18ssp"
+                            android:gravity="center"
+                            android:textColor="@color/dark_grey"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"/>
+
+                    </FrameLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/timerText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/_18ssp"
-                        android:gravity="center"
-                        android:textColor="@color/dark_grey"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:textColor="@color/grey"
                         android:textStyle="bold"
-                        android:layout_gravity="center"/>
-
-                </FrameLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".5"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:layout_marginStart="@dimen/_14sdp"
-                    android:text="@string/enable_hourly_talk_time"
-                    android:textSize="@dimen/_17ssp" />
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:text="@string/enable_hourly_talk_time"
+                        android:textSize="@dimen/_17ssp" />
 
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/customToggle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".2"
-                    android:checked="false"
-                    android:thumb="@drawable/toggle_thumb"
-                    app:thumbTint="@color/dark_blue"
-                    android:padding="@dimen/_8sdp"
-                    app:thumbTextPadding="@dimen/_6sdp"
-                    app:trackTint="@color/track_color"
-                    app:track="@drawable/toggle_track"
-                    android:layout_gravity="start|center" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/customToggle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:checked="false"
+                        android:thumb="@drawable/toggle_thumb"
+                        app:thumbTint="@color/dark_blue"
+                        android:padding="@dimen/_8sdp"
+                        app:thumbTextPadding="@dimen/_6sdp"
+                        app:trackTint="@color/track_color"
+                        app:track="@drawable/toggle_track"
+                        android:layout_gravity="start|center" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -112,9 +125,9 @@
             android:padding="@dimen/_6sdp"
             android:id="@+id/txtSetting"
             android:layout_marginTop="@dimen/_14sdp"
-            app:layout_constraintTop_toBottomOf="@id/header"
-            app:layout_constraintStart_toStartOf="@id/header"
-            android:textStyle="bold"/>
+            app:layout_constraintTop_toBottomOf="@id/outlineHeader"
+            app:layout_constraintStart_toStartOf="@id/outlineHeader"
+            android:textStyle="normal"/>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -352,7 +365,7 @@
             android:layout_marginTop="@dimen/_16sdp"
             app:layout_constraintTop_toBottomOf="@id/settings"
             app:layout_constraintStart_toStartOf="@id/settings"
-            android:textStyle="bold"/>
+            android:textStyle="normal"/>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -431,7 +444,7 @@
             android:layout_marginTop="@dimen/_16sdp"
             app:layout_constraintTop_toBottomOf="@id/custom"
             app:layout_constraintStart_toStartOf="@id/settings"
-            android:textStyle="bold"/>
+            android:textStyle="normal"/>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

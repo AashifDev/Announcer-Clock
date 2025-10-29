@@ -46,6 +46,7 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
                 binding.chooseAppColor.backgroundTintList =
                     ColorStateList.valueOf(colorHex.toColorInt())
                 binding.enableDarkMode.thumbTintList = ColorStateList.valueOf(colorHex.toColorInt())
+                binding.imgTheme.setColorFilter(colorHex.toColorInt())
             }
         }
     }

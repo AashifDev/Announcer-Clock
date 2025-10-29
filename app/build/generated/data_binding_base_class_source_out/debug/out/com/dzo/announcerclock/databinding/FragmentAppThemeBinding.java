@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,6 +15,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.dzo.announcerclock.R;
 import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -33,7 +35,13 @@ public final class FragmentAppThemeBinding implements ViewBinding {
   public final SwitchMaterial enableDarkMode;
 
   @NonNull
-  public final LinearLayoutCompat linearLayoutCompat1;
+  public final AppCompatImageView imgTheme;
+
+  @NonNull
+  public final LinearLayoutCompat linearLayoutCompatSound3;
+
+  @NonNull
+  public final MaterialCardView llDarkThemeLayout;
 
   @NonNull
   public final AppCompatTextView txtChooseColor;
@@ -43,13 +51,17 @@ public final class FragmentAppThemeBinding implements ViewBinding {
 
   private FragmentAppThemeBinding(@NonNull ConstraintLayout rootView,
       @NonNull AppCompatButton chooseAppColor, @NonNull FlexboxLayout colorContainer,
-      @NonNull SwitchMaterial enableDarkMode, @NonNull LinearLayoutCompat linearLayoutCompat1,
-      @NonNull AppCompatTextView txtChooseColor, @NonNull AppCompatTextView txtEnableDarkTheme) {
+      @NonNull SwitchMaterial enableDarkMode, @NonNull AppCompatImageView imgTheme,
+      @NonNull LinearLayoutCompat linearLayoutCompatSound3,
+      @NonNull MaterialCardView llDarkThemeLayout, @NonNull AppCompatTextView txtChooseColor,
+      @NonNull AppCompatTextView txtEnableDarkTheme) {
     this.rootView = rootView;
     this.chooseAppColor = chooseAppColor;
     this.colorContainer = colorContainer;
     this.enableDarkMode = enableDarkMode;
-    this.linearLayoutCompat1 = linearLayoutCompat1;
+    this.imgTheme = imgTheme;
+    this.linearLayoutCompatSound3 = linearLayoutCompatSound3;
+    this.llDarkThemeLayout = llDarkThemeLayout;
     this.txtChooseColor = txtChooseColor;
     this.txtEnableDarkTheme = txtEnableDarkTheme;
   }
@@ -99,9 +111,21 @@ public final class FragmentAppThemeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.linearLayoutCompat1;
-      LinearLayoutCompat linearLayoutCompat1 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayoutCompat1 == null) {
+      id = R.id.imgTheme;
+      AppCompatImageView imgTheme = ViewBindings.findChildViewById(rootView, id);
+      if (imgTheme == null) {
+        break missingId;
+      }
+
+      id = R.id.linearLayoutCompatSound3;
+      LinearLayoutCompat linearLayoutCompatSound3 = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayoutCompatSound3 == null) {
+        break missingId;
+      }
+
+      id = R.id.llDarkThemeLayout;
+      MaterialCardView llDarkThemeLayout = ViewBindings.findChildViewById(rootView, id);
+      if (llDarkThemeLayout == null) {
         break missingId;
       }
 
@@ -118,7 +142,8 @@ public final class FragmentAppThemeBinding implements ViewBinding {
       }
 
       return new FragmentAppThemeBinding((ConstraintLayout) rootView, chooseAppColor,
-          colorContainer, enableDarkMode, linearLayoutCompat1, txtChooseColor, txtEnableDarkTheme);
+          colorContainer, enableDarkMode, imgTheme, linearLayoutCompatSound3, llDarkThemeLayout,
+          txtChooseColor, txtEnableDarkTheme);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

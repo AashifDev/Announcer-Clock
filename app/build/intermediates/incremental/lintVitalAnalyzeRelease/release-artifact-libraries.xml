@@ -1,5 +1,18 @@
 <libraries>
   <library
+      name="com.github.skydoves:balloon:1.6.13@aar"
+      jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f0859436b234646a8753daa76908d675\transformed\balloon-1.6.13\jars\classes.jar"
+      resolved="com.github.skydoves:balloon:1.6.13"
+      folder="C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f0859436b234646a8753daa76908d675\transformed\balloon-1.6.13"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.databinding:viewbinding:8.12.3@aar"
       jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f423ec4477656d27027ac658a0646beb\transformed\viewbinding-8.12.3\jars\classes.jar"
       resolved="androidx.databinding:viewbinding:8.12.3"
@@ -1187,9 +1200,9 @@
       jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\modules-2\files-2.1\com.squareup.okio\okio-jvm\3.9.1\79696e3f4ff05d41ba2b3dc68adb5808a2e5dc53\okio-jvm-3.9.1.jar"
       resolved="com.squareup.okio:okio-jvm:3.9.1"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib:2.0.21@jar"
-      jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\2.0.21\618b539767b4899b4660a83006e052b63f1db551\kotlin-stdlib-2.0.21.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib:2.0.21"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib:2.1.10@jar"
+      jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\2.1.10\d3028429e7151d7a7c1a0d63a4f60eac86a87b91\kotlin-stdlib-2.1.10.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib:2.1.10"/>
   <library
       name="androidx.constraintlayout:constraintlayout:2.2.1@aar"
       jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\447d0cb12e4c8337a23530e77f7d81a3\transformed\constraintlayout-2.2.1\jars\classes.jar"

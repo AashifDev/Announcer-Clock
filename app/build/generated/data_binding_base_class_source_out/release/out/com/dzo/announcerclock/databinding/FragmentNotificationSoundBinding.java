@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -29,33 +30,47 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
   public final SwitchMaterial enableNotificationSound;
 
   @NonNull
-  public final LinearLayoutCompat linearLayoutCompat;
+  public final AppCompatImageView imgEnableNotification;
 
   @NonNull
-  public final LinearLayoutCompat linearLayoutCompat1;
+  public final AppCompatImageView imgNotificationSound;
 
   @NonNull
-  public final LinearLayoutCompat linearLayoutCompat2;
+  public final LinearLayoutCompat linearLayoutCompatSound3;
+
+  @NonNull
+  public final MaterialCardView llCompatNotification;
+
+  @NonNull
+  public final MaterialCardView llNotificationSound;
 
   @NonNull
   public final MaterialCardView soundCardView;
+
+  @NonNull
+  public final LinearLayoutCompat soundLayout;
 
   @NonNull
   public final RecyclerView soundOptionRecyclerView;
 
   private FragmentNotificationSoundBinding(@NonNull ScrollView rootView,
       @NonNull SwitchMaterial enableNotification, @NonNull SwitchMaterial enableNotificationSound,
-      @NonNull LinearLayoutCompat linearLayoutCompat,
-      @NonNull LinearLayoutCompat linearLayoutCompat1,
-      @NonNull LinearLayoutCompat linearLayoutCompat2, @NonNull MaterialCardView soundCardView,
+      @NonNull AppCompatImageView imgEnableNotification,
+      @NonNull AppCompatImageView imgNotificationSound,
+      @NonNull LinearLayoutCompat linearLayoutCompatSound3,
+      @NonNull MaterialCardView llCompatNotification, @NonNull MaterialCardView llNotificationSound,
+      @NonNull MaterialCardView soundCardView, @NonNull LinearLayoutCompat soundLayout,
       @NonNull RecyclerView soundOptionRecyclerView) {
     this.rootView = rootView;
     this.enableNotification = enableNotification;
     this.enableNotificationSound = enableNotificationSound;
-    this.linearLayoutCompat = linearLayoutCompat;
-    this.linearLayoutCompat1 = linearLayoutCompat1;
-    this.linearLayoutCompat2 = linearLayoutCompat2;
+    this.imgEnableNotification = imgEnableNotification;
+    this.imgNotificationSound = imgNotificationSound;
+    this.linearLayoutCompatSound3 = linearLayoutCompatSound3;
+    this.llCompatNotification = llCompatNotification;
+    this.llNotificationSound = llNotificationSound;
     this.soundCardView = soundCardView;
+    this.soundLayout = soundLayout;
     this.soundOptionRecyclerView = soundOptionRecyclerView;
   }
 
@@ -98,27 +113,45 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.linearLayoutCompat;
-      LinearLayoutCompat linearLayoutCompat = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayoutCompat == null) {
+      id = R.id.imgEnableNotification;
+      AppCompatImageView imgEnableNotification = ViewBindings.findChildViewById(rootView, id);
+      if (imgEnableNotification == null) {
         break missingId;
       }
 
-      id = R.id.linearLayoutCompat1;
-      LinearLayoutCompat linearLayoutCompat1 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayoutCompat1 == null) {
+      id = R.id.imgNotificationSound;
+      AppCompatImageView imgNotificationSound = ViewBindings.findChildViewById(rootView, id);
+      if (imgNotificationSound == null) {
         break missingId;
       }
 
-      id = R.id.linearLayoutCompat2;
-      LinearLayoutCompat linearLayoutCompat2 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayoutCompat2 == null) {
+      id = R.id.linearLayoutCompatSound3;
+      LinearLayoutCompat linearLayoutCompatSound3 = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayoutCompatSound3 == null) {
+        break missingId;
+      }
+
+      id = R.id.llCompatNotification;
+      MaterialCardView llCompatNotification = ViewBindings.findChildViewById(rootView, id);
+      if (llCompatNotification == null) {
+        break missingId;
+      }
+
+      id = R.id.llNotificationSound;
+      MaterialCardView llNotificationSound = ViewBindings.findChildViewById(rootView, id);
+      if (llNotificationSound == null) {
         break missingId;
       }
 
       id = R.id.soundCardView;
       MaterialCardView soundCardView = ViewBindings.findChildViewById(rootView, id);
       if (soundCardView == null) {
+        break missingId;
+      }
+
+      id = R.id.soundLayout;
+      LinearLayoutCompat soundLayout = ViewBindings.findChildViewById(rootView, id);
+      if (soundLayout == null) {
         break missingId;
       }
 
@@ -129,8 +162,9 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
       }
 
       return new FragmentNotificationSoundBinding((ScrollView) rootView, enableNotification,
-          enableNotificationSound, linearLayoutCompat, linearLayoutCompat1, linearLayoutCompat2,
-          soundCardView, soundOptionRecyclerView);
+          enableNotificationSound, imgEnableNotification, imgNotificationSound,
+          linearLayoutCompatSound3, llCompatNotification, llNotificationSound, soundCardView,
+          soundLayout, soundOptionRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -359,6 +359,7 @@ class TextToSpeechFragment :
 
         // Icon tint
         binding.imgCall.setColorFilter(colorInt)
+        binding.imgAnnounce.setColorFilter(colorInt)
 
         // Spinner tint (icon + text)
         tintSpinner(binding.selectedLangSpinner, colorInt)

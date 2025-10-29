@@ -4,6 +4,7 @@ ADDED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.x
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-50:12
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-50:12
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml:2:1-50:12
+MERGED from [com.github.skydoves:balloon:1.6.13] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f0859436b234646a8753daa76908d675\transformed\balloon-1.6.13\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.databinding:viewbinding:8.12.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f423ec4477656d27027ac658a0646beb\transformed\viewbinding-8.12.3\AndroidManifest.xml:2:1-7:12
 MERGED from [com.github.Dhaval2404:ColorPicker:2.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\46781264e68f3d861f8dc28c6d7841c3\transformed\ColorPicker-2.3\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.5] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\c556cd0be74ddc34a742d6f57185c419\transformed\navigation-runtime-release\AndroidManifest.xml:17:1-22:12
@@ -259,6 +260,8 @@ uses-sdk
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml
 INJECTED from E:\Aashif Ali\Compose Project\TalkTime\app\src\main\AndroidManifest.xml
+MERGED from [com.github.skydoves:balloon:1.6.13] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f0859436b234646a8753daa76908d675\transformed\balloon-1.6.13\AndroidManifest.xml:20:5-44
+MERGED from [com.github.skydoves:balloon:1.6.13] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f0859436b234646a8753daa76908d675\transformed\balloon-1.6.13\AndroidManifest.xml:20:5-44
 MERGED from [androidx.databinding:viewbinding:8.12.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f423ec4477656d27027ac658a0646beb\transformed\viewbinding-8.12.3\AndroidManifest.xml:5:5-44
 MERGED from [androidx.databinding:viewbinding:8.12.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\f423ec4477656d27027ac658a0646beb\transformed\viewbinding-8.12.3\AndroidManifest.xml:5:5-44
 MERGED from [com.github.Dhaval2404:ColorPicker:2.3] C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\46781264e68f3d861f8dc28c6d7841c3\transformed\ColorPicker-2.3\AndroidManifest.xml:5:5-7:41

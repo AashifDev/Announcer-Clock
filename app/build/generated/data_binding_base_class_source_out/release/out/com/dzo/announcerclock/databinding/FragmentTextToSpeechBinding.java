@@ -35,19 +35,25 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
   public final SwitchMaterial enableWhilePhoneCalls;
 
   @NonNull
+  public final AppCompatImageView imgAnnounce;
+
+  @NonNull
   public final AppCompatImageView imgCall;
 
   @NonNull
   public final AppCompatImageView imgMusic;
 
   @NonNull
-  public final LinearLayoutCompat linearLayoutCompat;
+  public final MaterialCardView linearLayoutCompat;
 
   @NonNull
   public final LinearLayoutCompat linearLayoutCompatSound1;
 
   @NonNull
   public final LinearLayoutCompat linearLayoutCompatSound2;
+
+  @NonNull
+  public final LinearLayoutCompat linearLayoutCompatSound3;
 
   @NonNull
   public final MaterialCardView notificaitonSettingLayout;
@@ -87,10 +93,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
 
   private FragmentTextToSpeechBinding(@NonNull ConstraintLayout rootView,
       @NonNull SwitchMaterial disableDuringMusic, @NonNull SwitchMaterial enableTimeSpeaking,
-      @NonNull SwitchMaterial enableWhilePhoneCalls, @NonNull AppCompatImageView imgCall,
-      @NonNull AppCompatImageView imgMusic, @NonNull LinearLayoutCompat linearLayoutCompat,
+      @NonNull SwitchMaterial enableWhilePhoneCalls, @NonNull AppCompatImageView imgAnnounce,
+      @NonNull AppCompatImageView imgCall, @NonNull AppCompatImageView imgMusic,
+      @NonNull MaterialCardView linearLayoutCompat,
       @NonNull LinearLayoutCompat linearLayoutCompatSound1,
       @NonNull LinearLayoutCompat linearLayoutCompatSound2,
+      @NonNull LinearLayoutCompat linearLayoutCompatSound3,
       @NonNull MaterialCardView notificaitonSettingLayout, @NonNull FloatingActionButton play,
       @NonNull AppCompatSpinner selectedLangSpinner, @NonNull AppCompatSpinner selectedVoiceSpinner,
       @NonNull MaterialCardView ttsLayout, @NonNull AppCompatTextView txtDisableDuringCall,
@@ -102,11 +110,13 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
     this.disableDuringMusic = disableDuringMusic;
     this.enableTimeSpeaking = enableTimeSpeaking;
     this.enableWhilePhoneCalls = enableWhilePhoneCalls;
+    this.imgAnnounce = imgAnnounce;
     this.imgCall = imgCall;
     this.imgMusic = imgMusic;
     this.linearLayoutCompat = linearLayoutCompat;
     this.linearLayoutCompatSound1 = linearLayoutCompatSound1;
     this.linearLayoutCompatSound2 = linearLayoutCompatSound2;
+    this.linearLayoutCompatSound3 = linearLayoutCompatSound3;
     this.notificaitonSettingLayout = notificaitonSettingLayout;
     this.play = play;
     this.selectedLangSpinner = selectedLangSpinner;
@@ -166,6 +176,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.imgAnnounce;
+      AppCompatImageView imgAnnounce = ViewBindings.findChildViewById(rootView, id);
+      if (imgAnnounce == null) {
+        break missingId;
+      }
+
       id = R.id.imgCall;
       AppCompatImageView imgCall = ViewBindings.findChildViewById(rootView, id);
       if (imgCall == null) {
@@ -179,7 +195,7 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       }
 
       id = R.id.linearLayoutCompat;
-      LinearLayoutCompat linearLayoutCompat = ViewBindings.findChildViewById(rootView, id);
+      MaterialCardView linearLayoutCompat = ViewBindings.findChildViewById(rootView, id);
       if (linearLayoutCompat == null) {
         break missingId;
       }
@@ -193,6 +209,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       id = R.id.linearLayoutCompatSound2;
       LinearLayoutCompat linearLayoutCompatSound2 = ViewBindings.findChildViewById(rootView, id);
       if (linearLayoutCompatSound2 == null) {
+        break missingId;
+      }
+
+      id = R.id.linearLayoutCompatSound3;
+      LinearLayoutCompat linearLayoutCompatSound3 = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayoutCompatSound3 == null) {
         break missingId;
       }
 
@@ -269,11 +291,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       }
 
       return new FragmentTextToSpeechBinding((ConstraintLayout) rootView, disableDuringMusic,
-          enableTimeSpeaking, enableWhilePhoneCalls, imgCall, imgMusic, linearLayoutCompat,
-          linearLayoutCompatSound1, linearLayoutCompatSound2, notificaitonSettingLayout, play,
-          selectedLangSpinner, selectedVoiceSpinner, ttsLayout, txtDisableDuringCall,
-          txtDisableDuringMusic, txtNotificationSetting, txtSelectLanguage, txtSoundSetting,
-          txtTimeSpeaking, txtVoiceGender);
+          enableTimeSpeaking, enableWhilePhoneCalls, imgAnnounce, imgCall, imgMusic,
+          linearLayoutCompat, linearLayoutCompatSound1, linearLayoutCompatSound2,
+          linearLayoutCompatSound3, notificaitonSettingLayout, play, selectedLangSpinner,
+          selectedVoiceSpinner, ttsLayout, txtDisableDuringCall, txtDisableDuringMusic,
+          txtNotificationSetting, txtSelectLanguage, txtSoundSetting, txtTimeSpeaking,
+          txtVoiceGender);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

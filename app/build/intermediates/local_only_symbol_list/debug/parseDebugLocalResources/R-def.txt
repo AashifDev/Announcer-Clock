@@ -34,6 +34,8 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_logo
 drawable ic_more
+drawable ic_noti_sound
+drawable ic_notication
 drawable ic_notification
 drawable ic_play
 drawable ic_repeat
@@ -47,6 +49,7 @@ drawable ic_vibration
 drawable lightbulb_question
 drawable logo
 drawable notification
+drawable outline_border_header
 drawable productivity
 drawable quran
 drawable sai_baba
@@ -102,15 +105,21 @@ id img3
 id img4
 id img5
 id img6
+id imgAnnounce
 id imgCall
+id imgEnableNotification
 id imgEnd
 id imgMusic
+id imgNotificationSound
 id imgStart
+id imgTheme
 id linearLayoutCompat
-id linearLayoutCompat1
-id linearLayoutCompat2
 id linearLayoutCompatSound1
 id linearLayoutCompatSound2
+id linearLayoutCompatSound3
+id llCompatNotification
+id llDarkThemeLayout
+id llNotificationSound
 id logo
 id main
 id more
@@ -122,6 +131,7 @@ id ourAppFragment
 id ourAppImg
 id ourApps
 id our_app_recycler_view
+id outlineHeader
 id play
 id poweredBt
 id rateApp
@@ -159,6 +169,7 @@ id snackbar_icon
 id snackbar_text
 id sound
 id soundCardView
+id soundLayout
 id soundOptionRecyclerView
 id speakCurrentTime
 id textToSpeechFragment

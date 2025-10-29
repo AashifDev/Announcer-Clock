@@ -4770,6 +4770,8 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_noti_sound
+drawable ic_notication
 drawable ic_notification
 drawable ic_play
 drawable ic_repeat
@@ -4857,6 +4859,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable outline_border_header
 drawable productivity
 drawable quran
 drawable sai_baba
@@ -5174,10 +5177,14 @@ id img3
 id img4
 id img5
 id img6
+id imgAnnounce
 id imgCall
+id imgEnableNotification
 id imgEnd
 id imgMusic
+id imgNotificationSound
 id imgStart
+id imgTheme
 id immediateStop
 id included
 id indeterminate
@@ -5200,12 +5207,14 @@ id line1
 id line3
 id linear
 id linearLayoutCompat
-id linearLayoutCompat1
-id linearLayoutCompat2
 id linearLayoutCompatSound1
 id linearLayoutCompatSound2
+id linearLayoutCompatSound3
 id listMode
 id list_item
+id llCompatNotification
+id llDarkThemeLayout
+id llNotificationSound
 id locale
 id logo
 id ltr
@@ -5325,6 +5334,7 @@ id ourAppImg
 id ourApps
 id our_app_recycler_view
 id outline
+id outlineHeader
 id outward
 id overshoot
 id packed
@@ -5436,6 +5446,7 @@ id snap
 id snapMargins
 id sound
 id soundCardView
+id soundLayout
 id soundOptionRecyclerView
 id south
 id space_around

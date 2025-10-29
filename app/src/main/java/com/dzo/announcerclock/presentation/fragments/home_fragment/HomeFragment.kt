@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.drawable.GradientDrawable
 import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
@@ -191,7 +192,10 @@ class HomeFragment :
     }
 
     private fun applyDynamicColor() {
+        val background = binding.outlineHeader.background as GradientDrawable
+        background.setStroke(5, ColorStateList.valueOf(colorHexx.lighten(0.6f)),10f,10f)
         binding.header.setCardBackgroundColor(colorHexx.lighten(0.2f))
+        //binding.outlineHeader.backgroundTintList = ColorStateList.valueOf(colorHexx.lighten(0.5f))
         binding.volRocker.tickActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
         binding.customToggle.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
         binding.enableScheduling.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())

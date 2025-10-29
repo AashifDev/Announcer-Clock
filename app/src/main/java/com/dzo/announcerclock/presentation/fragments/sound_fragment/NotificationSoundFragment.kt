@@ -104,7 +104,7 @@ class NotificationSoundFragment :
         binding.enableNotificationSound.isChecked = isSoundEnabled
         binding.enableNotificationSound.isEnabled = isNotificationEnabled
 
-        binding.soundCardView.alpha = if (isSoundEnabled) 1f else 0.5f
+        //binding.soundCardView.alpha = if (isSoundEnabled) 1f else 0.5f
         binding.soundOptionRecyclerView.apply {
             alpha = if (isSoundEnabled) 1f else 0.5f
             isEnabled = isSoundEnabled
@@ -123,6 +123,8 @@ class NotificationSoundFragment :
                 val colorInt = colorHexValue.toColorInt()
                 binding.enableNotification.thumbTintList = ColorStateList.valueOf(colorInt)
                 binding.enableNotificationSound.thumbTintList = ColorStateList.valueOf(colorInt)
+                binding.imgNotificationSound.setColorFilter(colorInt)
+                binding.imgEnableNotification.setColorFilter(colorInt)
             }
         }
     }
