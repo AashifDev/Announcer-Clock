@@ -11,6 +11,7 @@ import android.content.res.Configuration
 import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
@@ -328,15 +329,14 @@ class HomeFragment :
                 schTime = AppPreferences.getScheduleTime()
             }
             bottomSheet.show(parentFragmentManager, "ScheduleTimerBottomSheet")
+
         }
     }
 
     private fun setupUIAfterPrefsLoaded() {
         // Restore toggle
-        lifecycleScope.launch {
-            binding.customToggle.isChecked = AppPreferences.getToggleState()
-            binding.enableScheduling.isChecked = AppPreferences.getCustomToggleState()
-        }
+        binding.customToggle.isChecked = AppPreferences.getToggleState()
+        binding.enableScheduling.isChecked = AppPreferences.getCustomToggleState()
 
         if (binding.customToggle.isChecked) {
             if (repeatOption!!.id == 8) {
@@ -355,25 +355,6 @@ class HomeFragment :
 
             }
         }
-
-        if (binding.enableScheduling.isChecked) {
-            /*if (schTime != null) {
-                scheduleTimerModel.startScheduleTimer(
-                    schTime!!.startTimeMillis!!,
-                    schTime!!.endTimeMillis!!,
-                    schTime!!.intervalMillis!!
-                )
-                AppPreferences.saveCustomToggleState(true)
-            } else {
-                requireActivity().showCustomSnackBar(
-                    message = "Please set schedule time first",
-                    iconRes = R.drawable.ic_logo,
-                    colorString = colorHexx
-                )
-            }*/
-            toast(requireContext(),AppPreferences.getCustomToggleState().toString())
-        }
-
 
         binding.customToggle.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -408,30 +389,27 @@ class HomeFragment :
             }
         }
 
-        binding.enableScheduling.setOnCheckedChangeListener(null)
         binding.enableScheduling.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (buttonView.isPressed) {
-                if (isChecked) {
-                    if (schTime != null) {
-                        scheduleTimerModel.startScheduleTimer(
-                            schTime!!.startTimeMillis!!,
-                            schTime!!.endTimeMillis!!,
-                            schTime!!.intervalMillis!!
-                        )
-                        AppPreferences.saveCustomToggleState(true)
-                        println("HomeFragment.setupUIAfterPrefsLoaded::${schTime.toString()}")
-                    } else {
-                        requireActivity().showCustomSnackBar(
-                            message = "Please set schedule time first",
-                            iconRes = R.drawable.ic_logo,
-                            colorString = colorHexx
-                        )
-                        buttonView.isChecked = false
-                    }
+            if (isChecked) {
+                if (schTime != null) {
+                    scheduleTimerModel.startScheduleTimer(
+                        schTime!!.startTimeMillis!!,
+                        schTime!!.endTimeMillis!!,
+                        schTime!!.intervalMillis!!
+                    )
+                    AppPreferences.saveCustomToggleState(true)
+                    println("HomeFragment.setupUIAfterPrefsLoaded::${schTime.toString()}")
                 } else {
-                    scheduleTimerModel.stopTimer()
-                    AppPreferences.saveCustomToggleState(false)
+                    requireActivity().showCustomSnackBar(
+                        message = "Please set schedule time first",
+                        iconRes = R.drawable.ic_logo,
+                        colorString = colorHexx
+                    )
+                    buttonView.isChecked = false
                 }
+            } else {
+                scheduleTimerModel.stopTimer()
+                //AppPreferences.saveCustomToggleState(false)
             }
         }
 
@@ -720,9 +698,10 @@ class HomeFragment :
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
 
-        val params = (view.parent as View).layoutParams as ViewGroup.MarginLayoutParams
+        //add margin to bottomsheet
+        /*val params = (view.parent as View).layoutParams as ViewGroup.MarginLayoutParams
         params.setMargins(32, 16, 32, 16) // left, top, right, bottom in pixels
-        (view.parent as View).layoutParams = params
+        (view.parent as View).layoutParams = params*/
 
         val ourApp = dialog.findViewById<LinearLayoutCompat>(R.id.ourApps)
         val appTheme = dialog.findViewById<LinearLayoutCompat>(R.id.appTheme)
@@ -966,6 +945,7 @@ class HomeFragment :
             endTime = schTime!!.endTimeMillis
             repeatEvery = schTime!!.intervalMillis
         }*/
+        schTime = AppPreferences.getScheduleTime()
 
         if (repeatOption != null && soundOption != null) {
             binding.selectedRepeatTime.text = repeatOption!!.title

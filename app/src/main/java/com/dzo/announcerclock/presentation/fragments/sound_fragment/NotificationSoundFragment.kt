@@ -104,9 +104,13 @@ class NotificationSoundFragment :
         binding.enableNotificationSound.isChecked = isSoundEnabled
         binding.enableNotificationSound.isEnabled = isNotificationEnabled
 
+        binding.soundCardView.alpha = if (isSoundEnabled) 1f else 0.5f
         binding.soundOptionRecyclerView.apply {
-            isEnabled = isSoundEnabled
             alpha = if (isSoundEnabled) 1f else 0.5f
+            isEnabled = isSoundEnabled
+            isClickable = isSoundEnabled
+            isFocusable = isSoundEnabled
+            isFocusableInTouchMode = isSoundEnabled
         }
     }
 

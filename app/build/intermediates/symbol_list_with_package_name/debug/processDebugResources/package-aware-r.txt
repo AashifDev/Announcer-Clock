@@ -11,6 +11,25 @@ anim abc_slide_out_bottom
 anim abc_slide_out_top
 anim abc_tooltip_enter
 anim abc_tooltip_exit
+anim balloon_dispose_center
+anim balloon_elastic_center
+anim balloon_fade
+anim balloon_fade_in
+anim balloon_fade_out
+anim balloon_heartbeat_bottom
+anim balloon_heartbeat_center
+anim balloon_heartbeat_left
+anim balloon_heartbeat_right
+anim balloon_heartbeat_top
+anim balloon_none_in
+anim balloon_none_out
+anim balloon_overshoot_center
+anim balloon_shake_bottom
+anim balloon_shake_left
+anim balloon_shake_right
+anim balloon_shake_top
+anim balloon_show_down_center
+anim balloon_show_up_center
 anim btn_checkbox_to_checked_box_inner_merged_animation
 anim btn_checkbox_to_checked_box_outer_merged_animation
 anim btn_checkbox_to_checked_icon_null_animation
@@ -198,6 +217,15 @@ attr badgeWithTextRadius
 attr badgeWithTextShapeAppearance
 attr badgeWithTextShapeAppearanceOverlay
 attr badgeWithTextWidth
+attr balloon_drawableBottom
+attr balloon_drawableEnd
+attr balloon_drawableHeight
+attr balloon_drawablePadding
+attr balloon_drawableSquareSize
+attr balloon_drawableStart
+attr balloon_drawableTintColor
+attr balloon_drawableTop
+attr balloon_drawableWidth
 attr barLength
 attr barrierAllowsGoneWidgets
 attr barrierDirection
@@ -4663,6 +4691,7 @@ drawable announcement
 drawable app_update
 drawable avd_hide_password
 drawable avd_show_password
+drawable balloon_arrow_drawable
 drawable baseline_check_24
 drawable bg_dialog_round
 drawable bg_round
@@ -4752,6 +4781,7 @@ drawable ic_sounds
 drawable ic_speaker
 drawable ic_stop
 drawable ic_vibration
+drawable lightbulb_question
 drawable logo
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -4949,6 +4979,13 @@ id autoHide
 id autoLimit
 id availableSpace
 id axisRelative
+id balloon
+id balloonOverlayView
+id balloon_arrow
+id balloon_card
+id balloon_content
+id balloon_text
+id balloon_wrapper
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -5116,6 +5153,7 @@ id hide_graphics_layer_in_inspector_tag
 id hide_ime_id
 id hide_in_inspector_tag
 id hideable
+id hint
 id home
 id homeAsUp
 id homeFragment
@@ -5329,6 +5367,7 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id root
 id rounded
 id row
 id row_index_key
@@ -5488,6 +5527,7 @@ id transition_transform
 id triangle
 id tts
 id ttsLayout
+id tvHint
 id tvTitle
 id txtChooseColor
 id txtDisableDuringCall
@@ -5676,6 +5716,8 @@ layout activity_main
 layout activity_splash
 layout adapter_material_color_picker
 layout announcer_dialog
+layout balloon_layout_body
+layout balloon_layout_overlay
 layout custom_dialog
 layout custom_snackbar
 layout custom_toast
@@ -5779,6 +5821,7 @@ layout sound_options_raw_binding
 layout sp_example
 layout ssp_example
 layout support_simple_spinner_dropdown_item
+layout tooltip_layout
 menu menu
 menu more
 mipmap ic_launcher
@@ -6128,6 +6171,12 @@ style Animation_Material3_SideSheetDialog
 style Animation_Material3_SideSheetDialog_Left
 style Animation_Material3_SideSheetDialog_Right
 style Animation_MaterialComponents_BottomSheetDialog
+style Balloon_Elastic_Anim
+style Balloon_Fade_Anim
+style Balloon_None_Anim
+style Balloon_Normal_Anim
+style Balloon_Normal_Dispose_Anim
+style Balloon_Overshoot_Anim
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
@@ -7535,6 +7584,7 @@ styleable Tooltip android_textAppearance android_textColor android_padding andro
 styleable Transform android_transformPivotX android_transformPivotY android_translationX android_translationY android_scaleX android_scaleY android_rotation android_rotationX android_rotationY android_translationZ android_elevation transformPivotTarget
 styleable Transition android_id autoTransition constraintSetEnd constraintSetStart duration layoutDuringTransition motionInterpolator pathMotionArc staggered transitionDisable transitionFlags
 styleable Variant constraints region_heightLessThan region_heightMoreThan region_widthLessThan region_widthMoreThan
+styleable VectorTextView balloon_drawableBottom balloon_drawableEnd balloon_drawableHeight balloon_drawablePadding balloon_drawableSquareSize balloon_drawableStart balloon_drawableTintColor balloon_drawableTop balloon_drawableWidth
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation

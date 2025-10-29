@@ -67,6 +67,9 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
   @NonNull
   public final AppCompatTextView txtStartTime;
 
+  @NonNull
+  public final AppCompatImageView upArrow;
+
   private SchedultTimerBottomSheetBinding(@NonNull LinearLayoutCompat rootView,
       @NonNull ConstraintLayout bgEnd, @NonNull ConstraintLayout bgStart,
       @NonNull AppCompatImageView imgEnd, @NonNull AppCompatImageView imgStart,
@@ -75,7 +78,7 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
       @NonNull AppCompatTextView txtEndTime, @NonNull AppCompatTextView txtRepeatEvery,
       @NonNull AppCompatTextView txtSetEndTime, @NonNull AppCompatTextView txtSetRepeatEveryMinute,
       @NonNull AppCompatTextView txtSetStartTime, @NonNull AppCompatTextView txtStart,
-      @NonNull AppCompatTextView txtStartTime) {
+      @NonNull AppCompatTextView txtStartTime, @NonNull AppCompatImageView upArrow) {
     this.rootView = rootView;
     this.bgEnd = bgEnd;
     this.bgStart = bgStart;
@@ -92,6 +95,7 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
     this.txtSetStartTime = txtSetStartTime;
     this.txtStart = txtStart;
     this.txtStartTime = txtStartTime;
+    this.upArrow = upArrow;
   }
 
   @Override
@@ -211,10 +215,16 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.upArrow;
+      AppCompatImageView upArrow = ViewBindings.findChildViewById(rootView, id);
+      if (upArrow == null) {
+        break missingId;
+      }
+
       return new SchedultTimerBottomSheetBinding((LinearLayoutCompat) rootView, bgEnd, bgStart,
           imgEnd, imgStart, saveSchedule, setEndTime, setStartTime, txtEnd, txtEndTime,
           txtRepeatEvery, txtSetEndTime, txtSetRepeatEveryMinute, txtSetStartTime, txtStart,
-          txtStartTime);
+          txtStartTime, upArrow);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

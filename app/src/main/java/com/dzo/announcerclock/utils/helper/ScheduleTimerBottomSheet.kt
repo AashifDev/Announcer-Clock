@@ -77,12 +77,17 @@ class ScheduleTimerBottomSheet(
         binding.txtEndTime.setTextColor(colorHex.toColorInt())
         binding.txtRepeatEvery.setTextColor(colorHex.toColorInt())
         binding.upArrow.setColorFilter(colorHex.toColorInt())
+        binding.txtStart.setTextColor(colorHex.toColorInt())
+        binding.txtEnd.setTextColor(colorHex.toColorInt())
 
         binding.saveSchedule.backgroundTintList = ColorStateList.valueOf(colorHex.toColorInt())
 
         if (AppPreferences.isDarkThemeEnabled() != true){
-            binding.bgStart.background.setTint(colorHex.lighten(0.8f))
-            binding.bgEnd.background.setTint(colorHex.lighten(0.8f))
+            binding.bgStart.background.setTint(colorHex.lighten(0.9f))
+            binding.bgEnd.background.setTint(colorHex.lighten(0.9f))
+        }else{
+            binding.txtSetRepeatEveryMinute.setTextColor(colorHex.toColorInt())
+
         }
     }
 

@@ -44,6 +44,7 @@ drawable ic_sounds
 drawable ic_speaker
 drawable ic_stop
 drawable ic_vibration
+drawable lightbulb_question
 drawable logo
 drawable notification
 drawable productivity
@@ -92,6 +93,7 @@ id etTotal
 id fragmentContainerView
 id generalSettings
 id header
+id hint
 id homeFragment
 id img
 id img1
@@ -129,6 +131,7 @@ id removeSelectedColor
 id repeat
 id repeatOptionFragment
 id repeatOptionRecyclerView
+id root
 id saveSchedule
 id scrollView
 id selectedItem
@@ -167,6 +170,7 @@ id toast_root
 id toast_text
 id tts
 id ttsLayout
+id tvHint
 id tvTitle
 id txtChooseColor
 id txtDisableDuringCall
@@ -221,6 +225,7 @@ layout our_app_row_item
 layout repeat_option_raw_item
 layout schedult_timer_bottom_sheet
 layout sound_options_raw_binding
+layout tooltip_layout
 menu menu
 menu more
 mipmap ic_launcher

@@ -101,7 +101,6 @@ class ScheduleTimerViewModel
 
     fun stopTimer() {
         timerService?.stopServiceManually()
-
         if (isBound) {
             try {
                 context.unbindService(connection)
@@ -116,6 +115,7 @@ class ScheduleTimerViewModel
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        AppPreferences.saveCustomToggleState(false)
     }
 
     override fun onCleared() {
