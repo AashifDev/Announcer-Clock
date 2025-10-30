@@ -346,13 +346,13 @@ class TextToSpeechFragment :
 
         // Switches
         binding.enableTimeSpeaking.thumbTintList = ColorStateList.valueOf(colorInt)
-        binding.enableTimeSpeaking.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
+        //binding.enableTimeSpeaking.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
 
         binding.enableWhilePhoneCalls.thumbTintList = ColorStateList.valueOf(colorInt)
-        binding.enableWhilePhoneCalls.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
+        //binding.enableWhilePhoneCalls.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
 
         binding.disableDuringMusic.thumbTintList = ColorStateList.valueOf(colorInt)
-        binding.disableDuringMusic.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
+        //binding.disableDuringMusic.trackTintList = ColorStateList.valueOf(adjustAlpha(colorInt, 0.4f))
 
         // Button background
         binding.play.backgroundTintList = ColorStateList.valueOf(colorInt)
@@ -509,10 +509,10 @@ class TextToSpeechFragment :
         }
 
         binding.enableWhilePhoneCalls.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.toggleEnableDuringPhoneCalls(isChecked)
             if (isChecked){
-                viewModel.toggleEnableDuringPhoneCalls(true)
                 requireActivity().showCustomSnackBar(
-                    message = "Text to speech active on calls",
+                    message = "Text to speech will active on calls",
                     iconRes = R.drawable.text_to_speech,
                     colorString = colorHexx
                 )

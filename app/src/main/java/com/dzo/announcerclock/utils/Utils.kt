@@ -44,6 +44,17 @@ object Utils {
         ).show()
     }
 
+    fun milliSecondToTime(timeInMillis: Long): String {
+        val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        val formattedTime = sdf.format(Date(timeInMillis))
+        return formattedTime
+    }
+
+    fun formattedTime(startCal: Calendar?): String {
+        val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(startCal!!.time)
+        return formattedTime
+    }
+
     fun String.lighten(factor: Float = 0.2f): Int {
         val color = this.toColorInt()
         val r = ((Color.red(color) * (1 - factor) + 255 * factor).coerceAtMost(255f)).toInt()

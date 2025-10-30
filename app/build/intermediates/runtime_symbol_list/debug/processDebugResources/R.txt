@@ -4861,6 +4861,7 @@ int drawable notify_panel_notification_icon_bg 0x7f070123
 int drawable outline_border_header 0x7f070136
 int drawable productivity 0x7f070124
 int drawable quran 0x7f070125
+int drawable ripple_effect 0x7f070139
 int drawable sai_baba 0x7f070126
 int drawable schedule_time_background 0x7f070127
 int drawable scheduling 0x7f070128
@@ -5540,6 +5541,7 @@ int id ttsLayout 0x7f08028a
 int id tvHint 0x7f08028b
 int id tvTitle 0x7f08028c
 int id txtChooseColor 0x7f08028d
+int id txtChooseSound 0x7f0802d9
 int id txtDisableDuringCall 0x7f08028e
 int id txtDisableDuringMusic 0x7f08028f
 int id txtEnableDarkTheme 0x7f080290
@@ -5896,6 +5898,7 @@ int string character_counter_content_description 0x7f12002c
 int string character_counter_overflowed_content_description 0x7f12002d
 int string character_counter_pattern 0x7f12002e
 int string choose_theme_color_options 0x7f12002f
+int string choose_your_sound 0x7f120142
 int string clear_text_end_icon_content_description 0x7f120030
 int string close_drawer 0x7f120031
 int string close_sheet 0x7f120032
@@ -6145,6 +6148,7 @@ int string select_language 0x7f120125
 int string select_pitch_rate 0x7f120126
 int string select_speech_rate 0x7f120127
 int string selected 0x7f120128
+int string set_schedule_timer 0x7f120143
 int string share_app 0x7f120129
 int string side_sheet_accessibility_pane_title 0x7f12012a
 int string side_sheet_behavior 0x7f12012b

@@ -4,17 +4,20 @@ import android.app.Activity.RESULT_CANCELED
 import android.app.Dialog
 import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Context.RECEIVER_NOT_EXPORTED
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.drawable.GradientDrawable
 import android.media.AudioManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -35,6 +38,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.registerReceiver
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -45,6 +50,7 @@ import com.bumptech.glide.Glide
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.FragmentHomeBinding
+import com.dzo.announcerclock.databinding.MoreLayoutBinding
 import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
 import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
 import com.dzo.announcerclock.presentation.fragments.home_fragment.model.TtsSettings
@@ -55,11 +61,13 @@ import com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.Rep
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel
 import com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel
+import com.dzo.announcerclock.utils.Constants
 import com.dzo.announcerclock.utils.Utils
 import com.dzo.announcerclock.utils.helper.AnimationType
 import com.dzo.announcerclock.utils.Utils.lighten
 import com.dzo.announcerclock.utils.helper.animateTimerText
 import com.dzo.announcerclock.utils.core.BaseFragment
+import com.dzo.announcerclock.utils.extension.getRippleResource
 import com.dzo.announcerclock.utils.extension.showColoredToast
 import com.dzo.announcerclock.utils.extension.showCustomSnackBar
 import com.dzo.announcerclock.utils.helper.InAppReviewUtil
@@ -133,12 +141,33 @@ class HomeFragment :
             }
         }
     }
+    private val rippleTypedValue by lazy {
+        TypedValue().apply {
+            requireContext().theme.resolveAttribute(
+                android.R.attr.selectableItemBackground, this, true
+            )
+        }
+    }
+    private val serviceStatusReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == "com.dzo.announcerclock.SERVICE_STATUS") {
+                val enabled = intent.getBooleanExtra("enabled", false)
+                binding.enableScheduling.isChecked = enabled
+                toast(requireContext(), enabled.toString())
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         startCal = Calendar.getInstance()
         endCal = Calendar.getInstance()
+
+        binding.setRepeatTime.setBackgroundResource(requireContext().getRippleResource(false))
+        binding.setSound.setBackgroundResource(requireContext().getRippleResource(false))
+        binding.setTtsSettings.setBackgroundResource(requireContext().getRippleResource(false))
+        binding.setScheduling.setBackgroundResource(requireContext().getRippleResource(false))
 
         checkForUpdate()
 
@@ -193,7 +222,7 @@ class HomeFragment :
 
     private fun applyDynamicColor() {
         val background = binding.outlineHeader.background as GradientDrawable
-        background.setStroke(5, ColorStateList.valueOf(colorHexx.lighten(0.6f)),10f,10f)
+        background.setStroke(3, ColorStateList.valueOf(colorHexx.lighten(0.6f)), 10f, 10f)
         binding.header.setCardBackgroundColor(colorHexx.lighten(0.2f))
         //binding.outlineHeader.backgroundTintList = ColorStateList.valueOf(colorHexx.lighten(0.5f))
         binding.volRocker.tickActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
@@ -329,12 +358,14 @@ class HomeFragment :
 
         binding.setScheduling.setOnClickListener {
             //showScheduleTimerBottomSheet(this)
-            val bottomSheet = ScheduleTimerBottomSheet(colorHexx){
+            val bottomSheet = ScheduleTimerBottomSheet(colorHexx) {
                 schTime = AppPreferences.getScheduleTime()
             }
             bottomSheet.show(parentFragmentManager, "ScheduleTimerBottomSheet")
 
         }
+        binding.header.setOnClickListener {  }
+        binding.customScheduling.setOnClickListener {  }
     }
 
     private fun setupUIAfterPrefsLoaded() {
@@ -375,9 +406,10 @@ class HomeFragment :
                             AppPreferences.getRepeatOption()?.valueInMinute ?: 1L
                         )
                     }
+
                 }
                 AppPreferences.saveToggleState(true)
-
+                headerCardRipple()
                 //In app review
                 /*AppPreferences.incrementToggleCount()
                 val count = AppPreferences.getToggleCount()
@@ -390,6 +422,8 @@ class HomeFragment :
                     AppPreferences.saveToggleState(false)
                     timerViewModel.stopTimer()
                 }
+                headerCardRipple()
+
             }
         }
 
@@ -411,12 +445,29 @@ class HomeFragment :
                     )
                     buttonView.isChecked = false
                 }
+                customSchedulingRipple()
             } else {
                 scheduleTimerModel.stopTimer()
+                customSchedulingRipple()
+
                 //AppPreferences.saveCustomToggleState(false)
             }
         }
+    }
 
+
+    private fun headerCardRipple(){
+        binding.header.isPressed = true
+        binding.header.postDelayed({
+            binding.header.isPressed = false
+        }, 200)
+    }
+
+    private fun customSchedulingRipple(){
+        binding.customScheduling.isPressed = true
+        binding.customScheduling.postDelayed({
+            binding.customScheduling.isPressed = false
+        }, 200)
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -681,7 +732,7 @@ class HomeFragment :
         }
     }
 
-    private fun showAnnouncerDialog(){
+    private fun showAnnouncerDialog() {
         val dialog = Dialog(requireContext()).apply {
             setContentView(R.layout.announcer_dialog)
             setCancelable(true)
@@ -693,66 +744,61 @@ class HomeFragment :
         dialog.show()
         Handler().postDelayed({
             dialog.dismiss()
-        },2500)
+        }, 2500)
     }
+
     fun showBottomSheet(context: Context) {
+        // Inflate view using ViewBinding
+        val binding = MoreLayoutBinding.inflate(LayoutInflater.from(context))
         val dialog = BottomSheetDialog(context, R.style.CustomBottomSheetDialogTheme)
-        val view = LayoutInflater.from(context).inflate(R.layout.more_layout, null)
-        dialog.setContentView(view)
+        dialog.setContentView(binding.root)
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
 
-        //add margin to bottomsheet
-        /*val params = (view.parent as View).layoutParams as ViewGroup.MarginLayoutParams
-        params.setMargins(32, 16, 32, 16) // left, top, right, bottom in pixels
-        (view.parent as View).layoutParams = params*/
+        binding.ourApps.setBackgroundResource(requireContext().getRippleResource(true))
+        binding.appTheme.setBackgroundResource(context.getRippleResource(true))
+        binding.rateApp.setBackgroundResource(context.getRippleResource(true))
+        binding.shareApp.setBackgroundResource(context.getRippleResource(false))
+        binding.appVersion.setBackgroundResource(context.getRippleResource(false))
 
-        val ourApp = dialog.findViewById<LinearLayoutCompat>(R.id.ourApps)
-        val appTheme = dialog.findViewById<LinearLayoutCompat>(R.id.appTheme)
-        val rateApp = dialog.findViewById<LinearLayoutCompat>(R.id.rateApp)
-        val shareApp = dialog.findViewById<LinearLayoutCompat>(R.id.shareApp)
-        val txtVersionName = dialog.findViewById<AppCompatTextView>(R.id.txtVersionName)
-        val ourAppImg = dialog.findViewById<AppCompatImageView>(R.id.ourAppImg)
-        val themeImg = dialog.findViewById<AppCompatImageView>(R.id.themeImg)
-        val rateAppImg = dialog.findViewById<AppCompatImageView>(R.id.rateAppImg)
-        val shareImg = dialog.findViewById<AppCompatImageView>(R.id.shareImg)
-        val versionImg = dialog.findViewById<AppCompatImageView>(R.id.versionImg)
-        val more = dialog.findViewById<AppCompatTextView>(R.id.more)
+        // Apply color filters
+        binding.ourAppImg.setColorFilter(colorHexx.toColorInt())
+        binding.themeImg.setColorFilter(colorHexx.toColorInt())
+        binding.rateAppImg.setColorFilter(colorHexx.toColorInt())
+        binding.shareImg.setColorFilter(colorHexx.toColorInt())
+        binding.versionImg.setColorFilter(colorHexx.toColorInt())
+        binding.more.setTextColor(colorHexx.toColorInt())
+        binding.txtVersionName.setTextColor(colorHexx.toColorInt())
 
-        ourAppImg!!.setColorFilter(colorHexx.toColorInt())
-        themeImg!!.setColorFilter(colorHexx.toColorInt())
-        rateAppImg!!.setColorFilter(colorHexx.toColorInt())
-        shareImg!!.setColorFilter(colorHexx.toColorInt())
-        versionImg!!.setColorFilter(colorHexx.toColorInt())
-        more!!.setTextColor(colorHexx.toColorInt())
-        txtVersionName!!.setTextColor(colorHexx.toColorInt())
-
-        ourApp?.setOnClickListener {
+        // Click Listeners
+        binding.ourApps.setOnClickListener {
             findNavController().navigate(R.id.ourAppFragment)
             dialog.dismiss()
         }
 
-        rateApp?.setOnClickListener {
+        binding.rateApp.setOnClickListener {
             Utils.openPlayStore(requireContext(), requireContext().packageName)
         }
-        shareApp?.setOnClickListener {
-            Utils.shareApp(requireContext(),requireContext().packageName)
+
+        binding.shareApp.setOnClickListener {
+            Utils.shareApp(requireContext(), requireContext().packageName)
         }
 
-        appTheme?.setOnClickListener {
+        binding.appTheme.setOnClickListener {
             findNavController().navigate(R.id.appThemeFragment)
             dialog.dismiss()
         }
 
+        // App version info
         val packageInfo =
             requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
         val versionName = packageInfo.versionName
         val versionCode = packageInfo.longVersionCode
-
-        ("App Version: $versionName ($versionCode)").also { txtVersionName.text = it }
+        binding.txtVersionName.text = "App Version: $versionName ($versionCode)"
 
         dialog.show()
     }
+
 
     fun showScheduleTimerBottomSheet(
         listener: OnBottomSheetResultListener
@@ -939,6 +985,11 @@ class HomeFragment :
             appUpdateManager!!.completeUpdate()
         }*/
 
+        val filter = IntentFilter(Constants.ACTION_UPDATE_UI_LOCAL)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requireContext()
+                .registerReceiver(serviceStatusReceiver, filter, RECEIVER_NOT_EXPORTED)
+        }
 
         val darkMode = AppPreferences.isDarkThemeEnabled()
         //setUiThemeMode()
@@ -1006,10 +1057,10 @@ class HomeFragment :
         super.onResume()
 
         appUpdateManager!!.appUpdateInfo.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
-                if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                    popupSnackBarForCompleteUpdate()
-                }
+            if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                popupSnackBarForCompleteUpdate()
             }
+        }
 
 
     }

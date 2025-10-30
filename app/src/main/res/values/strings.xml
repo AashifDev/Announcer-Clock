@@ -3,7 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="speak">speak</string>
-    <string name="customize_tts">Customize tts</string>
+    <string name="customize_tts">Text To Speech</string>
     <string name="voice_gender">Voice Gender</string>
     <string name="select_language">Select Language</string>
     <string name="select_speech_rate">Select Speech Rate</string>
@@ -37,5 +37,7 @@
     <string name="schedule_timer">Schedule timer</string>
     <string name="schedule_time">Schedule time</string>
     <string name="speak_time_every">speak time every</string>
+    <string name="choose_your_sound">Choose your sound</string>
+    <string name="set_schedule_timer">SET SCHEDULE TIMER</string>
 
 </resources>

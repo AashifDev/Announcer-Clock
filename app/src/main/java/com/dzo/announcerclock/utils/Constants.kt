@@ -11,7 +11,9 @@ object Constants {
     const val KEY_SCHEDULE_TIME = "schedule_time"
     const val KEY_TOGGLE_COUNT = "toggle_count"
     const val ACTION_TOGGLE_UPDATE = "com.dzo.announcerclock.KEY_SCHEDULE_FINISHED"
-    const val TTS_SPEAKING = "com.dzo.announcerclock.TTS_SPEAKING"
+
+    const val ACTION_TOGGLE_SERVICE_LOCAL = "com.dzo.announcerclock.ACTION_TOGGLE_SERVICE"
+    const val ACTION_UPDATE_UI_LOCAL = "com.dzo.announcerclock.ACTION_UPDATE_UI"
     const val EXTRA_IS_ENABLED = "EXTRA_IS_ENABLED"
     const val KEY_TOGGLE_STATE = "toggle_state"
     const val KEY_CUSTOM_TOGGLE_STATE = "custom_toggle_state"

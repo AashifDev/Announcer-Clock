@@ -5,6 +5,7 @@
     <string name="select_pitch_rate">Select Pitch Rate</string>
     <string name="general_settings">General Settings</string>
     <string name="repeat_every">Repeat Every</string>
+    <string name="customize_tts">Text To Speech</string>
     <string name="sounds">Sounds</string>
     <string name="vibration">Vibration</string>
     <string name="volume">Volume</string>
@@ -31,4 +32,6 @@
     <string name="schedule_timer">Schedule timer</string>
     <string name="schedule_time">Schedule time</string>
     <string name="speak_time_every">speak time every</string>
+    <string name="choose_your_sound">Choose your sound</string>
+    <string name="set_schedule_timer">SET SCHEDULE TIMER</string>
 </resources>

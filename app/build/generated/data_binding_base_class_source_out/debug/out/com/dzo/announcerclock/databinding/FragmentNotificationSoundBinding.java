@@ -8,6 +8,7 @@ import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -53,6 +54,9 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
   @NonNull
   public final RecyclerView soundOptionRecyclerView;
 
+  @NonNull
+  public final AppCompatTextView txtChooseSound;
+
   private FragmentNotificationSoundBinding(@NonNull ScrollView rootView,
       @NonNull SwitchMaterial enableNotification, @NonNull SwitchMaterial enableNotificationSound,
       @NonNull AppCompatImageView imgEnableNotification,
@@ -60,7 +64,7 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
       @NonNull LinearLayoutCompat linearLayoutCompatSound3,
       @NonNull MaterialCardView llCompatNotification, @NonNull MaterialCardView llNotificationSound,
       @NonNull MaterialCardView soundCardView, @NonNull LinearLayoutCompat soundLayout,
-      @NonNull RecyclerView soundOptionRecyclerView) {
+      @NonNull RecyclerView soundOptionRecyclerView, @NonNull AppCompatTextView txtChooseSound) {
     this.rootView = rootView;
     this.enableNotification = enableNotification;
     this.enableNotificationSound = enableNotificationSound;
@@ -72,6 +76,7 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
     this.soundCardView = soundCardView;
     this.soundLayout = soundLayout;
     this.soundOptionRecyclerView = soundOptionRecyclerView;
+    this.txtChooseSound = txtChooseSound;
   }
 
   @Override
@@ -161,10 +166,16 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.txtChooseSound;
+      AppCompatTextView txtChooseSound = ViewBindings.findChildViewById(rootView, id);
+      if (txtChooseSound == null) {
+        break missingId;
+      }
+
       return new FragmentNotificationSoundBinding((ScrollView) rootView, enableNotification,
           enableNotificationSound, imgEnableNotification, imgNotificationSound,
           linearLayoutCompatSound3, llCompatNotification, llNotificationSound, soundCardView,
-          soundLayout, soundOptionRecyclerView);
+          soundLayout, soundOptionRecyclerView, txtChooseSound);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

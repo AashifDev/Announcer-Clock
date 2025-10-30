@@ -107,7 +107,7 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ConstraintLayout setRepeatTime;
 
   @NonNull
-  public final ConstraintLayout setScheduling;
+  public final LinearLayoutCompat setScheduling;
 
   @NonNull
   public final ConstraintLayout setSound;
@@ -183,7 +183,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull ScrollView scrollView, @NonNull AppCompatTextView selectedRepeatTime,
       @NonNull AppCompatTextView selectedSound, @NonNull AppCompatTextView selectedVibration,
       @NonNull AppCompatTextView selectedVolume, @NonNull ConstraintLayout setRepeatTime,
-      @NonNull ConstraintLayout setScheduling, @NonNull ConstraintLayout setSound,
+      @NonNull LinearLayoutCompat setScheduling, @NonNull ConstraintLayout setSound,
       @NonNull ConstraintLayout setTheme, @NonNull ConstraintLayout setTtsSettings,
       @NonNull ConstraintLayout setVibration, @NonNull ConstraintLayout setVolume,
       @NonNull MaterialCardView settings, @NonNull AppCompatTextView sound,
@@ -424,7 +424,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       id = R.id.setScheduling;
-      ConstraintLayout setScheduling = ViewBindings.findChildViewById(rootView, id);
+      LinearLayoutCompat setScheduling = ViewBindings.findChildViewById(rootView, id);
       if (setScheduling == null) {
         break missingId;
       }

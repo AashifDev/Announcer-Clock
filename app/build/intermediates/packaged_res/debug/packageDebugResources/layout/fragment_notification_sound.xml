@@ -134,6 +134,20 @@
 
        </com.google.android.material.card.MaterialCardView>
 
+
+       <androidx.appcompat.widget.AppCompatTextView
+           android:id="@+id/txtChooseSound"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/_16sdp"
+           android:text="@string/choose_your_sound"
+           android:textColor="@color/dark_grey"
+           android:textSize="@dimen/_14ssp"
+           android:textStyle="normal"
+           android:layout_marginStart="@dimen/_8sdp"
+           app:layout_constraintStart_toStartOf="@+id/llNotificationSound"
+           app:layout_constraintTop_toBottomOf="@id/llNotificationSound" />
+
        <com.google.android.material.card.MaterialCardView
            android:layout_width="match_parent"
            android:layout_height="0dp"
@@ -142,7 +156,7 @@
            android:id="@+id/soundCardView"
            android:layout_margin="@dimen/_12sdp"
            app:cardCornerRadius="@dimen/_14sdp"
-           app:layout_constraintTop_toBottomOf="@id/llNotificationSound"
+           app:layout_constraintTop_toBottomOf="@id/txtChooseSound"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent">
 

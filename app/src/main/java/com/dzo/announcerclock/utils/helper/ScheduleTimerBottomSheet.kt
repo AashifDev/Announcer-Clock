@@ -1,29 +1,26 @@
 package com.dzo.announcerclock.utils.helper
 
-import android.app.Dialog
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.toColorInt
-import androidx.fragment.app.activityViewModels
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import androidx.appcompat.widget.LinearLayoutCompat
 import com.dzo.announcerclock.databinding.SchedultTimerBottomSheetBinding
-import com.dzo.announcerclock.presentation.fragments.home_fragment.OnBottomSheetResultListener
 import com.dzo.announcerclock.presentation.fragments.home_fragment.model.ScheduleTimerModel
+import com.dzo.announcerclock.utils.Utils
+import com.dzo.announcerclock.utils.Utils.formattedTime
 import com.dzo.announcerclock.utils.Utils.lighten
+import com.dzo.announcerclock.utils.Utils.milliSecondToTime
+import com.dzo.announcerclock.utils.extension.getRippleResource
 import com.dzo.announcerclock.utils.extension.showColoredToast
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
@@ -43,6 +40,14 @@ class ScheduleTimerBottomSheet(
     private var repeatEvery: Long? = null
     private var startCal: Calendar? = null
     private var endCal: Calendar? = null
+
+    private val rippleTypedValue by lazy {
+        TypedValue().apply {
+            requireContext().theme.resolveAttribute(
+                android.R.attr.selectableItemBackgroundBorderless, this, true
+            )
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,18 +87,32 @@ class ScheduleTimerBottomSheet(
 
         binding.saveSchedule.backgroundTintList = ColorStateList.valueOf(colorHex.toColorInt())
 
-        if (AppPreferences.isDarkThemeEnabled() != true){
+        if (AppPreferences.isDarkThemeEnabled() != true) {
             binding.bgStart.background.setTint(colorHex.lighten(0.9f))
             binding.bgEnd.background.setTint(colorHex.lighten(0.9f))
-        }else{
+        } else {
             binding.txtSetRepeatEveryMinute.setTextColor(colorHex.toColorInt())
-
         }
+
+
     }
 
-    private fun setupListeners() = with(binding){
-        setStartTime.setOnClickListener { showStartTimePicker(binding.txtSetStartTime) }
-        setEndTime.setOnClickListener { showEndTimePicker(binding.txtSetEndTime, binding.txtSetRepeatEveryMinute) }
+    private fun setupListeners() = with(binding) {
+        setStartTime.setBackgroundResource(requireContext().getRippleResource(true))
+        setEndTime.setBackgroundResource(requireContext().getRippleResource(true))
+        txtSetRepeatEveryMinute.setBackgroundResource(rippleTypedValue.resourceId)
+
+        setStartTime.setOnClickListener {
+            showStartTimePicker(binding.txtSetStartTime)
+        }
+
+        setEndTime.setOnClickListener {
+            showEndTimePicker(
+                binding.txtSetEndTime,
+                binding.txtSetRepeatEveryMinute
+            )
+        }
+
         txtSetRepeatEveryMinute.setOnClickListener { showMinutePickerDialog(binding.txtSetRepeatEveryMinute) }
 
         saveSchedule.setOnClickListener {
@@ -121,7 +140,16 @@ class ScheduleTimerBottomSheet(
 
             binding.txtSetStartTime.text = milliSecondToTime(startTime!!)
             binding.txtSetEndTime.text = milliSecondToTime(endTime!!)
-            binding.txtSetRepeatEveryMinute.text = "${repeatEvery} minute"
+            "$repeatEvery minute".also { binding.txtSetRepeatEveryMinute.text = it }
+        }else{
+           /* val currentTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+
+            binding.txtSetStartTime.apply {
+                text = currentTime
+            }
+            binding.txtSetEndTime.apply {
+                text = currentTime
+            }*/
         }
     }
 
@@ -181,16 +209,6 @@ class ScheduleTimerBottomSheet(
         picker.show(parentFragmentManager, "end_time_picker")
     }
 
-    private fun milliSecondToTime(timeInMillis: Long): String {
-        val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
-        val formattedTime = sdf.format(Date(timeInMillis))
-        return formattedTime
-    }
-
-    private fun formattedTime(startCal: Calendar?): String {
-        val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(startCal!!.time)
-        return formattedTime
-    }
 
     private fun showMinutePickerDialog(txtSetRepeatEveryMinute: AppCompatTextView?) {
         val evenNumbers = (2..60 step 2).map { it.toString() }.toTypedArray()

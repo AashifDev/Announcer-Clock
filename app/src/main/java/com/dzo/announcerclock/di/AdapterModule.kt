@@ -1,11 +1,13 @@
 package com.dzo.announcerclock.di
 
+import android.content.Context
 import com.dzo.announcerclock.presentation.fragments.our_app_fragment.adapter.OtherAppAdapter
 import com.dzo.announcerclock.presentation.fragments.repeat_option.adapter.RepeatOptionAdapter
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.adapter.SoundOptionAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -28,7 +30,9 @@ object AdapterModule {
 
     @Singleton
     @Provides
-    fun provideOurOtherAppAdapter(): OtherAppAdapter {
-        return OtherAppAdapter()
+    fun provideOurOtherAppAdapter(
+        @ApplicationContext context: Context
+    ): OtherAppAdapter {
+        return OtherAppAdapter(context)
     }
 }

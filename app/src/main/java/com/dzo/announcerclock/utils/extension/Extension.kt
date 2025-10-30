@@ -7,6 +7,7 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
 import android.os.Handler
 import android.os.Looper
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.dzo.announcerclock.R
 import com.google.android.material.snackbar.Snackbar
 import com.dzo.announcerclock.utils.Utils.lighten
 import androidx.core.graphics.toColorInt
+import com.dzo.announcerclock.R
 
 @SuppressLint("RestrictedApi")
 fun Activity.showCustomSnackBar(
@@ -104,6 +105,15 @@ fun Activity.showCustomSnackBar(
     }
 
     snackbar.show()
+}
+fun Context.getRippleResource(borderless: Boolean = true): Int {
+    val typedValue = TypedValue()
+    val attr = if (borderless)
+        android.R.attr.selectableItemBackgroundBorderless
+    else
+        android.R.attr.selectableItemBackground
+    theme.resolveAttribute(attr, typedValue, true)
+    return typedValue.resourceId
 }
 
 fun Context.showColoredToast(

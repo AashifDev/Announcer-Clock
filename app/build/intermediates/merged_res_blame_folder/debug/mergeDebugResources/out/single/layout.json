@@ -40,16 +40,16 @@
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-88:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.dzo.announcerclock.app-mergeDebugResources-85:/layout/fragment_notification_sound.xml",
-        "source": "com.dzo.announcerclock.app-main-88:/layout/fragment_notification_sound.xml"
-    },
-    {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-85:\\layout\\tooltip_layout.xml",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-88:\\layout\\tooltip_layout.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-85:\\layout\\announcer_dialog.xml",
         "source": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-main-88:\\layout\\announcer_dialog.xml"
+    },
+    {
+        "merged": "com.dzo.announcerclock.app-mergeDebugResources-85:/layout/fragment_home.xml",
+        "source": "com.dzo.announcerclock.app-main-88:/layout/fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\luthr\\AppData\\Local\\Android\\Sdk\\daemon\\8.13\\com.dzo.announcerclock.app-mergeDebugResources-85:\\layout\\fragment_our_app.xml",

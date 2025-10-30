@@ -490,30 +490,30 @@ public final class DaggerApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
-
       static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
-
-      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel = "com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel";
 
-      @KeepFieldType
-      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
+      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.ScheduleTimerViewModel";
+
+      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
 
       @KeepFieldType
       RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
-
-      @KeepFieldType
-      ScheduleTimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel2;
 
       @KeepFieldType
       SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
 
       @KeepFieldType
       TtsViewModel com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel2;
+
+      @KeepFieldType
+      ScheduleTimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel2;
+
+      @KeepFieldType
+      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
     }
   }
 
@@ -614,11 +614,11 @@ public final class DaggerApp_HiltComponents_SingletonC {
 
       static String com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel = "com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel";
 
-      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
+      static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
 
       static String com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel = "com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel";
 
-      static String com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel = "com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel";
+      static String com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel = "com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel.TimerViewModel";
 
       @KeepFieldType
       ScheduleTimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_ScheduleTimerViewModel2;
@@ -627,13 +627,13 @@ public final class DaggerApp_HiltComponents_SingletonC {
       TtsViewModel com_dzo_announcerclock_presentation_fragments_tts_fragment_viewmodel_TtsViewModel2;
 
       @KeepFieldType
-      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
+      SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
 
       @KeepFieldType
       RepeatOptionViewModel com_dzo_announcerclock_presentation_fragments_repeat_option_viewmodel_RepeatOptionViewModel2;
 
       @KeepFieldType
-      SoundOptionViewModel com_dzo_announcerclock_presentation_fragments_sound_fragment_viewmodel_SoundOptionViewModel2;
+      TimerViewModel com_dzo_announcerclock_presentation_fragments_home_fragment_viewmodel_TimerViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {
@@ -843,7 +843,7 @@ public final class DaggerApp_HiltComponents_SingletonC {
           return (T) AppModule_ProvideTimerRepositoryFactory.provideTimerRepository();
 
           case 1: // com.dzo.announcerclock.presentation.fragments.our_app_fragment.adapter.OtherAppAdapter 
-          return (T) AdapterModule_ProvideOurOtherAppAdapterFactory.provideOurOtherAppAdapter();
+          return (T) AdapterModule_ProvideOurOtherAppAdapterFactory.provideOurOtherAppAdapter(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
           case 2: // com.dzo.announcerclock.presentation.fragments.repeat_option.adapter.RepeatOptionAdapter 
           return (T) AdapterModule_ProvideRepeatOptionAdapterFactory.provideRepeatOptionAdapter();

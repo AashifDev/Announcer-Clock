@@ -1,5 +1,6 @@
 package com.dzo.announcerclock.presentation.fragments.our_app_fragment.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.graphics.toColorInt
@@ -9,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.OurAppRowItemBinding
 import com.dzo.announcerclock.presentation.fragments.our_app_fragment.model.OtherAppModel
+import com.dzo.announcerclock.utils.extension.getRippleResource
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
 @FragmentScoped
 class OtherAppAdapter @Inject constructor(
+    @ApplicationContext val context: Context
 ) : ListAdapter<OtherAppModel, OtherAppAdapter.OtherAppViewHolder>(OtherAppDiffCallback) {
 
     var onItemClick: ((OtherAppModel) -> Unit)? = null
@@ -52,6 +56,8 @@ class OtherAppAdapter @Inject constructor(
             binding.root.setOnClickListener {
                 onItemClick?.invoke(item)
             }
+            binding.root.setBackgroundResource(context.getRippleResource(false))
+
         }
 
     }

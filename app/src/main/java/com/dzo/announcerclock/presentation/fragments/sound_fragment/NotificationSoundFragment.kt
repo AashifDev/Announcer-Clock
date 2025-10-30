@@ -2,6 +2,8 @@ package com.dzo.announcerclock.presentation.fragments.sound_fragment
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.viewModels
@@ -38,6 +40,10 @@ class NotificationSoundFragment :
         collectSoundOptions()
         restorePreviousState()
         observeThemeChanges()
+
+        binding.llCompatNotification.setOnClickListener { }
+        binding.llNotificationSound.setOnClickListener { }
+
     }
 
     // ---------------------- Setup UI ----------------------
@@ -66,6 +72,10 @@ class NotificationSoundFragment :
                 isEnabled = isChecked
                 if (!isChecked) this.isChecked = false
             }
+            if (isChecked)
+                enableNotificationRipple()
+            else
+                enableNotificationRipple()
         }
 
         // Notification sound toggle
@@ -75,6 +85,10 @@ class NotificationSoundFragment :
                 isEnabled = isChecked
                 alpha = if (isChecked) 1f else 0.5f
             }
+            if (isChecked)
+                enableNotificationSoundRipple()
+            else
+                enableNotificationSoundRipple()
         }
     }
 
@@ -127,5 +141,19 @@ class NotificationSoundFragment :
                 binding.imgEnableNotification.setColorFilter(colorInt)
             }
         }
+    }
+
+    private fun enableNotificationRipple(){
+        binding.llCompatNotification.isPressed = true
+        binding.llCompatNotification.postDelayed({
+            binding.llCompatNotification.isPressed = false
+        },200)
+    }
+
+    private fun enableNotificationSoundRipple(){
+        binding.llNotificationSound.isPressed = true
+        binding.llNotificationSound.postDelayed({
+            binding.llNotificationSound.isPressed = false
+        },200)
     }
 }

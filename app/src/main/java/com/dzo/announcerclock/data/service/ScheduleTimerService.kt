@@ -21,7 +21,6 @@ import com.dzo.announcerclock.utils.helper.AudioPlaybackListener
 import com.dzo.announcerclock.utils.Constants
 import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
 import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
-import com.dzo.announcerclock.utils.Constants.TTS_SPEAKING
 import com.dzo.announcerclock.utils.helper.PhoneCallListener
 import com.dzo.announcerclock.utils.helper.PreferenceHelper
 import com.dzo.announcerclock.utils.Utils.toast

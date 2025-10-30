@@ -1,7 +1,7 @@
 package com.dzo.announcerclock.data.service;
 
 @dagger.hilt.android.AndroidEntryPoint()
-@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000r\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0016\b\u0007\u0018\u00002\u00020\u00012\u00020\u0002:\u0001EB\u0005\u00a2\u0006\u0002\u0010\u0003J\u000e\u0010(\u001a\u00020)H\u0082@\u00a2\u0006\u0002\u0010*J\b\u0010+\u001a\u00020)H\u0002J\b\u0010,\u001a\u00020)H\u0002J\u0012\u0010-\u001a\u00020.2\b\u0010/\u001a\u0004\u0018\u000100H\u0016J\b\u00101\u001a\u00020)H\u0016J\b\u00102\u001a\u00020)H\u0016J\u0010\u00103\u001a\u00020)2\u0006\u00104\u001a\u00020\u0006H\u0016J\"\u00105\u001a\u00020\u00062\b\u0010/\u001a\u0004\u0018\u0001002\u0006\u00106\u001a\u00020\u00062\u0006\u00107\u001a\u00020\u0006H\u0016J\u0012\u00108\u001a\u00020)2\b\u00109\u001a\u0004\u0018\u000100H\u0016J\b\u0010:\u001a\u00020)H\u0002J\b\u0010;\u001a\u00020)H\u0002J\u000e\u0010<\u001a\u00020)H\u0082@\u00a2\u0006\u0002\u0010*J\b\u0010=\u001a\u00020)H\u0002J\u0018\u0010>\u001a\u00020)2\u0006\u0010?\u001a\u00020\u00122\u0006\u0010@\u001a\u00020\u0012H\u0002J\b\u0010A\u001a\u00020)H\u0002J\u0010\u0010B\u001a\u00020)2\u0006\u0010C\u001a\u00020\u0012H\u0002J\u0006\u0010D\u001a\u00020)R\u0014\u0010\u0004\u001a\b\u0012\u0004\u0012\u00020\u00060\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\u0007\u001a\b\u0012\u0004\u0012\u00020\b0\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u001e\u0010\t\u001a\u00020\n8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u0010\u0010\u000f\u001a\u0004\u0018\u00010\u0010X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0011\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0013\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0014\u001a\u00020\u0015X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0016\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0010\u0010\u0017\u001a\u0004\u0018\u00010\u0018X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0017\u0010\u0019\u001a\b\u0012\u0004\u0012\u00020\u00060\u001a\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001b\u0010\u001cR\u000e\u0010\u001d\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0017\u0010\u001e\u001a\b\u0012\u0004\u0012\u00020\b0\u001a\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001f\u0010\u001cR\u0010\u0010 \u001a\u0004\u0018\u00010!X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\"\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010#\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0010\u0010$\u001a\u0004\u0018\u00010%X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010&\u001a\u00020\u0015X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\'\u001a\u00020\u0015X\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u0006F"}, d2 = {"Lcom/dzo/announcerclock/data/service/TimerService;", "Landroid/app/Service;", "Landroid/speech/tts/TextToSpeech$OnInitListener;", "()V", "_progressFlow", "Lkotlinx/coroutines/flow/MutableStateFlow;", "", "_timeFlow", "", "announceTimeUseCase", "Lcom/dzo/announcerclock/domain/timer_usecase/AnnounceTimeUseCase;", "getAnnounceTimeUseCase", "()Lcom/dzo/announcerclock/domain/timer_usecase/AnnounceTimeUseCase;", "setAnnounceTimeUseCase", "(Lcom/dzo/announcerclock/domain/timer_usecase/AnnounceTimeUseCase;)V", "audioListener", "Lcom/dzo/announcerclock/utils/helper/AudioPlaybackListener;", "elapsedTime", "", "elapsedTimeCustom", "isRunning", "", "lastAnnounceTime", "phoneListener", "Lcom/dzo/announcerclock/utils/helper/PhoneCallListener;", "progressFlow", "Lkotlinx/coroutines/flow/StateFlow;", "getProgressFlow", "()Lkotlinx/coroutines/flow/StateFlow;", "startTime", "timeFlow", "getTimeFlow", "timerJob", "Lkotlinx/coroutines/Job;", "totalDurationCustom", "totalTime", "tts", "Landroid/speech/tts/TextToSpeech;", "ttsReady", "wasPausedByAudio", "announceTime", "", "(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", "createForegroundNotificationChannel", "doNotSpeakTts", "onBind", "Landroid/os/IBinder;", "intent", "Landroid/content/Intent;", "onCreate", "onDestroy", "onInit", "status", "onStartCommand", "flags", "startId", "onTaskRemoved", "rootIntent", "pauseTts", "resumeTts", "showCompletionNotification", "speakTts", "startCustomTimer", "totalRunMillis", "howLongMillis", "startForegroundServiceNotification", "startTimer", "totalMillis", "stopServiceManually", "TimerBinder", "app_debug"})
+@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000r\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0007\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0014\b\u0007\u0018\u00002\u00020\u00012\u00020\u0002:\u0001PB\u0005\u00a2\u0006\u0002\u0010\u0003J\u000e\u00103\u001a\u000204H\u0082@\u00a2\u0006\u0002\u00105J\u0012\u00106\u001a\u0002042\b\u00107\u001a\u0004\u0018\u00010\bH\u0002J\b\u00108\u001a\u000204H\u0002J\b\u00109\u001a\u000204H\u0002J\u0012\u0010:\u001a\u00020;2\b\u0010<\u001a\u0004\u0018\u00010=H\u0016J\b\u0010>\u001a\u000204H\u0016J\b\u0010?\u001a\u000204H\u0016J\u0010\u0010@\u001a\u0002042\u0006\u0010A\u001a\u00020\u0006H\u0016J\"\u0010B\u001a\u00020\u00062\b\u0010<\u001a\u0004\u0018\u00010=2\u0006\u0010C\u001a\u00020\u00062\u0006\u0010D\u001a\u00020\u0006H\u0016J\u0012\u0010E\u001a\u0002042\b\u0010F\u001a\u0004\u0018\u00010=H\u0016J\u0010\u0010G\u001a\u0002042\u0006\u0010H\u001a\u00020\u001aH\u0002J\u000e\u0010I\u001a\u000204H\u0082@\u00a2\u0006\u0002\u00105J\b\u0010J\u001a\u000204H\u0002J\u0018\u0010K\u001a\u0002042\u0006\u0010+\u001a\u00020\u00122\u0006\u0010L\u001a\u00020\u0012H\u0002J\b\u0010M\u001a\u000204H\u0002J\u0010\u0010N\u001a\u0002042\u0006\u0010(\u001a\u00020\u0012H\u0002J\u0006\u0010O\u001a\u000204R\u0014\u0010\u0004\u001a\b\u0012\u0004\u0012\u00020\u00060\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\u0007\u001a\b\u0012\u0004\u0012\u00020\b0\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u001e\u0010\t\u001a\u00020\n8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u0010\u0010\u000f\u001a\u0004\u0018\u00010\u0010X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0011\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0013\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001a\u0010\u0014\u001a\u00020\u0012X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0015\u0010\u0016\"\u0004\b\u0017\u0010\u0018R\u000e\u0010\u0019\u001a\u00020\u001aX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u001b\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0010\u0010\u001c\u001a\u0004\u0018\u00010\u001dX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0017\u0010\u001e\u001a\b\u0012\u0004\u0012\u00020\u00060\u001f\u00a2\u0006\b\n\u0000\u001a\u0004\b \u0010!R\u000e\u0010\"\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0017\u0010#\u001a\b\u0012\u0004\u0012\u00020\b0\u001f\u00a2\u0006\b\n\u0000\u001a\u0004\b$\u0010!R\u0010\u0010%\u001a\u0004\u0018\u00010&X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\'\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001a\u0010(\u001a\u00020\u0012X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b)\u0010\u0016\"\u0004\b*\u0010\u0018R\u001a\u0010+\u001a\u00020\u0012X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b,\u0010\u0016\"\u0004\b-\u0010\u0018R\u000e\u0010.\u001a\u00020\u0012X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0010\u0010/\u001a\u0004\u0018\u000100X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u00101\u001a\u00020\u001aX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u00102\u001a\u00020\u001aX\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u0006Q"}, d2 = {"Lcom/dzo/announcerclock/data/service/TimerService;", "Landroid/app/Service;", "Landroid/speech/tts/TextToSpeech$OnInitListener;", "()V", "_progressFlow", "Lkotlinx/coroutines/flow/MutableStateFlow;", "", "_timeFlow", "", "announceTimeUseCase", "Lcom/dzo/announcerclock/domain/timer_usecase/AnnounceTimeUseCase;", "getAnnounceTimeUseCase", "()Lcom/dzo/announcerclock/domain/timer_usecase/AnnounceTimeUseCase;", "setAnnounceTimeUseCase", "(Lcom/dzo/announcerclock/domain/timer_usecase/AnnounceTimeUseCase;)V", "audioListener", "Lcom/dzo/announcerclock/utils/helper/AudioPlaybackListener;", "elapsedTime", "", "elapsedTimeCustom", "intervalMillis", "getIntervalMillis", "()J", "setIntervalMillis", "(J)V", "isRunning", "", "lastAnnounceTime", "phoneListener", "Lcom/dzo/announcerclock/utils/helper/PhoneCallListener;", "progressFlow", "Lkotlinx/coroutines/flow/StateFlow;", "getProgressFlow", "()Lkotlinx/coroutines/flow/StateFlow;", "startTime", "timeFlow", "getTimeFlow", "timerJob", "Lkotlinx/coroutines/Job;", "totalDurationCustom", "totalMillis", "getTotalMillis", "setTotalMillis", "totalRunMillis", "getTotalRunMillis", "setTotalRunMillis", "totalTime", "tts", "Landroid/speech/tts/TextToSpeech;", "ttsReady", "wasPausedByAudio", "announceTime", "", "(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", "broadcastState", "action", "createForegroundNotificationChannel", "doNotSpeakTts", "onBind", "Landroid/os/IBinder;", "intent", "Landroid/content/Intent;", "onCreate", "onDestroy", "onInit", "status", "onStartCommand", "flags", "startId", "onTaskRemoved", "rootIntent", "sendServiceStatus", "enabled", "showCompletionNotification", "speakTts", "startCustomTimer", "howLongMillis", "startForegroundServiceNotification", "startTimer", "stopServiceManually", "TimerBinder", "app_debug"})
 public final class TimerService extends android.app.Service implements android.speech.tts.TextToSpeech.OnInitListener {
     @javax.inject.Inject()
     public com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase announceTimeUseCase;
@@ -22,6 +22,9 @@ public final class TimerService extends android.app.Service implements android.s
     private long totalDurationCustom = 0L;
     private long lastAnnounceTime = 0L;
     private long startTime = 0L;
+    private long totalMillis = 0L;
+    private long intervalMillis = 0L;
+    private long totalRunMillis = 0L;
     @org.jetbrains.annotations.NotNull()
     private final kotlinx.coroutines.flow.MutableStateFlow<java.lang.Integer> _progressFlow = null;
     @org.jetbrains.annotations.NotNull()
@@ -44,6 +47,27 @@ public final class TimerService extends android.app.Service implements android.s
     com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase p0) {
     }
     
+    public final long getTotalMillis() {
+        return 0L;
+    }
+    
+    public final void setTotalMillis(long p0) {
+    }
+    
+    public final long getIntervalMillis() {
+        return 0L;
+    }
+    
+    public final void setIntervalMillis(long p0) {
+    }
+    
+    public final long getTotalRunMillis() {
+        return 0L;
+    }
+    
+    public final void setTotalRunMillis(long p0) {
+    }
+    
     @org.jetbrains.annotations.NotNull()
     public final kotlinx.coroutines.flow.StateFlow<java.lang.Integer> getProgressFlow() {
         return null;
@@ -54,6 +78,9 @@ public final class TimerService extends android.app.Service implements android.s
         return null;
     }
     
+    private final void sendServiceStatus(boolean enabled) {
+    }
+    
     @java.lang.Override()
     public void onCreate() {
     }
@@ -62,12 +89,6 @@ public final class TimerService extends android.app.Service implements android.s
     }
     
     private final void doNotSpeakTts() {
-    }
-    
-    private final void pauseTts() {
-    }
-    
-    private final void resumeTts() {
     }
     
     @java.lang.Override()
@@ -106,6 +127,9 @@ public final class TimerService extends android.app.Service implements android.s
     
     private final java.lang.Object showCompletionNotification(kotlin.coroutines.Continuation<? super kotlin.Unit> $completion) {
         return null;
+    }
+    
+    private final void broadcastState(java.lang.String action) {
     }
     
     @java.lang.Override()
