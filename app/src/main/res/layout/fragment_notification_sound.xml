@@ -1,175 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.sound_fragment.NotificationSoundFragment">
 
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-       <com.google.android.material.card.MaterialCardView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_margin="@dimen/_12sdp"
-           android:id="@+id/llCompatNotification"
-           app:cardBackgroundColor="@color/white"
-           app:strokeWidth="0dp"
-           app:cardCornerRadius="@dimen/_14sdp"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintHorizontal_bias="0.5"
-           app:layout_constraintStart_toStartOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_50sdp">
 
-           <androidx.appcompat.widget.LinearLayoutCompat
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal"
-               android:padding="@dimen/_14sdp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:id="@+id/llCompatNotification"
+                app:cardBackgroundColor="@color/white"
+                app:strokeWidth="0dp"
+                app:cardCornerRadius="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent">
 
-               <androidx.appcompat.widget.AppCompatImageView
-                   android:id="@+id/imgEnableNotification"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center_vertical"
-                   android:spinnerMode="dialog"
-                   android:src="@drawable/ic_notication"
-                   android:tint="@color/dark_blue" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_14sdp">
 
-               <androidx.appcompat.widget.LinearLayoutCompat
-                   android:id="@+id/linearLayoutCompatSound3"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginStart="@dimen/_16sdp"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgEnableNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:spinnerMode="dialog"
+                        android:src="@drawable/ic_notication"
+                        android:tint="@color/dark_blue" />
 
-                   <androidx.appcompat.widget.AppCompatTextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:textStyle="normal"
-                       android:gravity="center_vertical"
-                       android:text="@string/enable_notification"
-                       android:textSize="@dimen/_14ssp" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linearLayoutCompatSound3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                   <com.google.android.material.switchmaterial.SwitchMaterial
-                       android:id="@+id/enableNotification"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:checked="false"
-                       android:padding="@dimen/_10sdp"
-                       android:thumb="@drawable/toggle_thumb"
-                       app:thumbTint="@color/dark_blue"
-                       app:trackTint="@color/track_color"
-                       app:track="@drawable/toggle_track" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textStyle="normal"
+                            android:gravity="center_vertical"
+                            android:text="@string/enable_notification"
+                            android:textSize="@dimen/_14ssp" />
 
-               </androidx.appcompat.widget.LinearLayoutCompat>
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/enableNotification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:padding="@dimen/_10sdp"
+                            android:thumb="@drawable/toggle_thumb"
+                            app:thumbTint="@color/dark_blue"
+                            app:trackTint="@color/track_color"
+                            app:track="@drawable/toggle_track" />
 
-           </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-       </com.google.android.material.card.MaterialCardView>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-       <com.google.android.material.card.MaterialCardView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_margin="@dimen/_12sdp"
-           android:id="@+id/llNotificationSound"
-           app:cardBackgroundColor="@color/white"
-           app:strokeWidth="0dp"
-           app:cardCornerRadius="@dimen/_14sdp"
-           app:layout_constraintTop_toBottomOf="@id/llCompatNotification"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintHorizontal_bias="0.5"
-           app:layout_constraintStart_toStartOf="parent">
+            </com.google.android.material.card.MaterialCardView>
 
-           <androidx.appcompat.widget.LinearLayoutCompat
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal"
-               android:padding="@dimen/_14sdp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:id="@+id/llNotificationSound"
+                app:cardBackgroundColor="@color/white"
+                app:strokeWidth="0dp"
+                app:cardCornerRadius="@dimen/_14sdp"
+                app:layout_constraintTop_toBottomOf="@id/llCompatNotification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent">
 
-               <androidx.appcompat.widget.AppCompatImageView
-                   android:id="@+id/imgNotificationSound"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center_vertical"
-                   android:spinnerMode="dialog"
-                   android:src="@drawable/ic_noti_sound"
-                   android:tint="@color/dark_blue" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_14sdp">
 
-               <androidx.appcompat.widget.LinearLayoutCompat
-                   android:id="@+id/soundLayout"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginStart="@dimen/_16sdp"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgNotificationSound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:spinnerMode="dialog"
+                        android:src="@drawable/ic_noti_sound"
+                        android:tint="@color/dark_blue" />
 
-                   <androidx.appcompat.widget.AppCompatTextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:textStyle="normal"
-                       android:gravity="center_vertical"
-                       android:text="@string/enable_notification_sound"
-                       android:textSize="@dimen/_14ssp" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/soundLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                   <com.google.android.material.switchmaterial.SwitchMaterial
-                       android:id="@+id/enableNotificationSound"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:checked="false"
-                       android:padding="@dimen/_10sdp"
-                       android:thumb="@drawable/toggle_thumb"
-                       app:thumbTint="@color/dark_blue"
-                       app:trackTint="@color/track_color"
-                       app:track="@drawable/toggle_track" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textStyle="normal"
+                            android:gravity="center_vertical"
+                            android:text="@string/enable_notification_sound"
+                            android:textSize="@dimen/_14ssp" />
 
-               </androidx.appcompat.widget.LinearLayoutCompat>
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/enableNotificationSound"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:padding="@dimen/_10sdp"
+                            android:thumb="@drawable/toggle_thumb"
+                            app:thumbTint="@color/dark_blue"
+                            app:trackTint="@color/track_color"
+                            app:track="@drawable/toggle_track" />
 
-           </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-       </com.google.android.material.card.MaterialCardView>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
 
 
-       <androidx.appcompat.widget.AppCompatTextView
-           android:id="@+id/txtChooseSound"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="@dimen/_16sdp"
-           android:text="@string/choose_your_sound"
-           android:textColor="@color/dark_grey"
-           android:textSize="@dimen/_14ssp"
-           android:textStyle="normal"
-           android:layout_marginStart="@dimen/_8sdp"
-           app:layout_constraintStart_toStartOf="@+id/llNotificationSound"
-           app:layout_constraintTop_toBottomOf="@id/llNotificationSound" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtChooseSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/choose_your_sound"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="normal"
+                android:layout_marginStart="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@+id/llNotificationSound"
+                app:layout_constraintTop_toBottomOf="@id/llNotificationSound" />
 
-       <com.google.android.material.card.MaterialCardView
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-           app:strokeWidth="0dp"
-           app:cardElevation="0dp"
-           android:id="@+id/soundCardView"
-           android:layout_margin="@dimen/_12sdp"
-           app:cardCornerRadius="@dimen/_14sdp"
-           app:layout_constraintTop_toBottomOf="@id/txtChooseSound"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:strokeWidth="0dp"
+                app:cardElevation="0dp"
+                android:id="@+id/soundCardView"
+                android:layout_margin="@dimen/_12sdp"
+                app:cardCornerRadius="@dimen/_14sdp"
+                app:layout_constraintTop_toBottomOf="@id/txtChooseSound"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-           <androidx.recyclerview.widget.RecyclerView
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:background="@color/white"
-               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-               tools:listitem="@layout/sound_options_raw_binding"
-               android:id="@+id/soundOptionRecyclerView"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/sound_options_raw_binding"
+                    android:id="@+id/soundOptionRecyclerView"/>
 
-       </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
-   </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addSound"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white"
+        app:backgroundTint="@color/blue"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_margin="@dimen/_16sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

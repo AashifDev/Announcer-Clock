@@ -23,6 +23,7 @@ class SoundOptionAdapter @Inject constructor() :
     ListAdapter<SoundOption, SoundOptionAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     var onItemClick: ((SoundOption) -> Unit)? = null
+    var onDeleteClick: ((SoundOption) -> Unit)? = null
     private var themeColor = AppPreferences.ThemeManager.getActiveThemeColor()
 
 
@@ -41,7 +42,14 @@ class SoundOptionAdapter @Inject constructor() :
 
             //Speaker icon visibility
             selectedItem.visibility = if (item.isSelected) {
-                selectedItem.setImageResource(R.drawable.ic_speaker)
+                //selectedItem.setImageResource(R.drawable.ic_speaker)
+                selectedItem.setColorFilter(themeColor!!.toColorInt())
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+
+            deleteItem.visibility = if (item.isUserAdded) {
                 selectedItem.setColorFilter(themeColor!!.toColorInt())
                 View.VISIBLE
             } else {
@@ -84,6 +92,10 @@ class SoundOptionAdapter @Inject constructor() :
             //Click handler
             root.setOnClickListener {
                 onItemClick?.invoke(item)
+            }
+
+            deleteItem.setOnClickListener {
+                onDeleteClick?.invoke(item)
             }
         }
     }

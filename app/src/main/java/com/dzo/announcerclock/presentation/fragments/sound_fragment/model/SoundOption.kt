@@ -1,13 +1,25 @@
 package com.dzo.announcerclock.presentation.fragments.sound_fragment.model
 
 import android.content.Context
+import android.net.Uri
 
-data class SoundOption(
-    val id:Int? = null,
+/*data class SoundOption(
+    val id: Int? = null,
     val title: String,
-    val soundResId: Int,
-    var isSelected:Boolean = false
+    val soundResId: Int? = null, // nullable for external files
+    val uri: Uri? = null,        // external sound URI
+    var isSelected: Boolean = false
+)*/
+data class SoundOption(
+    val id: Int?=null,
+    val title: String,
+    val soundResId: Int? = null,
+    val uri: Uri? = null,
+    val isSelected: Boolean = false,
+    val isUserAdded: Boolean = false // 👈 Add this
 )
+
+
 
 fun getSoundTitleFromRes(context: Context, soundResId: Int): String {
     return try {
@@ -23,6 +35,28 @@ fun getSoundTitleFromRes(context: Context, soundResId: Int): String {
 fun String.capitalizeWords(): String =
     split(" ").joinToString(" ") { it.replaceFirstChar { c -> c.uppercaseChar() } }
 
+fun String.toPrettyTitle(maxLength: Int = 10): String {
+    // Step 1: Replace underscores with spaces
+    var cleaned = this.replace("_", " ")
+
+    // Step 2: Remove digits
+    cleaned = cleaned.replace(Regex("\\d+"), "")
+
+    // Step 3: Trim and capitalize each word
+    cleaned = cleaned.trim()
+        .split(" ")
+        .filter { it.isNotBlank() }
+        .joinToString(" ") { word ->
+            word.replaceFirstChar { it.uppercaseChar() }
+        }
+
+    // Step 4: Truncate to maxLength safely
+    return if (cleaned.length > maxLength) {
+        cleaned.take(maxLength).trimEnd() + "…"
+    } else {
+        cleaned
+    }
+}
 
 /*
 

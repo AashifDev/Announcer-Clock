@@ -4753,6 +4753,7 @@ drawable ic_category
 drawable ic_check
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
+drawable ic_delete
 drawable ic_expand_less_22px
 drawable ic_expand_more_22px
 drawable ic_fav
@@ -4951,6 +4952,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addSound
 id adjust_height
 id adjust_width
 id advance
@@ -5065,6 +5067,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id deleteItem
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -5215,6 +5218,7 @@ id listMode
 id list_item
 id llCompatNotification
 id llDarkThemeLayout
+id llEnableTtsOnCall
 id llNotificationSound
 id locale
 id logo
@@ -5842,14 +5846,14 @@ mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description
 raw balloon_get
-raw door_opens
+raw base_boom
+raw chime_alert
 raw firebase_common_keep
-raw mario_starwarp
-raw megaphone
-raw smbw_yoshi
-raw smw_power_up
+raw level_up
+raw level_up_1
+raw positive_notification
+raw ring_bell
 raw super_mario_jump
-raw super_mario_world
 raw super_mario_world_14
 string abc_action_bar_home_description
 string abc_action_bar_up_description

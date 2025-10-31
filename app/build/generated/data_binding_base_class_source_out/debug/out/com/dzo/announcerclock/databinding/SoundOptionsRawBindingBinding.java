@@ -21,6 +21,9 @@ public final class SoundOptionsRawBindingBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final AppCompatImageView deleteItem;
+
+  @NonNull
   public final ConstraintLayout rawItemId;
 
   @NonNull
@@ -30,9 +33,10 @@ public final class SoundOptionsRawBindingBinding implements ViewBinding {
   public final AppCompatTextView title;
 
   private SoundOptionsRawBindingBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout rawItemId, @NonNull AppCompatImageView selectedItem,
-      @NonNull AppCompatTextView title) {
+      @NonNull AppCompatImageView deleteItem, @NonNull ConstraintLayout rawItemId,
+      @NonNull AppCompatImageView selectedItem, @NonNull AppCompatTextView title) {
     this.rootView = rootView;
+    this.deleteItem = deleteItem;
     this.rawItemId = rawItemId;
     this.selectedItem = selectedItem;
     this.title = title;
@@ -65,6 +69,12 @@ public final class SoundOptionsRawBindingBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.deleteItem;
+      AppCompatImageView deleteItem = ViewBindings.findChildViewById(rootView, id);
+      if (deleteItem == null) {
+        break missingId;
+      }
+
       ConstraintLayout rawItemId = (ConstraintLayout) rootView;
 
       id = R.id.selectedItem;
@@ -79,8 +89,8 @@ public final class SoundOptionsRawBindingBinding implements ViewBinding {
         break missingId;
       }
 
-      return new SoundOptionsRawBindingBinding((ConstraintLayout) rootView, rawItemId, selectedItem,
-          title);
+      return new SoundOptionsRawBindingBinding((ConstraintLayout) rootView, deleteItem, rawItemId,
+          selectedItem, title);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

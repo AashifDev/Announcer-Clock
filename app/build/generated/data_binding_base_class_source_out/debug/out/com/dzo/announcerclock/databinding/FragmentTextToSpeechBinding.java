@@ -56,6 +56,9 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
   public final LinearLayoutCompat linearLayoutCompatSound3;
 
   @NonNull
+  public final MaterialCardView llEnableTtsOnCall;
+
+  @NonNull
   public final MaterialCardView notificaitonSettingLayout;
 
   @NonNull
@@ -99,6 +102,7 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       @NonNull LinearLayoutCompat linearLayoutCompatSound1,
       @NonNull LinearLayoutCompat linearLayoutCompatSound2,
       @NonNull LinearLayoutCompat linearLayoutCompatSound3,
+      @NonNull MaterialCardView llEnableTtsOnCall,
       @NonNull MaterialCardView notificaitonSettingLayout, @NonNull FloatingActionButton play,
       @NonNull AppCompatSpinner selectedLangSpinner, @NonNull AppCompatSpinner selectedVoiceSpinner,
       @NonNull MaterialCardView ttsLayout, @NonNull AppCompatTextView txtDisableDuringCall,
@@ -117,6 +121,7 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
     this.linearLayoutCompatSound1 = linearLayoutCompatSound1;
     this.linearLayoutCompatSound2 = linearLayoutCompatSound2;
     this.linearLayoutCompatSound3 = linearLayoutCompatSound3;
+    this.llEnableTtsOnCall = llEnableTtsOnCall;
     this.notificaitonSettingLayout = notificaitonSettingLayout;
     this.play = play;
     this.selectedLangSpinner = selectedLangSpinner;
@@ -218,6 +223,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.llEnableTtsOnCall;
+      MaterialCardView llEnableTtsOnCall = ViewBindings.findChildViewById(rootView, id);
+      if (llEnableTtsOnCall == null) {
+        break missingId;
+      }
+
       id = R.id.notificaitonSettingLayout;
       MaterialCardView notificaitonSettingLayout = ViewBindings.findChildViewById(rootView, id);
       if (notificaitonSettingLayout == null) {
@@ -293,10 +304,10 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       return new FragmentTextToSpeechBinding((ConstraintLayout) rootView, disableDuringMusic,
           enableTimeSpeaking, enableWhilePhoneCalls, imgAnnounce, imgCall, imgMusic,
           linearLayoutCompat, linearLayoutCompatSound1, linearLayoutCompatSound2,
-          linearLayoutCompatSound3, notificaitonSettingLayout, play, selectedLangSpinner,
-          selectedVoiceSpinner, ttsLayout, txtDisableDuringCall, txtDisableDuringMusic,
-          txtNotificationSetting, txtSelectLanguage, txtSoundSetting, txtTimeSpeaking,
-          txtVoiceGender);
+          linearLayoutCompatSound3, llEnableTtsOnCall, notificaitonSettingLayout, play,
+          selectedLangSpinner, selectedVoiceSpinner, ttsLayout, txtDisableDuringCall,
+          txtDisableDuringMusic, txtNotificationSetting, txtSelectLanguage, txtSoundSetting,
+          txtTimeSpeaking, txtVoiceGender);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

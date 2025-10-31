@@ -18,7 +18,9 @@ import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeBinding::inflate) {
 
     private val selectedColors = mutableListOf<String>()
@@ -34,8 +36,10 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
         binding.enableDarkMode.setOnCheckedChangeListener { _, isChecked ->
             AppPreferences.saveDarkThemeEnabled(isChecked)
             setThemeMode(isChecked)
+            //enableDarkThemeToggleRippleEffect()
         }
 
+        binding.llDarkThemeLayout.setOnClickListener { }
 
         binding.chooseAppColor.setOnClickListener {
             showColorPicker()
@@ -49,6 +53,20 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
                 binding.imgTheme.setColorFilter(colorHex.toColorInt())
             }
         }
+    }
+
+    private fun enableDarkThemeToggleRippleEffect() {
+        binding.llDarkThemeLayout.isPressed = true
+        binding.llDarkThemeLayout.postDelayed({
+            binding.llDarkThemeLayout.isPressed = false
+        }, 200)
+    }
+
+    private fun enableTtsOnCallRipple() {
+        binding.llDarkThemeLayout.isPressed = true
+        binding.llDarkThemeLayout.postDelayed({
+            binding.llDarkThemeLayout.isPressed = false
+        }, 200)
     }
 
     private fun showIntroGuide() {
@@ -67,7 +85,11 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
                     .cancelable(false)
                     .transparentTarget(true),
 
-                TapTarget.forView(binding.chooseAppColor, "App color", "Choose app color theme. Also can choose from recent color.")
+                TapTarget.forView(
+                    binding.chooseAppColor,
+                    "App color",
+                    "Choose app color theme. Also can choose from recent color."
+                )
                     .targetCircleColor(R.color.white)
                     .outerCircleColor(R.color.light_blue)
                     .titleTextColor(R.color.black)
@@ -89,7 +111,9 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
 
     private fun setThemeMode(isDark: Boolean) {
         AppCompatDelegate.setDefaultNightMode(
-            if (isDark) AppCompatDelegate.MODE_NIGHT_YES
+            if (isDark) {
+                AppCompatDelegate.MODE_NIGHT_YES
+            }
             else AppCompatDelegate.MODE_NIGHT_NO
         )
     }
@@ -197,6 +221,7 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
                     )
                     true
                 }
+
                 else -> false
             }
         }

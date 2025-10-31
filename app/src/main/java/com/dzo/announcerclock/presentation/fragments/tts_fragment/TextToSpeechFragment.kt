@@ -494,6 +494,7 @@ class TextToSpeechFragment :
     private fun setupListeners() {
         binding.enableTimeSpeaking.setOnCheckedChangeListener { _, isChecked ->
             viewModel.toggleTimeSpeaking(isChecked)
+            if (isChecked) enableTtsRipple()
         }
 
         binding.play.setOnClickListener {
@@ -516,8 +517,25 @@ class TextToSpeechFragment :
                     iconRes = R.drawable.text_to_speech,
                     colorString = colorHexx
                 )
+                enableTtsOnCallRipple()
             }
         }
+
+        binding.llEnableTtsOnCall.setOnClickListener {  }
+        binding.linearLayoutCompat.setOnClickListener {  }
+    }
+
+    private fun enableTtsOnCallRipple(){
+        binding.llEnableTtsOnCall.isPressed = true
+        binding.llEnableTtsOnCall.postDelayed({
+            binding.llEnableTtsOnCall.isPressed = false
+        },200)
+    }
+    private fun enableTtsRipple(){
+        binding.linearLayoutCompat.isPressed = true
+        binding.linearLayoutCompat.postDelayed({
+            binding.linearLayoutCompat.isPressed = false
+        },200)
     }
 
     /** Lighten/darken tint for switch tracks */

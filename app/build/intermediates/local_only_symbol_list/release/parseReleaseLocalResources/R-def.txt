@@ -52,6 +52,7 @@ drawable notification
 drawable outline_border_header
 drawable productivity
 drawable quran
+drawable ripple_effect
 drawable sai_baba
 drawable schedule_time_background
 drawable scheduling
@@ -184,6 +185,7 @@ id ttsLayout
 id tvHint
 id tvTitle
 id txtChooseColor
+id txtChooseSound
 id txtDisableDuringCall
 id txtDisableDuringMusic
 id txtEnableDarkTheme
@@ -254,6 +256,7 @@ raw super_mario_world_14
 string app_name
 string app_theme
 string choose_theme_color_options
+string choose_your_sound
 string custom_timer
 string customize_tts
 string disable_while_playing_music
@@ -276,6 +279,7 @@ string schedule_timer
 string select_language
 string select_pitch_rate
 string select_speech_rate
+string set_schedule_timer
 string share_app
 string sound_settings
 string sounds

@@ -519,7 +519,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
-
 @AndroidEntryPoint
 class TimerService : Service(), TextToSpeech.OnInitListener {
 
@@ -529,6 +528,9 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
     private var timerJob: Job? = null
     private var isRunning = false
+    private var isPaused = false
+    private var isSpeaking = false
+
     private var ttsReady = false
     private var phoneListener: PhoneCallListener? = null
     private var audioListener: AudioPlaybackListener? = null
@@ -565,29 +567,56 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
         tts = TextToSpeech(this, this)
         createForegroundNotificationChannel()
 
-        phoneListener = PhoneCallListener.register(this) { state ->
+        // ✅ Corrected Call Listener Logic
+        /*phoneListener = PhoneCallListener.register(this) { state ->
             when (state) {
                 TelephonyManager.CALL_STATE_RINGING,
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
-                    if (AppPreferences.isEnableDuringPhoneCalls() == true) {
+                    // If user wants speaking during calls, speak
+                    val isEnabled = AppPreferences.isEnableDuringPhoneCalls()
+                    if (isEnabled!!) {
                         speakTts()
+                    } else {
+                        doNotSpeakTts()
                     }
                 }
 
                 TelephonyManager.CALL_STATE_IDLE -> {
-                    if (AppPreferences.isEnableDuringPhoneCalls() == true) {
+                    // Call ended → resume speaking normally if enabled globally
+                    if (AppPreferences.isTimeSpeakingEnabled() == true) {
+                        speakTts()
+                    }
+                }
+            }
+        }*/
+        phoneListener = PhoneCallListener.register(this) { state ->
+            when (state) {
+                TelephonyManager.CALL_STATE_RINGING -> {
+                    pauseTimer()
+                    doNotSpeakTts()
+                }
+
+                TelephonyManager.CALL_STATE_OFFHOOK -> {
+                    pauseTimer()
+                    if (AppPreferences.isEnableDuringPhoneCalls()!!) {
+                        speakTts()
+                    } else {
                         doNotSpeakTts()
                     }
+                }
 
+                TelephonyManager.CALL_STATE_IDLE -> {
+                    resumeTimer()
                 }
             }
         }
 
+
         audioListener = AudioPlaybackListener(this) { isPlaying ->
             if (isPlaying) {
                 if (tts?.isSpeaking == true) {
-
                     wasPausedByAudio = true
+                    tts?.stop()
                 }
             } else if (wasPausedByAudio) {
                 wasPausedByAudio = false
@@ -597,18 +626,40 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
     }
 
     private fun speakTts() {
-        if (!isRunning) {
-            isRunning = true
-            toast(App.appContext(), "tts speaking")
+        try {
+            if (tts != null) {
+                tts!!.stop()
+                isRunning = true
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-
     }
 
     private fun doNotSpeakTts() {
         if (isRunning) {
+            try {
+                if (tts != null && tts!!.isSpeaking) {
+                    tts!!.stop()
+                }
+                isRunning = false
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun pauseTimer() {
+        if (isRunning && !isPaused) {
+            isPaused = true
             isRunning = false
-            tts?.stop()
-            toast(App.appContext(), "tts not speaking")
+        }
+    }
+    private fun resumeTimer() {
+        if (isPaused) {
+            isPaused = false
+            isRunning = true
+            startTime = System.currentTimeMillis() - elapsedTime // Resume correctly
         }
     }
 
@@ -659,7 +710,6 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
         )
 
         val bigPictureBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_logo)
-        val actionText = if (!isRunning) "Disable" else "Enable"
         val builder = NotificationCompat.Builder(this, "timer_foreground_channel")
             .setContentTitle("Announcer Clock Active")
             .setContentText("Tap to open and see timer progress")
@@ -678,7 +728,7 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
     }
 
     // ----------------- Timer Logic -----------------
-    private fun startTimer(totalMillis: Long) {
+    /*private fun startTimer(totalMillis: Long) {
         totalTime = totalMillis
         if (isRunning) return
         isRunning = true
@@ -689,7 +739,7 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
 
             while (isActive) {
                 if (!isRunning) {
-                    delay(200) // Pause loop, don’t exit
+                    delay(200)
                     continue
                 }
 
@@ -713,7 +763,53 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
                 delay(1000)
             }
         }
+    }*/
+
+    private fun startTimer(totalMillis: Long) {
+        totalTime = totalMillis
+        if (isRunning) return
+
+        isRunning = true
+        isPaused = false
+        startTime = System.currentTimeMillis() - elapsedTime
+
+        timerJob?.cancel()
+        timerJob = CoroutineScope(Dispatchers.Default).launch {
+            while (isActive) {
+                if (!isRunning || isPaused) {
+                    delay(200)
+                    continue
+                }
+
+                if (!isSpeaking) {
+                    val now = System.currentTimeMillis()
+                    elapsedTime = now - startTime
+                }
+
+
+                // Prevent negative time
+                val remaining = (totalTime - elapsedTime).coerceAtLeast(0)
+                val progress = (elapsedTime.toFloat() / totalTime * 100).coerceIn(0f, 100f)
+
+                val minutes = (remaining / 1000 / 60).toInt()
+                val seconds = ((remaining / 1000) % 60).toInt()
+                _progressFlow.value = progress.toInt()
+                _timeFlow.value = String.format("%02d:%02d", minutes, seconds)
+
+                if (elapsedTime >= totalTime) {
+                    elapsedTime = 0L
+                    startTime = System.currentTimeMillis()
+
+                    if (AppPreferences.isTimeSpeakingEnabled() == true) announceTime()
+                    if (AppPreferences.isNotificationEnabled() == true) showCompletionNotification()
+                }
+
+                broadcastState(Constants.ACTION_TOGGLE_UPDATE)
+                delay(1000)
+            }
+        }
     }
+
 
     private fun startCustomTimer(totalRunMillis: Long, howLongMillis: Long) {
         totalDurationCustom = howLongMillis
@@ -727,12 +823,13 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
 
             while (isActive) {
                 if (!isRunning) {
-                    delay(200) // just wait when paused
+                    delay(200)
                     continue
                 }
-
                 val now = System.currentTimeMillis()
-                elapsedTimeCustom = now - startTime
+                if (!isSpeaking) {
+                    elapsedTimeCustom = now - startTime
+                }
 
                 val remaining = (totalDurationCustom - elapsedTimeCustom).coerceAtLeast(0)
                 val minutes = (remaining / 1000 / 60).toInt()
@@ -744,26 +841,21 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
                 _progressFlow.value = progress.toInt()
                 _timeFlow.value = formattedTime
 
-                // Announce every totalRunMillis
                 if (now - lastAnnounceTime >= totalRunMillis) {
                     lastAnnounceTime = now
                     if (AppPreferences.isTimeSpeakingEnabled() == true) announceTime()
                     if (AppPreferences.isNotificationEnabled() == true) showCompletionNotification()
                 }
 
-                // End reached
                 if (elapsedTimeCustom >= totalDurationCustom) {
                     startTime = System.currentTimeMillis()
                     elapsedTimeCustom = 0L
-                    // stopSelf()
-                    //break
                 }
 
                 delay(1000)
             }
         }
     }
-
 
     // ----------------- TTS -----------------
     private suspend fun announceTime() {
@@ -772,10 +864,9 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
         tts?.setSpeechRate(settings.rate)
 
         val localeParts = settings.language.split("_")
-        val locale = if (localeParts.size == 2) Locale(
-            localeParts[0],
-            localeParts[1]
-        ) else Locale.getDefault()
+        val locale = if (localeParts.size == 2)
+            Locale(localeParts[0], localeParts[1])
+        else Locale.getDefault()
         tts?.language = locale
 
         tts?.voices?.firstOrNull { it.name.contains(settings.genderVoice, true) }?.let {
@@ -791,16 +882,17 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
 
         if (ttsReady) {
             val message = announceTimeUseCase()
+            isSpeaking = true
             withContext(Dispatchers.Main) {
                 tts?.speak(message, TextToSpeech.QUEUE_FLUSH, null, null)
             }
             while (tts?.isSpeaking == true) {
                 delay(200)
             }
+            isSpeaking = false
         }
     }
 
-    // ----------------- Notification -----------------
     private suspend fun showCompletionNotification() = withContext(Dispatchers.Main) {
         val soundOption = AppPreferences.getSoundOption()
         val isSoundEnabled = AppPreferences.isNotificationSoundEnabled() == true
@@ -813,9 +905,8 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             nm.notificationChannels?.forEach {
-                if (it.id.startsWith("timer_channel_") && it.id != channelId) nm.deleteNotificationChannel(
-                    it.id
-                )
+                if (it.id.startsWith("timer_channel_") && it.id != channelId)
+                    nm.deleteNotificationChannel(it.id)
             }
 
             val channel = NotificationChannel(
@@ -834,6 +925,7 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
             }
             nm.createNotificationChannel(channel)
         }
+
         val currentTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
         val pendingIntent = PendingIntent.getActivity(
             this@TimerService, 0,
@@ -856,19 +948,18 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
     }
 
     private fun broadcastState(action: String?) {
-        val action = Intent(action)
-        sendBroadcast(action)
+        val actionIntent = Intent(action)
+        sendBroadcast(actionIntent)
     }
 
-    // ----------------- Lifecycle -----------------
     override fun onDestroy() {
         isRunning = false
         timerJob?.cancel()
         tts?.stop()
         tts?.shutdown()
-        stopSelf()
         audioListener?.unregister()
         phoneListener?.let { PhoneCallListener.unregister(this, it) }
+        stopSelf()
         super.onDestroy()
     }
 

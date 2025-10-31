@@ -28,6 +28,7 @@ drawable ic_break
 drawable ic_calling
 drawable ic_category
 drawable ic_check
+drawable ic_delete
 drawable ic_fav
 drawable ic_info
 drawable ic_launcher_background
@@ -66,6 +67,7 @@ drawable toggle_button
 drawable toggle_thumb
 drawable toggle_track
 drawable up_arrow
+id addSound
 id announceGif
 id appLogo
 id appName
@@ -85,6 +87,7 @@ id customScheduling
 id customToggle
 id customize
 id customizeTheme
+id deleteItem
 id disableDuringMusic
 id enableDarkMode
 id enableNotification
@@ -120,6 +123,7 @@ id linearLayoutCompatSound2
 id linearLayoutCompatSound3
 id llCompatNotification
 id llDarkThemeLayout
+id llEnableTtsOnCall
 id llNotificationSound
 id logo
 id main
@@ -245,13 +249,13 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
 raw balloon_get
-raw door_opens
-raw mario_starwarp
-raw megaphone
-raw smbw_yoshi
-raw smw_power_up
+raw base_boom
+raw chime_alert
+raw level_up
+raw level_up_1
+raw positive_notification
+raw ring_bell
 raw super_mario_jump
-raw super_mario_world
 raw super_mario_world_14
 string app_name
 string app_theme

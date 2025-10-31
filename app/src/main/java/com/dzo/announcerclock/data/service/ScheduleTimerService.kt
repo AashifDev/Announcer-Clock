@@ -28,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -40,9 +41,12 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
     private var timerJob: Job? = null
     private var isRunning = false
     private var ttsReady = false
+    private var isPaused = false
+    private var isSpeaking = false
     private var phoneListener: PhoneCallListener? = null
     private var audioListener: AudioPlaybackListener? = null
     private var startTime = 0L
+    private var elapsedTime = 0L
     private val _progressFlow = MutableStateFlow(0)
     val progressFlow = _progressFlow.asStateFlow()
 
@@ -60,14 +64,22 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
 
         phoneListener = PhoneCallListener.register(this) { state ->
             when (state) {
-                TelephonyManager.CALL_STATE_RINGING,
+                TelephonyManager.CALL_STATE_RINGING -> {
+                    //pauseTimer()
+                    doNotSpeakTts()
+                }
+
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
-                    if (AppPreferences.isEnableDuringPhoneCalls() == true) {
+                    //pauseTimer()
+                    if (AppPreferences.isEnableDuringPhoneCalls()!!) {
                         speakTts()
+                    } else {
+                        doNotSpeakTts()
                     }
                 }
 
                 TelephonyManager.CALL_STATE_IDLE -> {
+                    //resumeTimer()
                 }
             }
         }
@@ -76,21 +88,42 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
     }
 
     private fun speakTts() {
-        if (!isRunning) {
-            isRunning = true
-            toast(App.appContext(),"tts speaking")
+        try {
+            if (tts != null) {
+                tts!!.stop()
+                isRunning = true
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-
     }
 
     private fun doNotSpeakTts() {
         if (isRunning) {
-            isRunning = false
-            tts?.stop()
-            toast(App.appContext(),"tts not speaking")
+            try {
+                if (tts != null && tts!!.isSpeaking) {
+                    tts!!.stop()
+                }
+                isRunning = false
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
+    private fun pauseTimer() {
+        if (isRunning && !isPaused) {
+            isPaused = true
+            isRunning = false
+        }
+    }
+    private fun resumeTimer() {
+        if (isPaused) {
+            isPaused = false
+            isRunning = true
+            startTime = System.currentTimeMillis() - elapsedTime  // Resume correctly
+        }
+    }
     override fun onBind(intent: Intent?): IBinder = TimerBinder()
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -135,8 +168,8 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         val bigPictureBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_logo)
 
         val builder = NotificationCompat.Builder(this, "timer_foreground_channel")
-            .setContentTitle("Announcer Clock Active")
-            .setContentText("Tap to open and see timer progress")
+            .setContentTitle("Schedule clock active")
+            .setContentText("Tap to open and change settings")
             .setSmallIcon(R.drawable.ic_logo)
             .setLargeIcon(bigPictureBitmap)
             .setContentIntent(pendingIntent)
@@ -158,6 +191,7 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
     ) {
         if (isRunning) return
         isRunning = true
+        isPaused = false
 
         var nextAnnounceTime = startTimeMillis
 
@@ -168,9 +202,12 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                     delay(200)
                     continue
                 }
-
                 val now = System.currentTimeMillis()
-
+               /* val now = System.currentTimeMillis()
+                if (!isSpeaking) {
+                    val now = System.currentTimeMillis()
+                    elapsedTime = now - startTime
+                }*/
                 // End condition
                 if (now >= endTimeMillis) {
                     isRunning = false
@@ -298,10 +335,12 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
             Intent(this@ScheduleTimerService, MainActivity::class.java),
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
+        val currentTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+
 
         val builder = NotificationCompat.Builder(this@ScheduleTimerService, channelId)
-            .setContentTitle("Timer Completed")
-            .setContentText("Your timer has finished.")
+            .setContentTitle("Announcement \uD83D\uDCE2")
+            .setContentText("Your announced at $currentTime")
             .setSmallIcon(R.drawable.ic_logo)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

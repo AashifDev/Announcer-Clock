@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_16sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,6 +31,7 @@
                 android:id="@+id/header"
                 app:cardElevation="0dp"
                 android:layout_margin="@dimen/_3sdp"
+                app:rippleColor="?attr/colorControlHighlight"
                 app:cardBackgroundColor="@color/blue"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -155,6 +157,7 @@
                     android:id="@+id/setRepeatTime"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
+                    app:rippleColor="?attr/colorControlHighlight"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp">
 
@@ -381,55 +384,48 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_8sdp"
-                android:orientation="vertical">
+                android:id="@+id/setTtsSettings"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingTop="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_16sdp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/setTtsSettings"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:paddingEnd="@dimen/_8sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp">
+                    android:src="@drawable/ic_setting"
+                    android:id="@+id/img4"
+                    android:tint="@color/blue"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_setting"
-                        android:id="@+id/img4"
-                        android:tint="@color/blue"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/customize_tts"
+                    app:layout_constraintTop_toTopOf="@+id/img4"
+                    app:layout_constraintBottom_toBottomOf="@id/img4"
+                    app:layout_constraintStart_toEndOf="@id/img4"
+                    android:textSize="@dimen/_16ssp"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:id="@+id/customize"/>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/customize_tts"
-                        app:layout_constraintTop_toTopOf="@+id/img4"
-                        app:layout_constraintBottom_toBottomOf="@id/img4"
-                        app:layout_constraintStart_toEndOf="@id/img4"
-                        android:textSize="@dimen/_16ssp"
-                        android:layout_marginStart="@dimen/_14sdp"
-                        android:id="@+id/customize"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/img4"
+                    app:layout_constraintBottom_toBottomOf="@id/img4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="normal"/>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@+id/img4"
-                        app:layout_constraintBottom_toBottomOf="@id/img4"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="@dimen/_14ssp"
-                        android:textStyle="normal"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -447,39 +443,40 @@
             android:textStyle="normal"/>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/customScheduling"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_14sdp"
-            app:strokeWidth="0dp"
-            android:id="@+id/customScheduling"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@id/txtScheduleTimer"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/txtScheduleTimer"
+            app:strokeWidth="0dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_8sdp"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/linearLayoutCompat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtEnableScheduling"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:id="@+id/txtEnableScheduling"
                         android:gravity="center_vertical"
                         android:text="@string/enable_time_speaking"
                         android:textSize="@dimen/_16ssp" />
@@ -491,53 +488,60 @@
                         android:paddingEnd="@dimen/_12sdp"
                         android:thumb="@drawable/toggle_thumb"
                         app:thumbTint="@color/dark_blue"
-                        app:trackTint="@color/track_color"
-                        app:track="@drawable/toggle_track" />
+                        app:track="@drawable/toggle_track"
+                        app:trackTint="@color/track_color" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/grey" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/setScheduling"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/setScheduling"
+                    android:gravity="center_vertical"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp">
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_schedule_timer"
-                        android:id="@+id/img6"
                         android:tint="@color/blue"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/newScheduling"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
                         android:text="@string/schedule_time"
-                        app:layout_constraintTop_toTopOf="@+id/img6"
+                        android:textSize="@dimen/_16ssp"
+                        android:padding="@dimen/_4sdp"
                         app:layout_constraintBottom_toBottomOf="@id/img6"
                         app:layout_constraintStart_toEndOf="@id/img6"
-                        android:textSize="@dimen/_16ssp"
-                        android:layout_marginStart="@dimen/_14sdp"
-                        android:id="@+id/newScheduling"/>
+                        app:layout_constraintTop_toTopOf="@+id/img6" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@+id/img6"
-                        app:layout_constraintBottom_toBottomOf="@id/img6"
-                        app:layout_constraintEnd_toEndOf="parent"
                         android:textColor="@color/dark_grey"
                         android:textSize="@dimen/_14ssp"
                         android:textStyle="normal"
-                        android:id="@+id/tts"/>
+                        app:layout_constraintBottom_toBottomOf="@id/img6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/img6" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

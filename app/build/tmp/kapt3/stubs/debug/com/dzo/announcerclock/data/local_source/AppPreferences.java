@@ -1,6 +1,6 @@
 package com.dzo.announcerclock.data.local_source;
 
-@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000F\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b)\b\u00c6\u0002\u0018\u00002\u00020\u0001:\u0001>B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\u0006\u0010\u0003\u001a\u00020\u0004J\u0006\u0010\u0005\u001a\u00020\u0006J\b\u0010\u0007\u001a\u0004\u0018\u00010\bJ\b\u0010\t\u001a\u0004\u0018\u00010\nJ\b\u0010\u000b\u001a\u0004\u0018\u00010\fJ\u0006\u0010\r\u001a\u00020\u000eJ\b\u0010\u000f\u001a\u0004\u0018\u00010\u0010J\u0006\u0010\u0011\u001a\u00020\u0006J\u0006\u0010\u0012\u001a\u00020\u0004J\u0006\u0010\u0013\u001a\u00020\u0014J\u0006\u0010\u0015\u001a\u00020\u0016J\r\u0010\u0017\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u0019\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001a\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001b\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001c\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001d\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001e\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001f\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\u0006\u0010 \u001a\u00020\u0016J\u000e\u0010!\u001a\u00020\u00162\u0006\u0010\"\u001a\u00020\u0004J\u000e\u0010#\u001a\u00020\u00162\u0006\u0010$\u001a\u00020\u0004J\u000e\u0010%\u001a\u00020\u00162\u0006\u0010&\u001a\u00020\u0004J\u000e\u0010\'\u001a\u00020\u00162\u0006\u0010&\u001a\u00020\u0004J\u000e\u0010(\u001a\u00020\u00162\u0006\u0010)\u001a\u00020\u0004J\u000e\u0010*\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u0010,\u001a\u00020\u00162\u0006\u0010-\u001a\u00020\u0006J\u000e\u0010.\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u0010/\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u00100\u001a\u00020\u00162\u0006\u00101\u001a\u00020\bJ\u000e\u00102\u001a\u00020\u00162\u0006\u00103\u001a\u00020\nJ\u000e\u00104\u001a\u00020\u00162\u0006\u00105\u001a\u00020\fJ\u000e\u00106\u001a\u00020\u00162\u0006\u00107\u001a\u00020\u000eJ\u000e\u00108\u001a\u00020\u00162\u0006\u00109\u001a\u00020\u0010J\u000e\u0010:\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u0010;\u001a\u00020\u00162\u0006\u0010\"\u001a\u00020\u0004J\u000e\u0010<\u001a\u00020\u00162\u0006\u0010=\u001a\u00020\u0014\u00a8\u0006?"}, d2 = {"Lcom/dzo/announcerclock/data/local_source/AppPreferences;", "", "()V", "getCustomToggleState", "", "getInterval", "", "getRepeatOption", "Lcom/dzo/announcerclock/presentation/fragments/repeat_option/model/RepeatOption;", "getScheduleTime", "Lcom/dzo/announcerclock/presentation/fragments/home_fragment/model/ScheduleTimerModel;", "getSoundOption", "Lcom/dzo/announcerclock/presentation/fragments/sound_fragment/model/SoundOption;", "getStartTime", "", "getThemeColor", "", "getToggleCount", "getToggleState", "getTtsSettings", "Lcom/dzo/announcerclock/presentation/fragments/home_fragment/model/TtsSettings;", "incrementToggleCount", "", "isDarkThemeEnabled", "()Ljava/lang/Boolean;", "isDisableWhilePlayingMusic", "isEnableDuringPhoneCalls", "isFirstLaunch", "isHideNotificationEnabled", "isNotificationEnabled", "isNotificationSoundEnabled", "isTimeSpeakingEnabled", "resetToggleCount", "saveCustomToggleState", "state", "saveDarkThemeEnabled", "boolean", "saveDisableWhilePlayingMusic", "disable", "saveEnableDuringPhoneCalls", "saveFirstLaunch", "firstLaunch", "saveHideNotificationEnabled", "enabled", "saveInterval", "intervalSeconds", "saveNotificationEnabled", "saveNotificationSoundEnabled", "saveRepeatOption", "repeatOption", "saveScheduleTime", "schedule", "saveSoundOption", "soundOption", "saveStartTime", "startTime", "saveThemeColor", "colorHex", "saveTimeSpeakingEnabled", "saveToggleState", "saveTtsSettings", "settings", "ThemeManager", "app_debug"})
+@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000F\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b)\b\u00c6\u0002\u0018\u00002\u00020\u0001:\u0001>B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\u0006\u0010\u0003\u001a\u00020\u0004J\u0006\u0010\u0005\u001a\u00020\u0006J\b\u0010\u0007\u001a\u0004\u0018\u00010\bJ\b\u0010\t\u001a\u0004\u0018\u00010\nJ\b\u0010\u000b\u001a\u0004\u0018\u00010\fJ\u0006\u0010\r\u001a\u00020\u000eJ\b\u0010\u000f\u001a\u0004\u0018\u00010\u0010J\u0006\u0010\u0011\u001a\u00020\u0006J\u0006\u0010\u0012\u001a\u00020\u0004J\u0006\u0010\u0013\u001a\u00020\u0014J\u0006\u0010\u0015\u001a\u00020\u0016J\r\u0010\u0017\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u0019\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001a\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001b\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001c\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001d\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001e\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\r\u0010\u001f\u001a\u0004\u0018\u00010\u0004\u00a2\u0006\u0002\u0010\u0018J\u0006\u0010 \u001a\u00020\u0016J\u000e\u0010!\u001a\u00020\u00162\u0006\u0010\"\u001a\u00020\u0004J\u000e\u0010#\u001a\u00020\u00162\u0006\u0010$\u001a\u00020\u0004J\u000e\u0010%\u001a\u00020\u00162\u0006\u0010&\u001a\u00020\u0004J\u000e\u0010\'\u001a\u00020\u00162\u0006\u0010&\u001a\u00020\u0004J\u000e\u0010(\u001a\u00020\u00162\u0006\u0010)\u001a\u00020\u0004J\u000e\u0010*\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u0010,\u001a\u00020\u00162\u0006\u0010-\u001a\u00020\u0006J\u000e\u0010.\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u0010/\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u00100\u001a\u00020\u00162\u0006\u00101\u001a\u00020\bJ\u000e\u00102\u001a\u00020\u00162\u0006\u00103\u001a\u00020\nJ\u000e\u00104\u001a\u00020\u00162\u0006\u00105\u001a\u00020\fJ\u000e\u00106\u001a\u00020\u00162\u0006\u00107\u001a\u00020\u000eJ\u000e\u00108\u001a\u00020\u00162\u0006\u00109\u001a\u00020\u0010J\u000e\u0010:\u001a\u00020\u00162\u0006\u0010+\u001a\u00020\u0004J\u000e\u0010;\u001a\u00020\u00162\u0006\u0010\"\u001a\u00020\u0004J\u000e\u0010<\u001a\u00020\u00162\u0006\u0010=\u001a\u00020\u0014\u00a8\u0006?"}, d2 = {"Lcom/dzo/announcerclock/data/local_source/AppPreferences;", "", "()V", "getCustomToggleState", "", "getInterval", "", "getRepeatOption", "Lcom/dzo/announcerclock/presentation/fragments/repeat_option/model/RepeatOption;", "getScheduleTime", "Lcom/dzo/announcerclock/presentation/fragments/home_fragment/model/ScheduleTimerModel;", "getSoundOption", "Lcom/dzo/announcerclock/presentation/fragments/sound_fragment/model/SoundOption;", "getStartTime", "", "getThemeColor", "", "getToggleCount", "getToggleState", "getTtsSettings", "Lcom/dzo/announcerclock/presentation/fragments/home_fragment/model/TtsSettings;", "incrementToggleCount", "", "isDarkThemeEnabled", "()Ljava/lang/Boolean;", "isDisableWhilePlayingMusic", "isEnableDuringPhoneCalls", "isFirstLaunch", "isHideNotificationEnabled", "isNotificationEnabled", "isNotificationSoundEnabled", "isTimeSpeakingEnabled", "resetToggleCount", "saveCustomToggleState", "state", "saveDarkThemeEnabled", "boolean", "saveDisableWhilePlayingMusic", "disable", "saveEnableDuringPhoneCalls", "saveFirstLaunch", "firstLaunch", "saveHideNotificationEnabled", "enabled", "saveInterval", "intervalSeconds", "saveNotificationEnabled", "saveNotificationSoundEnabled", "saveRepeatOption", "repeatOption", "saveScheduleTime", "schedule", "saveSoundOption", "option", "saveStartTime", "startTime", "saveThemeColor", "colorHex", "saveTimeSpeakingEnabled", "saveToggleState", "saveTtsSettings", "settings", "ThemeManager", "app_debug"})
 public final class AppPreferences {
     @org.jetbrains.annotations.NotNull()
     public static final com.dzo.announcerclock.data.local_source.AppPreferences INSTANCE = null;
@@ -27,7 +27,7 @@ public final class AppPreferences {
     }
     
     public final void saveSoundOption(@org.jetbrains.annotations.NotNull()
-    com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption soundOption) {
+    com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption option) {
     }
     
     @org.jetbrains.annotations.Nullable()
@@ -35,6 +35,44 @@ public final class AppPreferences {
         return null;
     }
     
+    /**
+     * fun saveSoundOption(option: SoundOption?) {
+     *        try {
+     *            // Convert URI to string before saving
+     *            val safeOption = option!!.copy(uri = option.uri?.toString()?.let { it.toUri() })
+     *            val json = gson.toJson(
+     *                mapOf(
+     *                    "id" to safeOption.id,
+     *                    "title" to safeOption.title,
+     *                    "soundResId" to safeOption.soundResId,
+     *                    "uri" to safeOption.uri?.toString(),
+     *                    "isSelected" to safeOption.isSelected
+     *                )
+     *            )
+     *            PreferenceHelper.putString(KEY_SOUND_OPTION, json)
+     *        } catch (e: Exception) {
+     *            e.printStackTrace()
+     *        }
+     *    }
+     *
+     *    fun getSoundOption(): SoundOption? {
+     *        val json = PreferenceHelper.getString(KEY_SOUND_OPTION, "") ?: return null
+     *        return try {
+     *            val map = gson.fromJson(json, Map::class.java)
+     *            SoundOption(
+     *                id = (map["id"] as? Double)?.toInt(),
+     *                title = map["title"] as? String ?: "",
+     *                soundResId = (map["soundResId"] as? Double)?.toInt(),
+     *                uri = (map["uri"] as? String)?.let { it.toUri() },
+     *                isSelected = map["isSelected"] as? Boolean ?: false,
+     *                isUserAdded = true
+     *            )
+     *        } catch (e: JsonSyntaxException) {
+     *            Log.e("AppPreferences", "Failed to parse SoundOption", e)
+     *            null
+     *        }
+     *    }
+     */
     public final void saveStartTime(long startTime) {
     }
     

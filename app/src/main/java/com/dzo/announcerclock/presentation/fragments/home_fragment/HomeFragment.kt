@@ -740,7 +740,7 @@ class HomeFragment :
         }
 
         val gif = dialog.findViewById<AppCompatImageView>(R.id.announceGif)
-        Glide.with(this).load(R.raw.megaphone).into(gif)
+       //Glide.with(this).load(R.raw.megaphone).into(gif)
         dialog.show()
         Handler().postDelayed({
             dialog.dismiss()

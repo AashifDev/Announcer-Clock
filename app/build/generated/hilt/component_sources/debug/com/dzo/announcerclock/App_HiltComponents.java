@@ -14,6 +14,7 @@ import com.dzo.announcerclock.presentation.fragments.repeat_option.RepeatOptionF
 import com.dzo.announcerclock.presentation.fragments.repeat_option.viewmodel.RepeatOptionViewModel_HiltModules;
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.NotificationSoundFragment_GeneratedInjector;
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel_HiltModules;
+import com.dzo.announcerclock.presentation.fragments.themes_fragment.AppThemeFragment_GeneratedInjector;
 import com.dzo.announcerclock.presentation.fragments.tts_fragment.TextToSpeechFragment_GeneratedInjector;
 import com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel.TtsViewModel_HiltModules;
 import dagger.Binds;
@@ -249,6 +250,7 @@ public final class App_HiltComponents {
       OurAppFragment_GeneratedInjector,
       RepeatOptionFragment_GeneratedInjector,
       NotificationSoundFragment_GeneratedInjector,
+      AppThemeFragment_GeneratedInjector,
       TextToSpeechFragment_GeneratedInjector,
       FragmentComponent,
       DefaultViewModelFactories.FragmentEntryPoint,

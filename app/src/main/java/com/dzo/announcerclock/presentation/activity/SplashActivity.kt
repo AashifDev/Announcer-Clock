@@ -29,6 +29,9 @@ class SplashActivity : AppCompatActivity() {
     private val requiredPermissions = buildList {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             add(Manifest.permission.POST_NOTIFICATIONS)
+            add(Manifest.permission.READ_MEDIA_AUDIO)
+        }else{
+            add(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
         add(Manifest.permission.READ_PHONE_STATE)
     }.toTypedArray()
@@ -78,22 +81,18 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
-        // Show version text
+
+        showAppVersion()
+
+        checkAndRequestPermissions()
+    }
+    private fun showAppVersion() {
         val packageInfo = packageManager.getPackageInfo(packageName, 0)
         val versionName = packageInfo.versionName
         val versionCode = packageInfo.longVersionCode
         val textView = findViewById<AppCompatTextView>(R.id.appVersion)
-        textView.text = buildString {
-            append("App Version: ")
-            append(versionName)
-            append(" (")
-            append(versionCode)
-            append(")")
-        }
-
-        checkAndRequestPermissions()
+        textView.text = "App Version: $versionName ($versionCode)"
     }
-
     private fun checkAndRequestPermissions() {
         val missingPermissions = requiredPermissions.filter {
             ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED

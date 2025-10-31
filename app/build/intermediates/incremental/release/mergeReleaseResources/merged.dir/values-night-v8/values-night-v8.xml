@@ -14,7 +14,9 @@
     <string name="app_name">Announcer Clock</string>
     <string name="app_theme">App Theme</string>
     <string name="choose_theme_color_options">Choose theme color options</string>
+    <string name="choose_your_sound">Choose your sound</string>
     <string name="custom_timer">Custom Timer</string>
+    <string name="customize_tts">Text To Speech</string>
     <string name="disable_while_playing_music">Disable while playing music</string>
     <string name="enable_during_phone_calls">Enable during phone calls</string>
     <string name="enable_hourly_talk_time">Enable time announcer clock</string>
@@ -32,6 +34,7 @@
     <string name="schedule_timer">Schedule timer</string>
     <string name="select_pitch_rate">Select Pitch Rate</string>
     <string name="select_speech_rate">Select Speech Rate</string>
+    <string name="set_schedule_timer">SET SCHEDULE TIMER</string>
     <string name="share_app">Share App</string>
     <string name="sound_settings">Sound Settings</string>
     <string name="sounds">Sounds</string>

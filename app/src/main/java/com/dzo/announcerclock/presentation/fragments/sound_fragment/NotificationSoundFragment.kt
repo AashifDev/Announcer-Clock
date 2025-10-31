@@ -1,10 +1,14 @@
 package com.dzo.announcerclock.presentation.fragments.sound_fragment
 
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.OpenableColumns
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,6 +18,7 @@ import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.FragmentNotificationSoundBinding
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.adapter.SoundOptionAdapter
+import com.dzo.announcerclock.presentation.fragments.sound_fragment.model.SoundOption
 import com.dzo.announcerclock.presentation.fragments.sound_fragment.viewmodel.SoundOptionViewModel
 import com.dzo.announcerclock.utils.Utils.lighten
 import com.dzo.announcerclock.utils.core.BaseFragment
@@ -44,9 +49,8 @@ class NotificationSoundFragment :
         binding.llCompatNotification.setOnClickListener { }
         binding.llNotificationSound.setOnClickListener { }
 
-    }
 
-    // ---------------------- Setup UI ----------------------
+    }
 
     private fun setupRecyclerView() {
         binding.soundOptionRecyclerView.adapter = soundOptionAdapter
@@ -62,6 +66,16 @@ class NotificationSoundFragment :
                 )
             }
         }
+
+        /*soundOptionAdapter.onDeleteClick = { soundOption ->
+            viewModel.removeSound(soundOption)
+            requireActivity().showColoredToast(
+                "Removed: ${soundOption.title}",
+                colorHex.lighten(0.5f),
+                colorHex.toColorInt()
+            )
+        }*/
+
     }
 
     private fun setupToggles() {
@@ -98,9 +112,9 @@ class NotificationSoundFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.soundOptions.collect { list ->
-                    val selectedSound = AppPreferences.getSoundOption()?.soundResId
+                    val selectedSound = AppPreferences.getSoundOption()
                     val updatedList = list.map {
-                        it.copy(isSelected = it.soundResId == selectedSound)
+                        it.copy(isSelected = it.id == selectedSound?.id)
                     }
                     soundOptionAdapter.submitList(updatedList)
                 }
@@ -143,17 +157,17 @@ class NotificationSoundFragment :
         }
     }
 
-    private fun enableNotificationRipple(){
+    private fun enableNotificationRipple() {
         binding.llCompatNotification.isPressed = true
         binding.llCompatNotification.postDelayed({
             binding.llCompatNotification.isPressed = false
-        },200)
+        }, 200)
     }
 
-    private fun enableNotificationSoundRipple(){
+    private fun enableNotificationSoundRipple() {
         binding.llNotificationSound.isPressed = true
         binding.llNotificationSound.postDelayed({
             binding.llNotificationSound.isPressed = false
-        },200)
+        }, 200)
     }
 }
