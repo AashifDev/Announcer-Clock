@@ -13,6 +13,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.airbnb.lottie.LottieAnimationView;
 import com.dzo.announcerclock.R;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.material.card.MaterialCardView;
@@ -30,6 +31,9 @@ public final class FragmentAppThemeBinding implements ViewBinding {
 
   @NonNull
   public final FlexboxLayout colorContainer;
+
+  @NonNull
+  public final LottieAnimationView darkModeAnimation;
 
   @NonNull
   public final SwitchMaterial enableDarkMode;
@@ -51,13 +55,14 @@ public final class FragmentAppThemeBinding implements ViewBinding {
 
   private FragmentAppThemeBinding(@NonNull ConstraintLayout rootView,
       @NonNull AppCompatButton chooseAppColor, @NonNull FlexboxLayout colorContainer,
-      @NonNull SwitchMaterial enableDarkMode, @NonNull AppCompatImageView imgTheme,
-      @NonNull LinearLayoutCompat linearLayoutCompatSound3,
+      @NonNull LottieAnimationView darkModeAnimation, @NonNull SwitchMaterial enableDarkMode,
+      @NonNull AppCompatImageView imgTheme, @NonNull LinearLayoutCompat linearLayoutCompatSound3,
       @NonNull MaterialCardView llDarkThemeLayout, @NonNull AppCompatTextView txtChooseColor,
       @NonNull AppCompatTextView txtEnableDarkTheme) {
     this.rootView = rootView;
     this.chooseAppColor = chooseAppColor;
     this.colorContainer = colorContainer;
+    this.darkModeAnimation = darkModeAnimation;
     this.enableDarkMode = enableDarkMode;
     this.imgTheme = imgTheme;
     this.linearLayoutCompatSound3 = linearLayoutCompatSound3;
@@ -105,6 +110,12 @@ public final class FragmentAppThemeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.darkModeAnimation;
+      LottieAnimationView darkModeAnimation = ViewBindings.findChildViewById(rootView, id);
+      if (darkModeAnimation == null) {
+        break missingId;
+      }
+
       id = R.id.enableDarkMode;
       SwitchMaterial enableDarkMode = ViewBindings.findChildViewById(rootView, id);
       if (enableDarkMode == null) {
@@ -142,8 +153,8 @@ public final class FragmentAppThemeBinding implements ViewBinding {
       }
 
       return new FragmentAppThemeBinding((ConstraintLayout) rootView, chooseAppColor,
-          colorContainer, enableDarkMode, imgTheme, linearLayoutCompatSound3, llDarkThemeLayout,
-          txtChooseColor, txtEnableDarkTheme);
+          colorContainer, darkModeAnimation, enableDarkMode, imgTheme, linearLayoutCompatSound3,
+          llDarkThemeLayout, txtChooseColor, txtEnableDarkTheme);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

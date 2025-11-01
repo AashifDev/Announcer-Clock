@@ -1,7 +1,9 @@
 package com.dzo.announcerclock.presentation.fragments.themes_fragment
 
+import android.animation.Animator
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeBinding::inflate) {
 
     private val selectedColors = mutableListOf<String>()
+    private var isDark: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,11 +35,20 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
         displaySelectedColors()
 
         val darkMode = AppPreferences.isDarkThemeEnabled()
+
         binding.enableDarkMode.isChecked = darkMode == true
+
         binding.enableDarkMode.setOnCheckedChangeListener { _, isChecked ->
             AppPreferences.saveDarkThemeEnabled(isChecked)
             setThemeMode(isChecked)
             //enableDarkThemeToggleRippleEffect()
+            if (isChecked){
+                binding.darkModeAnimation.speed = 1f
+                binding.darkModeAnimation.playAnimation()
+            }else{
+                binding.darkModeAnimation.speed = -1f
+                binding.darkModeAnimation.playAnimation()
+            }
         }
 
         binding.llDarkThemeLayout.setOnClickListener { }
@@ -53,6 +65,7 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
                 binding.imgTheme.setColorFilter(colorHex.toColorInt())
             }
         }
+
     }
 
     private fun enableDarkThemeToggleRippleEffect() {
@@ -184,6 +197,7 @@ class AppThemeFragment : BaseFragment<FragmentAppThemeBinding>(FragmentAppThemeB
             box.setOnLongClickListener {
                 selectedColors.remove(colorHex)
                 //removeSelectedColor(it,colorHex)
+                it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                 // Update preferences
                 if (selectedColors.isNotEmpty()) {
                     AppPreferences.ThemeManager.setThemeColorList(selectedColors.joinToString(","))

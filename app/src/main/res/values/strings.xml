@@ -34,10 +34,12 @@
     <string name="choose_theme_color_options">Choose theme color options</string>
     <string name="interval_minute">Interval Minute</string>
     <string name="total_minute">Total Minute</string>
-    <string name="schedule_timer">Schedule timer</string>
+    <string name="schedule_timer">Schedule Timer</string>
     <string name="schedule_time">Schedule time</string>
     <string name="speak_time_every">speak time every</string>
     <string name="choose_your_sound">Choose your sound</string>
     <string name="set_schedule_timer">SET SCHEDULE TIMER</string>
+    <string name="apply">APPLY</string>
+    <string name="choose_app_color">CHOOSE APP COLOR</string>
 
 </resources>

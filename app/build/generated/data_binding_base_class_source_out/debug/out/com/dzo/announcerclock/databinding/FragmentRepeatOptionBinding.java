@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.airbnb.lottie.LottieAnimationView;
 import com.dzo.announcerclock.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,11 +21,16 @@ public final class FragmentRepeatOptionBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final LottieAnimationView repeatOptionAnimation;
+
+  @NonNull
   public final RecyclerView repeatOptionRecyclerView;
 
   private FragmentRepeatOptionBinding(@NonNull ConstraintLayout rootView,
+      @NonNull LottieAnimationView repeatOptionAnimation,
       @NonNull RecyclerView repeatOptionRecyclerView) {
     this.rootView = rootView;
+    this.repeatOptionAnimation = repeatOptionAnimation;
     this.repeatOptionRecyclerView = repeatOptionRecyclerView;
   }
 
@@ -55,13 +61,20 @@ public final class FragmentRepeatOptionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.repeatOptionAnimation;
+      LottieAnimationView repeatOptionAnimation = ViewBindings.findChildViewById(rootView, id);
+      if (repeatOptionAnimation == null) {
+        break missingId;
+      }
+
       id = R.id.repeatOptionRecyclerView;
       RecyclerView repeatOptionRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (repeatOptionRecyclerView == null) {
         break missingId;
       }
 
-      return new FragmentRepeatOptionBinding((ConstraintLayout) rootView, repeatOptionRecyclerView);
+      return new FragmentRepeatOptionBinding((ConstraintLayout) rootView, repeatOptionAnimation,
+          repeatOptionRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

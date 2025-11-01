@@ -1,5 +1,9 @@
 R_DEF: Internal format may change without notice
 local
+anim slide_in_left
+anim slide_in_right
+anim slide_out_left
+anim slide_out_right
 color black
 color blue
 color dark_blue
@@ -18,6 +22,7 @@ drawable bg_snackbar
 drawable bg_snackbar_button
 drawable bottom_sheeg_bg
 drawable circle_progress
+drawable close
 drawable color_box_background
 drawable color_box_bg
 drawable creativity
@@ -67,6 +72,11 @@ drawable toggle_button
 drawable toggle_thumb
 drawable toggle_track
 drawable up_arrow
+id action_homeFragment_to_appThemeFragment
+id action_homeFragment_to_notificationSoundFragment
+id action_homeFragment_to_ourAppFragment
+id action_homeFragment_to_repeatOptionFragment
+id action_homeFragment_to_textToSpeechFragment
 id addSound
 id announceGif
 id appLogo
@@ -80,6 +90,7 @@ id bgStart
 id btnSave
 id chooseAppColor
 id circularProgress
+id close
 id colorBox
 id colorContainer
 id custom
@@ -87,6 +98,7 @@ id customScheduling
 id customToggle
 id customize
 id customizeTheme
+id darkModeAnimation
 id deleteItem
 id disableDuringMusic
 id enableDarkMode
@@ -144,6 +156,8 @@ id rateAppImg
 id rawItemId
 id removeSelectedColor
 id repeat
+id repeatAnimation
+id repeatOptionAnimation
 id repeatOptionFragment
 id repeatOptionRecyclerView
 id root
@@ -251,14 +265,20 @@ navigation nav_graph
 raw balloon_get
 raw base_boom
 raw chime_alert
+raw clock_anim
+raw dark_mode
 raw level_up
 raw level_up_1
 raw positive_notification
 raw ring_bell
+raw speaker_anim
 raw super_mario_jump
 raw super_mario_world_14
+raw tts_anim
 string app_name
 string app_theme
+string apply
+string choose_app_color
 string choose_theme_color_options
 string choose_your_sound
 string custom_timer

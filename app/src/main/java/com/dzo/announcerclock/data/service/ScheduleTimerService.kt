@@ -19,6 +19,7 @@ import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
 import com.dzo.announcerclock.presentation.activity.MainActivity
 import com.dzo.announcerclock.utils.helper.AudioPlaybackListener
 import com.dzo.announcerclock.utils.Constants
+import com.dzo.announcerclock.utils.Constants.ACTION_STOP
 import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
 import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
 import com.dzo.announcerclock.utils.helper.PhoneCallListener
@@ -202,6 +203,7 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                     delay(200)
                     continue
                 }
+
                 val now = System.currentTimeMillis()
                /* val now = System.currentTimeMillis()
                 if (!isSpeaking) {
@@ -211,18 +213,19 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                 // End condition
                 if (now >= endTimeMillis) {
                     isRunning = false
+                    if (AppPreferences.isTimeSpeakingEnabled() == true) {
+                        //sendBroadCastToUi(ACTION_STOP)
+                        announceTime()
+                    }
 
-                    withContext(Dispatchers.Main) {
+                    if (AppPreferences.isNotificationEnabled() == true) {
                         showCompletionNotification()
                     }
 
                     AppPreferences.saveCustomToggleState(false)
                     PreferenceHelper.remove(Constants.KEY_SCHEDULE_TIME)
 
-                    val intent = Intent(ACTION_TOGGLE_UPDATE).apply {
-                        setPackage(packageName)
-                    }
-                    sendBroadcast(intent)
+                    sendBroadCastToUi(ACTION_TOGGLE_UPDATE)
 
                     stopSelf()
                     break
@@ -240,8 +243,9 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                 _timeFlow.value = String.format("%02d:%02d", minutes, seconds)
 
                 // Announce if interval reached
-                if (now >= nextAnnounceTime) {
+                if (now >= nextAnnounceTime ) {
                     nextAnnounceTime += intervalMillis
+                    sendBroadCastToUi(ACTION_STOP)
                     if (AppPreferences.isTimeSpeakingEnabled() == true) announceTime()
                     if (AppPreferences.isNotificationEnabled() == true) showCompletionNotification()
                 }
@@ -249,6 +253,13 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                 delay(1000)
             }
         }
+    }
+
+    private fun sendBroadCastToUi(action: String){
+        val intent = Intent(action).apply {
+            setPackage(packageName)
+        }
+        sendBroadcast(intent)
     }
     private fun sendToggleBroadcast(isEnabled: Boolean) {
       /*  val intent = Intent(ACTION_TOGGLE_UPDATE).apply {
@@ -340,7 +351,7 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
 
         val builder = NotificationCompat.Builder(this@ScheduleTimerService, channelId)
             .setContentTitle("Announcement \uD83D\uDCE2")
-            .setContentText("Your announced at $currentTime")
+            .setContentText("Clock announced at $currentTime")
             .setSmallIcon(R.drawable.ic_logo)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

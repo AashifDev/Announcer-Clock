@@ -17,6 +17,7 @@ import com.dzo.announcerclock.App
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.data.local_source.isScheduleTimeExist
 import com.dzo.announcerclock.data.service.ScheduleTimerService
+import com.dzo.announcerclock.utils.Constants.ACTION_STOP
 import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
 import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
 import com.dzo.announcerclock.utils.Utils.toast
@@ -39,16 +40,26 @@ class ScheduleTimerViewModel
     val isScheduleFinished = _isScheduleFinished.asStateFlow()
     private var scheduleFinishedReceiver: BroadcastReceiver? = null
 
+    private val _isScheduleStart = MutableStateFlow(false)
+    val isScheduleStart = _isScheduleStart.asStateFlow()
+    private var scheduleStartReceiver: BroadcastReceiver? = null
+
     init {
         registerToggleReceiver(context)
     }
 
     private fun registerToggleReceiver(context: Context) {
         val filter = IntentFilter(ACTION_TOGGLE_UPDATE)
+        val filter1 = IntentFilter(ACTION_STOP)
 
         scheduleFinishedReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 _isScheduleFinished.value = true
+            }
+        }
+        scheduleStartReceiver = object : BroadcastReceiver(){
+            override fun onReceive(context: Context?, intent: Intent?) {
+                _isScheduleStart.value = true
             }
         }
 
@@ -56,6 +67,12 @@ class ScheduleTimerViewModel
             context,
             scheduleFinishedReceiver,
             filter,
+            ContextCompat.RECEIVER_NOT_EXPORTED
+        )
+        registerReceiver(
+            context,
+            scheduleStartReceiver,
+            filter1,
             ContextCompat.RECEIVER_NOT_EXPORTED
         )
     }

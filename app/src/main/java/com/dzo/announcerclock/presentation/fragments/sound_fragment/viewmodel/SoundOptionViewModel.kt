@@ -60,7 +60,7 @@ class SoundOptionViewModel @Inject constructor(
             mediaPlayer?.release()
             mediaPlayer = MediaPlayer()
 
-            if (soundOption.uri != null) {
+            /*if (soundOption.uri != null) {
                 // External sound
                 mediaPlayer?.setDataSource(context, soundOption.uri)
                 mediaPlayer?.prepare()
@@ -69,9 +69,12 @@ class SoundOptionViewModel @Inject constructor(
                 val uri = "android.resource://${context.packageName}/${soundOption.soundResId}".toUri()
                 mediaPlayer?.setDataSource(context, uri)
                 mediaPlayer?.prepare()
-            }
+            }*/
 
             mediaPlayer?.apply {
+                val uri = "android.resource://${context.packageName}/${soundOption.soundResId}".toUri()
+                mediaPlayer?.setDataSource(context, uri)
+                mediaPlayer?.prepare()
                 setOnCompletionListener {
                     release()
                     mediaPlayer = null

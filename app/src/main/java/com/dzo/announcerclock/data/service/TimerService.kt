@@ -502,6 +502,7 @@ import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
 import com.dzo.announcerclock.presentation.activity.MainActivity
 import com.dzo.announcerclock.utils.Constants
+import com.dzo.announcerclock.utils.Constants.ACTION_STOP
 import com.dzo.announcerclock.utils.Utils.toast
 import com.dzo.announcerclock.utils.helper.AudioPlaybackListener
 import com.dzo.announcerclock.utils.helper.PhoneCallListener
@@ -850,6 +851,11 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
                 if (elapsedTimeCustom >= totalDurationCustom) {
                     startTime = System.currentTimeMillis()
                     elapsedTimeCustom = 0L
+                    sendBroadcast(
+                        Intent(ACTION_STOP).apply {
+                            `package` = packageName
+                        }
+                    )
                 }
 
                 delay(1000)
@@ -935,7 +941,7 @@ class TimerService : Service(), TextToSpeech.OnInitListener {
 
         val builder = NotificationCompat.Builder(this@TimerService, channelId)
             .setContentTitle("Announcement \uD83D\uDCE2")
-            .setContentText("Your announced at $currentTime")
+            .setContentText("Clock announced at $currentTime")
             .setSmallIcon(R.drawable.ic_logo)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

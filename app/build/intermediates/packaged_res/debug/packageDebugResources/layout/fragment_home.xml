@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:id="@+id/scrollView"
+    android:scrollbars="none"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.home_fragment.HomeFragment">
 

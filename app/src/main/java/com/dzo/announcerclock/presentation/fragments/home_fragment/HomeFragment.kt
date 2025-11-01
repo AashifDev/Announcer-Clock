@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.media.AudioManager
 import android.os.Build
@@ -98,11 +99,12 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.roundToInt
+import androidx.core.graphics.drawable.toDrawable
 
 @AndroidEntryPoint
 class HomeFragment :
-    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),/*TextToSpeech.OnInitListener,*/
-    OnBottomSheetResultListener {
+    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate)
+    /*TextToSpeech.OnInitListener,*/{
 
     @Inject
     lateinit var announceTimeUseCase: AnnounceTimeUseCase
@@ -339,15 +341,15 @@ class HomeFragment :
 
     private fun clickListeners() {
         binding.setRepeatTime.setOnClickListener {
-            findNavController().navigate(R.id.repeatOptionFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_repeatOptionFragment)
         }
 
         binding.setSound.setOnClickListener {
-            findNavController().navigate(R.id.notificationSoundFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_notificationSoundFragment)
         }
 
         binding.setTtsSettings.setOnClickListener {
-            findNavController().navigate(R.id.textToSpeechFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_textToSpeechFragment)
         }
 
         binding.speakCurrentTime.setOnClickListener {
@@ -364,8 +366,8 @@ class HomeFragment :
             bottomSheet.show(parentFragmentManager, "ScheduleTimerBottomSheet")
 
         }
-        binding.header.setOnClickListener {  }
-        binding.customScheduling.setOnClickListener {  }
+        binding.header.setOnClickListener { }
+        binding.customScheduling.setOnClickListener { }
     }
 
     private fun setupUIAfterPrefsLoaded() {
@@ -456,14 +458,14 @@ class HomeFragment :
     }
 
 
-    private fun headerCardRipple(){
+    private fun headerCardRipple() {
         binding.header.isPressed = true
         binding.header.postDelayed({
             binding.header.isPressed = false
         }, 200)
     }
 
-    private fun customSchedulingRipple(){
+    private fun customSchedulingRipple() {
         binding.customScheduling.isPressed = true
         binding.customScheduling.postDelayed({
             binding.customScheduling.isPressed = false
@@ -704,6 +706,21 @@ class HomeFragment :
                     }
                 }
                 launch {
+                    timerViewModel.isCustomTimerStart.collect { finished ->
+                        if (finished) {
+                            binding.customToggle.isChecked = false
+                            binding.timerText.text = "OFF"
+                        }
+                    }
+                }
+                launch {
+                    scheduleTimerModel.isScheduleStart.collect { start ->
+                        if (start) {
+                            binding.customToggle.isChecked = false
+                        }
+                    }
+                }
+                launch {
                     timerViewModel.progress.collect {
                         binding.circularProgress.progress = it
                     }
@@ -740,7 +757,7 @@ class HomeFragment :
         }
 
         val gif = dialog.findViewById<AppCompatImageView>(R.id.announceGif)
-       //Glide.with(this).load(R.raw.megaphone).into(gif)
+        //Glide.with(this).load(R.raw.megaphone).into(gif)
         dialog.show()
         Handler().postDelayed({
             dialog.dismiss()
@@ -772,7 +789,7 @@ class HomeFragment :
 
         // Click Listeners
         binding.ourApps.setOnClickListener {
-            findNavController().navigate(R.id.ourAppFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_ourAppFragment)
             dialog.dismiss()
         }
 
@@ -785,7 +802,7 @@ class HomeFragment :
         }
 
         binding.appTheme.setOnClickListener {
-            findNavController().navigate(R.id.appThemeFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_appThemeFragment)
             dialog.dismiss()
         }
 
@@ -800,190 +817,8 @@ class HomeFragment :
     }
 
 
-    fun showScheduleTimerBottomSheet(
-        listener: OnBottomSheetResultListener
-    ) {
-        val dialog = BottomSheetDialog(requireContext(), R.style.CustomBottomSheetDialogTheme)
-        val view = LayoutInflater.from(context).inflate(R.layout.schedult_timer_bottom_sheet, null)
-        dialog.setContentView(view)
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-
-        val txtSetStartTime = dialog.findViewById<AppCompatTextView>(R.id.txtSetStartTime)
-        val txtSetEndTime = dialog.findViewById<AppCompatTextView>(R.id.txtSetEndTime)
-        val txtSetRepeatEveryMinute =
-            dialog.findViewById<AppCompatTextView>(R.id.txtSetRepeatEveryMinute)
-        val txtStartTime = dialog.findViewById<AppCompatTextView>(R.id.txtStartTime)
-        val txtEndTime = dialog.findViewById<AppCompatTextView>(R.id.txtEndTime)
-        val txtRepeatEvery = dialog.findViewById<AppCompatTextView>(R.id.txtRepeatEvery)
-        val imgStart = dialog.findViewById<AppCompatImageView>(R.id.imgStart)
-        val imgEnd = dialog.findViewById<AppCompatImageView>(R.id.imgEnd)
-        val setStartTime = dialog.findViewById<LinearLayoutCompat>(R.id.setStartTime)
-        val setEndTime = dialog.findViewById<LinearLayoutCompat>(R.id.setEndTime)
-        val bgStart = dialog.findViewById<ConstraintLayout>(R.id.bgStart)
-        val bgEnd = dialog.findViewById<ConstraintLayout>(R.id.bgEnd)
-        val saveSchedule = dialog.findViewById<AppCompatButton>(R.id.saveSchedule)
-
-        imgStart!!.setColorFilter(colorHexx.toColorInt())
-        imgEnd!!.setColorFilter(colorHexx.toColorInt())
-        txtStartTime!!.setTextColor(colorHexx.toColorInt())
-        txtEndTime!!.setTextColor(colorHexx.toColorInt())
-        txtRepeatEvery!!.setTextColor(colorHexx.toColorInt())
-        bgStart!!.background.setTint(colorHexx.lighten(0.9f))
-        bgEnd!!.background.setTint(colorHexx.lighten(0.9f))
-        saveSchedule!!.backgroundTintList = ColorStateList.valueOf(colorHexx.toColorInt())
-
-        if (startTime != null && endTime != null && repeatEvery != null) {
-            txtSetStartTime!!.text = milliSecondToTime(startTime!!)
-            txtSetEndTime!!.text = milliSecondToTime(endTime!!)
-            txtSetRepeatEveryMinute!!.text = "$repeatEvery minute"
-        }
-
-        setStartTime!!.setOnClickListener {
-            showStartTimePicker(txtSetStartTime)
-        }
-
-        setEndTime!!.setOnClickListener {
-            showEndTimePicker(txtSetEndTime, txtSetRepeatEveryMinute)
-        }
-
-        txtSetRepeatEveryMinute!!.setOnClickListener {
-            showMinutePickerDialog(txtSetRepeatEveryMinute)
-        }
-        saveSchedule.setOnClickListener {
-            if (startTime != null && endTime != null && repeatEvery != null) {
-                val newSchedule = ScheduleTimerModel(
-                    true, startTime!!, endTime!!, repeatEvery!!
-                )
-                AppPreferences.saveScheduleTime(newSchedule)
-                listener.onDataUpdated()
-                dialog.dismiss()
-            } else {
-                requireContext().showColoredToast(
-                    "Please set start and time first",
-                    colorHexx.lighten(0.9f),
-                    colorHexx.toColorInt()
-                )
-            }
-        }
-        dialog.show()
-    }
-
-    private fun showStartTimePicker(txtSetStartTime: AppCompatTextView?) {
-        val picker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H) // 12-hour format with AM/PM
-            .setHour(startCal!!.get(Calendar.HOUR_OF_DAY))
-            .setMinute(startCal!!.get(Calendar.MINUTE))
-            //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
-            .setTitleText("Select Start Time".toUpperCase()).build()
-
-        picker.addOnPositiveButtonClickListener {
-            val hour = picker.hour
-            val minute = picker.minute
-
-            startCal = Calendar.getInstance().apply {
-                set(Calendar.HOUR_OF_DAY, hour)
-                set(Calendar.MINUTE, minute)
-                set(Calendar.SECOND, 0)
-                set(Calendar.MILLISECOND, 0)
-            }
-            startTime = startCal!!.timeInMillis
-            val formattedTime = formattedTime(startCal)
-            txtSetStartTime!!.text = formattedTime
-
-        }
-
-        picker.show(parentFragmentManager, "start_time_picker")
-    }
-
-    private fun showEndTimePicker(
-        txtSetEndTime: AppCompatTextView?, txtSetRepeatEveryMinute: AppCompatTextView?
-    ) {
-        val picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H)
-            .setHour(endCal!!.get(Calendar.HOUR_OF_DAY)).setMinute(endCal!!.get(Calendar.MINUTE))
-            //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
-            .setTitleText("Select End Time".toUpperCase()).build()
-
-        picker.addOnPositiveButtonClickListener {
-            val hour = picker.hour
-            val minute = picker.minute
-
-            endCal = Calendar.getInstance().apply {
-                set(Calendar.HOUR_OF_DAY, hour)
-                set(Calendar.MINUTE, minute)
-                set(Calendar.SECOND, 0)
-                set(Calendar.MILLISECOND, 0)
-            }
-            endTime = endCal!!.timeInMillis
-
-            val formattedTime = formattedTime(endCal)
-            txtSetEndTime!!.text = formattedTime
-
-            showMinutePickerDialog(txtSetRepeatEveryMinute)
-        }
-
-        picker.show(parentFragmentManager, "end_time_picker")
-    }
-
-    private fun milliSecondToTime(timeInMillis: Long): String {
-        val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
-        val formattedTime = sdf.format(Date(timeInMillis))
-        return formattedTime
-    }
-
-    private fun formattedTime(startCal: Calendar?): String {
-        val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(startCal!!.time)
-        return formattedTime
-    }
-
-    private fun showMinutePickerDialog(txtSetRepeatEveryMinute: AppCompatTextView?) {
-        val evenNumbers = (2..60 step 2).map { it.toString() }.toTypedArray()
-
-        val numberPicker = NumberPicker(requireContext()).apply {
-            minValue = 0
-            maxValue = evenNumbers.size - 1
-            displayedValues = evenNumbers
-            wrapSelectorWheel = true
-        }
-
-        AlertDialog.Builder(requireContext()).setTitle("SELECT MINUTES").setView(numberPicker)
-            .setPositiveButton("OK") { _, _ ->
-                val selectedValue = evenNumbers[numberPicker.value].toInt()
-                repeatEvery = selectedValue.toLong()
-                "$selectedValue minute".also {
-                    txtSetRepeatEveryMinute!!.text = it
-                }
-            }.setNegativeButton("Cancel") { dialog, _ ->
-                repeatEvery = 1
-            }.show()
-    }
-
-    private fun removeNumberPickerDividers(numberPicker: NumberPicker) {
-        try {
-            val fields = numberPicker.javaClass.declaredFields
-            for (field in fields) {
-                if (field.name == "mSelectionDivider") {
-                    field.isAccessible = true
-                    field.set(numberPicker, null) // remove divider drawable
-                    break
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
     override fun onStart() {
         super.onStart()
-
-        /*requireActivity().showCustomSnackbar(
-            "An update has just been downloaded.",
-            actionText = "RESTART",
-            iconRes = R.drawable.app_update,
-            colorString = colorHexx.toString()
-        ) {
-            appUpdateManager!!.completeUpdate()
-        }*/
 
         val filter = IntentFilter(Constants.ACTION_UPDATE_UI_LOCAL)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -995,11 +830,6 @@ class HomeFragment :
         //setUiThemeMode()
         setThemeMode(darkMode == true)
 
-        /*if (schTime != null) {
-            startTime = schTime!!.startTimeMillis
-            endTime = schTime!!.endTimeMillis
-            repeatEvery = schTime!!.intervalMillis
-        }*/
         schTime = AppPreferences.getScheduleTime()
 
         if (repeatOption != null && soundOption != null) {
@@ -1120,18 +950,4 @@ class HomeFragment :
             ttsReady = true
         }
     }*/
-
-    override fun onDataUpdated() {
-        updateUiWithSessionData()
-    }
-
-    private fun updateUiWithSessionData() {
-        //schTime = AppPreferences.getScheduleTime()
-    }
-
-}
-
-
-interface OnBottomSheetResultListener {
-    fun onDataUpdated()
 }

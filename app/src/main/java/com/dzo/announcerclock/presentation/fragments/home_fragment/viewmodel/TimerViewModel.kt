@@ -1,11 +1,15 @@
 package com.dzo.announcerclock.presentation.fragments.home_fragment.viewmodel
 
+import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.ServiceConnection
 import android.os.Build
 import android.os.IBinder
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.registerReceiver
 import androidx.core.content.ContextCompat.startForegroundService
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +17,8 @@ import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.data.service.TimerService
 import com.dzo.announcerclock.domain.timer_usecase.AnnounceTimeUseCase
 import com.dzo.announcerclock.utils.Constants
+import com.dzo.announcerclock.utils.Constants.ACTION_STOP
+import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
 import com.dzo.announcerclock.utils.helper.PreferenceHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -40,6 +46,28 @@ class TimerViewModel @Inject constructor(
 
     private var timerService: TimerService? = null
     private var isBound = false
+    private val _isCustomTimerStart = MutableStateFlow(false)
+    val isCustomTimerStart = _isCustomTimerStart.asStateFlow()
+    private var customTimerStartReceiver: BroadcastReceiver? = null
+
+    init {
+        registerToggleReceiver(context)
+    }
+
+    private fun registerToggleReceiver(context: Context) {
+        val filter1 = IntentFilter(ACTION_STOP)
+        customTimerStartReceiver = object : BroadcastReceiver(){
+            override fun onReceive(context: Context?, intent: Intent?) {
+                _isCustomTimerStart.value = true
+            }
+        }
+        registerReceiver(
+            context,
+            customTimerStartReceiver,
+            filter1,
+            ContextCompat.RECEIVER_NOT_EXPORTED
+        )
+    }
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {

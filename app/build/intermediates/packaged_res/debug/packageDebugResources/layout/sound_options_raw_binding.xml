@@ -22,7 +22,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/deleteItem"
         android:tint="@color/blue"
-        android:src="@drawable/ic_speaker"
         android:layout_marginEnd="@dimen/_8sdp"
         android:padding="@dimen/_12sdp"
         android:id="@+id/selectedItem"/>
@@ -34,8 +33,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:tint="@color/blue"
-        android:src="@drawable/ic_delete"
         android:layout_marginEnd="@dimen/_8sdp"
+        android:visibility="gone"
         android:padding="@dimen/_12sdp"
         android:id="@+id/deleteItem"/>
 

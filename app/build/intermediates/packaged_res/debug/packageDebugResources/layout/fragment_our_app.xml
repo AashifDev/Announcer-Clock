@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:spanCount="2"
+        android:scrollbars="none"
         android:id="@+id/our_app_recycler_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

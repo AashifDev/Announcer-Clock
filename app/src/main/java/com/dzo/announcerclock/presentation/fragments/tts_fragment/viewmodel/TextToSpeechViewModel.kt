@@ -5,6 +5,7 @@ import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.dzo.announcerclock.di.TtsUseCases
 import com.dzo.announcerclock.domain.tts_usecase.GetTtsSettingsUseCase
 import com.dzo.announcerclock.domain.tts_usecase.IsEnableDuringPhoneCallsUseCase
 import com.dzo.announcerclock.domain.tts_usecase.IsDisableWhilePlayingMusicUseCase
@@ -34,14 +35,7 @@ data class TtsUiState(
 @HiltViewModel
 class TtsViewModel @Inject constructor(
     application: Application,
-    private val getTtsSettings: GetTtsSettingsUseCase,
-    private val saveTtsSettings: SaveTtsSettingsUseCase,
-    private val isTimeSpeakingEnabled: IsTimeSpeakingEnabledUseCase,
-    private val saveTimeSpeakingEnabled: SaveTimeSpeakingEnabledUseCase,
-    private val saveEnableDuringPhoneCalls: SaveEnableDuringPhoneCallsUseCase,
-    private val isEnableDuringPhoneCalls: IsEnableDuringPhoneCallsUseCase,
-    private val saveDisableWhilePlayingMusic: SaveDisableWhilePlayingMusicUseCase,
-    private val isDisableWhilePlayingMusic: IsDisableWhilePlayingMusicUseCase
+    private val ttsUseCases: TtsUseCases
 ) : AndroidViewModel(application), TextToSpeech.OnInitListener {
 
     private val _state = MutableStateFlow(TtsUiState())
@@ -53,10 +47,10 @@ class TtsViewModel @Inject constructor(
         tts = TextToSpeech(application, this)
         viewModelScope.launch {
             // load saved settings and time toggle from use-cases (session)
-            val settings = getTtsSettings()
-            val timeEnabled = isTimeSpeakingEnabled()
-            val enableDuringPhoneCalls = isEnableDuringPhoneCalls()
-            val disableWhilePlayingMusic = isDisableWhilePlayingMusic()
+            val settings = ttsUseCases.getTtsSettings()
+            val timeEnabled = ttsUseCases.isTimeSpeakingEnabled()
+            val enableDuringPhoneCalls = ttsUseCases.isEnableDuringPhoneCalls()
+            val disableWhilePlayingMusic = ttsUseCases.isDisableWhilePlayingMusic()
             _state.update {
                 it.copy(
                     settings = settings,
@@ -75,36 +69,6 @@ class TtsViewModel @Inject constructor(
             loadLanguages()
         }
     }
-
-    /*private fun loadLanguages() {
-        viewModelScope.launch {
-            val locales = try {
-                val method = TextToSpeech::class.java.getMethod("getAvailableLanguages")
-                (method.invoke(tts) as? Set<Locale>) ?: Locale.getAvailableLocales().toSet()
-            } catch (e: Exception) {
-                Locale.getAvailableLocales().toSet()
-            }
-
-            val filtered = locales
-                .groupBy { it.language }
-                .map { entry ->
-                    entry.value.find { it.country.isNotEmpty() } ?: entry.value.first()
-                }
-                .sortedBy { it.displayLanguage }
-
-            _state.update { it.copy(languages = filtered) }
-
-            // After languages are loaded, load voices for saved language (if any)
-            val savedLang = _state.value.settings.language
-            val localeParts = savedLang.split("_")
-            val savedLocale = if (localeParts.size == 2) Locale(
-                localeParts[0],
-                localeParts[1]
-            ) else Locale.getDefault()
-            // use init=true so we don't re-save unnecessary intermediate states
-            selectLanguage(savedLocale, init = true)
-        }
-    }*/
 
     private fun loadLanguages() {
         viewModelScope.launch {
@@ -151,7 +115,7 @@ class TtsViewModel @Inject constructor(
             _state.update { it.copy(settings = newSettings) }
             if (!init) {
                 // persist the language choice
-                saveTtsSettings(newSettings)
+                ttsUseCases.saveTtsSettings(newSettings)
             }
 
             // Update tts engine language
@@ -172,7 +136,7 @@ class TtsViewModel @Inject constructor(
             if (!init && selectedVoice != null) {
                 val updatedSettings = _state.value.settings.copy(genderVoice = selectedVoice.name)
                 _state.update { it.copy(settings = updatedSettings) }
-                saveTtsSettings(updatedSettings)
+                ttsUseCases.saveTtsSettings(updatedSettings)
             }
         }
     }
@@ -183,23 +147,23 @@ class TtsViewModel @Inject constructor(
             val newSettings = _state.value.settings.copy(genderVoice = voice.name)
             _state.update { it.copy(settings = newSettings) }
             // persist updated settings
-            saveTtsSettings(newSettings)
+            ttsUseCases.saveTtsSettings(newSettings)
         }
     }
 
     fun toggleTimeSpeaking(enabled: Boolean) {
         _state.update { it.copy(timeSpeakingEnabled = enabled) }
-        viewModelScope.launch { saveTimeSpeakingEnabled(enabled) }
+        viewModelScope.launch { ttsUseCases.saveTimeSpeakingEnabled(enabled) }
     }
 
     fun toggleEnableDuringPhoneCalls(enable: Boolean) {
         _state.update { it.copy(enableDuringPhoneCalls = enable) }
-        viewModelScope.launch { saveEnableDuringPhoneCalls(enable) }
+        viewModelScope.launch { ttsUseCases.saveEnableDuringPhoneCalls(enable) }
     }
 
     fun toggleDisableWhilePlayingMusic(disable: Boolean) {
         _state.update { it.copy(disableWhilePlayingMusic = disable) }
-        viewModelScope.launch { saveDisableWhilePlayingMusic(disable) }
+        viewModelScope.launch { ttsUseCases.saveDisableWhilePlayingMusic(disable) }
     }
 
     fun speakCurrentTime() {

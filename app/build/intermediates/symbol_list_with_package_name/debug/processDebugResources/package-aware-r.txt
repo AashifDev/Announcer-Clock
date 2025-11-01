@@ -66,6 +66,10 @@ anim nav_default_enter_anim
 anim nav_default_exit_anim
 anim nav_default_pop_enter_anim
 anim nav_default_pop_exit_anim
+anim slide_in_left
+anim slide_in_right
+anim slide_out_left
+anim slide_out_right
 animator chevron_checked_unchecked
 animator chevron_unchecked_checked
 animator design_appbar_state_list_animator
@@ -956,6 +960,26 @@ attr logo
 attr logoAdjustViewBounds
 attr logoDescription
 attr logoScaleType
+attr lottieAnimationViewStyle
+attr lottie_autoPlay
+attr lottie_cacheComposition
+attr lottie_clipToCompositionBounds
+attr lottie_colorFilter
+attr lottie_defaultFontFileExtension
+attr lottie_enableMergePathsForKitKatAndAbove
+attr lottie_fallbackRes
+attr lottie_fileName
+attr lottie_ignoreDisabledSystemAnimations
+attr lottie_imageAssetsFolder
+attr lottie_loop
+attr lottie_progress
+attr lottie_rawRes
+attr lottie_renderMode
+attr lottie_repeatCount
+attr lottie_repeatMode
+attr lottie_speed
+attr lottie_url
+attr lottie_useCompositionFrameRate
 attr marginBottomSystemWindowInsets
 attr marginHorizontal
 attr marginLeftSystemWindowInsets
@@ -4707,6 +4731,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable circle_progress
+drawable close
 drawable color_box_background
 drawable color_box_bg
 drawable color_pointer
@@ -4942,6 +4967,11 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
+id action_homeFragment_to_appThemeFragment
+id action_homeFragment_to_notificationSoundFragment
+id action_homeFragment_to_ourAppFragment
+id action_homeFragment_to_repeatOptionFragment
+id action_homeFragment_to_textToSpeechFragment
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -4983,6 +5013,7 @@ id autoCompleteToEnd
 id autoCompleteToStart
 id autoHide
 id autoLimit
+id automatic
 id availableSpace
 id axisRelative
 id balloon
@@ -5031,6 +5062,7 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id clockwise
+id close
 id closest
 id collapseActionView
 id colorBox
@@ -5062,6 +5094,7 @@ id customize
 id customizeTheme
 id cut
 id dark
+id darkModeAnimation
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -5153,6 +5186,7 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id hardware
 id header
 id header_title
 id hidden
@@ -5222,6 +5256,7 @@ id llEnableTtsOnCall
 id llNotificationSound
 id locale
 id logo
+id lottie_layer_name
 id ltr
 id m3_side_sheet
 id main
@@ -5373,10 +5408,14 @@ id recentColorsRV
 id rectangles
 id removeSelectedColor
 id repeat
+id repeatAnimation
+id repeatOptionAnimation
 id repeatOptionFragment
 id repeatOptionRecyclerView
 id report_drawn
+id restart
 id retreat
+id reverse
 id reverseSawtooth
 id right
 id rightToLeft
@@ -5449,6 +5488,7 @@ id snackbar_icon
 id snackbar_text
 id snap
 id snapMargins
+id software
 id sound
 id soundCardView
 id soundLayout
@@ -5848,13 +5888,17 @@ plurals mtrl_badge_content_description
 raw balloon_get
 raw base_boom
 raw chime_alert
+raw clock_anim
+raw dark_mode
 raw firebase_common_keep
 raw level_up
 raw level_up_1
 raw positive_notification
 raw ring_bell
+raw speaker_anim
 raw super_mario_jump
 raw super_mario_world_14
+raw tts_anim
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -5886,6 +5930,7 @@ string androidx_startup
 string app_name
 string app_theme
 string appbar_scrolling_view_behavior
+string apply
 string autofill
 string bottom_sheet_behavior
 string bottomsheet_action_collapse
@@ -5902,6 +5947,7 @@ string call_notification_screening_text
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string choose_app_color
 string choose_theme_color_options
 string choose_your_sound
 string clear_text_end_icon_content_description
@@ -7517,6 +7563,7 @@ styleable LinearProgressIndicator indeterminateAnimationType indicatorDirectionL
 styleable ListPopupWindow android_dropDownHorizontalOffset android_dropDownVerticalOffset
 styleable LoadingImageView circleCrop imageAspectRatio imageAspectRatioAdjust
 styleable LoadingIndicator containerColor containerHeight containerWidth indicatorColor indicatorSize
+styleable LottieAnimationView lottie_autoPlay lottie_cacheComposition lottie_clipToCompositionBounds lottie_colorFilter lottie_defaultFontFileExtension lottie_enableMergePathsForKitKatAndAbove lottie_fallbackRes lottie_fileName lottie_ignoreDisabledSystemAnimations lottie_imageAssetsFolder lottie_loop lottie_progress lottie_rawRes lottie_renderMode lottie_repeatCount lottie_repeatMode lottie_speed lottie_url lottie_useCompositionFrameRate
 styleable MaterialAlertDialog backgroundInsetBottom backgroundInsetEnd backgroundInsetStart backgroundInsetTop backgroundTint
 styleable MaterialAlertDialogTheme materialAlertDialogBodyTextStyle materialAlertDialogButtonSpacerVisibility materialAlertDialogTheme materialAlertDialogTitleIconStyle materialAlertDialogTitlePanelStyle materialAlertDialogTitleTextStyle
 styleable MaterialAutoCompleteTextView android_inputType android_popupElevation dropDownBackgroundTint simpleItemLayout simpleItemSelectedColor simpleItemSelectedRippleColor simpleItems

@@ -113,4 +113,6 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
 
     implementation("com.github.skydoves:balloon:1.6.13")
+
+    implementation("com.airbnb.android:lottie:6.0.0")
 }

@@ -97,8 +97,10 @@ class NotificationSoundFragment :
             AppPreferences.saveNotificationSoundEnabled(isChecked)
             binding.soundOptionRecyclerView.apply {
                 isEnabled = isChecked
-                alpha = if (isChecked) 1f else 0.5f
+                //alpha = if (isChecked) 1f else 0.5f
             }
+            binding.soundCardView.alpha = if (isChecked) 1f else 0.5f
+
             if (isChecked)
                 enableNotificationSoundRipple()
             else
@@ -132,9 +134,9 @@ class NotificationSoundFragment :
         binding.enableNotificationSound.isChecked = isSoundEnabled
         binding.enableNotificationSound.isEnabled = isNotificationEnabled
 
-        //binding.soundCardView.alpha = if (isSoundEnabled) 1f else 0.5f
+        binding.soundCardView.alpha = if (isSoundEnabled) 1f else 0.5f
         binding.soundOptionRecyclerView.apply {
-            alpha = if (isSoundEnabled) 1f else 0.5f
+            //alpha = if (isSoundEnabled) 1f else 0.5f
             isEnabled = isSoundEnabled
             isClickable = isSoundEnabled
             isFocusable = isSoundEnabled

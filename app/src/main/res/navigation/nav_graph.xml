@@ -9,7 +9,43 @@
         android:id="@+id/homeFragment"
         android:name="com.dzo.announcerclock.presentation.fragments.home_fragment.HomeFragment"
         android:label="Announcer Clock"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_repeatOptionFragment"
+            app:destination="@id/repeatOptionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"  />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationSoundFragment"
+            app:destination="@id/notificationSoundFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"  />
+        <action
+            android:id="@+id/action_homeFragment_to_appThemeFragment"
+            app:destination="@id/appThemeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_textToSpeechFragment"
+            app:destination="@id/textToSpeechFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"  />
+        <action
+            android:id="@+id/action_homeFragment_to_ourAppFragment"
+            app:destination="@id/ourAppFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/repeatOptionFragment"
         android:name="com.dzo.announcerclock.presentation.fragments.repeat_option.RepeatOptionFragment"

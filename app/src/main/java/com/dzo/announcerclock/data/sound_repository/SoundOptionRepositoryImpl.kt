@@ -21,9 +21,9 @@ class SoundOptionRepositoryImpl @Inject constructor(
             R.raw.chime_alert,
             R.raw.level_up,
             R.raw.level_up_1,
-          /*  R.raw.positive_notification,
+            R.raw.positive_notification,
             R.raw.balloon_get,
-            R.raw.super_mario_world_14,*/
+            R.raw.super_mario_world_14,
             R.raw.ring_bell,
             R.raw.super_mario_jump,
             R.raw.base_boom
@@ -37,7 +37,6 @@ class SoundOptionRepositoryImpl @Inject constructor(
                         .replace("_", " ")
                         .capitalizeWords(),
                     soundResId = resId,
-                    uri = null
                 )
             )
         }

@@ -5,6 +5,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
@@ -42,19 +43,19 @@ class SoundOptionAdapter @Inject constructor() :
 
             //Speaker icon visibility
             selectedItem.visibility = if (item.isSelected) {
-                //selectedItem.setImageResource(R.drawable.ic_speaker)
+                selectedItem.setImageResource(R.drawable.ic_speaker)
                 selectedItem.setColorFilter(themeColor!!.toColorInt())
                 View.VISIBLE
             } else {
                 View.GONE
             }
 
-            deleteItem.visibility = if (item.isUserAdded) {
+            /*deleteItem.visibility = if (item.isUserAdded) {
                 selectedItem.setColorFilter(themeColor!!.toColorInt())
                 View.VISIBLE
             } else {
                 View.GONE
-            }
+            }*/
 
             //Animate text size
             val startSize =
@@ -97,6 +98,7 @@ class SoundOptionAdapter @Inject constructor() :
             deleteItem.setOnClickListener {
                 onDeleteClick?.invoke(item)
             }
+
         }
     }
 

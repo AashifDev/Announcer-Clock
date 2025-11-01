@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.dzo.announcerclock.R;
@@ -21,10 +22,13 @@ import java.lang.String;
 
 public final class DialogCustomRepeatOptionBinding implements ViewBinding {
   @NonNull
-  private final MaterialCardView rootView;
+  private final LinearLayoutCompat rootView;
 
   @NonNull
   public final AppCompatButton btnSave;
+
+  @NonNull
+  public final AppCompatImageView close;
 
   @NonNull
   public final NumberPicker etInterval;
@@ -47,13 +51,15 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
   @NonNull
   public final AppCompatTextView txtTotalMinute;
 
-  private DialogCustomRepeatOptionBinding(@NonNull MaterialCardView rootView,
-      @NonNull AppCompatButton btnSave, @NonNull NumberPicker etInterval,
-      @NonNull NumberPicker etTotal, @NonNull AppCompatImageView hint,
-      @NonNull MaterialCardView themeCard, @NonNull TextView tvTitle,
-      @NonNull AppCompatTextView txtIntervalMinute, @NonNull AppCompatTextView txtTotalMinute) {
+  private DialogCustomRepeatOptionBinding(@NonNull LinearLayoutCompat rootView,
+      @NonNull AppCompatButton btnSave, @NonNull AppCompatImageView close,
+      @NonNull NumberPicker etInterval, @NonNull NumberPicker etTotal,
+      @NonNull AppCompatImageView hint, @NonNull MaterialCardView themeCard,
+      @NonNull TextView tvTitle, @NonNull AppCompatTextView txtIntervalMinute,
+      @NonNull AppCompatTextView txtTotalMinute) {
     this.rootView = rootView;
     this.btnSave = btnSave;
+    this.close = close;
     this.etInterval = etInterval;
     this.etTotal = etTotal;
     this.hint = hint;
@@ -65,7 +71,7 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public MaterialCardView getRoot() {
+  public LinearLayoutCompat getRoot() {
     return rootView;
   }
 
@@ -96,6 +102,12 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.close;
+      AppCompatImageView close = ViewBindings.findChildViewById(rootView, id);
+      if (close == null) {
+        break missingId;
+      }
+
       id = R.id.etInterval;
       NumberPicker etInterval = ViewBindings.findChildViewById(rootView, id);
       if (etInterval == null) {
@@ -114,7 +126,11 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
         break missingId;
       }
 
-      MaterialCardView themeCard = (MaterialCardView) rootView;
+      id = R.id.themeCard;
+      MaterialCardView themeCard = ViewBindings.findChildViewById(rootView, id);
+      if (themeCard == null) {
+        break missingId;
+      }
 
       id = R.id.tvTitle;
       TextView tvTitle = ViewBindings.findChildViewById(rootView, id);
@@ -134,8 +150,8 @@ public final class DialogCustomRepeatOptionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogCustomRepeatOptionBinding((MaterialCardView) rootView, btnSave, etInterval,
-          etTotal, hint, themeCard, tvTitle, txtIntervalMinute, txtTotalMinute);
+      return new DialogCustomRepeatOptionBinding((LinearLayoutCompat) rootView, btnSave, close,
+          etInterval, etTotal, hint, themeCard, tvTitle, txtIntervalMinute, txtTotalMinute);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.toColorInt
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
@@ -219,6 +220,7 @@ class ScheduleTimerBottomSheet(
             displayedValues = evenNumbers
             wrapSelectorWheel = true
         }
+        setNumberPickerDividerColor(numberPicker, colorHex.toColorInt())
 
         AlertDialog.Builder(requireContext()).setTitle("SELECT MINUTES").setView(numberPicker)
             .setPositiveButton("OK") { _, _ ->
@@ -230,5 +232,22 @@ class ScheduleTimerBottomSheet(
             }.setNegativeButton("Cancel") { dialog, _ ->
                 repeatEvery = 1
             }.show()
+    }
+
+    private fun setNumberPickerDividerColor(numberPicker: NumberPicker, color: Int) {
+        try {
+            val fields = numberPicker.javaClass.declaredFields
+            for (field in fields) {
+                if (field.name == "mSelectionDivider") {
+                    field.isAccessible = true
+                    val colorDrawable = color.toDrawable()
+                    field.set(numberPicker, colorDrawable) // set custom color
+                    break
+                }
+            }
+            numberPicker.invalidate()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

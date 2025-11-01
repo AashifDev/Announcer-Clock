@@ -14,9 +14,9 @@ data class SoundOption(
     val id: Int?=null,
     val title: String,
     val soundResId: Int? = null,
-    val uri: Uri? = null,
+    //val uri: Uri? = null,
     val isSelected: Boolean = false,
-    val isUserAdded: Boolean = false // 👈 Add this
+    //val isUserAdded: Boolean = false // 👈 Add this
 )
 
 

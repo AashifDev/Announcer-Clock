@@ -13,6 +13,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.airbnb.lottie.LottieAnimationView;
 import com.dzo.announcerclock.R;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -65,6 +66,9 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
   public final FloatingActionButton play;
 
   @NonNull
+  public final LottieAnimationView repeatAnimation;
+
+  @NonNull
   public final AppCompatSpinner selectedLangSpinner;
 
   @NonNull
@@ -104,8 +108,9 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       @NonNull LinearLayoutCompat linearLayoutCompatSound3,
       @NonNull MaterialCardView llEnableTtsOnCall,
       @NonNull MaterialCardView notificaitonSettingLayout, @NonNull FloatingActionButton play,
-      @NonNull AppCompatSpinner selectedLangSpinner, @NonNull AppCompatSpinner selectedVoiceSpinner,
-      @NonNull MaterialCardView ttsLayout, @NonNull AppCompatTextView txtDisableDuringCall,
+      @NonNull LottieAnimationView repeatAnimation, @NonNull AppCompatSpinner selectedLangSpinner,
+      @NonNull AppCompatSpinner selectedVoiceSpinner, @NonNull MaterialCardView ttsLayout,
+      @NonNull AppCompatTextView txtDisableDuringCall,
       @NonNull AppCompatTextView txtDisableDuringMusic,
       @NonNull AppCompatTextView txtNotificationSetting,
       @NonNull AppCompatTextView txtSelectLanguage, @NonNull AppCompatTextView txtSoundSetting,
@@ -124,6 +129,7 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
     this.llEnableTtsOnCall = llEnableTtsOnCall;
     this.notificaitonSettingLayout = notificaitonSettingLayout;
     this.play = play;
+    this.repeatAnimation = repeatAnimation;
     this.selectedLangSpinner = selectedLangSpinner;
     this.selectedVoiceSpinner = selectedVoiceSpinner;
     this.ttsLayout = ttsLayout;
@@ -241,6 +247,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.repeatAnimation;
+      LottieAnimationView repeatAnimation = ViewBindings.findChildViewById(rootView, id);
+      if (repeatAnimation == null) {
+        break missingId;
+      }
+
       id = R.id.selectedLangSpinner;
       AppCompatSpinner selectedLangSpinner = ViewBindings.findChildViewById(rootView, id);
       if (selectedLangSpinner == null) {
@@ -305,9 +317,9 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
           enableTimeSpeaking, enableWhilePhoneCalls, imgAnnounce, imgCall, imgMusic,
           linearLayoutCompat, linearLayoutCompatSound1, linearLayoutCompatSound2,
           linearLayoutCompatSound3, llEnableTtsOnCall, notificaitonSettingLayout, play,
-          selectedLangSpinner, selectedVoiceSpinner, ttsLayout, txtDisableDuringCall,
-          txtDisableDuringMusic, txtNotificationSetting, txtSelectLanguage, txtSoundSetting,
-          txtTimeSpeaking, txtVoiceGender);
+          repeatAnimation, selectedLangSpinner, selectedVoiceSpinner, ttsLayout,
+          txtDisableDuringCall, txtDisableDuringMusic, txtNotificationSetting, txtSelectLanguage,
+          txtSoundSetting, txtTimeSpeaking, txtVoiceGender);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

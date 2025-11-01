@@ -7,6 +7,17 @@
     android:orientation="vertical"
     tools:context=".presentation.fragments.tts_fragment.TextToSpeechFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/repeatAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_speed="1" />
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +26,7 @@
         app:cardBackgroundColor="@color/white"
         app:strokeWidth="0dp"
         app:cardCornerRadius="@dimen/_14sdp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeatAnimation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
@@ -79,7 +90,7 @@
         android:textSize="@dimen/_14ssp"
         android:textColor="@color/dark_grey"
         android:padding="@dimen/_6sdp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:layout_marginTop="@dimen/_16sdp"
         app:layout_constraintStart_toStartOf="@id/linearLayoutCompat"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutCompat" />
@@ -280,9 +291,8 @@
         android:layout_weight=".5"
         android:text="Notification Setting"
         android:textSize="@dimen/_14ssp"
-        android:textColor="@color/dark_grey"
         android:padding="@dimen/_6sdp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:layout_marginTop="@dimen/_16sdp"
         app:layout_constraintStart_toStartOf="@id/linearLayoutCompat"
         app:layout_constraintTop_toBottomOf="@id/ttsLayout" />
