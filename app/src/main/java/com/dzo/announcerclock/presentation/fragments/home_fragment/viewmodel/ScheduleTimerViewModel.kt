@@ -13,14 +13,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.registerReceiver
 import androidx.core.content.ContextCompat.startForegroundService
 import androidx.lifecycle.ViewModel
-import com.dzo.announcerclock.App
 import com.dzo.announcerclock.data.local_source.AppPreferences
-import com.dzo.announcerclock.data.local_source.isScheduleTimeExist
 import com.dzo.announcerclock.data.service.ScheduleTimerService
 import com.dzo.announcerclock.utils.Constants.ACTION_STOP
 import com.dzo.announcerclock.utils.Constants.ACTION_TOGGLE_UPDATE
-import com.dzo.announcerclock.utils.Constants.EXTRA_IS_ENABLED
-import com.dzo.announcerclock.utils.Utils.toast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,11 +34,12 @@ class ScheduleTimerViewModel
     private var isBound = false
     private val _isScheduleFinished = MutableStateFlow(false)
     val isScheduleFinished = _isScheduleFinished.asStateFlow()
-    private var scheduleFinishedReceiver: BroadcastReceiver? = null
 
     private val _isScheduleStart = MutableStateFlow(false)
     val isScheduleStart = _isScheduleStart.asStateFlow()
     private var scheduleStartReceiver: BroadcastReceiver? = null
+    private var scheduleFinishedReceiver: BroadcastReceiver? = null
+
 
     init {
         registerToggleReceiver(context)
@@ -90,8 +87,6 @@ class ScheduleTimerViewModel
         }
     }
 
-
-
     fun startScheduleTimer(startTimeMillis: Long, endTimeMillis: Long, intervalMillis: Long) {
         val intervalMillis = intervalMillis * 60 * 1000L
         startScheduleTimerService(startTimeMillis, endTimeMillis, intervalMillis)
@@ -127,6 +122,8 @@ class ScheduleTimerViewModel
         }
         // Stop service explicitly (safe fallback)
         try {
+            context.unregisterReceiver(scheduleFinishedReceiver)
+            context.unregisterReceiver(scheduleStartReceiver)
             context.stopService(Intent(context, ScheduleTimerService::class.java))
         } catch (e: Exception) {
             e.printStackTrace()
@@ -137,7 +134,8 @@ class ScheduleTimerViewModel
     override fun onCleared() {
         super.onCleared()
         try {
-            //context.unregisterReceiver(scheduleFinishedReceiver)
+            context.unregisterReceiver(scheduleFinishedReceiver)
+            context.unregisterReceiver(scheduleStartReceiver)
         } catch (e: Exception) {
          e.printStackTrace()
         }

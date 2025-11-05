@@ -10,6 +10,8 @@
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Announcer Clock</string>
     <string name="app_theme">App Theme</string>
+    <string name="apply">APPLY</string>
+    <string name="choose_app_color">CHOOSE APP COLOR</string>
     <string name="choose_theme_color_options">Choose theme color options</string>
     <string name="choose_your_sound">Choose your sound</string>
     <string name="custom_timer">Custom Timer</string>
@@ -30,7 +32,7 @@
     <string name="rate_app">Rate App</string>
     <string name="repeat_every">Repeat Every</string>
     <string name="schedule_time">Schedule time</string>
-    <string name="schedule_timer">Schedule timer</string>
+    <string name="schedule_timer">Schedule Timer</string>
     <string name="select_language">Select Language</string>
     <string name="select_pitch_rate">Select Pitch Rate</string>
     <string name="select_speech_rate">Select Speech Rate</string>
@@ -72,7 +74,6 @@
         <item name="android:textSize">@dimen/_16ssp</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:textColorHighlight">@color/blue</item>
-
     </style>
     <style name="SheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         

@@ -6,6 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.repeat_option.RepeatOptionFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/repeatOptionAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/clock_anim"
+        app:lottie_speed="1" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -14,7 +24,7 @@
         app:cardElevation="0dp"
         android:layout_margin="@dimen/_12sdp"
         app:cardCornerRadius="@dimen/_12sdp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeatOptionAnimation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

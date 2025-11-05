@@ -38,6 +38,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.registerReceiver
@@ -103,8 +105,7 @@ import androidx.core.graphics.drawable.toDrawable
 
 @AndroidEntryPoint
 class HomeFragment :
-    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate)
-    /*TextToSpeech.OnInitListener,*/{
+    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate){
 
     @Inject
     lateinit var announceTimeUseCase: AnnounceTimeUseCase
@@ -126,13 +127,8 @@ class HomeFragment :
     private var DAYS_FOR_FLEXIBLE_UPDATE: Int = 7
     private var DAYS_FOR_IMMEDIATE_UPDATE: Int = 14
     private var colorHexx = ""
-
     private var startCal: Calendar? = null
     private var endCal: Calendar? = null
-
-    private var startTime: Long? = null
-    private var endTime: Long? = null
-    private var repeatEvery: Long? = null
     private var schTime: ScheduleTimerModel? = null
 
     private val volumeReceiver = object : BroadcastReceiver() {
@@ -140,22 +136,6 @@ class HomeFragment :
             // Sync slider when system volume changed (hardware buttons or other apps)
             activity?.runOnUiThread {
                 syncSliderWithSystemVolume()
-            }
-        }
-    }
-    private val rippleTypedValue by lazy {
-        TypedValue().apply {
-            requireContext().theme.resolveAttribute(
-                android.R.attr.selectableItemBackground, this, true
-            )
-        }
-    }
-    private val serviceStatusReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            if (intent?.action == "com.dzo.announcerclock.SERVICE_STATUS") {
-                val enabled = intent.getBooleanExtra("enabled", false)
-                binding.enableScheduling.isChecked = enabled
-                toast(requireContext(), enabled.toString())
             }
         }
     }
@@ -432,31 +412,56 @@ class HomeFragment :
         binding.enableScheduling.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 if (schTime != null) {
-                    scheduleTimerModel.startScheduleTimer(
-                        schTime!!.startTimeMillis!!,
-                        schTime!!.endTimeMillis!!,
-                        schTime!!.intervalMillis!!
-                    )
-                    AppPreferences.saveCustomToggleState(true)
-                    println("HomeFragment.setupUIAfterPrefsLoaded::${schTime.toString()}")
+                    val startTime = schTime?.startTimeMillis
+                    val endTime = schTime?.endTimeMillis
+                    val interval = schTime?.intervalMillis
+
+                    if (startTime != null && endTime != null && interval != null) {
+                        // ✅ FIX: startTime should be in the future, not the past
+                        if (startTime > System.currentTimeMillis()) {
+                            scheduleTimerModel.startScheduleTimer(startTime, endTime, interval)
+                            AppPreferences.saveCustomToggleState(true)
+                            println("HomeFragment.setupUIAfterPrefsLoaded::${schTime.toString()}")
+
+                        } else {
+                            // Time already passed — show warning and uncheck
+                            requireActivity().showCustomSnackBar(
+                                message = "Your schedule time has passed away, please set again",
+                                iconRes = R.drawable.ic_logo,
+                                colorString = colorHexx
+                            )
+                            buttonView.isChecked = false
+                            AppPreferences.saveCustomToggleState(false)
+                        }
+                    } else {
+                        // Missing time values
+                        requireActivity().showCustomSnackBar(
+                            message = "Invalid schedule time",
+                            iconRes = R.drawable.ic_logo,
+                            colorString = colorHexx
+                        )
+                        buttonView.isChecked = false
+                        AppPreferences.saveCustomToggleState(false)
+                    }
                 } else {
+                    // Schedule time not set
                     requireActivity().showCustomSnackBar(
                         message = "Please set schedule time first",
                         iconRes = R.drawable.ic_logo,
                         colorString = colorHexx
                     )
                     buttonView.isChecked = false
+                    AppPreferences.saveCustomToggleState(false)
                 }
                 customSchedulingRipple()
             } else {
+                // ✅ When toggle turned OFF
                 scheduleTimerModel.stopTimer()
                 customSchedulingRipple()
-
-                //AppPreferences.saveCustomToggleState(false)
+                AppPreferences.saveCustomToggleState(false)
             }
         }
     }
-
 
     private fun headerCardRipple() {
         binding.header.isPressed = true
@@ -464,7 +469,6 @@ class HomeFragment :
             binding.header.isPressed = false
         }, 200)
     }
-
     private fun customSchedulingRipple() {
         binding.customScheduling.isPressed = true
         binding.customScheduling.postDelayed({
@@ -593,42 +597,6 @@ class HomeFragment :
         }
     }
 
-
-    /* private suspend fun speakTestMessage() {
-         if (!ttsReady) {
-             repeat(5) {
-                 delay(500)
-                 if (ttsReady) return@repeat
-             }
-         }
-
-         val settings = AppPreferences.getTtsSettings()
-         tts?.setPitch(settings.pitch)
-         tts?.setSpeechRate(settings.rate)
-
-         val localeParts = settings.language.split("_")
-         val locale =
-             if (localeParts.size == 2) Locale(localeParts[0], localeParts[1]) else Locale.getDefault()
-         tts?.language = locale
-
-         val availableVoices = tts?.voices?.filter { it.locale == locale } ?: emptyList()
-         val selectedVoice = availableVoices.firstOrNull { it.name.contains(settings.genderVoice, true) }
-             ?: availableVoices.firstOrNull()
-         selectedVoice?.let { tts?.voice = it }
-
-         val formatter = SimpleDateFormat("hh:mm a", Locale.getDefault())
-
-         withContext(Dispatchers.Main) {
-             tts?.speak(
-                 formatter.format(Date()),
-                 TextToSpeech.QUEUE_FLUSH,
-                 null,
-                 null
-             )
-         }
-     }
-    */
-
     private suspend fun speakTestMessage() {
         if (!ttsReady) {
             repeat(5) {
@@ -664,13 +632,11 @@ class HomeFragment :
             )
         }
     }
-
     private fun observeTtsState() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 ttsViewModel.state.collect { uiState ->
                     if (uiState.ttsReady && uiState.languages.isNotEmpty()) {
-
                         val currentLang = uiState.settings
                         if (currentLang.language.isEmpty()) {
                             val defaultLocale = Locale("en", "US")
@@ -681,7 +647,6 @@ class HomeFragment :
                             ttsViewModel.selectLanguage((langNames.firstOrNull() as Locale))
 
                         }
-
                         if (uiState.voices.isNotEmpty() && uiState.settings.genderVoice.isBlank()) {
                             val firstVoice = uiState.voices.first()
                             ttsViewModel.selectVoice(firstVoice)
@@ -698,28 +663,30 @@ class HomeFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    scheduleTimerModel.isScheduleFinished.collect { finished ->
-                        if (finished) {
+                    scheduleTimerModel.isScheduleFinished.collect {isFinish->
+                        if (isFinish){
                             binding.enableScheduling.isChecked = false
                             schTime = null
                         }
                     }
                 }
-                launch {
-                    timerViewModel.isCustomTimerStart.collect { finished ->
-                        if (finished) {
-                            binding.customToggle.isChecked = false
-                            binding.timerText.text = "OFF"
-                        }
-                    }
-                }
-                launch {
-                    scheduleTimerModel.isScheduleStart.collect { start ->
-                        if (start) {
-                            binding.customToggle.isChecked = false
-                        }
-                    }
-                }
+//                launch {
+//                    timerViewModel.isCustomTimerStart.collect { finished ->
+//                        if (finished) {
+//                            binding.customToggle.isChecked = false
+//                            binding.timerText.text = "OFF"
+//                        }
+//                    }
+//                }
+
+//                launch {
+//                    scheduleTimerModel.isScheduleStart.collect { start ->
+//                        if (start){
+//                            binding.customToggle.isChecked = false
+//                            timerViewModel.stopTimer()
+//                        }
+//                    }
+//                }
                 launch {
                     timerViewModel.progress.collect {
                         binding.circularProgress.progress = it
@@ -738,11 +705,6 @@ class HomeFragment :
                         } else {
                             binding.timerText.text = "OFF"
                         }
-                    }
-                }
-                launch {
-                    timerViewModel.announcement.collect { msg ->
-                        //msg?.let { tts.speak(it, TextToSpeech.QUEUE_FLUSH, null, null) }
                     }
                 }
             }
@@ -784,6 +746,7 @@ class HomeFragment :
         binding.rateAppImg.setColorFilter(colorHexx.toColorInt())
         binding.shareImg.setColorFilter(colorHexx.toColorInt())
         binding.versionImg.setColorFilter(colorHexx.toColorInt())
+        binding.upArrow.setColorFilter(colorHexx.toColorInt())
         binding.more.setTextColor(colorHexx.toColorInt())
         binding.txtVersionName.setTextColor(colorHexx.toColorInt())
 
@@ -820,12 +783,6 @@ class HomeFragment :
     override fun onStart() {
         super.onStart()
 
-        val filter = IntentFilter(Constants.ACTION_UPDATE_UI_LOCAL)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requireContext()
-                .registerReceiver(serviceStatusReceiver, filter, RECEIVER_NOT_EXPORTED)
-        }
-
         val darkMode = AppPreferences.isDarkThemeEnabled()
         //setUiThemeMode()
         setThemeMode(darkMode == true)
@@ -853,9 +810,9 @@ class HomeFragment :
             }
         }
 
-        /*if (!AppPreferences.isFirstLaunch()!!) {
+        if (!AppPreferences.isFirstLaunch()!!) {
             showIntroGuide()
-        }*/
+        }
     }
 
     private fun setUiThemeMode() {
@@ -944,10 +901,4 @@ class HomeFragment :
         println("🔥 TimerService destroyed")
     }
 
-    /*override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            tts?.language = Locale.getDefault()
-            ttsReady = true
-        }
-    }*/
 }

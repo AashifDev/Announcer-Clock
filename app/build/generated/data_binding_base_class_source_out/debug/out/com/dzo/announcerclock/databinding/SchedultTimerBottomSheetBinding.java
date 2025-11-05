@@ -13,6 +13,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.airbnb.lottie.LottieAnimationView;
 import com.dzo.announcerclock.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -33,6 +34,9 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
 
   @NonNull
   public final AppCompatImageView imgStart;
+
+  @NonNull
+  public final LottieAnimationView repeatAnimation;
 
   @NonNull
   public final AppCompatButton saveSchedule;
@@ -73,10 +77,11 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
   private SchedultTimerBottomSheetBinding(@NonNull LinearLayoutCompat rootView,
       @NonNull ConstraintLayout bgEnd, @NonNull ConstraintLayout bgStart,
       @NonNull AppCompatImageView imgEnd, @NonNull AppCompatImageView imgStart,
-      @NonNull AppCompatButton saveSchedule, @NonNull LinearLayoutCompat setEndTime,
-      @NonNull LinearLayoutCompat setStartTime, @NonNull AppCompatTextView txtEnd,
-      @NonNull AppCompatTextView txtEndTime, @NonNull AppCompatTextView txtRepeatEvery,
-      @NonNull AppCompatTextView txtSetEndTime, @NonNull AppCompatTextView txtSetRepeatEveryMinute,
+      @NonNull LottieAnimationView repeatAnimation, @NonNull AppCompatButton saveSchedule,
+      @NonNull LinearLayoutCompat setEndTime, @NonNull LinearLayoutCompat setStartTime,
+      @NonNull AppCompatTextView txtEnd, @NonNull AppCompatTextView txtEndTime,
+      @NonNull AppCompatTextView txtRepeatEvery, @NonNull AppCompatTextView txtSetEndTime,
+      @NonNull AppCompatTextView txtSetRepeatEveryMinute,
       @NonNull AppCompatTextView txtSetStartTime, @NonNull AppCompatTextView txtStart,
       @NonNull AppCompatTextView txtStartTime, @NonNull AppCompatImageView upArrow) {
     this.rootView = rootView;
@@ -84,6 +89,7 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
     this.bgStart = bgStart;
     this.imgEnd = imgEnd;
     this.imgStart = imgStart;
+    this.repeatAnimation = repeatAnimation;
     this.saveSchedule = saveSchedule;
     this.setEndTime = setEndTime;
     this.setStartTime = setStartTime;
@@ -146,6 +152,12 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
       id = R.id.imgStart;
       AppCompatImageView imgStart = ViewBindings.findChildViewById(rootView, id);
       if (imgStart == null) {
+        break missingId;
+      }
+
+      id = R.id.repeatAnimation;
+      LottieAnimationView repeatAnimation = ViewBindings.findChildViewById(rootView, id);
+      if (repeatAnimation == null) {
         break missingId;
       }
 
@@ -222,9 +234,9 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
       }
 
       return new SchedultTimerBottomSheetBinding((LinearLayoutCompat) rootView, bgEnd, bgStart,
-          imgEnd, imgStart, saveSchedule, setEndTime, setStartTime, txtEnd, txtEndTime,
-          txtRepeatEvery, txtSetEndTime, txtSetRepeatEveryMinute, txtSetStartTime, txtStart,
-          txtStartTime, upArrow);
+          imgEnd, imgStart, repeatAnimation, saveSchedule, setEndTime, setStartTime, txtEnd,
+          txtEndTime, txtRepeatEvery, txtSetEndTime, txtSetRepeatEveryMinute, txtSetStartTime,
+          txtStart, txtStartTime, upArrow);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1260,6 +1260,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="com.airbnb.android:lottie:6.0.0@aar"
+      jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\930fcafe8a9aa9e78618037d1c8f60e7\transformed\lottie-6.0.0\jars\classes.jar"
+      resolved="com.airbnb.android:lottie:6.0.0"
+      folder="C:\Users\luthr\AppData\Local\Android\Sdk\caches\8.13\transforms\930fcafe8a9aa9e78618037d1c8f60e7\transformed\lottie-6.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="org.jetbrains:annotations:23.0.0@jar"
       jars="C:\Users\luthr\AppData\Local\Android\Sdk\caches\modules-2\files-2.1\org.jetbrains\annotations\23.0.0\8cc20c07506ec18e0834947b84a864bfc094484e\annotations-23.0.0.jar"
       resolved="org.jetbrains:annotations:23.0.0"/>

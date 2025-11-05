@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:id="@+id/scrollView"
+    android:scrollbars="none"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.home_fragment.HomeFragment">
 
@@ -441,6 +442,28 @@
             app:layout_constraintTop_toBottomOf="@id/custom"
             app:layout_constraintStart_toStartOf="@id/settings"
             android:textStyle="normal"/>
+
+        <!--<androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="@id/txtScheduleTimer"
+            app:layout_constraintBottom_toBottomOf="@id/txtScheduleTimer"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="59:00"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_14ssp"
+                android:padding="@dimen/_6sdp"
+                android:id="@+id/txtRemainingTime"
+                android:textStyle="normal"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>-->
+
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/customScheduling"

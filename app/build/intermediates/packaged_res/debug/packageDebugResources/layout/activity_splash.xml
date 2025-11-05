@@ -8,15 +8,39 @@
     android:layout_height="match_parent"
     tools:context=".presentation.activity.SplashActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <FrameLayout
         android:id="@+id/logo"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_100sdp"
-        android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/splashAnim"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/clock_anim"
+            app:lottie_speed="1" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/repeatOptionAnimation1"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/megaphone"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            app:lottie_speed="1" />
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/header"

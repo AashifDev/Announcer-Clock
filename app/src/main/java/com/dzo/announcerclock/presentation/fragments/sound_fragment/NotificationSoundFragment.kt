@@ -85,6 +85,7 @@ class NotificationSoundFragment :
             binding.enableNotificationSound.apply {
                 isEnabled = isChecked
                 if (!isChecked) this.isChecked = false
+                binding.enableNotificationAnimation.playAnimation()
             }
             if (isChecked)
                 enableNotificationRipple()
@@ -95,6 +96,8 @@ class NotificationSoundFragment :
         // Notification sound toggle
         binding.enableNotificationSound.setOnCheckedChangeListener { toggle, isChecked ->
             AppPreferences.saveNotificationSoundEnabled(isChecked)
+            binding.enableNotificationAnimation.playAnimation()
+
             binding.soundOptionRecyclerView.apply {
                 isEnabled = isChecked
                 //alpha = if (isChecked) 1f else 0.5f

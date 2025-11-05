@@ -70,6 +70,9 @@ public final class MoreLayoutBinding implements ViewBinding {
   public final AppCompatTextView txtVersionName;
 
   @NonNull
+  public final AppCompatImageView upArrow;
+
+  @NonNull
   public final AppCompatImageView versionImg;
 
   private MoreLayoutBinding(@NonNull ConstraintLayout rootView,
@@ -81,7 +84,7 @@ public final class MoreLayoutBinding implements ViewBinding {
       @NonNull AppCompatTextView txtOurApp, @NonNull AppCompatTextView txtRateApp,
       @NonNull AppCompatTextView txtShare, @NonNull AppCompatTextView txtTheme,
       @NonNull AppCompatTextView txtVersion, @NonNull AppCompatTextView txtVersionName,
-      @NonNull AppCompatImageView versionImg) {
+      @NonNull AppCompatImageView upArrow, @NonNull AppCompatImageView versionImg) {
     this.rootView = rootView;
     this.appTheme = appTheme;
     this.appVersion = appVersion;
@@ -99,6 +102,7 @@ public final class MoreLayoutBinding implements ViewBinding {
     this.txtTheme = txtTheme;
     this.txtVersion = txtVersion;
     this.txtVersionName = txtVersionName;
+    this.upArrow = upArrow;
     this.versionImg = versionImg;
   }
 
@@ -225,6 +229,12 @@ public final class MoreLayoutBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.upArrow;
+      AppCompatImageView upArrow = ViewBindings.findChildViewById(rootView, id);
+      if (upArrow == null) {
+        break missingId;
+      }
+
       id = R.id.versionImg;
       AppCompatImageView versionImg = ViewBindings.findChildViewById(rootView, id);
       if (versionImg == null) {
@@ -233,7 +243,7 @@ public final class MoreLayoutBinding implements ViewBinding {
 
       return new MoreLayoutBinding((ConstraintLayout) rootView, appTheme, appVersion, more,
           ourAppImg, ourApps, rateApp, rateAppImg, shareApp, shareImg, themeImg, txtOurApp,
-          txtRateApp, txtShare, txtTheme, txtVersion, txtVersionName, versionImg);
+          txtRateApp, txtShare, txtTheme, txtVersion, txtVersionName, upArrow, versionImg);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

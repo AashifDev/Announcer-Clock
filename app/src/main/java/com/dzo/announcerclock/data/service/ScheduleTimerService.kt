@@ -7,11 +7,13 @@ import android.graphics.BitmapFactory
 import android.media.AudioAttributes
 import android.os.Binder
 import android.os.Build
+import android.os.CountDownTimer
 import android.os.IBinder
 import android.speech.tts.TextToSpeech
 import android.telephony.TelephonyManager
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.App
 import com.dzo.announcerclock.data.local_source.AppPreferences
@@ -38,6 +40,8 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
     @Inject
     lateinit var announceTimeUseCase: AnnounceTimeUseCase
 
+    private var countDownTimer: CountDownTimer? = null
+    private var endTime = 0L
     private var tts: TextToSpeech? = null
     private var timerJob: Job? = null
     private var isRunning = false
@@ -118,6 +122,7 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
             isRunning = false
         }
     }
+
     private fun resumeTimer() {
         if (isPaused) {
             isPaused = false
@@ -125,6 +130,7 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
             startTime = System.currentTimeMillis() - elapsedTime  // Resume correctly
         }
     }
+
     override fun onBind(intent: Intent?): IBinder = TimerBinder()
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -203,13 +209,13 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                     delay(200)
                     continue
                 }
-
                 val now = System.currentTimeMillis()
-               /* val now = System.currentTimeMillis()
+                /*val now = System.currentTimeMillis()
                 if (!isSpeaking) {
                     val now = System.currentTimeMillis()
                     elapsedTime = now - startTime
                 }*/
+
                 // End condition
                 if (now >= endTimeMillis) {
                     isRunning = false
@@ -243,7 +249,7 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
                 _timeFlow.value = String.format("%02d:%02d", minutes, seconds)
 
                 // Announce if interval reached
-                if (now >= nextAnnounceTime ) {
+                if (now >= nextAnnounceTime) {
                     nextAnnounceTime += intervalMillis
                     sendBroadCastToUi(ACTION_STOP)
                     if (AppPreferences.isTimeSpeakingEnabled() == true) announceTime()
@@ -255,23 +261,12 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         }
     }
 
-    private fun sendBroadCastToUi(action: String){
+    private fun sendBroadCastToUi(action: String) {
         val intent = Intent(action).apply {
             setPackage(packageName)
         }
         sendBroadcast(intent)
     }
-    private fun sendToggleBroadcast(isEnabled: Boolean) {
-      /*  val intent = Intent(ACTION_TOGGLE_UPDATE).apply {
-            putExtra(EXTRA_IS_ENABLED, isEnabled)
-        }
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)*/
-        val intent = Intent(ACTION_TOGGLE_UPDATE).apply {
-            putExtra(EXTRA_IS_ENABLED, isEnabled)
-        }
-        sendBroadcast(intent)
-    }
-
 
     private suspend fun announceTime() {
         val settings = AppPreferences.getTtsSettings()
@@ -390,3 +385,4 @@ class ScheduleTimerService : Service(), TextToSpeech.OnInitListener {
         stopSelf()
     }
 }
+

@@ -1,10 +1,11 @@
 package com.dzo.announcerclock.presentation.activity
 
 import android.Manifest
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -16,16 +17,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.airbnb.lottie.LottieAnimationView
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
-import androidx.core.net.toUri
-import com.dzo.announcerclock.utils.Utils.toast
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
+    lateinit var lottieView : LottieAnimationView
     private val requiredPermissions = buildList {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             add(Manifest.permission.POST_NOTIFICATIONS)
@@ -62,11 +64,18 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
         }else{
+            /*lottieView.addAnimatorListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finishAffinity()
+                    AppPreferences.saveFirstLaunch(true)
+                }
+            })*/
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finishAffinity()
             }, 1500)
-            AppPreferences.saveFirstLaunch(true)
+            //AppPreferences.saveFirstLaunch(true)
         }
     }
 
@@ -74,6 +83,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_splash)
+        lottieView = findViewById<LottieAnimationView>(R.id.splashAnim)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

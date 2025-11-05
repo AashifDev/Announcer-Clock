@@ -443,6 +443,28 @@
             app:layout_constraintStart_toStartOf="@id/settings"
             android:textStyle="normal"/>
 
+        <!--<androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="@id/txtScheduleTimer"
+            app:layout_constraintBottom_toBottomOf="@id/txtScheduleTimer"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="59:00"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_14ssp"
+                android:padding="@dimen/_6sdp"
+                android:id="@+id/txtRemainingTime"
+                android:textStyle="normal"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/customScheduling"
             android:layout_width="match_parent"
@@ -543,6 +565,17 @@
                         app:layout_constraintTop_toTopOf="@+id/img6" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_16sdp"
+                    android:progress="1"
+                    android:max="3"
+                    android:visibility="gone"
+                    android:indeterminate="false"
+                    android:background="#808080"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

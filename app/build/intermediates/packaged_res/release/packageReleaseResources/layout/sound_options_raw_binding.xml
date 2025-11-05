@@ -20,10 +20,23 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deleteItem"
         android:tint="@color/blue"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:padding="@dimen/_12sdp"
         android:id="@+id/selectedItem"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:tint="@color/blue"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:visibility="gone"
+        android:padding="@dimen/_12sdp"
+        android:id="@+id/deleteItem"/>
 
     <View
         android:layout_width="match_parent"

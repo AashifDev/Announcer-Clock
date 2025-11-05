@@ -2705,6 +2705,19 @@ library {
     value: 1
   }
 }
+library {
+  maven_library {
+    groupId: "com.airbnb.android"
+    artifactId: "lottie"
+    version: "6.0.0"
+  }
+  digests {
+    sha256: "\365^\235lK\233\274\376\310\375.\304\357\034\2218B\345\\H\207\023\003Q~UBY\255\331*\317"
+  }
+  repo_index {
+    value: 1
+  }
+}
 library_dependencies {
   library_dep_index: 1
 }
@@ -4554,6 +4567,11 @@ library_dependencies {
   library_dep_index: 0
   library_dep_index: 3
 }
+library_dependencies {
+  library_index: 233
+  library_dep_index: 112
+  library_dep_index: 157
+}
 module_dependencies {
   module_name: "base"
   dependency_index: 0
@@ -4591,6 +4609,7 @@ module_dependencies {
   dependency_index: 230
   dependency_index: 231
   dependency_index: 232
+  dependency_index: 233
 }
 repositories {
   maven_repo {

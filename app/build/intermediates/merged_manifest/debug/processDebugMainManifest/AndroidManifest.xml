@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dzo.announcerclock"
-    android:versionCode="2"
+    android:versionCode="3"
     android:versionName="1.1" >
 
     <uses-sdk
@@ -9,9 +9,10 @@
         android:targetSdkVersion="36" />
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
+    <!-- Notification permission (only needed for Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -27,8 +28,7 @@
         android:name="com.dzo.announcerclock.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.dzo.announcerclock.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-
+    <uses-permission android:name="com.dzo.announcerclock.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Foreground service permissions -->
     <application
         android:name="com.dzo.announcerclock.App"
         android:allowBackup="true"
@@ -56,19 +56,18 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name="com.dzo.announcerclock.data.service.TimerService"
-            android:exported="false"
-            android:foregroundServiceType="mediaPlayback|dataSync" />
-        <service
-            android:name="com.dzo.announcerclock.data.service.ScheduleTimerService"
-            android:exported="false"
-            android:foregroundServiceType="mediaPlayback|dataSync" />
-
         <receiver
             android:name="com.dzo.announcerclock.data.service.receiver.TimerActionReceiver"
             android:exported="true" />
 
+        <service
+            android:name="com.dzo.announcerclock.data.service.ScheduleTimerService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+        <service
+            android:name="com.dzo.announcerclock.data.service.TimerService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"
             android:directBootAware="true"

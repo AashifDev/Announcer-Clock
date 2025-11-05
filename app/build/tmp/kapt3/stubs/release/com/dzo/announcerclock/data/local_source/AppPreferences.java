@@ -35,6 +35,44 @@ public final class AppPreferences {
         return null;
     }
     
+    /**
+     * fun saveSoundOption(option: SoundOption?) {
+     *        try {
+     *            // Convert URI to string before saving
+     *            val safeOption = option!!.copy(uri = option.uri?.toString()?.let { it.toUri() })
+     *            val json = gson.toJson(
+     *                mapOf(
+     *                    "id" to safeOption.id,
+     *                    "title" to safeOption.title,
+     *                    "soundResId" to safeOption.soundResId,
+     *                    "uri" to safeOption.uri?.toString(),
+     *                    "isSelected" to safeOption.isSelected
+     *                )
+     *            )
+     *            PreferenceHelper.putString(KEY_SOUND_OPTION, json)
+     *        } catch (e: Exception) {
+     *            e.printStackTrace()
+     *        }
+     *    }
+     *
+     *    fun getSoundOption(): SoundOption? {
+     *        val json = PreferenceHelper.getString(KEY_SOUND_OPTION, "") ?: return null
+     *        return try {
+     *            val map = gson.fromJson(json, Map::class.java)
+     *            SoundOption(
+     *                id = (map["id"] as? Double)?.toInt(),
+     *                title = map["title"] as? String ?: "",
+     *                soundResId = (map["soundResId"] as? Double)?.toInt(),
+     *                uri = (map["uri"] as? String)?.let { it.toUri() },
+     *                isSelected = map["isSelected"] as? Boolean ?: false,
+     *                isUserAdded = true
+     *            )
+     *        } catch (e: JsonSyntaxException) {
+     *            Log.e("AppPreferences", "Failed to parse SoundOption", e)
+     *            null
+     *        }
+     *    }
+     */
     public final void saveStartTime(long startTime) {
     }
     

@@ -20,14 +20,14 @@
             android:paddingBottom="@dimen/_50sdp">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/repeatOptionAnimation"
+                android:id="@+id/enableNotificationAnimation"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="false"
                 app:layout_constraintTop_toTopOf="parent"
-                app:lottie_rawRes="@raw/speaker_anim"
+                app:lottie_rawRes="@raw/megaphone"
                 app:lottie_speed="1" />
 
             <com.google.android.material.card.MaterialCardView
@@ -38,7 +38,7 @@
                 app:cardBackgroundColor="@color/white"
                 app:strokeWidth="0dp"
                 app:cardCornerRadius="@dimen/_14sdp"
-                app:layout_constraintTop_toBottomOf="@+id/repeatOptionAnimation"
+                app:layout_constraintTop_toBottomOf="@+id/enableNotificationAnimation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent">
@@ -192,6 +192,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

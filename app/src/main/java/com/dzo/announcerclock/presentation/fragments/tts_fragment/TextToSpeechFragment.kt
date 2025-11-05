@@ -494,12 +494,14 @@ class TextToSpeechFragment :
     private fun setupListeners() {
         binding.enableTimeSpeaking.setOnCheckedChangeListener { _, isChecked ->
             viewModel.toggleTimeSpeaking(isChecked)
+            binding.repeatAnimation.playAnimation()
             if (isChecked) enableTtsRipple()
         }
 
         binding.play.setOnClickListener {
             if (AppPreferences.isTimeSpeakingEnabled()==true){
                 viewModel.speakCurrentTime()
+                binding.repeatAnimation.playAnimation()
             }else{
                 requireActivity().showCustomSnackBar(
                     "Please enable time speaking first!",

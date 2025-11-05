@@ -159,7 +159,7 @@ class ScheduleTimerBottomSheet(
             .setTimeFormat(TimeFormat.CLOCK_12H) // 12-hour format with AM/PM
             .setHour(startCal!!.get(Calendar.HOUR_OF_DAY))
             .setMinute(startCal!!.get(Calendar.MINUTE))
-            //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
+            .setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
             .setTitleText("Select Start Time".toUpperCase()).build()
 
         picker.addOnPositiveButtonClickListener {
@@ -175,7 +175,6 @@ class ScheduleTimerBottomSheet(
             startTime = startCal!!.timeInMillis
             val formattedTime = formattedTime(startCal)
             txtSetStartTime!!.text = formattedTime
-
         }
 
         picker.show(parentFragmentManager, "start_time_picker")
@@ -186,7 +185,7 @@ class ScheduleTimerBottomSheet(
     ) {
         val picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H)
             .setHour(endCal!!.get(Calendar.HOUR_OF_DAY)).setMinute(endCal!!.get(Calendar.MINUTE))
-            //.setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
+            .setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
             .setTitleText("Select End Time".toUpperCase()).build()
 
         picker.addOnPositiveButtonClickListener {

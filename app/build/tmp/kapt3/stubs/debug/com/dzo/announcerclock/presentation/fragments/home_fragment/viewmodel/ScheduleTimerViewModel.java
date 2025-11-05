@@ -13,14 +13,14 @@ public final class ScheduleTimerViewModel extends androidx.lifecycle.ViewModel {
     private final kotlinx.coroutines.flow.MutableStateFlow<java.lang.Boolean> _isScheduleFinished = null;
     @org.jetbrains.annotations.NotNull()
     private final kotlinx.coroutines.flow.StateFlow<java.lang.Boolean> isScheduleFinished = null;
-    @org.jetbrains.annotations.Nullable()
-    private android.content.BroadcastReceiver scheduleFinishedReceiver;
     @org.jetbrains.annotations.NotNull()
     private final kotlinx.coroutines.flow.MutableStateFlow<java.lang.Boolean> _isScheduleStart = null;
     @org.jetbrains.annotations.NotNull()
     private final kotlinx.coroutines.flow.StateFlow<java.lang.Boolean> isScheduleStart = null;
     @org.jetbrains.annotations.Nullable()
     private android.content.BroadcastReceiver scheduleStartReceiver;
+    @org.jetbrains.annotations.Nullable()
+    private android.content.BroadcastReceiver scheduleFinishedReceiver;
     @org.jetbrains.annotations.NotNull()
     private final android.content.ServiceConnection connection = null;
     

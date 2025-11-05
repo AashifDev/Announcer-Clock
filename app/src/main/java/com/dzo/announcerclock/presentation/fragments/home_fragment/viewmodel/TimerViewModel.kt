@@ -51,7 +51,7 @@ class TimerViewModel @Inject constructor(
     private var customTimerStartReceiver: BroadcastReceiver? = null
 
     init {
-        registerToggleReceiver(context)
+        //registerToggleReceiver(context)
     }
 
     private fun registerToggleReceiver(context: Context) {
@@ -120,14 +120,12 @@ class TimerViewModel @Inject constructor(
         }*/
         val totalMillis = intervalSeconds * 60 * 1000L // announce every 1 minute
         startTimerService(totalMillis)
-
     }
 
     fun startCustomTimer(intervalMinute: Long, totalRunMinute: Long) {
         val intervalMillis = intervalMinute * 60 * 1000L // minutes → millis
         val totalRunMillis = totalRunMinute * 60 * 1000L // minutes → millis
         startCustomTimerService(intervalMillis,totalRunMillis)
-
     }
 
 
@@ -135,10 +133,10 @@ class TimerViewModel @Inject constructor(
         val intent = Intent(context, TimerService::class.java).apply {
             putExtra("totalMillis", totalMillis)
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             startForegroundService(context, intent)
         } else {
-            context.startService(intent)
+            startForegroundService(context,intent)
         }
         context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
     }
@@ -150,10 +148,10 @@ class TimerViewModel @Inject constructor(
             putExtra("totalRunMillis", totalRunMillis)
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             startForegroundService(context, intent)
         } else {
-            context.startService(intent)
+            startForegroundService(context, intent)
         }
         context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
 

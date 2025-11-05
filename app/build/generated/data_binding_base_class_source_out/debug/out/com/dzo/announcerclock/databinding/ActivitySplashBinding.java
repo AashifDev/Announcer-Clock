@@ -4,14 +4,15 @@ package com.dzo.announcerclock.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.airbnb.lottie.LottieAnimationView;
 import com.dzo.announcerclock.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -31,7 +32,7 @@ public final class ActivitySplashBinding implements ViewBinding {
   public final AppCompatTextView header;
 
   @NonNull
-  public final AppCompatImageView logo;
+  public final FrameLayout logo;
 
   @NonNull
   public final ConstraintLayout main;
@@ -39,10 +40,17 @@ public final class ActivitySplashBinding implements ViewBinding {
   @NonNull
   public final AppCompatTextView poweredBt;
 
+  @NonNull
+  public final LottieAnimationView repeatOptionAnimation1;
+
+  @NonNull
+  public final LottieAnimationView splashAnim;
+
   private ActivitySplashBinding(@NonNull ConstraintLayout rootView,
       @NonNull AppCompatTextView appVersion, @NonNull ProgressBar circularProgress,
-      @NonNull AppCompatTextView header, @NonNull AppCompatImageView logo,
-      @NonNull ConstraintLayout main, @NonNull AppCompatTextView poweredBt) {
+      @NonNull AppCompatTextView header, @NonNull FrameLayout logo, @NonNull ConstraintLayout main,
+      @NonNull AppCompatTextView poweredBt, @NonNull LottieAnimationView repeatOptionAnimation1,
+      @NonNull LottieAnimationView splashAnim) {
     this.rootView = rootView;
     this.appVersion = appVersion;
     this.circularProgress = circularProgress;
@@ -50,6 +58,8 @@ public final class ActivitySplashBinding implements ViewBinding {
     this.logo = logo;
     this.main = main;
     this.poweredBt = poweredBt;
+    this.repeatOptionAnimation1 = repeatOptionAnimation1;
+    this.splashAnim = splashAnim;
   }
 
   @Override
@@ -98,7 +108,7 @@ public final class ActivitySplashBinding implements ViewBinding {
       }
 
       id = R.id.logo;
-      AppCompatImageView logo = ViewBindings.findChildViewById(rootView, id);
+      FrameLayout logo = ViewBindings.findChildViewById(rootView, id);
       if (logo == null) {
         break missingId;
       }
@@ -111,8 +121,20 @@ public final class ActivitySplashBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.repeatOptionAnimation1;
+      LottieAnimationView repeatOptionAnimation1 = ViewBindings.findChildViewById(rootView, id);
+      if (repeatOptionAnimation1 == null) {
+        break missingId;
+      }
+
+      id = R.id.splashAnim;
+      LottieAnimationView splashAnim = ViewBindings.findChildViewById(rootView, id);
+      if (splashAnim == null) {
+        break missingId;
+      }
+
       return new ActivitySplashBinding((ConstraintLayout) rootView, appVersion, circularProgress,
-          header, logo, main, poweredBt);
+          header, logo, main, poweredBt, repeatOptionAnimation1, splashAnim);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

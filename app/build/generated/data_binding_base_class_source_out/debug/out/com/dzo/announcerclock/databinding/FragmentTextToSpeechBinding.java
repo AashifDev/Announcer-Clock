@@ -4,6 +4,7 @@ package com.dzo.announcerclock.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -60,10 +61,16 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
   public final MaterialCardView llEnableTtsOnCall;
 
   @NonNull
+  public final FrameLayout lottieFrame;
+
+  @NonNull
   public final MaterialCardView notificaitonSettingLayout;
 
   @NonNull
   public final FloatingActionButton play;
+
+  @NonNull
+  public final LottieAnimationView repeatAnimatio;
 
   @NonNull
   public final LottieAnimationView repeatAnimation;
@@ -106,11 +113,11 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       @NonNull LinearLayoutCompat linearLayoutCompatSound1,
       @NonNull LinearLayoutCompat linearLayoutCompatSound2,
       @NonNull LinearLayoutCompat linearLayoutCompatSound3,
-      @NonNull MaterialCardView llEnableTtsOnCall,
+      @NonNull MaterialCardView llEnableTtsOnCall, @NonNull FrameLayout lottieFrame,
       @NonNull MaterialCardView notificaitonSettingLayout, @NonNull FloatingActionButton play,
-      @NonNull LottieAnimationView repeatAnimation, @NonNull AppCompatSpinner selectedLangSpinner,
-      @NonNull AppCompatSpinner selectedVoiceSpinner, @NonNull MaterialCardView ttsLayout,
-      @NonNull AppCompatTextView txtDisableDuringCall,
+      @NonNull LottieAnimationView repeatAnimatio, @NonNull LottieAnimationView repeatAnimation,
+      @NonNull AppCompatSpinner selectedLangSpinner, @NonNull AppCompatSpinner selectedVoiceSpinner,
+      @NonNull MaterialCardView ttsLayout, @NonNull AppCompatTextView txtDisableDuringCall,
       @NonNull AppCompatTextView txtDisableDuringMusic,
       @NonNull AppCompatTextView txtNotificationSetting,
       @NonNull AppCompatTextView txtSelectLanguage, @NonNull AppCompatTextView txtSoundSetting,
@@ -127,8 +134,10 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
     this.linearLayoutCompatSound2 = linearLayoutCompatSound2;
     this.linearLayoutCompatSound3 = linearLayoutCompatSound3;
     this.llEnableTtsOnCall = llEnableTtsOnCall;
+    this.lottieFrame = lottieFrame;
     this.notificaitonSettingLayout = notificaitonSettingLayout;
     this.play = play;
+    this.repeatAnimatio = repeatAnimatio;
     this.repeatAnimation = repeatAnimation;
     this.selectedLangSpinner = selectedLangSpinner;
     this.selectedVoiceSpinner = selectedVoiceSpinner;
@@ -235,6 +244,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.lottieFrame;
+      FrameLayout lottieFrame = ViewBindings.findChildViewById(rootView, id);
+      if (lottieFrame == null) {
+        break missingId;
+      }
+
       id = R.id.notificaitonSettingLayout;
       MaterialCardView notificaitonSettingLayout = ViewBindings.findChildViewById(rootView, id);
       if (notificaitonSettingLayout == null) {
@@ -244,6 +259,12 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       id = R.id.play;
       FloatingActionButton play = ViewBindings.findChildViewById(rootView, id);
       if (play == null) {
+        break missingId;
+      }
+
+      id = R.id.repeatAnimatio;
+      LottieAnimationView repeatAnimatio = ViewBindings.findChildViewById(rootView, id);
+      if (repeatAnimatio == null) {
         break missingId;
       }
 
@@ -316,8 +337,8 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       return new FragmentTextToSpeechBinding((ConstraintLayout) rootView, disableDuringMusic,
           enableTimeSpeaking, enableWhilePhoneCalls, imgAnnounce, imgCall, imgMusic,
           linearLayoutCompat, linearLayoutCompatSound1, linearLayoutCompatSound2,
-          linearLayoutCompatSound3, llEnableTtsOnCall, notificaitonSettingLayout, play,
-          repeatAnimation, selectedLangSpinner, selectedVoiceSpinner, ttsLayout,
+          linearLayoutCompatSound3, llEnableTtsOnCall, lottieFrame, notificaitonSettingLayout, play,
+          repeatAnimatio, repeatAnimation, selectedLangSpinner, selectedVoiceSpinner, ttsLayout,
           txtDisableDuringCall, txtDisableDuringMusic, txtNotificationSetting, txtSelectLanguage,
           txtSoundSetting, txtTimeSpeaking, txtVoiceGender);
     }

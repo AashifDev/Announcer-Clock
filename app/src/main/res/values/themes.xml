@@ -28,7 +28,6 @@
         <item name="android:textSize">@dimen/_16ssp</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:textColorHighlight">@color/blue</item>
-
     </style>
 
     <!--Bottom Sheet Style-->

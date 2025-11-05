@@ -13,7 +13,7 @@ android {
         applicationId = "com.dzo.announcerclock"
         minSdk = 28
         targetSdk = 36
-        versionCode = 2
+        versionCode = 3
         versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -89,6 +89,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
+    //Permission Manger
     implementation("com.google.accompanist:accompanist-permissions:0.30.1")
     implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
 
@@ -112,7 +113,9 @@ dependencies {
 
     implementation("com.google.android.material:material:1.12.0")
 
+    //
     implementation("com.github.skydoves:balloon:1.6.13")
 
+    //Lottie Animation
     implementation("com.airbnb.android:lottie:6.0.0")
 }

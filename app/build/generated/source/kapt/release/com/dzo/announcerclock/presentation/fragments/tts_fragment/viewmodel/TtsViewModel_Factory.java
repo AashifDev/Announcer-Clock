@@ -1,14 +1,7 @@
 package com.dzo.announcerclock.presentation.fragments.tts_fragment.viewmodel;
 
 import android.app.Application;
-import com.dzo.announcerclock.domain.tts_usecase.GetTtsSettingsUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.IsDisableWhilePlayingMusicUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.IsEnableDuringPhoneCallsUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.IsTimeSpeakingEnabledUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.SaveDisableWhilePlayingMusicUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.SaveEnableDuringPhoneCallsUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.SaveTimeSpeakingEnabledUseCase;
-import com.dzo.announcerclock.domain.tts_usecase.SaveTtsSettingsUseCase;
+import com.dzo.announcerclock.di.TtsUseCases;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
@@ -33,67 +26,25 @@ import javax.inject.Provider;
 public final class TtsViewModel_Factory implements Factory<TtsViewModel> {
   private final Provider<Application> applicationProvider;
 
-  private final Provider<GetTtsSettingsUseCase> getTtsSettingsProvider;
-
-  private final Provider<SaveTtsSettingsUseCase> saveTtsSettingsProvider;
-
-  private final Provider<IsTimeSpeakingEnabledUseCase> isTimeSpeakingEnabledProvider;
-
-  private final Provider<SaveTimeSpeakingEnabledUseCase> saveTimeSpeakingEnabledProvider;
-
-  private final Provider<SaveEnableDuringPhoneCallsUseCase> saveEnableDuringPhoneCallsProvider;
-
-  private final Provider<IsEnableDuringPhoneCallsUseCase> isEnableDuringPhoneCallsProvider;
-
-  private final Provider<SaveDisableWhilePlayingMusicUseCase> saveDisableWhilePlayingMusicProvider;
-
-  private final Provider<IsDisableWhilePlayingMusicUseCase> isDisableWhilePlayingMusicProvider;
+  private final Provider<TtsUseCases> ttsUseCasesProvider;
 
   public TtsViewModel_Factory(Provider<Application> applicationProvider,
-      Provider<GetTtsSettingsUseCase> getTtsSettingsProvider,
-      Provider<SaveTtsSettingsUseCase> saveTtsSettingsProvider,
-      Provider<IsTimeSpeakingEnabledUseCase> isTimeSpeakingEnabledProvider,
-      Provider<SaveTimeSpeakingEnabledUseCase> saveTimeSpeakingEnabledProvider,
-      Provider<SaveEnableDuringPhoneCallsUseCase> saveEnableDuringPhoneCallsProvider,
-      Provider<IsEnableDuringPhoneCallsUseCase> isEnableDuringPhoneCallsProvider,
-      Provider<SaveDisableWhilePlayingMusicUseCase> saveDisableWhilePlayingMusicProvider,
-      Provider<IsDisableWhilePlayingMusicUseCase> isDisableWhilePlayingMusicProvider) {
+      Provider<TtsUseCases> ttsUseCasesProvider) {
     this.applicationProvider = applicationProvider;
-    this.getTtsSettingsProvider = getTtsSettingsProvider;
-    this.saveTtsSettingsProvider = saveTtsSettingsProvider;
-    this.isTimeSpeakingEnabledProvider = isTimeSpeakingEnabledProvider;
-    this.saveTimeSpeakingEnabledProvider = saveTimeSpeakingEnabledProvider;
-    this.saveEnableDuringPhoneCallsProvider = saveEnableDuringPhoneCallsProvider;
-    this.isEnableDuringPhoneCallsProvider = isEnableDuringPhoneCallsProvider;
-    this.saveDisableWhilePlayingMusicProvider = saveDisableWhilePlayingMusicProvider;
-    this.isDisableWhilePlayingMusicProvider = isDisableWhilePlayingMusicProvider;
+    this.ttsUseCasesProvider = ttsUseCasesProvider;
   }
 
   @Override
   public TtsViewModel get() {
-    return newInstance(applicationProvider.get(), getTtsSettingsProvider.get(), saveTtsSettingsProvider.get(), isTimeSpeakingEnabledProvider.get(), saveTimeSpeakingEnabledProvider.get(), saveEnableDuringPhoneCallsProvider.get(), isEnableDuringPhoneCallsProvider.get(), saveDisableWhilePlayingMusicProvider.get(), isDisableWhilePlayingMusicProvider.get());
+    return newInstance(applicationProvider.get(), ttsUseCasesProvider.get());
   }
 
   public static TtsViewModel_Factory create(Provider<Application> applicationProvider,
-      Provider<GetTtsSettingsUseCase> getTtsSettingsProvider,
-      Provider<SaveTtsSettingsUseCase> saveTtsSettingsProvider,
-      Provider<IsTimeSpeakingEnabledUseCase> isTimeSpeakingEnabledProvider,
-      Provider<SaveTimeSpeakingEnabledUseCase> saveTimeSpeakingEnabledProvider,
-      Provider<SaveEnableDuringPhoneCallsUseCase> saveEnableDuringPhoneCallsProvider,
-      Provider<IsEnableDuringPhoneCallsUseCase> isEnableDuringPhoneCallsProvider,
-      Provider<SaveDisableWhilePlayingMusicUseCase> saveDisableWhilePlayingMusicProvider,
-      Provider<IsDisableWhilePlayingMusicUseCase> isDisableWhilePlayingMusicProvider) {
-    return new TtsViewModel_Factory(applicationProvider, getTtsSettingsProvider, saveTtsSettingsProvider, isTimeSpeakingEnabledProvider, saveTimeSpeakingEnabledProvider, saveEnableDuringPhoneCallsProvider, isEnableDuringPhoneCallsProvider, saveDisableWhilePlayingMusicProvider, isDisableWhilePlayingMusicProvider);
+      Provider<TtsUseCases> ttsUseCasesProvider) {
+    return new TtsViewModel_Factory(applicationProvider, ttsUseCasesProvider);
   }
 
-  public static TtsViewModel newInstance(Application application,
-      GetTtsSettingsUseCase getTtsSettings, SaveTtsSettingsUseCase saveTtsSettings,
-      IsTimeSpeakingEnabledUseCase isTimeSpeakingEnabled,
-      SaveTimeSpeakingEnabledUseCase saveTimeSpeakingEnabled,
-      SaveEnableDuringPhoneCallsUseCase saveEnableDuringPhoneCalls,
-      IsEnableDuringPhoneCallsUseCase isEnableDuringPhoneCalls,
-      SaveDisableWhilePlayingMusicUseCase saveDisableWhilePlayingMusic,
-      IsDisableWhilePlayingMusicUseCase isDisableWhilePlayingMusic) {
-    return new TtsViewModel(application, getTtsSettings, saveTtsSettings, isTimeSpeakingEnabled, saveTimeSpeakingEnabled, saveEnableDuringPhoneCalls, isEnableDuringPhoneCalls, saveDisableWhilePlayingMusic, isDisableWhilePlayingMusic);
+  public static TtsViewModel newInstance(Application application, TtsUseCases ttsUseCases) {
+    return new TtsViewModel(application, ttsUseCases);
   }
 }

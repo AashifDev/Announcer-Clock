@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,6 +85,9 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout outlineHeader;
+
+  @NonNull
+  public final ProgressBar progressBar;
 
   @NonNull
   public final AppCompatTextView repeat;
@@ -179,21 +183,21 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull AppCompatImageView img3, @NonNull AppCompatImageView img4,
       @NonNull AppCompatImageView img5, @NonNull AppCompatImageView img6,
       @NonNull LinearLayoutCompat linearLayoutCompat, @NonNull AppCompatTextView newScheduling,
-      @NonNull LinearLayout outlineHeader, @NonNull AppCompatTextView repeat,
-      @NonNull ScrollView scrollView, @NonNull AppCompatTextView selectedRepeatTime,
-      @NonNull AppCompatTextView selectedSound, @NonNull AppCompatTextView selectedVibration,
-      @NonNull AppCompatTextView selectedVolume, @NonNull ConstraintLayout setRepeatTime,
-      @NonNull LinearLayoutCompat setScheduling, @NonNull ConstraintLayout setSound,
-      @NonNull ConstraintLayout setTheme, @NonNull ConstraintLayout setTtsSettings,
-      @NonNull ConstraintLayout setVibration, @NonNull ConstraintLayout setVolume,
-      @NonNull MaterialCardView settings, @NonNull AppCompatTextView sound,
-      @NonNull FloatingActionButton speakCurrentTime, @NonNull MaterialCardView themeCard,
-      @NonNull AppCompatTextView timerText, @NonNull AppCompatTextView tts,
-      @NonNull AppCompatTextView txtEnableScheduling, @NonNull AppCompatTextView txtScheduleTimer,
-      @NonNull AppCompatTextView txtSetting, @NonNull AppCompatTextView txtTheme,
-      @NonNull AppCompatTextView txtThemes, @NonNull AppCompatTextView txtTts,
-      @NonNull AppCompatTextView vibration, @NonNull Slider volRocker,
-      @NonNull AppCompatTextView volume) {
+      @NonNull LinearLayout outlineHeader, @NonNull ProgressBar progressBar,
+      @NonNull AppCompatTextView repeat, @NonNull ScrollView scrollView,
+      @NonNull AppCompatTextView selectedRepeatTime, @NonNull AppCompatTextView selectedSound,
+      @NonNull AppCompatTextView selectedVibration, @NonNull AppCompatTextView selectedVolume,
+      @NonNull ConstraintLayout setRepeatTime, @NonNull LinearLayoutCompat setScheduling,
+      @NonNull ConstraintLayout setSound, @NonNull ConstraintLayout setTheme,
+      @NonNull ConstraintLayout setTtsSettings, @NonNull ConstraintLayout setVibration,
+      @NonNull ConstraintLayout setVolume, @NonNull MaterialCardView settings,
+      @NonNull AppCompatTextView sound, @NonNull FloatingActionButton speakCurrentTime,
+      @NonNull MaterialCardView themeCard, @NonNull AppCompatTextView timerText,
+      @NonNull AppCompatTextView tts, @NonNull AppCompatTextView txtEnableScheduling,
+      @NonNull AppCompatTextView txtScheduleTimer, @NonNull AppCompatTextView txtSetting,
+      @NonNull AppCompatTextView txtTheme, @NonNull AppCompatTextView txtThemes,
+      @NonNull AppCompatTextView txtTts, @NonNull AppCompatTextView vibration,
+      @NonNull Slider volRocker, @NonNull AppCompatTextView volume) {
     this.rootView = rootView;
     this.circularProgress = circularProgress;
     this.custom = custom;
@@ -214,6 +218,7 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.linearLayoutCompat = linearLayoutCompat;
     this.newScheduling = newScheduling;
     this.outlineHeader = outlineHeader;
+    this.progressBar = progressBar;
     this.repeat = repeat;
     this.scrollView = scrollView;
     this.selectedRepeatTime = selectedRepeatTime;
@@ -385,6 +390,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progress_bar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.repeat;
       AppCompatTextView repeat = ViewBindings.findChildViewById(rootView, id);
       if (repeat == null) {
@@ -552,11 +563,11 @@ public final class FragmentHomeBinding implements ViewBinding {
       return new FragmentHomeBinding((ScrollView) rootView, circularProgress, custom,
           customScheduling, customToggle, customize, customizeTheme, enableScheduling,
           generalSettings, header, img, img1, img2, img3, img4, img5, img6, linearLayoutCompat,
-          newScheduling, outlineHeader, repeat, scrollView, selectedRepeatTime, selectedSound,
-          selectedVibration, selectedVolume, setRepeatTime, setScheduling, setSound, setTheme,
-          setTtsSettings, setVibration, setVolume, settings, sound, speakCurrentTime, themeCard,
-          timerText, tts, txtEnableScheduling, txtScheduleTimer, txtSetting, txtTheme, txtThemes,
-          txtTts, vibration, volRocker, volume);
+          newScheduling, outlineHeader, progressBar, repeat, scrollView, selectedRepeatTime,
+          selectedSound, selectedVibration, selectedVolume, setRepeatTime, setScheduling, setSound,
+          setTheme, setTtsSettings, setVibration, setVolume, settings, sound, speakCurrentTime,
+          themeCard, timerText, tts, txtEnableScheduling, txtScheduleTimer, txtSetting, txtTheme,
+          txtThemes, txtTts, vibration, volRocker, volume);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
