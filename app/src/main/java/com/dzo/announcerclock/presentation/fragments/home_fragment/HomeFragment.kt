@@ -9,6 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.media.AudioManager
@@ -102,6 +104,9 @@ import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import androidx.core.graphics.drawable.toDrawable
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
+import com.airbnb.lottie.value.LottieValueCallback
 
 @AndroidEntryPoint
 class HomeFragment :
@@ -746,9 +751,20 @@ class HomeFragment :
         binding.rateAppImg.setColorFilter(colorHexx.toColorInt())
         binding.shareImg.setColorFilter(colorHexx.toColorInt())
         binding.versionImg.setColorFilter(colorHexx.toColorInt())
-        binding.upArrow.setColorFilter(colorHexx.toColorInt())
+        //binding.upArrow.setColorFilter(colorHexx.toColorInt())
         binding.more.setTextColor(colorHexx.toColorInt())
         binding.txtVersionName.setTextColor(colorHexx.toColorInt())
+
+        binding.upArrow.addValueCallback(
+            KeyPath("**"), // ** = all layers; or target specific ones by name
+            LottieProperty.COLOR_FILTER,
+            LottieValueCallback(
+                PorterDuffColorFilter(
+                    colorHexx.toColorInt(),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            )
+        )
 
         // Click Listeners
         binding.ourApps.setOnClickListener {
@@ -774,7 +790,10 @@ class HomeFragment :
             requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
         val versionName = packageInfo.versionName
         val versionCode = packageInfo.longVersionCode
-        binding.txtVersionName.text = "App Version: $versionName ($versionCode)"
+        //binding.txtVersionName.text = "App Version: $versionName ($versionCode)"
+        "App Version: $versionName".also {
+            binding.txtVersionName.text = it
+        }
 
         dialog.show()
     }

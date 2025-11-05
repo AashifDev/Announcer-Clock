@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.airbnb.lottie.LottieAnimationView;
 import com.dzo.announcerclock.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -24,13 +24,13 @@ public final class RepeatOptionRawItemBinding implements ViewBinding {
   public final ConstraintLayout rawItemId;
 
   @NonNull
-  public final AppCompatImageView selectedItem;
+  public final LottieAnimationView selectedItem;
 
   @NonNull
   public final AppCompatTextView title;
 
   private RepeatOptionRawItemBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout rawItemId, @NonNull AppCompatImageView selectedItem,
+      @NonNull ConstraintLayout rawItemId, @NonNull LottieAnimationView selectedItem,
       @NonNull AppCompatTextView title) {
     this.rootView = rootView;
     this.rawItemId = rawItemId;
@@ -68,7 +68,7 @@ public final class RepeatOptionRawItemBinding implements ViewBinding {
       ConstraintLayout rawItemId = (ConstraintLayout) rootView;
 
       id = R.id.selectedItem;
-      AppCompatImageView selectedItem = ViewBindings.findChildViewById(rootView, id);
+      LottieAnimationView selectedItem = ViewBindings.findChildViewById(rootView, id);
       if (selectedItem == null) {
         break missingId;
       }

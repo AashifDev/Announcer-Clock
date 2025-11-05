@@ -1,6 +1,8 @@
 package com.dzo.announcerclock.utils.helper
 
 import android.content.res.ColorStateList
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -11,6 +13,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.toColorInt
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
+import com.airbnb.lottie.value.LottieValueCallback
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.SchedultTimerBottomSheetBinding
@@ -82,9 +87,15 @@ class ScheduleTimerBottomSheet(
         binding.txtStartTime.setTextColor(colorHex.toColorInt())
         binding.txtEndTime.setTextColor(colorHex.toColorInt())
         binding.txtRepeatEvery.setTextColor(colorHex.toColorInt())
-        binding.upArrow.setColorFilter(colorHex.toColorInt())
+        //binding.upArrow.setColorFilter(colorHex.toColorInt())
         binding.txtStart.setTextColor(colorHex.toColorInt())
         binding.txtEnd.setTextColor(colorHex.toColorInt())
+
+        binding.upArrow.addValueCallback(
+            KeyPath("**"), // ** = all layers; or target specific ones by name
+            LottieProperty.COLOR_FILTER,
+            LottieValueCallback(PorterDuffColorFilter(colorHex.toColorInt(), PorterDuff.Mode.SRC_ATOP))
+        )
 
         binding.saveSchedule.backgroundTintList = ColorStateList.valueOf(colorHex.toColorInt())
 
@@ -96,6 +107,9 @@ class ScheduleTimerBottomSheet(
         }
 
 
+        binding.upArrow.setOnClickListener {
+            dismiss()
+        }
     }
 
     private fun setupListeners() = with(binding) {

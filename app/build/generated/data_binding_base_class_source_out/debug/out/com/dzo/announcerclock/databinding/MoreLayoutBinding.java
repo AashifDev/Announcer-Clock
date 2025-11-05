@@ -12,6 +12,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.airbnb.lottie.LottieAnimationView;
 import com.dzo.announcerclock.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -70,7 +71,7 @@ public final class MoreLayoutBinding implements ViewBinding {
   public final AppCompatTextView txtVersionName;
 
   @NonNull
-  public final AppCompatImageView upArrow;
+  public final LottieAnimationView upArrow;
 
   @NonNull
   public final AppCompatImageView versionImg;
@@ -84,7 +85,7 @@ public final class MoreLayoutBinding implements ViewBinding {
       @NonNull AppCompatTextView txtOurApp, @NonNull AppCompatTextView txtRateApp,
       @NonNull AppCompatTextView txtShare, @NonNull AppCompatTextView txtTheme,
       @NonNull AppCompatTextView txtVersion, @NonNull AppCompatTextView txtVersionName,
-      @NonNull AppCompatImageView upArrow, @NonNull AppCompatImageView versionImg) {
+      @NonNull LottieAnimationView upArrow, @NonNull AppCompatImageView versionImg) {
     this.rootView = rootView;
     this.appTheme = appTheme;
     this.appVersion = appVersion;
@@ -230,7 +231,7 @@ public final class MoreLayoutBinding implements ViewBinding {
       }
 
       id = R.id.upArrow;
-      AppCompatImageView upArrow = ViewBindings.findChildViewById(rootView, id);
+      LottieAnimationView upArrow = ViewBindings.findChildViewById(rootView, id);
       if (upArrow == null) {
         break missingId;
       }

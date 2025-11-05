@@ -70,10 +70,10 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
   public final FloatingActionButton play;
 
   @NonNull
-  public final LottieAnimationView repeatAnimatio;
+  public final LottieAnimationView repeatAnimation;
 
   @NonNull
-  public final LottieAnimationView repeatAnimation;
+  public final LottieAnimationView repeatAnimationSpeaker;
 
   @NonNull
   public final AppCompatSpinner selectedLangSpinner;
@@ -115,7 +115,8 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
       @NonNull LinearLayoutCompat linearLayoutCompatSound3,
       @NonNull MaterialCardView llEnableTtsOnCall, @NonNull FrameLayout lottieFrame,
       @NonNull MaterialCardView notificaitonSettingLayout, @NonNull FloatingActionButton play,
-      @NonNull LottieAnimationView repeatAnimatio, @NonNull LottieAnimationView repeatAnimation,
+      @NonNull LottieAnimationView repeatAnimation,
+      @NonNull LottieAnimationView repeatAnimationSpeaker,
       @NonNull AppCompatSpinner selectedLangSpinner, @NonNull AppCompatSpinner selectedVoiceSpinner,
       @NonNull MaterialCardView ttsLayout, @NonNull AppCompatTextView txtDisableDuringCall,
       @NonNull AppCompatTextView txtDisableDuringMusic,
@@ -137,8 +138,8 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
     this.lottieFrame = lottieFrame;
     this.notificaitonSettingLayout = notificaitonSettingLayout;
     this.play = play;
-    this.repeatAnimatio = repeatAnimatio;
     this.repeatAnimation = repeatAnimation;
+    this.repeatAnimationSpeaker = repeatAnimationSpeaker;
     this.selectedLangSpinner = selectedLangSpinner;
     this.selectedVoiceSpinner = selectedVoiceSpinner;
     this.ttsLayout = ttsLayout;
@@ -262,15 +263,15 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.repeatAnimatio;
-      LottieAnimationView repeatAnimatio = ViewBindings.findChildViewById(rootView, id);
-      if (repeatAnimatio == null) {
-        break missingId;
-      }
-
       id = R.id.repeatAnimation;
       LottieAnimationView repeatAnimation = ViewBindings.findChildViewById(rootView, id);
       if (repeatAnimation == null) {
+        break missingId;
+      }
+
+      id = R.id.repeatAnimationSpeaker;
+      LottieAnimationView repeatAnimationSpeaker = ViewBindings.findChildViewById(rootView, id);
+      if (repeatAnimationSpeaker == null) {
         break missingId;
       }
 
@@ -338,9 +339,9 @@ public final class FragmentTextToSpeechBinding implements ViewBinding {
           enableTimeSpeaking, enableWhilePhoneCalls, imgAnnounce, imgCall, imgMusic,
           linearLayoutCompat, linearLayoutCompatSound1, linearLayoutCompatSound2,
           linearLayoutCompatSound3, llEnableTtsOnCall, lottieFrame, notificaitonSettingLayout, play,
-          repeatAnimatio, repeatAnimation, selectedLangSpinner, selectedVoiceSpinner, ttsLayout,
-          txtDisableDuringCall, txtDisableDuringMusic, txtNotificationSetting, txtSelectLanguage,
-          txtSoundSetting, txtTimeSpeaking, txtVoiceGender);
+          repeatAnimation, repeatAnimationSpeaker, selectedLangSpinner, selectedVoiceSpinner,
+          ttsLayout, txtDisableDuringCall, txtDisableDuringMusic, txtNotificationSetting,
+          txtSelectLanguage, txtSoundSetting, txtTimeSpeaking, txtVoiceGender);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

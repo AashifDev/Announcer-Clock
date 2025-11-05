@@ -143,6 +143,7 @@ id logo
 id lottieFrame
 id main
 id more
+id musicAnimation
 id nav_graph
 id newScheduling
 id notificaitonSettingLayout
@@ -160,8 +161,8 @@ id rateAppImg
 id rawItemId
 id removeSelectedColor
 id repeat
-id repeatAnimatio
 id repeatAnimation
+id repeatAnimationSpeaker
 id repeatOptionAnimation
 id repeatOptionAnimation1
 id repeatOptionFragment
@@ -269,6 +270,7 @@ menu more
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
+raw arrow
 raw balloon_get
 raw base_boom
 raw chat_letter
@@ -278,11 +280,14 @@ raw dark_mode
 raw level_up
 raw level_up_1
 raw megaphone
+raw music
 raw positive_notification
 raw repeat
 raw ring_bell
+raw sound_wave
 raw speaker
 raw speaker_anim
+raw success
 raw super_mario_jump
 raw super_mario_world_14
 string app_name

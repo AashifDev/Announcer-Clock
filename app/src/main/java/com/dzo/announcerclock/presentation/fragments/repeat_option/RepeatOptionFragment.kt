@@ -66,7 +66,7 @@ class RepeatOptionFragment :
                 } else {
                     // Normal option
                     viewModel.selectOption(repeatOption)
-                    findNavController().popBackStack()
+                    //findNavController().popBackStack()
                     timerViewModel.startTimer(repeatOption.valueInMinute!!)
 
                 }

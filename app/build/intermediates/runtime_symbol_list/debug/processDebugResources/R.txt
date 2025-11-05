@@ -5322,6 +5322,7 @@ int id mtrl_picker_text_input_range_start 0x7f08019d
 int id mtrl_picker_title_text 0x7f08019e
 int id mtrl_view_tag_bottom_padding 0x7f08019f
 int id multiply 0x7f0801a0
+int id musicAnimation 0x7f0802ef
 int id nav_controller_view_tag 0x7f0801a1
 int id nav_graph 0x7f0801a2
 int id nav_host_fragment_container 0x7f0801a3
@@ -5411,8 +5412,8 @@ int id recentColorsRV 0x7f0801f5
 int id rectangles 0x7f0801f6
 int id removeSelectedColor 0x7f0801f7
 int id repeat 0x7f0801f8
-int id repeatAnimatio 0x7f0801f9
 int id repeatAnimation 0x7f0801fa
+int id repeatAnimationSpeaker 0x7f0802f0
 int id repeatOptionAnimation 0x7f0801fb
 int id repeatOptionAnimation1 0x7f0801fc
 int id repeatOptionFragment 0x7f0801fd
@@ -5891,6 +5892,7 @@ int mipmap ic_launcher 0x7f0e0000
 int mipmap ic_launcher_round 0x7f0e0001
 int navigation nav_graph 0x7f0f0000
 int plurals mtrl_badge_content_description 0x7f100000
+int raw arrow 0x7f110012
 int raw balloon_get 0x7f110000
 int raw base_boom 0x7f110001
 int raw chat_letter 0x7f110002
@@ -5901,11 +5903,14 @@ int raw firebase_common_keep 0x7f110006
 int raw level_up 0x7f110007
 int raw level_up_1 0x7f110008
 int raw megaphone 0x7f110009
+int raw music 0x7f110011
 int raw positive_notification 0x7f11000a
 int raw repeat 0x7f11000b
 int raw ring_bell 0x7f11000c
+int raw sound_wave 0x7f110014
 int raw speaker 0x7f11000d
 int raw speaker_anim 0x7f11000e
+int raw success 0x7f110015
 int raw super_mario_jump 0x7f11000f
 int raw super_mario_world_14 0x7f110010
 int string abc_action_bar_home_description 0x7f120000

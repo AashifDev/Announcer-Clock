@@ -2,6 +2,8 @@ package com.dzo.announcerclock.presentation.fragments.repeat_option.adapter
 
 import android.animation.ValueAnimator
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,9 @@ import com.dzo.announcerclock.presentation.fragments.repeat_option.model.RepeatO
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 import androidx.core.graphics.toColorInt
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
+import com.airbnb.lottie.value.LottieValueCallback
 import com.dzo.announcerclock.utils.Utils.lighten
 
 @FragmentScoped
@@ -41,8 +46,19 @@ class RepeatOptionAdapter @Inject constructor() :
 
             //Show/hide checkmark
             selectedItem.visibility = if (item.isSelected) {
-                selectedItem.setImageResource(R.drawable.ic_check)
-                selectedItem.setColorFilter(themeColor!!.toColorInt())
+                //selectedItem.setImageResource(R.drawable.ic_check)
+                //selectedItem.setColorFilter(themeColor!!.toColorInt())
+                selectedItem.setAnimation(R.raw.success)
+                selectedItem.addValueCallback(
+                    KeyPath("**"), // ** = all layers; or target specific ones by name
+                    LottieProperty.COLOR_FILTER,
+                    LottieValueCallback(
+                        PorterDuffColorFilter(
+                            themeColor!!.toColorInt(),
+                            PorterDuff.Mode.SRC_ATOP
+                        )
+                    )
+                )
                 View.VISIBLE
             } else {
                 View.GONE

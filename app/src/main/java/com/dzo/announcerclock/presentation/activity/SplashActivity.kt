@@ -101,7 +101,9 @@ class SplashActivity : AppCompatActivity() {
         val versionName = packageInfo.versionName
         val versionCode = packageInfo.longVersionCode
         val textView = findViewById<AppCompatTextView>(R.id.appVersion)
-        textView.text = "App Version: $versionName ($versionCode)"
+        "App Version: $versionName".also {
+            textView.text = it
+        }
     }
     private fun checkAndRequestPermissions() {
         val missingPermissions = requiredPermissions.filter {

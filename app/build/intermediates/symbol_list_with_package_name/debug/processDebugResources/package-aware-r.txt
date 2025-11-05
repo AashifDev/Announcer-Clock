@@ -5323,6 +5323,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id musicAnimation
 id nav_controller_view_tag
 id nav_graph
 id nav_host_fragment_container
@@ -5412,8 +5413,8 @@ id recentColorsRV
 id rectangles
 id removeSelectedColor
 id repeat
-id repeatAnimatio
 id repeatAnimation
+id repeatAnimationSpeaker
 id repeatOptionAnimation
 id repeatOptionAnimation1
 id repeatOptionFragment
@@ -5892,6 +5893,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description
+raw arrow
 raw balloon_get
 raw base_boom
 raw chat_letter
@@ -5902,11 +5904,14 @@ raw firebase_common_keep
 raw level_up
 raw level_up_1
 raw megaphone
+raw music
 raw positive_notification
 raw repeat
 raw ring_bell
+raw sound_wave
 raw speaker
 raw speaker_anim
+raw success
 raw super_mario_jump
 raw super_mario_world_14
 string abc_action_bar_home_description

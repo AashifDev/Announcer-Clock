@@ -15,7 +15,7 @@
         android:padding="@dimen/_12sdp"
         android:textSize="@dimen/_14ssp"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <!--<androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,18 @@
         android:tint="@color/blue"
         android:layout_marginEnd="@dimen/_8sdp"
         android:padding="@dimen/_12sdp"
-        android:id="@+id/selectedItem"/>
+        android:id="@+id/selectedItem"/>-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/selectedItem"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deleteItem"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_speed="2" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"

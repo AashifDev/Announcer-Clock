@@ -54,6 +54,9 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
   public final MaterialCardView llNotificationSound;
 
   @NonNull
+  public final LottieAnimationView musicAnimation;
+
+  @NonNull
   public final MaterialCardView soundCardView;
 
   @NonNull
@@ -73,8 +76,9 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
       @NonNull AppCompatImageView imgNotificationSound,
       @NonNull LinearLayoutCompat linearLayoutCompatSound3,
       @NonNull MaterialCardView llCompatNotification, @NonNull MaterialCardView llNotificationSound,
-      @NonNull MaterialCardView soundCardView, @NonNull LinearLayoutCompat soundLayout,
-      @NonNull RecyclerView soundOptionRecyclerView, @NonNull AppCompatTextView txtChooseSound) {
+      @NonNull LottieAnimationView musicAnimation, @NonNull MaterialCardView soundCardView,
+      @NonNull LinearLayoutCompat soundLayout, @NonNull RecyclerView soundOptionRecyclerView,
+      @NonNull AppCompatTextView txtChooseSound) {
     this.rootView = rootView;
     this.addSound = addSound;
     this.enableNotification = enableNotification;
@@ -85,6 +89,7 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
     this.linearLayoutCompatSound3 = linearLayoutCompatSound3;
     this.llCompatNotification = llCompatNotification;
     this.llNotificationSound = llNotificationSound;
+    this.musicAnimation = musicAnimation;
     this.soundCardView = soundCardView;
     this.soundLayout = soundLayout;
     this.soundOptionRecyclerView = soundOptionRecyclerView;
@@ -172,6 +177,12 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.musicAnimation;
+      LottieAnimationView musicAnimation = ViewBindings.findChildViewById(rootView, id);
+      if (musicAnimation == null) {
+        break missingId;
+      }
+
       id = R.id.soundCardView;
       MaterialCardView soundCardView = ViewBindings.findChildViewById(rootView, id);
       if (soundCardView == null) {
@@ -199,7 +210,7 @@ public final class FragmentNotificationSoundBinding implements ViewBinding {
       return new FragmentNotificationSoundBinding((ConstraintLayout) rootView, addSound,
           enableNotification, enableNotificationAnimation, enableNotificationSound,
           imgEnableNotification, imgNotificationSound, linearLayoutCompatSound3,
-          llCompatNotification, llNotificationSound, soundCardView, soundLayout,
+          llCompatNotification, llNotificationSound, musicAnimation, soundCardView, soundLayout,
           soundOptionRecyclerView, txtChooseSound);
     }
     String missingId = rootView.getResources().getResourceName(id);

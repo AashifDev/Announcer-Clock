@@ -72,7 +72,7 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
   public final AppCompatTextView txtStartTime;
 
   @NonNull
-  public final AppCompatImageView upArrow;
+  public final LottieAnimationView upArrow;
 
   private SchedultTimerBottomSheetBinding(@NonNull LinearLayoutCompat rootView,
       @NonNull ConstraintLayout bgEnd, @NonNull ConstraintLayout bgStart,
@@ -83,7 +83,7 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
       @NonNull AppCompatTextView txtRepeatEvery, @NonNull AppCompatTextView txtSetEndTime,
       @NonNull AppCompatTextView txtSetRepeatEveryMinute,
       @NonNull AppCompatTextView txtSetStartTime, @NonNull AppCompatTextView txtStart,
-      @NonNull AppCompatTextView txtStartTime, @NonNull AppCompatImageView upArrow) {
+      @NonNull AppCompatTextView txtStartTime, @NonNull LottieAnimationView upArrow) {
     this.rootView = rootView;
     this.bgEnd = bgEnd;
     this.bgStart = bgStart;
@@ -228,7 +228,7 @@ public final class SchedultTimerBottomSheetBinding implements ViewBinding {
       }
 
       id = R.id.upArrow;
-      AppCompatImageView upArrow = ViewBindings.findChildViewById(rootView, id);
+      LottieAnimationView upArrow = ViewBindings.findChildViewById(rootView, id);
       if (upArrow == null) {
         break missingId;
       }

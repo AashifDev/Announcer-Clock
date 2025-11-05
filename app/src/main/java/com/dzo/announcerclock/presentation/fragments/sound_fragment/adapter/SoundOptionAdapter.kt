@@ -1,6 +1,8 @@
 package com.dzo.announcerclock.presentation.fragments.sound_fragment.adapter
 
 import android.animation.ValueAnimator
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,9 @@ import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
+import com.airbnb.lottie.value.LottieValueCallback
 import com.dzo.announcerclock.R
 import com.dzo.announcerclock.data.local_source.AppPreferences
 import com.dzo.announcerclock.databinding.SoundOptionsRawBindingBinding
@@ -27,7 +32,6 @@ class SoundOptionAdapter @Inject constructor() :
     var onDeleteClick: ((SoundOption) -> Unit)? = null
     private var themeColor = AppPreferences.ThemeManager.getActiveThemeColor()
 
-
     init {
         AppPreferences.ThemeManager.registerListener { colorHex ->
             themeColor = colorHex
@@ -43,8 +47,19 @@ class SoundOptionAdapter @Inject constructor() :
 
             //Speaker icon visibility
             selectedItem.visibility = if (item.isSelected) {
-                selectedItem.setImageResource(R.drawable.ic_speaker)
-                selectedItem.setColorFilter(themeColor!!.toColorInt())
+                //selectedItem.setImageResource(R.drawable.ic_speaker)
+                //selectedItem.setColorFilter(themeColor!!.toColorInt())
+                selectedItem.setAnimation(R.raw.sound_wave)
+                selectedItem.addValueCallback(
+                    KeyPath("**"), // ** = all layers; or target specific ones by name
+                    LottieProperty.COLOR_FILTER,
+                    LottieValueCallback(
+                        PorterDuffColorFilter(
+                            themeColor!!.toColorInt(),
+                            PorterDuff.Mode.SRC_ATOP
+                        )
+                    )
+                )
                 View.VISIBLE
             } else {
                 View.GONE
