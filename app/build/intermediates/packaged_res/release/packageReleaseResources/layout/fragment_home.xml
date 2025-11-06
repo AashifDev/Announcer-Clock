@@ -27,7 +27,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/_14sdp"
+                app:cardCornerRadius="@dimen/_16sdp"
                 app:strokeWidth="0dp"
                 android:id="@+id/header"
                 app:cardElevation="0dp"
@@ -92,10 +92,12 @@
                         android:layout_weight=".5"
                         android:textColor="@color/grey"
                         android:textStyle="bold"
+                        android:maxLines="3"
+                        android:singleLine="false"
                         android:gravity="center_vertical"
-                        android:layout_marginStart="@dimen/_14sdp"
+                        android:padding="@dimen/_8sdp"
                         android:text="@string/enable_hourly_talk_time"
-                        android:textSize="@dimen/_17ssp" />
+                        android:textSize="@dimen/_16ssp" />
 
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
@@ -124,7 +126,7 @@
             android:layout_height="wrap_content"
             android:text="@string/general_settings"
             android:textColor="@color/dark_grey"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_13ssp"
             android:padding="@dimen/_6sdp"
             android:id="@+id/txtSetting"
             android:layout_marginTop="@dimen/_14sdp"
@@ -138,7 +140,7 @@
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_14sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
             app:strokeWidth="0dp"
             android:id="@+id/settings"
             app:cardElevation="0dp"
@@ -156,9 +158,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/setRepeatTime"
+                    app:rippleColor="?attr/colorControlHighlight"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
-                    app:rippleColor="?attr/colorControlHighlight"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp">
 
@@ -197,10 +199,12 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
                     android:background="@color/grey"/>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -242,13 +246,13 @@
                         android:textStyle="normal"
                         android:id="@+id/selectedSound"/>
 
-
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
                     android:background="@color/grey"/>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/setVibration"
                     android:layout_width="match_parent"
@@ -326,31 +330,106 @@
                         app:layout_constraintTop_toTopOf="@+id/img3" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/selectedVolume"
+                        android:id="@+id/txtCurrentVol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/dark_grey"
                         android:textSize="@dimen/_14ssp"
-                        android:textStyle="normal"
-                        app:layout_constraintBottom_toBottomOf="@id/img3"
+                        android:textColor="@color/dark_grey"
+                        app:layout_constraintBottom_toBottomOf="@+id/volume"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/img3" />
+                        app:layout_constraintTop_toTopOf="@+id/volume" />
 
-                    <com.google.android.material.slider.Slider
-                        android:layout_width="match_parent"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/volRocker"
-                        android:valueFrom="0"
-                        android:valueTo="100"
-                        android:stepSize="10"
-                        app:labelBehavior="floating"
-                        app:trackColorActive="@color/blue"
-                        app:trackColorInactive="@color/track_color"
-                        app:thumbColor="@color/dark_blue"
-                        android:layout_marginTop="@dimen/_6sdp"
-                        app:layout_constraintTop_toBottomOf="@id/img3"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:id="@+id/mediaLayout"
+                        android:visibility="gone"
+                        android:padding="@dimen/_6sdp"
+                        android:background="@drawable/bg_round"
+                        app:layout_constraintTop_toBottomOf="@id/volume"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtTtsVol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="normal"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:text="@string/media_volume"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/selectedMediaVolume"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <com.google.android.material.slider.Slider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/mediaVolRocker"
+                            android:valueFrom="0"
+                            android:valueTo="100"
+                            android:stepSize="10"
+                            app:labelBehavior="floating"
+                            app:trackColorActive="@color/blue"
+                            app:trackColorInactive="@color/track_color"
+                            app:thumbColor="@color/dark_blue"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            app:layout_constraintTop_toBottomOf="@id/txtTtsVol"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtNotificationVol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="normal"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:text="@string/notification_volume"
+                            app:layout_constraintTop_toBottomOf="@id/mediaVolRocker"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/selectedNotificationVolume"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintTop_toTopOf="@id/txtNotificationVol"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <com.google.android.material.slider.Slider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/notificationVolRocker"
+                            android:valueFrom="0"
+                            android:valueTo="100"
+                            android:stepSize="10"
+                            app:labelBehavior="floating"
+                            app:trackColorActive="@color/blue"
+                            app:trackColorInactive="@color/track_color"
+                            app:thumbColor="@color/dark_blue"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            app:layout_constraintTop_toBottomOf="@id/txtNotificationVol"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -363,7 +442,7 @@
             android:layout_height="wrap_content"
             android:text="@string/text_to_speech_settings"
             android:textColor="@color/dark_grey"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_13ssp"
             android:padding="@dimen/_6sdp"
             android:id="@+id/txtTts"
             android:layout_marginTop="@dimen/_16sdp"
@@ -377,7 +456,7 @@
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_14sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
             app:strokeWidth="0dp"
             android:id="@+id/custom"
             app:cardElevation="0dp"
@@ -435,7 +514,7 @@
             android:layout_height="wrap_content"
             android:text="@string/schedule_timer"
             android:textColor="@color/dark_grey"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_13ssp"
             android:padding="@dimen/_6sdp"
             android:id="@+id/txtScheduleTimer"
             android:layout_marginTop="@dimen/_16sdp"
@@ -472,7 +551,7 @@
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_12sdp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_14sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -488,19 +567,28 @@
                     android:id="@+id/linearLayoutCompat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:paddingEnd="@dimen/_8sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:gravity="center_vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_text_to_speech"
+                        android:id="@+id/img7"
+                        android:tint="@color/blue"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtEnableScheduling"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_16sdp"
                         android:text="@string/enable_time_speaking"
                         android:textSize="@dimen/_16ssp" />
 
@@ -516,55 +604,37 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:background="@color/grey" />
-
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/setScheduling"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:paddingEnd="@dimen/_8sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_schedule_timer"
-                        android:tint="@color/blue"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:background="@drawable/scedult_time_bg"
+                    android:layout_margin="@dimen/_4sdp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/newScheduling"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="@string/schedule_time"
-                        android:textSize="@dimen/_16ssp"
-                        android:padding="@dimen/_4sdp"
-                        app:layout_constraintBottom_toBottomOf="@id/img6"
-                        app:layout_constraintStart_toEndOf="@id/img6"
-                        app:layout_constraintTop_toTopOf="@+id/img6" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="@dimen/_14ssp"
-                        android:textStyle="normal"
-                        app:layout_constraintBottom_toBottomOf="@id/img6"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/img6" />
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:paddingTop="@dimen/_16sdp"
+                        android:paddingBottom="@dimen/_16sdp"                        android:textColor="@color/dark_grey"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_16sdp"
+                    android:progress="1"
+                    android:max="3"
+                    android:visibility="gone"
+                    android:indeterminate="false"
+                    android:background="#808080"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -584,76 +654,6 @@
             app:layout_constraintStart_toStartOf="@id/settings"
             android:textStyle="bold"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_14sdp"
-            android:visibility="gone"
-            app:strokeWidth="0dp"
-            android:id="@+id/themeCard"
-            app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@id/txtTheme"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_8sdp"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/setTheme"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:paddingEnd="@dimen/_8sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/theme"
-                        android:id="@+id/img5"
-                        android:tint="@color/blue"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="App themes and colors"
-                        app:layout_constraintTop_toTopOf="@+id/img5"
-                        app:layout_constraintBottom_toBottomOf="@id/img5"
-                        app:layout_constraintStart_toEndOf="@id/img5"
-                        android:textSize="@dimen/_16ssp"
-                        android:layout_marginStart="@dimen/_14sdp"
-                        android:id="@+id/customizeTheme"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@+id/img5"
-                        app:layout_constraintBottom_toBottomOf="@id/img5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="@dimen/_14ssp"
-                        android:textStyle="normal"
-                        android:id="@+id/txtThemes"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </com.google.android.material.card.MaterialCardView>
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -667,6 +667,20 @@
             app:backgroundTint="@color/blue"
             android:id="@+id/speakCurrentTime"/>
 
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/placeHolder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/customScheduling"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:alpha="0.3"
+            android:layout_marginTop="@dimen/_18sdp"
+            app:lottie_rawRes="@raw/timer"
+            app:lottie_speed="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

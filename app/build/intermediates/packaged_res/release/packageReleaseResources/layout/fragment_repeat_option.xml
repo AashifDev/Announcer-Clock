@@ -17,14 +17,30 @@
         app:lottie_rawRes="@raw/clock_anim"
         app:lottie_speed="1" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/repeat_every"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/_13ssp"
+        android:padding="@dimen/_6sdp"
+        android:id="@+id/txtScheduleTimer"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@id/repeatOptionAnimation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="normal"/>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:strokeWidth="0dp"
         app:cardElevation="0dp"
-        android:layout_margin="@dimen/_12sdp"
-        app:cardCornerRadius="@dimen/_12sdp"
-        app:layout_constraintTop_toBottomOf="@+id/repeatOptionAnimation"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:cardCornerRadius="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@+id/txtScheduleTimer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

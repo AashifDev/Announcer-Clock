@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -26,12 +27,16 @@ public final class FragmentRepeatOptionBinding implements ViewBinding {
   @NonNull
   public final RecyclerView repeatOptionRecyclerView;
 
+  @NonNull
+  public final AppCompatTextView txtScheduleTimer;
+
   private FragmentRepeatOptionBinding(@NonNull ConstraintLayout rootView,
       @NonNull LottieAnimationView repeatOptionAnimation,
-      @NonNull RecyclerView repeatOptionRecyclerView) {
+      @NonNull RecyclerView repeatOptionRecyclerView, @NonNull AppCompatTextView txtScheduleTimer) {
     this.rootView = rootView;
     this.repeatOptionAnimation = repeatOptionAnimation;
     this.repeatOptionRecyclerView = repeatOptionRecyclerView;
+    this.txtScheduleTimer = txtScheduleTimer;
   }
 
   @Override
@@ -73,8 +78,14 @@ public final class FragmentRepeatOptionBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.txtScheduleTimer;
+      AppCompatTextView txtScheduleTimer = ViewBindings.findChildViewById(rootView, id);
+      if (txtScheduleTimer == null) {
+        break missingId;
+      }
+
       return new FragmentRepeatOptionBinding((ConstraintLayout) rootView, repeatOptionAnimation,
-          repeatOptionRecyclerView);
+          repeatOptionRecyclerView, txtScheduleTimer);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

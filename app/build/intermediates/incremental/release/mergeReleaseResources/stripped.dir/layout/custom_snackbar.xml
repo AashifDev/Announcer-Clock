@@ -18,7 +18,6 @@
         android:maxLines="2"
         android:padding="@dimen/_18sdp"
         android:layout_gravity="center_vertical"
-        android:text="This is a message"
         android:textColor="@android:color/white"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintTop_toTopOf="parent"

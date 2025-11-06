@@ -13,7 +13,7 @@ android {
         applicationId = "com.dzo.announcerclock"
         minSdk = 28
         targetSdk = 36
-        versionCode = 3
+        versionCode = 7
         versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

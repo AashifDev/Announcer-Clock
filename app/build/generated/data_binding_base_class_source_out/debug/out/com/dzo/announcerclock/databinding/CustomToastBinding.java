@@ -4,10 +4,10 @@ package com.dzo.announcerclock.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.dzo.announcerclock.R;
@@ -17,16 +17,16 @@ import java.lang.String;
 
 public final class CustomToastBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final LinearLayoutCompat rootView;
 
   @NonNull
-  public final LinearLayout toastRoot;
+  public final LinearLayoutCompat toastRoot;
 
   @NonNull
-  public final TextView toastText;
+  public final AppCompatTextView toastText;
 
-  private CustomToastBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout toastRoot,
-      @NonNull TextView toastText) {
+  private CustomToastBinding(@NonNull LinearLayoutCompat rootView,
+      @NonNull LinearLayoutCompat toastRoot, @NonNull AppCompatTextView toastText) {
     this.rootView = rootView;
     this.toastRoot = toastRoot;
     this.toastText = toastText;
@@ -34,7 +34,7 @@ public final class CustomToastBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public LinearLayoutCompat getRoot() {
     return rootView;
   }
 
@@ -59,15 +59,15 @@ public final class CustomToastBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      LinearLayout toastRoot = (LinearLayout) rootView;
+      LinearLayoutCompat toastRoot = (LinearLayoutCompat) rootView;
 
       id = R.id.toast_text;
-      TextView toastText = ViewBindings.findChildViewById(rootView, id);
+      AppCompatTextView toastText = ViewBindings.findChildViewById(rootView, id);
       if (toastText == null) {
         break missingId;
       }
 
-      return new CustomToastBinding((LinearLayout) rootView, toastRoot, toastText);
+      return new CustomToastBinding((LinearLayoutCompat) rootView, toastRoot, toastText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

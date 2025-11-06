@@ -1,5 +1,8 @@
 package com.dzo.announcerclock.presentation.fragments.home_fragment
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.app.Activity.RESULT_CANCELED
 import android.app.Dialog
 import android.content.BroadcastReceiver
@@ -27,6 +30,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.widget.NumberPicker
 import android.widget.ScrollView
 import androidx.activity.result.ActivityResult
@@ -104,9 +108,11 @@ import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.isVisible
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
 import com.airbnb.lottie.value.LottieValueCallback
+import com.dzo.announcerclock.utils.Utils.darken
 
 @AndroidEntryPoint
 class HomeFragment :
@@ -154,7 +160,8 @@ class HomeFragment :
         binding.setRepeatTime.setBackgroundResource(requireContext().getRippleResource(false))
         binding.setSound.setBackgroundResource(requireContext().getRippleResource(false))
         binding.setTtsSettings.setBackgroundResource(requireContext().getRippleResource(false))
-        binding.setScheduling.setBackgroundResource(requireContext().getRippleResource(false))
+        binding.newScheduling.setBackgroundResource(requireContext().getRippleResource(true))
+        //binding.setVolume.setBackgroundResource(requireContext().getRippleResource(false))
 
         checkForUpdate()
 
@@ -212,19 +219,36 @@ class HomeFragment :
         background.setStroke(3, ColorStateList.valueOf(colorHexx.lighten(0.6f)), 10f, 10f)
         binding.header.setCardBackgroundColor(colorHexx.lighten(0.2f))
         //binding.outlineHeader.backgroundTintList = ColorStateList.valueOf(colorHexx.lighten(0.5f))
-        binding.volRocker.tickActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
         binding.customToggle.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
         binding.enableScheduling.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
-        binding.volRocker.trackActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
-        binding.volRocker.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
-        binding.volRocker.trackInactiveTintList = ColorStateList.valueOf(colorHexx.lighten(0.5f))
+
+        binding.mediaVolRocker.tickActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.mediaVolRocker.trackActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.mediaVolRocker.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.mediaVolRocker.trackInactiveTintList = ColorStateList.valueOf(colorHexx.lighten(0.5f))
+
+        binding.notificationVolRocker.tickActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.notificationVolRocker.trackActiveTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.notificationVolRocker.thumbTintList = ColorStateList.valueOf(colorHexx.toColorInt())
+        binding.notificationVolRocker.trackInactiveTintList = ColorStateList.valueOf(colorHexx.lighten(0.5f))
         binding.circularProgress.setIndicatorColor(colorHexx.toColorInt())
         binding.circularProgress.trackColor = colorHexx.lighten(0.5f)
         binding.img.setColorFilter(colorHexx.toColorInt())
         binding.img1.setColorFilter(colorHexx.toColorInt())
         binding.img3.setColorFilter(colorHexx.toColorInt())
         binding.img4.setColorFilter(colorHexx.toColorInt())
-        binding.img6.setColorFilter(colorHexx.toColorInt())
+        binding.img7.setColorFilter(colorHexx.toColorInt())
+
+        binding.placeHolder.addValueCallback(
+            KeyPath("**"), // ** = all layers; or target specific ones by name
+            LottieProperty.COLOR_FILTER,
+            LottieValueCallback(
+                PorterDuffColorFilter(
+                    colorHexx.toColorInt(),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            )
+        )
     }
 
     private fun checkForUpdate() {
@@ -295,31 +319,62 @@ class HomeFragment :
     private fun volumeRockerSetup() {
         audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
-        val maxVol = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-        val curVol = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-        val curPercent = ((curVol.toFloat() / maxVol.toFloat()) * 100f).roundToInt()
-        val snapped = snapToStep(curPercent, 10)
+        // Define audio stream types
+        val musicStream = AudioManager.STREAM_MUSIC
+        val notificationStream = AudioManager.STREAM_NOTIFICATION
 
-        // Ensure slider step config matches and set initial snapped value
-        binding.volRocker.valueFrom = 0f
-        binding.volRocker.valueTo = 100f
-        binding.volRocker.stepSize = 10f
-        binding.volRocker.value = snapped.toFloat()
-        binding.selectedVolume.text = "Volume: $snapped%"
+        // Get max and current volumes
+        val maxMusicVol = audioManager.getStreamMaxVolume(musicStream)
+        val curMusicVol = audioManager.getStreamVolume(musicStream)
+        val maxNotificationVol = audioManager.getStreamMaxVolume(notificationStream)
+        val curNotificationVol = audioManager.getStreamVolume(notificationStream)
 
-        // When user moves slider
-        binding.volRocker.addOnChangeListener { _, value, fromUser ->
+        // Convert to %
+        val curMusicPercent = ((curMusicVol.toFloat() / maxMusicVol.toFloat()) * 100f).roundToInt()
+        val curNotificationPercent = ((curNotificationVol.toFloat() / maxNotificationVol.toFloat()) * 100f).roundToInt()
+
+        // Snap to steps of 10
+        val snappedMusic = snapToStep(curMusicPercent, 10)
+        val snappedNotification = snapToStep(curNotificationPercent, 10)
+
+        // --- MUSIC SLIDER ---
+        binding.mediaVolRocker.apply {
+            valueFrom = 0f
+            valueTo = 100f
+            stepSize = 10f
+            value = snappedMusic.toFloat()
+        }
+        "vol: $snappedMusic%".also { binding.selectedMediaVolume.text = it }
+        "vol: $snappedMusic%".also { binding.txtCurrentVol.text = it }
+
+        // --- NOTIFICATION SLIDER ---
+        binding.notificationVolRocker.apply {
+            valueFrom = 0f
+            valueTo = 100f
+            stepSize = 10f
+            value = snappedNotification.toFloat()
+        }
+        "vol: $snappedNotification%".also { binding.selectedNotificationVolume.text = it }
+
+        // Handle user interaction
+        binding.mediaVolRocker.addOnChangeListener { _, value, fromUser ->
             if (fromUser) {
                 val percent = snapToStep(value.toInt(), 10)
-                // Update UI text
-                binding.selectedVolume.text = "Volume: $percent%"
+                "vol: $percent%".also { binding.selectedMediaVolume.text = it }
+                "vol: $percent%".also { binding.txtCurrentVol.text = it }
 
-                // Convert percent -> device volume
-                val newVol = percentToDeviceVolume(percent, maxVol)
-                audioManager.setStreamVolume(
-                    AudioManager.STREAM_MUSIC, newVol, AudioManager.FLAG_SHOW_UI
-                )
-                // Because we set volume, hardware broadcast may also fire updating UI; that's ok
+                val newVol = percentToDeviceVolume(percent, maxMusicVol)
+                audioManager.setStreamVolume(musicStream, newVol, AudioManager.FLAG_SHOW_UI)
+            }
+        }
+
+        binding.notificationVolRocker.addOnChangeListener { _, value, fromUser ->
+            if (fromUser) {
+                val percent = snapToStep(value.toInt(), 10)
+                "vol: $percent%".also { binding.selectedNotificationVolume.text = it }
+
+                val newVol = percentToDeviceVolume(percent, maxNotificationVol)
+                audioManager.setStreamVolume(notificationStream, newVol, AudioManager.FLAG_SHOW_UI)
             }
         }
     }
@@ -351,9 +406,64 @@ class HomeFragment :
             bottomSheet.show(parentFragmentManager, "ScheduleTimerBottomSheet")
 
         }
+
         binding.header.setOnClickListener { }
+
         binding.customScheduling.setOnClickListener { }
+
+        binding.setVolume.setOnClickListener {
+            val viewB = binding.mediaLayout
+            if (viewB.visibility == View.VISIBLE) {
+                collapse(viewB)
+                binding.txtCurrentVol.visibility = View.VISIBLE
+            } else {
+                expand(viewB)
+                binding.txtCurrentVol.visibility = View.INVISIBLE
+            }
+        }
     }
+    private fun expand(view: View) {
+        view.measure(
+            View.MeasureSpec.makeMeasureSpec((view.parent as View).width, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        val targetHeight = view.measuredHeight
+
+        view.layoutParams.height = 0
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
+
+        val animator = ValueAnimator.ofInt(0, targetHeight)
+        animator.addUpdateListener { valueAnimator ->
+            val newHeight = valueAnimator.animatedValue as Int
+            view.layoutParams.height = newHeight
+            view.requestLayout() // ← ensures smooth layout shift
+            view.alpha = newHeight / targetHeight.toFloat()
+        }
+        animator.duration = 300
+        animator.interpolator = DecelerateInterpolator()
+        animator.start()
+    }
+
+    private fun collapse(view: View) {
+        val initialHeight = view.measuredHeight
+        val animator = ValueAnimator.ofInt(initialHeight, 0)
+        animator.addUpdateListener { valueAnimator ->
+            val newHeight = valueAnimator.animatedValue as Int
+            view.layoutParams.height = newHeight
+            view.requestLayout() // ← smooth layout updates
+            view.alpha = newHeight / initialHeight.toFloat()
+        }
+        animator.duration = 300
+        animator.interpolator = DecelerateInterpolator()
+        animator.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                view.visibility = View.GONE
+            }
+        })
+        animator.start()
+    }
+
 
     private fun setupUIAfterPrefsLoaded() {
         // Restore toggle
@@ -474,6 +584,7 @@ class HomeFragment :
             binding.header.isPressed = false
         }, 200)
     }
+
     private fun customSchedulingRipple() {
         binding.customScheduling.isPressed = true
         binding.customScheduling.postDelayed({
@@ -871,12 +982,6 @@ class HomeFragment :
 
     }
 
-    private fun updateSlider() {
-        val current = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-        binding.volRocker.value = current.toFloat()
-        binding.selectedVolume.text = "$current%"
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         try {
@@ -887,31 +992,45 @@ class HomeFragment :
     }
 
     // Helper: convert percent (0..100) to device volume (0..maxVol)
+    // --- Helper Functions ---
     private fun percentToDeviceVolume(percent: Int, maxVol: Int): Int {
         val vol = (percent / 100f * maxVol.toFloat()).roundToInt()
         return vol.coerceIn(0, maxVol)
     }
 
-    // Helper: snap to nearest step (e.g., 10)
     private fun snapToStep(value: Int, step: Int): Int {
         val div = (value.toDouble() / step).roundToInt()
         return (div * step).coerceIn(0, 100)
     }
 
-    // When external change happens, update slider/text to match system volume
+    // --- Keep in sync with external volume changes ---
     private fun syncSliderWithSystemVolume() {
-        val maxVol = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-        val curVol = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-        val curPercent = ((curVol.toFloat() / maxVol.toFloat()) * 100f).roundToInt()
-        val snapped = snapToStep(curPercent, 10)
+        val musicStream = AudioManager.STREAM_MUSIC
+        val notiStream = AudioManager.STREAM_NOTIFICATION
 
-        // Set slider safely (this triggers listener with fromUser=false)
-        binding.volRocker.value = snapped.toFloat()
-        binding.selectedVolume.text = "Volume: $snapped%"
+        val maxMusicVol = audioManager.getStreamMaxVolume(musicStream)
+        val curMusicVol = audioManager.getStreamVolume(musicStream)
+        val musicPercent = ((curMusicVol.toFloat() / maxMusicVol.toFloat()) * 100f).roundToInt()
+        val snappedMusic = snapToStep(musicPercent, 10)
 
-        if (snapped.equals(100)) requireActivity().showCustomSnackBar(
-            "You have reached max volume", R.drawable.sound, colorString = colorHexx.toString()
-        )
+        val maxNotiVol = audioManager.getStreamMaxVolume(notiStream)
+        val curNotiVol = audioManager.getStreamVolume(notiStream)
+        val notiPercent = ((curNotiVol.toFloat() / maxNotiVol.toFloat()) * 100f).roundToInt()
+        val snappedNoti = snapToStep(notiPercent, 10)
+
+        binding.mediaVolRocker.value = snappedMusic.toFloat()
+        "vol: $snappedMusic%".also { binding.selectedMediaVolume.text = it }
+        "vol: $snappedMusic%".also { binding.txtCurrentVol.text = it }
+        binding.notificationVolRocker.value = snappedNoti.toFloat()
+        "vol: $snappedNoti%".also { binding.selectedNotificationVolume.text = it }
+
+        if (snappedMusic == 100 && snappedNoti == 100) {
+            requireActivity().showCustomSnackBar(
+                "You have reached max volume",
+                R.drawable.sound,
+                colorString = colorHexx
+            )
+        }
     }
 
     override fun onDestroy() {
